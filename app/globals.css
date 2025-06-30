@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.list-bg {
+  background: rgb(249, 250, 255);
+  padding: 10px;
+}
+.list-item {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 5px;
+  box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
+}
+.list-item h4 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+.list-item p {
+  color: grey;
+  margin : 5px 0px;
+} 
+
+/** navBar Css*/
+.navbar {
+  background: white;
+  padding: 20px;
+}
+
+.navbar a {
+  margin-right: 10px; 
+  text-decoration: none;
+}
+
+.navbar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 좌측 로고 영역 */
+.navbar-logo {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  display: block;
+}
+
+/* 가운데 메뉴 영역 */
+.navbar-menu {
+  margin: 0 auto; /* 수평 중앙 정렬 */
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navbar-menu a:hover {
+  color: #888;
+}
+
+/* 우측 아이콘/버튼 */
+.navbar-right {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login-button {
+  padding: 6px 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #666;
+}
+
+/* write page input tag css */
+.p-20 {
+  padding: 20px;
+}
+input {
+  box-sizing: border-box;
+  padding: 10px;
+  display: block;
+  margin-bottom: 10px;
+}
+button {
+  padding: 10px 15px;
+  background: lightgray;
+  border: none;
+  border-radius: 5px;
+} 
+
+/* write page css */
+
+.content-textarea {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  padding: 10px 0;
+  outline: none;
+  color: #444;
+  resize: vertical; /* 사용자가 줄 수 조절 가능 */
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+.write-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.select-category {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin-bottom: 40px;
+  border-radius: 4px;
+  color: #444;
+}
+
+.title-input {
+  font-size: 24px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  outline: none;
+  color: #444;
+}
+
+.content-input {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  padding: 10px 0;
+  outline: none;
+  color: #444;
+}
+
+.title-input::placeholder,
+.content-input::placeholder,
+.select-category::placeholder {
+  color: #bbb;
+}
+
+/* a tag css */
+a {
+  text-decoration: none;
+  color: black;
+}
