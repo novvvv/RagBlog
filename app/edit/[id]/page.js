@@ -1,8 +1,18 @@
-export default function Write() {
+import { ObjectId } from "mongodb"
+import { connectDB } from "@/util/database" 
+
+export default async function Edit(props) {
+
+    const db = (await connectDB).db("forum")
+    const { id } = await props.params;
+    let result = await db.collection('post').findOne({ _id: new ObjectId(id)})
+    console.log(result)
+
     return (
         <div className="p-20">
+            <h4>수정페이지</h4>
             <div className="write-container">
-                <form action="/api/post/new" method="POST">
+                <form action="/api/post/edit" method="POST">
                     <select
                         name="category"
                         className="select-category"
@@ -14,6 +24,8 @@ export default function Write() {
                         <option value="grammar">문법</option>
                     </select>
 
+                    <input style= {{display : 'none'}} name="_id" defaultValue={result._id.toString()}/>
+                    
                     <input 
                         type="text" 
                         name="title" 
