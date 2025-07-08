@@ -20,14 +20,17 @@ export default function ListItem(props) {
             ✏️
           </Link> 
 
-          <span onClick = {() => {
+          <span onClick = {(e) => {
             fetch('/api/post/delete', {
                 method: 'DELETE',
                 body: item._id
             }).then((r) => {
                 return r.json()
-            }).then((r) => {
-              console.log(r)
+            }).then(() => {
+              e.target.parentElement.style.opacity = 0
+              setTimeout(() => {
+                e.target.parentElement.style.display = 'none'
+              }, 1000)
             })
           }}>🗑️</span>
 

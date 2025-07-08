@@ -1,10 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import styles from './Home.module.css'
 
 export default function Home() {
   const [post, setPost] = useState([])
   const [chatVisible, setChatVisible] = useState(false)
+  const [messages, setMessages] = useState([])
+  const [input, setInput] = useState('')
 
   useEffect(() => {
     fetch('/api/post/list')
@@ -12,72 +15,75 @@ export default function Home() {
       .then(data => setPost(data))
   }, [])
 
-  return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '90vh',
-      flexDirection: 'column',
-      textAlign: 'center',
-      whiteSpace: 'pre-line',
-      padding: '2rem'
-    }}>
-      안녕하세요! 일본어 블로그를 운영하고 있는 Yomo 입니다.{"\n"}
-      다음 블로그는 아래와 같은 기술 스택을 사용해 구현되었습니다.{"\n"}
-      MongoDB, NextJS, LangChain, RAG
+ 
+  // python back-end chat server로 메시지 전송 
+const handleSend = async () => {
+  if (!input.trim()) return
 
-      {/* 우측 하단 챗봇 버튼 */}
+  const newMessages = [...messages, { text: input, sender: 'me' }]
+  setMessages(newMessages)
+  setInput('')
+
+  try {
+    const res = await fetch('http://127.0.0.1:8000/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: input }),
+    })
+
+    const data = await res.json()
+    setMessages([...newMessages, { text: data.answer, sender: 'bot' }])
+  } catch (err) {
+    console.error("챗봇 응답 오류:", err)
+    setMessages([...newMessages, { text: "에러가 발생했어요.", sender: 'bot' }])
+  }
+}
+
+  return (
+    <div className={styles.pageWrapper}>
+      <div className={styles.introText}>
+        안녕하세요! 일본어 블로그를 운영하고 있는 Yomo 입니다.{"\n"}
+        다음 블로그는 아래와 같은 기술 스택을 사용해 구현되었습니다.{"\n"}
+        MongoDB, NextJS, LangChain, RAG
+      </div>
+
       <button
+        className={styles.chatToggleButton}
         onClick={() => setChatVisible(!chatVisible)}
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          borderRadius: '50%',
-          width: '60px',
-          height: '60px',
-          backgroundColor: '#0070f3',
-          color: 'white',
-          border: 'none',
-          fontSize: '24px',
-          cursor: 'pointer'
-        }}>
+      >
         💬
       </button>
 
-      {/* 챗봇 창 */}
       {chatVisible && (
-        <div style={{
-          position: 'fixed',
-          bottom: '90px',
-          right: '20px',
-          width: '350px',
-          height: '500px',
-          backgroundColor: '#fff',
-          border: '1px solid #ccc',
-          borderRadius: '10px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-          padding: '1rem',
-          zIndex: 999
-        }}>
-          <h4>챗봇</h4>
-          <p>무엇을 도와드릴까요?</p>
-          <textarea
-            placeholder="메시지를 입력하세요"
-            style={{ width: '100%', height: '80px', marginTop: '10px' }}
-          />
-          <button style={{
-            marginTop: '10px',
-            width: '100%',
-            backgroundColor: '#0070f3',
-            color: 'white',
-            border: 'none',
-            padding: '0.5rem',
-            borderRadius: '5px'
-          }}>
-            전송
-          </button>
+        <div className={styles.chatBox}>
+          <div className={styles.chatMessages}>
+            {messages.map((msg, idx) => (
+              <div
+                key={idx}
+                className={
+                  msg.sender === 'me'
+                    ? styles.myMessage
+                    : styles.otherMessage
+                }
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.chatInputArea}>
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className={styles.textarea}
+              placeholder="메시지를 입력하세요"
+            />
+            <button onClick={handleSend} className={styles.sendButton}>
+              전송
+            </button>
+          </div>
         </div>
       )}
     </div>
