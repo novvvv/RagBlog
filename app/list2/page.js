@@ -2,7 +2,7 @@ import { connectDB } from "@/util/database"
 import Link from "next/link"
 import ListItem from "./ListItem"
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 20
 
 
 export default async function List() {
@@ -14,6 +14,9 @@ export default async function List() {
         ...item,
         _id: item._id.toString()
     }))
+
+
+
 
     return(
         <div className="list-bg">

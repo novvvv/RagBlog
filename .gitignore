@@ -44,3 +44,4 @@ next-env.d.ts
 /util/
 /public/
 /backend/model/.env
+/pages/api/auth
