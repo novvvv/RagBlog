@@ -12,6 +12,8 @@ export default function ListItem(props) {
             <h4>{item.title}</h4>
           </Link>
 
+          <p>작성자 : {item.author}</p>
+
           <Link
             href={`/edit/${item._id}`}
             prefetch={false}

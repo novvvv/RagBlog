@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
+from langchain_upstage import ChatUpstage 
 from dotenv import load_dotenv
 import os
 
@@ -18,7 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-llm = ChatOpenAI()
+# llm = ChatOpenAI()
+llm = ChatUpstage()
 
 # /chat 경로로 Post 요청이 들어오면 실행 
 @app.post("/chat")

@@ -1,8 +1,13 @@
 import "./globals.css";
 import Link from "next/link"
+
+// auth.js 인증 정보 
 import LoginBtn from "./login_btn.js"
+import LogoutBtn from "./logout_btn.js"
 import { getServerSession } from "next-auth" // server session
 import { authOptions } from "@/pages/api/auth/[...nextauth]"; // login 정보 
+
+
 
 export const metadata = {
   title: "Create Next App",
@@ -24,12 +29,26 @@ export default async function RootLayout({ children }) {
             <Link href="/">About</Link>
             <Link href="/list">Blog</Link>
             <Link href="/write">write</Link>
-            <LoginBtn></LoginBtn>
-
             {
               /* 
+
                 JSX는 기본적으로 If-statement 사용이 불가능하지만, 삼항 연산자는 사용 가능  
-              (if-statement) ? true-code : false-code */
+                (if-statement) ? true-code (Html) : false-code (Html) 
+                현재 로그인된 유저 정보가 있는경우 : navBar userName, logout button 출력 
+                현재 로그인 정보가 없는 경우 : login button 출력 
+
+              */
+            }
+
+            {
+                session ? 
+                  <span>
+                    {session.user.name}
+                    <LogoutBtn></LogoutBtn>                    
+                  </span> :  
+                  <div>
+                    <LoginBtn></LoginBtn> 
+                  </div>    
             }
 
           </nav>
