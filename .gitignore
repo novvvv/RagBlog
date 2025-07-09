@@ -45,3 +45,6 @@ next-env.d.ts
 /public/
 /backend/model/.env
 /pages/api/auth
+
+# lecture
+/backend/model/html/lecture
