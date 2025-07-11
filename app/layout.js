@@ -43,12 +43,12 @@ export default async function RootLayout({ children }) {
             {
                 session ? 
                   <span>
-                    {session.user.name}
+                    {session.user.name}<span>   </span>
                     <LogoutBtn></LogoutBtn>                    
                   </span> :  
                   <div>
                     <LoginBtn></LoginBtn> 
-                  </div>    
+                   </div>    
             }
 
           </nav>
