@@ -16,7 +16,7 @@ export default async function Detail(props){
             <h4>상세페이지</h4>
             <h4>{result.title}</h4>
             <p>{result.content}</p>
-            <Comment/>
+            <Comment _id={result._id.toString()}/>
             <Link href={`/edit/${id}`} prefetch={false} className="btn-link">
                 수정
             </Link>
