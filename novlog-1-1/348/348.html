@@ -1,0 +1,150 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 단계별로 풀어보기 24479 깊이 우선 탐색 1 C++ 문제풀이 &  소스코드</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 단계별로 풀어보기 24479 깊이 우선 탐색 1 C++ 문제풀이 &  소스코드</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2025-02-24 16:28:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER2</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유형 : <span style="background-color: #333333; color: #dddddd;">Graph DFS</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/24479" target="_blank" rel="noopener&nbsp;noreferrer">https://www.acmicpc.net/problem/24479</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 조건대로 각 노드를 오름차순으로 DFS 탐색을 해주면 되는 간단한 그래프 문제이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단 cin, cout 속도를 최적화해 주는 코드를 반드시 명시해 주어야 한다. 그렇지 않으면 시간초과가 발생한다.&nbsp;</span></p>
+<pre id="code_1740381582917" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    cin.tie(0);
+    ios_base::sync_with_stdio(0);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">인접 리스트 방식으로 간선 정보를 입력받는다.&nbsp;</span></p>
+<pre id="code_1740381658038" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>vector&lt;int&gt; adj_list[200001];
+    for (int i = 1; i &lt;= m; i ++) {
+        cin &gt;&gt; node1 &gt;&gt; node2;
+        adj_list[node1].push_back(node2);
+        adj_list[node2].push_back(node1);
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 조건에서 인접 정점을 오름차순으로 탐색해야 된다는 조건이 있었기에 <span style="background-color: #333333;"><span style="color: #dddddd;">각 노드에 저장된 인접 정점을 sort 함수를 사용해 오름차로</span> 정렬</span>한 뒤, 정점 r에서 dfs 탐색을 시작한다.&nbsp;</span></p>
+<pre id="code_1740381765091" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // 탐색 순서를 sort
+    for (int i = 1; i &lt;= n; i++) {
+        sort(adj_list[i].begin(), adj_list[i].end());
+    }
+    
+    dfs(r);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">dfs 로직은 크게 다를건 없는데</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">해당 정점을 몇 번째로 탐색했는지 출력해야 하기에 정점을 탐색할 때마다<span style="background-color: #333333; color: #dddddd;"> cnt 변수값을 증가시켜 ans 배열에 기록</span>해 주기만 하면 된다.</span></p>
+<pre id="code_1740381854984" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>bool visited[200001];
+int ans[200001];
+vector&lt;int&gt; adj_list[200001];
+int cnt = 0;
+
+void dfs(int r) {
+    
+    if (visited[r]) return;
+    visited[r] = true;
+    cnt++;
+    ans[r] = cnt;
+    for (int i = 0; i &lt; adj_list[r].size(); i++) {
+        dfs(adj_list[r][i]);
+    }
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="background-color: #c0d1e7;">CODE</span></h2>
+<p data-ke-size="size16"><a href="https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp" target="_blank" rel="noopener&nbsp;noreferrer">https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp</a></p>
+<figure id="og_1740382005110" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="object" data-og-title="PS/BOJ/2025/C++/24479.cpp at main &middot; novvvv/PS" data-og-description="알고리즘 문제 풀이 코드 모음. Contribute to novvvv/PS development by creating an account on GitHub." data-og-host="github.com" data-og-source-url="https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp" data-og-url="https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp" data-og-image=""><a href="https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp" target="_blank" rel="noopener" data-source-url="https://github.com/novvvv/PS/blob/main/BOJ/2025/C%2B%2B/24479.cpp">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">PS/BOJ/2025/C++/24479.cpp at main &middot; novvvv/PS</p>
+<p class="og-desc" data-ke-size="size16">알고리즘 문제 풀이 코드 모음. Contribute to novvvv/PS development by creating an account on GitHub.</p>
+<p class="og-host" data-ke-size="size16">github.com</p>
+</div>
+</a></figure>
+<pre id="code_1740382009154" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+bool visited[200001];
+int ans[200001];
+vector&lt;int&gt; adj_list[200001];
+int cnt = 0;
+
+void dfs(int r) {
+    
+    if (visited[r]) return;
+    visited[r] = true;
+    cnt++;
+    ans[r] = cnt;
+    for (int i = 0; i &lt; adj_list[r].size(); i++) {
+        dfs(adj_list[r][i]);
+    }
+}
+
+int main() {
+    
+    cin.tie(0);
+    ios_base::sync_with_stdio(0);
+    
+    int n, m, r; // 정점 수 , 간선 수, 시작 정점
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; r;
+
+    int node1, node2;
+    
+    for (int i = 1; i &lt;= m; i ++) {
+        cin &gt;&gt; node1 &gt;&gt; node2;
+        adj_list[node1].push_back(node2);
+        adj_list[node2].push_back(node1);
+    }
+    
+    // 탐색 순서를 sort
+    for (int i = 1; i &lt;= n; i++) {
+        sort(adj_list[i].begin(), adj_list[i].end());
+    }
+    
+    dfs(r);
+    
+    for (int i = 1; i &lt;= n; i++) cout &lt;&lt; ans[i] &lt;&lt; '\n';
+    
+}
+
+// N개 정점 (5 &lt;= N &lt;= 100,000) , M개 간선 (1 &lt;= M &lt;= 200,000)
+// 정점 R에서 시작해 깊이 우선 탐색으로 노드를 방문한다.
+// 노드의 방문 순서를 출력하시오.
+
+// 간선 정보 U v
+// 정점 u 정점 v 가중치 1 양방향 간선</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

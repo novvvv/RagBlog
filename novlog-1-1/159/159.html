@@ -1,0 +1,110 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] Call-By-Value VS Call-By-Reference</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] Call-By-Value VS Call-By-Reference</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-02-06 17:37:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 값에 의한 전달 Call-By-Value</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 참조에 의한 전달 Call-By-Reference</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#1 값에 의한 전달 Call-By-Value</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Call-By-Value 방식은 인자로 넘기는 값을 "복사"하여 함수에 넘겨주는 방식입니다.&nbsp; </span><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, 값의 복사에 의한 함수 호출을 의미합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드는 main() 함수에서 doSomething 함수로 x의 값 5를 전달해 출력하는 예제입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유의해야 할 점은 x가 직접 전달되는 것이 아닌 x의 값 "5"만이 전달되는 것으로 doSomething 함수의 파라미터 x와 main() 함수의 x는 서로 다른 메모리에 할당되어 있습니다. 따라서, 각 함수에서 x의 주소값을 출력해보면 전혀 다른 주소가 출력됩니다.</span></p>
+<pre id="code_1644133572011" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// int x 메모리 선언.
+// int x 메모리에 값이 복사가 되어 초기화
+// Call-By-Value
+void doSomething(int x) {
+	cout &lt;&lt; "doSomething() " &lt;&lt; x &lt;&lt; " " &lt;&lt; &amp;x &lt;&lt; endl;
+}
+
+int main(){
+	// call-by-value
+    	int x = 5;
+	doSomething(x); // x가 직접 전달되는 것이 아니라, x의 값 "5"만이 전달된다
+	cout &lt;&lt; "main() " &lt;&lt; x &lt;&lt; " " &lt;&lt; &amp;x &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1644133850596" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>doSomething() 5 0x7ffc942b605c
+main() 5 0x7ffc942b6074</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">값에 의한 전달은 값을 복사해서 전달하기에,<b> "원본의 값에 영향을 미칠 수 없으며"</b>, <b>값을 넘겨줄 때 마다 새로운 메모리를 복사</b>해 할당해야 하기에 <span style="color: #1a5490;"><b>복사손실 문제</b></span>를 지니고 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드와 같이 doSomething 함수에서 x의 값을 6으로 변경해도 main 함수부에는 전혀 영향을 끼치지 못함을 확인할 수 있습니다.</span></p>
+<pre id="code_1644134039772" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// int x 메모리 선언.
+// int x 메모리에 값이 복사가 되어 초기화
+// Call-By-Value
+void doSomething(int x) {
+	x = 6;
+	cout &lt;&lt; "doSomething() " &lt;&lt; x &lt;&lt; " " &lt;&lt; &amp;x &lt;&lt; endl;
+}
+
+
+int main(){
+	// call-by-value
+	int x= 5;
+	doSomething(x); 
+	cout &lt;&lt; "main() " &lt;&lt; x &lt;&lt; " " &lt;&lt; &amp;x &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1644134095276" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>doSomething() 6 0x7ffe7651420c
+main() 5 0x7ffe76514224</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#2 참조에 의한 전달 Call-By-Reference</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Call-By-Reference 방식은 함수의 인자에 변수 자체를 즉, <b>주소값을 넘겨주는 방식</b>입니다. 변수의 주소를 넘겨주기에, Call-By-Value 방식과 달리 <b>원본의 값에 직접 영향을 미칩니다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드는 main() 함수부에서 addOne() 함수로 직접 y의 주소를 넘겨 y의 값을 1 더해주는 예제입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출력 결과를 확인해보면 main() 함수의 y의 값도 6으로 증가해 있음을 확인할 수 있습니다. 또한 addOne에서의 y와 main()에서의 y의 주소가 동일합니다.</span></p>
+<pre id="code_1644134886175" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// Call-By-Reference
+void addOne(int &amp;y) {
+	y = y + 1;
+	cout &lt;&lt; "addOne() " &lt;&lt; y &lt;&lt; " " &lt;&lt; &amp;y &lt;&lt; endl;
+}
+
+int main(){
+	// call-by-ref
+	int y = 5;
+	addOne(y);
+   	cout &lt;&lt; "main() " &lt;&lt; y &lt;&lt; " " &lt;&lt; &amp;y &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1644135061971" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>addOne() 6 0x7ffd933425d4
+main() 6 0x7ffd933425d4</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Call-By-Value 와 Call-By-Reference 방식의 특징에 대해 정리하고 마치도록 하겠습니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Call-By-Value</span> 방식은 <b>원본의 데이터에 영향을 끼칠 수 없고</b>, 값을 넘겨줄 때 마다 매번 새로운 메모리를 할당해야 하기에, <b>복사손실 문제를 갖고 있다</b>는 단점을 가지고 있습니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Call-By-Reference</span> 방식은 <b>원본의 데이터에 영향을 끼칠 수 있으며,</b> 직접 주소를 넘겨주는 방식이기에 새로운 메모리를 할당할 필요가 없어 <b>복사손실 문제에서 자유롭다</b>는 장점을 가지고 있습니다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #C++ #참조 #값에의한전달 #참조에의한전달 #참조자 #주소에의한전달 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

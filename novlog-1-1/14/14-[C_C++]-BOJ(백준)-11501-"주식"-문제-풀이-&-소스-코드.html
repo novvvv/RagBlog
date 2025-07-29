@@ -1,0 +1,148 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] BOJ(백준) 11501 "주식" 문제 풀이 & 소스 코드</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] BOJ(백준) 11501 "주식" 문제 풀이 & 소스 코드</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-05-04 11:31:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제정보</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">출처</span> : <a href="https://www.acmicpc.net/problem/11501" target="_blank" rel="noopener">www.acmicpc.net/problem/11501</a></span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제분석</span></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">사용된 알고리즘</span> : <span style="background-color: #333333; color: #ffffff;">그리디(GREEDY)</span></span></p>
+<p><span style="color: #000000; font-family: 'Nanum Gothic';">stock(주식을 저장하는 벡터)를 뒤에서 부터 차례로 검사하여, 최댓값을 갱신하며 차이 만큼 빼주어 결과값에 더하는 그리디 방식으로 풀이했다. [1 1 3 1 2] 를 예시로 설명하도록 하겠다.</span></p>
+<p>&nbsp;</p>
+<p><span style="background-color: #f6e199; font-family: 'Nanum Gothic';"><span style="color: #000000;">1번째 비교</span></span></p>
+<p><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">5번째 인덱스 [2] 와 mx [-1] (mx는 미리 -1로 초기화 해둔다.) 을 비교한다.</span><span style="color: #000000;">2 &gt; -1 이므로 mx의 값을 2로 변경한다.</span><span style="color: #000000;">mx = 2 , result = 0</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="318" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="0" data-origin-height="0" width="318" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #f6e199;">2번째 비교</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">4번째 인덱스 [1] 과 mx[2]를 비교한다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">1 &lt; mx[2] 이므로, mx[2]와 1의 차이인 1만큼을 result 변수에 더해준다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">mx = 2 , result = 1</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="368" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="0" data-origin-height="0" width="368" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="background-color: #f6e199;"><span style="font-family: 'Nanum Gothic'; color: #000000;">3번째 비교</span></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">3번째 인덱스[3]과 mx[2]를 비교한다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">3 &gt; mx[2] 이므로, mx 값을 3으로 변경한다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">mx = 3 , result = 1</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="317" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="0" data-origin-height="0" width="317" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #f6e199;">4번째 비교</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">2번째 인덱스[1]과 mx[3]을 비교한다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">1 &lt; mx[3] 이므로, mx[3]과 1의 차이인 2만큼을 result 변수에 더해준다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">mx = 3 , result = 3</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="384" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="0" data-origin-height="0" width="384" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #f6e199;">5번째 비교</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">1번째 인덱스[1]과 mx[3]을 비교한다. 앞의 "4번째 비교"와 동일하다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">1 &lt; mx[3] 이므로, mx[3]과 1의 차이인 2만큼을 result 변수에 더해준다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">mx = 3 , result = 5</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="380" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="0" data-origin-height="0" width="380" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">물론 [10, 7 , 6] 같은 주식을 사지 않는게 최선의 선택인 경우에도 동일하게 적용 가능하다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">매 순간마다 mx 값이 0으로 초기화 될테니 차이가 모두 0이되어 0이 출력된다.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데, 조심해야할 부분은 <span style="background-color: #333333; color: #ffffff;">result를 long 혹은 long long 형으로 선언해 주어야 한다는 것</span>이다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 조건 <span style="background-color: #333333; color: #ffffff;">"64bit 정수형으로 표현 가능하다."</span>를 지나쳐서 계속 틀렸었다,,,</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">여기만 유의해 주면 어렵지 않게 풀 수 있는 문제이다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#소스코드</span></h2>
+<pre id="code_1620095366804" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	int testCase = 0;
+	cin &gt;&gt; testCase;
+	for (int i = 0 ; i &lt; testCase ; ++i)
+	{
+		int N; cin &gt;&gt; N;
+		vector&lt;int&gt; stock;
+		for (int j = 0 ; j &lt; N ; ++j)
+		{
+			int temp;
+			cin &gt;&gt; temp;
+			stock.push_back(temp);
+		}
+		
+		// Greedy Solve
+		int mx = -1;
+		long result = 0;
+		for (int k = N - 1 ; k &gt;= 0 ; k--)
+		{
+			mx = max(mx, stock[k]);
+			result += mx - stock[k];
+		}
+		
+		cout &lt;&lt; result &lt;&lt; "\n";
+	}
+	
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #주식 #알고리즘 #소스코드 #문제풀이 #BOJ #백준 #그리디 #11501 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

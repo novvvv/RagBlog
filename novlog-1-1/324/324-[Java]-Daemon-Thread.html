@@ -1,0 +1,136 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Java] Daemon Thread</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Java] Daemon Thread</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Multi Thread Programming</p>
+                                    <p class="date">2024-09-14 16:08:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Goal</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 데몬 스레드와 사용자 스레드의 차이점에 대해 이해한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 데몬 스레드의 생성 방법에 대해 이해한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 데몬 스레드 &amp; 사용자 스레드</span></b></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바에서 스레드는 사용자 스레드와 데몬 스레드로 구분한다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">사용자 스레드는 Thread Class 를 상속받거나, Runnable 인터페이스를 구현하는 방식으로 생성한다.&nbsp;</span></p>
+<figure id="og_1726296498632" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[Java] 쓰레드 생성 방법 Thread &amp; Runnable Interface" data-og-description="✨Goal1. Thread Class를 상속받아 스레드를 생성하는 방법에 대해 숙지한다.2. Runnable Interface를 구현하여 스레드를 생성하는 방법에 대해 숙지한다.&nbsp;자바에서 스레드를 생성하는 방법은 Thread 클래스" data-og-host="novlog.tistory.com" data-og-source-url="https://novlog.tistory.com/entry/Java-%EC%93%B0%EB%A0%88%EB%93%9C-%EC%83%9D%EC%84%B1-%EB%B0%A9%EB%B2%95-Thread-Runnable-Interface" data-og-url="https://novlog.tistory.com/entry/Java-%EC%93%B0%EB%A0%88%EB%93%9C-%EC%83%9D%EC%84%B1-%EB%B0%A9%EB%B2%95-Thread-Runnable-Interface" data-og-image="https://scrap.kakaocdn.net/dn/ZuuDh/hyW2REztcm/iu4ZG5XTOxhrufZxRKcuM0/img.png?width=512&amp;height=512&amp;face=0_0_512_512,https://scrap.kakaocdn.net/dn/c4PyFq/hyW2PfGnhO/FKXKrxuBMmTuLALwKjuUr0/img.png?width=512&amp;height=512&amp;face=0_0_512_512,https://scrap.kakaocdn.net/dn/bfpyqe/hyW2QyR4ce/F136vzmKeyIQu7O2Re9q31/img.jpg?width=563&amp;height=778&amp;face=0_0_563_778"><a href="https://novlog.tistory.com/entry/Java-%EC%93%B0%EB%A0%88%EB%93%9C-%EC%83%9D%EC%84%B1-%EB%B0%A9%EB%B2%95-Thread-Runnable-Interface" target="_blank" rel="noopener" data-source-url="https://novlog.tistory.com/entry/Java-%EC%93%B0%EB%A0%88%EB%93%9C-%EC%83%9D%EC%84%B1-%EB%B0%A9%EB%B2%95-Thread-Runnable-Interface">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/ZuuDh/hyW2REztcm/iu4ZG5XTOxhrufZxRKcuM0/img.png?width=512&amp;height=512&amp;face=0_0_512_512,https://scrap.kakaocdn.net/dn/c4PyFq/hyW2PfGnhO/FKXKrxuBMmTuLALwKjuUr0/img.png?width=512&amp;height=512&amp;face=0_0_512_512,https://scrap.kakaocdn.net/dn/bfpyqe/hyW2QyR4ce/F136vzmKeyIQu7O2Re9q31/img.jpg?width=563&amp;height=778&amp;face=0_0_563_778');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">[Java] 쓰레드 생성 방법 Thread &amp; Runnable Interface</p>
+<p class="og-desc" data-ke-size="size16">✨Goal1. Thread Class를 상속받아 스레드를 생성하는 방법에 대해 숙지한다.2. Runnable Interface를 구현하여 스레드를 생성하는 방법에 대해 숙지한다.&nbsp;자바에서 스레드를 생성하는 방법은 Thread 클래스</p>
+<p class="og-host" data-ke-size="size16">novlog.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바 프로그램은 현재 프로세스 내부에 동작하고 있는 스레드가 모두 종료 상태로 들어간 후에 종료된다.&nbsp;&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반면 사용자 스레드와 달리 <span style="background-color: #333333; color: #dddddd;">데몬 스레드는 부가적인 스레드이다.</span>&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">사용자 스레드가 모두 종료되면, 데몬 스레드의 실행 여부와 관계 없이 자바 프로그램이 종료된다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">대표적으로 백그라운드에서 돌아가는 프로세스나, 알림 , 메모리 관리, 네트워크 연결 관리 등 과 같은 기능들은 굳이 사용자 스레드로 생성할 필요가 없다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <span style="background-color: #333333; color: #dddddd;">상대적으로 중요하지 않은 작업을 처리하는 스레드</span>나, 굳이 <span style="background-color: #333333; color: #dddddd;">완료되지 않아도 되는 작업을 처리하는 스레드</span>를 "데몬 스레드"로 생성하면 효율적이다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 데몬 스레드 생성 방법</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">데몬 스레드 또한 사용자 스레드와 동일하게 Thread 클래스를 상속받거나 Runnable 인터페이스를 구현하는 방식으로 생성한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">데몬 스레드 객체 선언 후 <span style="background-color: #333333; color: #dddddd;">setDaemon</span> 메서드를 <span style="background-color: #333333; color: #dddddd;">true</span>로 설정해 주면 된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, <span style="background-color: #c0d1e7;">setDaemon으로 데몬 스레드를 명시하는 코드는 반드시 start() 메서드 실행 전에 작성</span>해 주어야 한다.</span></p>
+<pre id="code_1726297231648" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class DemonThreadMain {
+    public static void main(String[] args) {
+
+        DaemonThread daemonThread = new DaemonThread();
+        daemonThread.setDaemon(true);
+        daemonThread.start();
+
+    }
+
+    static class DaemonThread extends Thread {
+        @Override
+        public void run() {
+			...
+        }
+    }
+
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">데몬 스레드 예제</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 데몬 스레드와 사용자 스레드를 생성 후 각각 10초, 3초 씩 실행한 예제 코드이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출력 결과를 보면 데몬 스레드의 종료 여부와 관계 없이 사용자 스레드의 작업이 모두 종료된 시점인 3초 후 프로세스가 종료되는 것을 확인할 수 있다.</span></p>
+<pre id="code_1726297568057" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package thread.start;
+
+public class DemonThreadMain {
+    public static void main(String[] args) {
+
+        // Daemon Thread 10s 실행
+        DaemonThread daemonThread = new DaemonThread();
+        daemonThread.setDaemon(true);
+        daemonThread.setName("Daemon Thread");
+        daemonThread.start();
+
+        // User Thread 1s 실행
+        UserThread userThread = new UserThread();
+        userThread.setName("User Thread");
+        userThread.start();
+
+    }
+
+    static class DaemonThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + ": run()");
+            try {
+                Thread.sleep(10000); // 10초간 실행
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Thread.currentThread().getName() + ": run end()");
+        }
+    }
+
+    static class UserThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + " : run()");
+            try {
+                Thread.sleep(3000); // 3초간 실행
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Thread.currentThread().getName() + ": run end()");
+        }
+    }
+}</code></pre>
+<pre id="code_1726297690502" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Daemon Thread: run()
+User Thread : run()
+User Thread: run end()</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[HTML] 문서의 기본 구조 <html> <head> <body> <!DOCTYPE></title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[HTML] 문서의 기본 구조 <html> <head> <body> <!DOCTYPE></h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2021-08-30 03:00:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="background-color: #fafafa; color: #000000; font-family: 'Nanum Gothic';">? 웹브라우저(크롬, 오페라, 익스플로러 등..) 는 개발자가 작성한 HTML 형식의 문서의 정보를 받아들여 웹페이지에 렌더링 해준다. HTML 문서에 대해 이해하기 위해서 우선 HTML 문서를 구성하는 뼈대가 되는 기본적인 테그들 html, head, body, !doctype 테그에 대한 이해가 필수적으로 요구된다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">? 개인적인 공부 내용을 기록하는 용도로 작성한 글 입니다. </span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">지속적으로 수정해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 &lt;!DOCTYPE&gt;</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 &lt;html&gt;</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 &lt;head&gt;</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 &lt;body&gt;</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅에서는 HTML 문서의 기본 구조를 이루는 태그들에 대해서 정리해 보고자 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">웹 문서는 기본적으로 &lt;!DOCTYPE html&gt; 이라는 태그로 시작해 &lt;html&gt; &lt;head&gt; &lt;body&gt; 라는 3개의 영역으로 구성된다.</span></p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 &lt;!DOCTYPE&gt;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">&lt;!DOCTYPE&gt;</span> 태그는 <b>웹 문서의 유형을 지정해 주는 태그</b>이다. html은 만들어진지 오래된 언어라 다양한 버전이 존재하는데, 특정 버전을 기준으로 웹 문서를 작성했다는 표시를 해 주어야 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">여기서 <b>html은 HTML5 버전 이라는 의미</b>로, <b>&lt;!DOCTYPE html&gt; 라고 적어 주면 웹 브라우저는 HTML5에 맞추어 작성한 웹 문서라고 인식한다.</b></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 &lt;html&gt;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">&lt;html&gt;태그</span>는 <b>웹 문서의 시작과 끝을 나타내는 태그</b>이다. <b>웹 브라우저가 &lt;html&gt; 태그를 만나면 &lt;/html&gt; 태그를 만날 때 까지 소스를 읽어서 화면에 출력해준다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 &lt;html&gt; 태그 에서는 <span style="background-color: #333333; color: #ffffff;">lang 속성</span>으로 <b>문서에서 사용할 언어를 지정</b>할 수 있는데, 한국어는 korea의 줄임말인 ko를 사용한다. 굳이 언어를 지정하는 이유는 특정 언어로 제한해 검색할 때 필요하기 때문이다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">예를 들어 검색 결과를 "한국어로 된 문서" 범위로 제한하면, lang 속성값이 ko로 되어있는 문서를 우선 검색한다.</span></b></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 &lt;head&gt;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">&lt;head&gt;태그</span>는 <b>웹 브라우저가 알아야 할 정보를 입력하는 공간</b>으로, <b>이 태그 사이에 작성된 내용은 대부분 웹 브라우저에 표시되지 않는다.&nbsp;</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&lt;head&gt;태그 내부에는 페이지의 제목을 표시해 주는 &lt;title&gt; 태그, CSS 파일과 연결을 도와주는 &lt;link&gt; 태그 등이 포함된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#4 &lt;body&gt;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">&lt;body&gt;태그</span>는 &lt;head&gt;태그와 달리 <b>웹 브라우저에 실제로 표시할 내용을 입력하는 공간</b>이다. 화면 상에 출력되는 HTML 문법을 작성할 때는 거의 &lt;body&gt; ~ &lt;/body&gt; 사이에 작성한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #HTML #WEB #html태그 #웹문서구조 #head태그 #Body태그 #!DOCTYPE태그 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

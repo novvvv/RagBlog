@@ -1,0 +1,109 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[LeetCode] 20. Valid Parentheses 문제 풀이 C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[LeetCode] 20. Valid Parentheses 문제 풀이 C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-07-31 22:19:08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #409d00; color: #dddddd;">Easy</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 : <span style="background-color: #333333; color: #dddddd;">Stack</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" rel="noopener">https://leetcode.com/problems/valid-parentheses/</a></span></p>
+<figure id="og_1659272957654" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Valid Parentheses - LeetCode" data-og-description="Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview." data-og-host="leetcode.com" data-og-source-url="https://leetcode.com/problems/valid-parentheses/" data-og-url="https://leetcode.com/problems/valid-parentheses/" data-og-image="https://scrap.kakaocdn.net/dn/4nlQc/hyPhq8jXNR/oIMBCBbkZjHOuir9KUVE50/img.png?width=500&amp;height=260&amp;face=0_0_500_260"><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" rel="noopener" data-source-url="https://leetcode.com/problems/valid-parentheses/">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/4nlQc/hyPhq8jXNR/oIMBCBbkZjHOuir9KUVE50/img.png?width=500&amp;height=260&amp;face=0_0_500_260');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Valid Parentheses - LeetCode</p>
+<p class="og-desc" data-ke-size="size16">Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.</p>
+<p class="og-host" data-ke-size="size16">leetcode.com</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">스택 자료구조를 활용하면 간단하게 풀이할 수 있는 문제이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문자열 s 가 매개변수로 주어지며, s는 '(' , ')' , '{' , '}' , '[', ']' 문자 만을 포함한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">여는 괄호는 반드시 그에 맞는 닫는 괄호와 짝을 이루어야 한다. 예를 들어 ' ( ' 는 ' ) ' 과 ' [ ' 는 ' ] ' 과 짝을 이룬다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">왼쪽 괄호 " ( { [ " 가 들어왔을 경우 스택에 푸시</span>한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">오른쪽 괄호 " ) } ] " 가 들어왔을 경우</span>에는 우선 <span style="background-color: #dddddd;">스택이 비어있지는 않은지 확인</span>하고, <span style="background-color: #dddddd;">가장 위의 스택이 짝을 이루는 괄호라면 스택에서 pop</span> 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 설명한 알고리즘을 코드로 표현하면 다음과 같다.</span></p>
+<pre id="code_1659273330080" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>        stack&lt;char&gt; stk;
+        for(const auto&amp; i : s){
+            if(!stk.empty() &amp;&amp; (i == ')' || i == ']' || i == '}')){
+                if(i == ')' &amp;&amp; stk.top() == '(') stk.pop();
+                else if(i == ']' &amp;&amp; stk.top() == '[') stk.pop();
+                else if(i == '}' &amp;&amp; stk.top() == '{') stk.pop();
+                else stk.push(i);
+            }
+            else{
+                stk.push(i);
+            }
+        }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 스택에 문자가 남아있다면 쌍을 이루는 괄호 문자열이 아니기에 false를 리턴하고 스택이 비어있다면 쌍을 이루는 괄호 문자열 이라는 뜻 이기에 true를 리턴한다.</span></p>
+<pre id="code_1659273408441" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>        if(stk.empty()) return true;
+        else return false;</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1659273471960" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>class Solution {
+public:
+    bool isValid(string_view s) {
+        stack&lt;char&gt; stk;
+        for(const auto&amp; i : s){
+            if(!stk.empty() &amp;&amp; (i == ')' || i == ']' || i == '}')){
+                if(i == ')' &amp;&amp; stk.top() == '(') stk.pop();
+                else if(i == ']' &amp;&amp; stk.top() == '[') stk.pop();
+                else if(i == '}' &amp;&amp; stk.top() == '{') stk.pop();
+                else stk.push(i);
+            }
+            else{
+                stk.push(i);
+            }
+        }
+        if(stk.empty()) return true;
+        else return false;
+    }
+};</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #리트코드 #Valid Parenthesese 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,426 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-04-25 19:44:45</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="color: #781b33;">잘못된 내용을 포함하고 있을 수 있습니다.</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #781b33;">#1</span> About Vector Container</b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #781b33;">#2</span> Vector 사용방법</b><b></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">&nbsp;- 사전 작업</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">&nbsp;- Vector 선언 및 초기화</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">&nbsp;- Vector 값 추가 (push_back, insert)</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">&nbsp;- Vector 값 삭제 (pop_back, erase)</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">- Vector 원소 위치 변경 (iter_swap)</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #781b33;">#3</span> SIZE &amp; CAPACITY</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>- size() , max_size() , capacity()</b><b>&nbsp;</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>- resize() [size 축소]</b><b>&nbsp;</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;"><b>- reserve()&nbsp; [사전 메모리 할당]</b></span><span style="color: #000000;"><b>&nbsp;</b></span></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;"><span style="color: #781b33;">#4</span> 원소 접근</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">- []연산자 [범위점검X]</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">- at() [범위점검O]</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> About Vector Container</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #000000; color: #ffffff;">Vector 컨테이너</span>는, C++ 표준 라이브러리[STL]에 정의된 대표적인 <span style="background-color: #666666; color: #ffffff;">시퀀스 컨테이너</span>로 <span style="background-color: #666666;"><span style="color: #ffffff;">사용자의 편의를 위해 제공되는 class의 일종</span></span>이다. 마치 배열과 비슷하여 사용이 쉽기에, <span style="background-color: #666666; color: #ffffff;">자주 사용되며 가변적으로 크기가 변하는 동적 배열</span> 이라고 생각하면 된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #666666; color: #ffffff;">메모리를 효율적으로 관리할 수 있다는 장점</span>을 갖고 있지만, <span style="background-color: #666666; color: #ffffff;">빈번한 삽입과 삭제가 일어나는 상황에서는 비효율적 이라는 단점</span> 또한 갖고 있다. 속도적인 측면에서 배열[ARRAY]에 비해서 떨어지지만, 메모리를 효율적으로 관리할 수 있어서, 많이 사용된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 vector container의 전체적인 구조를 그림으로 나타낸 것이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="639" >
+    <span data-lightbox="lightbox">
+        <img src="./img/vector_1.png" width="639"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #666666; color: #ffffff;">vector는 앞쪽이 막혀져 있는 형태</span>라서 <span style="background-color: #666666; color: #ffffff;">앞쪽에는 원소를 추가 /제거 할수 없으며,</span> 뒤에서 부터 차례로 <b><span style="background-color: #333333; color: #ffffff;">push_back()</span></b> , <b><span style="background-color: #333333; color: #ffffff;">pop_back()</span></b> 을 이용해 원소를 <span style="background-color: #666666; color: #ffffff;">추가 / 제거</span> 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">중간에도 <span style="color: #ffffff;"><b><span style="background-color: #333333;">insert()</span></b></span> 를 이용해 <span style="background-color: #666666; color: #ffffff;">삽입</span>할 수 있으나 <span style="background-color: #666666; color: #ffffff;">"배열 기반 컨테이너" 이기에 효율이 매우 떨어진다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #666666; color: #ffffff;">첫 원소와 마지막 원소를 참조할 수 있는</span>, <span style="color: #ffffff;"><b><span style="background-color: #333333;">fornt()/begin()</span></b></span> 과 <span style="color: #ffffff;"><b><span style="background-color: #333333;">back()/end()</span></b></span> 를 갖고있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="background-color: #333333; color: #ffffff;">size()</span></b>는 <span style="background-color: #666666; color: #ffffff;">vector가 지닌 원소의 개수</span>를 의미하며, <b><span style="background-color: #333333; color: #ffffff;">capcity</span></b>는 <span style="background-color: #666666; color: #ffffff;">할당된 메모리 값</span>을 의미한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;"><span style="color: #781b33;">#2</span> Vector 사용방법</span></span></h2>
+<h4 data-ke-size="size20"><span style="color: #ffffff; background-color: #333333;"><span style="font-family: 'Nanum Gothic';">사전작업</span></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>ⓐ &lt;vector&gt; 헤더파일을 추가한다.</b> #include &lt;vector&gt;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>ⓑ 편의를 위해 std 네임스페이스를 선언한다. </b>using namespace std;</span></p>
+<p data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">ⓒ vector의 기본적인 선언 방식은 vector&lt;[datatype]&gt; [name] 이다.</span></b><span style="font-family: 'Nanum Gothic';">&nbsp;int형 vector 선언 &rarr; vector&lt;int&gt; v;</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #ffffff; background-color: #333333;"><span style="font-family: 'Nanum Gothic';">Vector 선언 및 초기화</span></span></h4>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">다음은 Vector의 기본적인 선언 및 생성자를 이용한 초기화 방식이다.</span></p>
+<pre id="code_1619341413491" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt; // vector 사용을 위한 헤더
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v1; // int type 벡터 생성
+	vector&lt;int&gt; v2(5); // 0으로 초기화된 size가 5인 벡터이다.
+	vector&lt;int&gt; v3(5,10); // 지정값 10으로 초기화된 size가 5인 벡터이다.
+	vector&lt;int&gt; v4 = {1,2,3,4,5} // 벡터 생성 후 1,2,3,4,5 의 원소를 초기화한다.
+	vector&lt;int&gt; v5(v4) // v5는 v4의 복사본(벡터) 이다.  
+	
+	return 0;
+} </code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #ffffff; background-color: #333333;"><span style="font-family: 'Nanum Gothic';">Vector 값 추가</span></span><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;"><b></b></span></span></span></h4>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;"><b>- push_back(value)</b></span> : 맨 끝에 추가</span></span></p>
+<pre id="code_1619341819727" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt; // vector 사용을 위한 헤더
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v1; // int type 벡터 생성
+	v1.push_back(10); // 10 추가 
+	v1.push_back(20); // 20 추가 
+	v1.push_back(30); // 30 추가 
+	return 0;
+} </code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;"><b><span style="color: #781b33;">push_back(value)</span></b> 함수를 이용해 벡터의 맨 끝에 차례로 원소(10, 20, 30)를 추가한다.</span></span><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;"></span></span></p>
+<p><figure class="imageblock alignLeft" width="255" >
+    <span data-lightbox="lightbox">
+        <img src="./img/vector_2.png" width="255"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #781b33;">- insert(삽입위치,value)</span></b> : 중간 삽입</span></span></p>
+<pre id="code_1619342636200" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt; // vector 사용을 위한 헤더
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v1; // int type 벡터 생성
+	v1.push_back(10); // 10 추가 
+	v1.push_back(20); // 20 추가 
+	v1.push_back(30); // 30 추가
+	v1.insert(v1.begin(), 100); // 시작 위치에 100을 삽입한다.
+	v1.insert(v1.begin() + 2, 101); // 시작 위치+2에 101을 삽입한다.	
+	return 0;
+} 
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #666666;"><span style="color: #ffffff;">insert(삽입위치,value)</span></span> 함수를 이용해 중간에 값을 삽입한다. 삽입한 위치 뒤의 원소는 모두 한 칸 씩 밀려난다. <span style="background-color: #666666; color: #ffffff;">(단, 앞서 말한 바와 같이 벡터에서 중간삽입은 매우 비효율적이며, 중간에 원소를 삽입할 경우 reallocate[메모리 재할당]</span></span><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #666666;">이 발생할 수 있으니 사용에 주의해야 한다.)</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="672" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="672"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="background-color: #333333; color: #ffffff;"><span style="font-family: 'Nanum Gothic';">Vector 값 삭제</span></span></h4>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;"><b>- pop_back()</b></span> : 맨 끝 값 삭제</span></span></p>
+<pre id="code_1619343836871" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt; // vector 사용을 위한 헤더
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v1; // int type 벡터 생성
+	v1.push_back(10); // 10 추가 
+	v1.push_back(20); // 20 추가 
+	v1.push_back(30); // 30 추가
+	v1.push_back(40); // 40 추가
+	v1.push_back(50); // 50 추가
+	v1.pop_back(); // 마지막 원소(50) 삭제
+	return 0;
+} </code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #781b33;">pop_back() 함수</span></b>를 이용해 마지막 원소(50)을 삭제(pop) 한다.</span></p>
+<p><figure class="imageblock alignLeft" width="381" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="381"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #781b33;">- erase(삭제위치) : <span style="color: #000000;">중간 삭제</span></span></b></p>
+<pre id="code_1619344222560" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt; // vector 사용을 위한 헤더
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v1; // int type 벡터 생성
+	v1.push_back(10); // 10 추가 
+	v1.push_back(20); // 20 추가 
+	v1.push_back(30); // 30 추가
+	v1.push_back(40); // 40 추가
+	v1.push_back(50); // 50 추가
+	v1.erase(v1.begin()+2);
+	return 0;
+} 
+</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="background-color: #333333; color: #ffffff;">erase() 함수</span></b>를 이용해 중간값을 삭제한다. <span style="background-color: #666666; color: #ffffff;">삭제한 위치로 부터 뒤의 원소들은 모두 한칸씩 앞으로 당겨진다. 단, insert(삽입)과 마찬가지로, 중간에서 값을 삭제하는 것은 비효율 적이니 빈번한 삭제는 삼가해야 한다.</span></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/vector_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">- erase(first, end]</span> : 범위 삭제</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">erase() 함수에 2개의 인수를 보내주면 <span style="background-color: #dddddd;">(first,end]</span> 범위의 값을 삭제할 수 있다.</span></p>
+<pre id="code_1653367719856" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+	vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+	cout &lt;&lt; "Before" &lt;&lt; endl; 
+	for(const int&amp; i : v)
+		cout &lt;&lt; i &lt;&lt; " ";
+
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "After" &lt;&lt; endl;
+	v.erase(v.begin(), v.begin() + 2); // delete 1 &amp; 2
+	for(const int&amp; j : v)
+		cout &lt;&lt; j &lt;&lt; " ";
+	
+	return 0;
+}</code></pre>
+<pre id="code_1653367747472" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>Before
+1 2 3 4 5
+After
+3 4 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">Vector 원소 위치 변경</span></h4>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">- iter_swap</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">iter_swap</span> 함수를 사용해 <b>vector 내부 원소의 위치를 변경</b>할 수 있다. 다음은 iter_swap 함수를 이용해 벡터의 첫 번째 원소와 마지막 원소의 위치를 변경한 예제이다.</span></p>
+<pre id="code_1654570338006" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main(){
+  vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+  cout &lt;&lt; "Before iter_swap" &lt;&lt; '\n';
+  for(int i : v)
+    cout &lt;&lt; i &lt;&lt; " ";
+  cout &lt;&lt; '\n';
+  
+  iter_swap(v.begin(), v.begin() + 4);
+  cout &lt;&lt; "After iter_swap" &lt;&lt; '\n';
+  for(int i : v)
+    cout &lt;&lt; i &lt;&lt; " ";
+  cout &lt;&lt; '\n';
+
+  return 0;
+}</code></pre>
+<pre id="code_1654570354687" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행 결과]
+Before iter_swap
+1 2 3 4 5 
+After iter_swap
+5 2 3 4 1</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 SIZE &amp; CAPACITY</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">size() , max_size() , capacity() 멤버 함수</span>를 이용해 size와 capacity의 관계에 대해 설명하도록 하겠다. <span style="background-color: #666666; color: #ffffff;">size()와 max_size() 는 vector 뿐 만 아니라 모든 컨테이너가 지니고 있는 멤버함수이다.</span> 그러나, <span style="background-color: #666666; color: #ffffff;">capacity()는 유일하게 vector만이 갖고 있는 멤버함수</span>이다.&nbsp;<span style="background-color: #666666; color: #ffffff;">capacity는 재할당에 드는 성능 문제를 보완하기 위해 만들어진 vector만이 가진 중요한 특징</span>으로, 원소가 추가될 때 마다 메모리를 재할당 하는것은 비효율 적이기에, <span style="background-color: #666666; color: #ffffff;">미리 넉넉한 메모리를 확보해 재할당에 드는 비용을 줄여준다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">글로만 보면 size와 capacity의 차이점이 잘 와닿지 않을테니, 코드를 통해서 알아보자.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">■ size(), max_size(), capacity()</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">vector는 <span style="background-color: #666666; color: #ffffff;">크기를 반환하는 세가지 멤버 함수 size(), max_size(), capacity()</span>를 가진다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #666666; color: #ffffff;">size()는 컨테이너에 저장된 원소의 개수</span>이고, <span style="background-color: #666666; color: #ffffff;">max_size()는 컨테이너가 담을 수 있는 최대 원소의 개수</span>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 <span style="background-color: #666666; color: #ffffff;">capacity()는 실제로 할당된 메모리 공간의 크기</span>이다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<pre id="code_1619453482854" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v;
+	
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	
+	cout &lt;&lt; v.size() &lt;&lt; endl;
+	cout &lt;&lt; v.capacity() &lt;&lt; endl;
+	cout &lt;&lt; v.max_size() &lt;&lt; endl;
+	
+	return 0;
+}</code></pre>
+<pre id="code_1619453850611" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt;
+5
+8
+4611686018427387903</code></pre>
+<p data-ke-size="size16"><span style="color: #000000;">그림으로 나타내 보면 다음과 같다.</span></p>
+<p><figure class="imageblock alignLeft" width="483" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="483"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Capacity가 늘어나는 기준은 컴파일러 마다 다르다. <span style="background-color: #666666; color: #ffffff;">여기서 꼭 기억해 두어야 하는 것은 size와 capacity는 다르다는 것이다.</span> 그리고 <span style="background-color: #666666; color: #ffffff;">size()는 원소의 개수를 반환해 주기 때문에 마치 자바의 length()나, C언어의 strlen처럼 활용 가능하다.</span></span></p>
+<pre id="code_1619454098414" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>for (int i = 0 ; i &lt; v.size() ; ++i)
+	cout &lt;&lt; v[i] &lt;&lt; " ";</code></pre>
+<pre id="code_1619454114751" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt; 10 20 30 40 50</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">■ resize()</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">resize() 멤버함수를 이용하면, <span style="background-color: #666666; color: #ffffff;">컨테이너의 size를 변경</span>할 수 있다.</span></p>
+<pre id="code_1619454600842" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v;
+	
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	
+	cout &lt;&lt; "BEFORE resize() ";
+	cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v.capacity() &lt;&lt; endl; 
+	
+	v.resize(4);
+	
+	cout &lt;&lt; "AFTER resize() ";
+	cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v.capacity() &lt;&lt; endl;
+	
+	return 0;
+}</code></pre>
+<pre id="code_1619454637056" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt;
+BEFORE resize() 5 8
+AFTER resize() 4 8</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나, 출력 결과를 보면 알 수 있듯이 <span style="background-color: #666666; color: #ffffff;">resize() 멤버함수로 size를 줄인다고 해서, capacity가 같이 줄지는 않는다.</span></span></p>
+<p><figure class="imageblock alignLeft" width="266" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="266"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">■ reserve()</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">vector 컨테이너는 동적으로 원소를 계속 추가할 수 있다는 장점을 갖고 있지만, 그만큼 메모리 재할당 측면에서는 비용이 많이 발생한다는 단점이 있다. 그래서 이러한 단점을 조금이나마 보완하고자 <span style="background-color: #666666; color: #ffffff;">미리 capacity를 결정할 수 있는 reserve() 멤버 함수를 제공한다.</span></span></p>
+<pre id="code_1619454907479" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v;
+	
+	v. reserve(10);
+	
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	
+	cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v.capacity() &lt;&lt; endl; 
+	
+	return 0;
+}</code></pre>
+<pre id="code_1619455077746" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt;
+5 10</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">얼마나 메모리를 확보해야 하는지 사전에 알고있는 상황이라면 <span style="background-color: #666666; color: #ffffff;">reserve() 멤버함수를 사용해 재할당에 드는 비용을 조금이나마 축소할 수 있다.</span></span></p>
+<p><figure class="imageblock alignLeft" width="564" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="564"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="color: #000000; font-family: 'Nanum Gothic'; letter-spacing: 0px;">#4 원소접근</span></h2>
+<p data-ke-size="size16"><span style="color: #ffffff; font-family: 'Nanum Gothic'; letter-spacing: 0px; background-color: #666666;">Vector는 임의 위치의 원소를 참조할 수 있도록 [] 연산자와 at() 멤버함수 2가지 인터페이스를 제공한다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic'; letter-spacing: 0px;">두 인터페이스의 기능은 동일하지만, <b><span style="background-color: #333333; color: #ffffff;">[]연산자</span></b>는 <span style="background-color: #666666; color: #ffffff;">범위 점검을 하지않아서 속도가 빠르지만 자칫하면 out_of_range 에러가 날 수 있어서 위험하다.</span> 반대로 <b><span style="background-color: #333333; color: #ffffff;">at() 멤버함수</span></b>는 <span style="background-color: #666666; color: #ffffff;">범위 점검을 수행하여 속도는 느리지만 안전하다.</span></span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic'; letter-spacing: 0px;">[]와 at()의 예제 코드를 보고 사용방법을 익혀보도록 하자.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="color: #ffffff; font-family: 'Nanum Gothic'; letter-spacing: 0px; background-color: #333333;">■ [] 연산자</span></b></h4>
+<p data-ke-size="size16"><span style="color: #000000;">사실 앞에서 size()를 설명할 때 이미 한 번 사용했다. []연산자는 배열처럼 안에 탐색하고자 하는 인덱스를 적어 주면 된다.</span></p>
+<pre id="code_1619456625471" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v;
+	
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	
+	for (int i = 0 ; i &lt; v.size() ; ++i)
+	{
+		cout &lt;&lt; v[i] &lt;&lt; " ";
+	}
+	
+	return 0;
+}</code></pre>
+<pre id="code_1619456635157" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt;
+10 20 30 40 50</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 말한 바와 같이 범위 점검을 하지 않기에, []연산자를 사용할 때는 항상 범위에서 벗어나지 않았는지 체크해야만 한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">■ at() 멤버함수</span></b></h4>
+<pre id="code_1619456768006" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	vector&lt;int&gt; v;
+	
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(50);
+	
+	for (int i = 0 ; i &lt; v.size() ; ++i)
+	{
+		cout &lt;&lt; v.at(i) &lt;&lt; " ";
+	}
+	
+	return 0;
+}</code></pre>
+<pre id="code_1619456779767" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;출력결과&gt; 
+10 20 30 40 50</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">[]연산자와 기능은 동일하다. 그런데 만약 다음과 같이 범위에서 벗어난 인덱스를 지정해보면</span></p>
+<pre id="code_1619456861690" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>v.at(10);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">터미널에 에러 메시지가 발생한다. <span style="background-color: #666666; color: #ffffff;">([]연산자 였다면, 가비지값이 출력되었을 것이다.)</span></span></p>
+<pre id="code_1619456909209" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check: __n (which is 10) &gt;= this-&gt;size() (which is 5)</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그래서 try ~ catch 와 같은 예외 처리문을 at() 멤버함수와 같이 이용해 주곤한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #사용방법 #C++ #STL #Vector #멤버함수 #Container #벡터컨테이너 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

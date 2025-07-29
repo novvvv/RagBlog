@@ -10,9 +10,15 @@ export default async function Detail(props){
     const { id } = await props.params;
     let result = await db.collection('post').findOne({ _id: new ObjectId(id)})
 
+    /**
+     * notFound 함수가 실행되면, page.js가 아닌 not-found.js가 실행된다. 
+     */
+    if (result == null) {
+        return notFound()
+    }
+
     return(
         <div>
-
             <h4>상세페이지</h4>
             <h4>{result.title}</h4>
             <p>{result.content}</p>

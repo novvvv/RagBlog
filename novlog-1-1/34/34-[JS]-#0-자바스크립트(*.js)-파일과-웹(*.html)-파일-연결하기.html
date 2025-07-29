@@ -1,0 +1,109 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JS] #0 자바스크립트(*.js) 파일과 웹(*.html) 파일 연결하기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JS] #0 자바스크립트(*.js) 파일과 웹(*.html) 파일 연결하기</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2021-05-28 18:03:53</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="475" data-origin-height="453" data-filename="js.png" width="206" height="196" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="475" data-origin-height="453" data-filename="js.png" width="206" height="196" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">#0 js 파일 html 파일 연결하기</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[목차]</span></b><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. HTML 파일 내부에 JS 코드 작성하기</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. HTML 파일과 JS 파일 연결하기</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 기록용으로 작성한 글이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#1. HTML 파일 내부에 JS 코드 작성하기</span></b></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">웹문서 안에 자바스크립트를 작성할 경우에는, <span style="background-color: #333333; color: #ffffff;">&lt;script&gt;&lt;/script&gt; 태그 사이에 작성</span>합니다. 그리고, 자바스크립트는 이미지나 텍스트와 같은 요소를 제어하는 경우가 많기에, <span style="background-color: #333333; color: #ffffff;">&lt;/body&gt;태그 직전에 삽입</span>하는 것이 좋습니다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">또한 HTML/CSS와 달리 <span style="background-color: #f6e199;">JS는 대소문자를 구별하기에 코드를 작성할 때 유의</span>해야 합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="463" data-origin-height="228" width="427" height="210" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="463" data-origin-height="228" width="427" height="210" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은&nbsp;<span style="background-color: #f6e199;">「HelloWorld」라는 메시지 박스를 출력하는 예제</span>입니다. <span style="background-color: #f6e199;">alert()함수의 큰따옴표("")안에 출력하고자 하는 내용을 입력</span>하면 됩니다. <b>(메시지 박스 출력 예제는 다음 포스팅에서 자세하게 다룰 예정입니다.)</b></span></p>
+<pre id="code_1622191898762" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;JS_EXAMPLE&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;JAVASCRIPT&lt;/h1&gt;
+    &lt;script&gt;alert("HelloWorld")&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="668" data-origin-height="194" width="406" height="118" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="668" data-origin-height="194" width="406" height="118" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2. HTML파일과 JS파일 연결하기</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로, 웹문서와 외부의 스크립트 파일을 연결하는 방법에 대해서 알아보도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">웹 문서 밖의 자바 스크립트 파일을 연결하기 위해서는, <span style="background-color: #333333; color: #ffffff;">&lt;script&gt;태그의 src 속성을 이용</span>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기본형은 다음과 같습니다.</span></p>
+<pre id="code_1622192069912" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>[기본형] &lt;script src = "JS 파일 경로"&gt;&lt;/script&gt;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은, <span style="background-color: #333333; color: #ffffff;">ex.html 웹문서에 js 폴더 내부에 존재하는 helloworld.js 파일을 연결한 예제</span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">여기서 <span style="background-color: #f6e199;">js 파일에는 &lt;script&gt;&lt;/script&gt; 태그를 작성할 필요가 없습니다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="605" data-origin-height="76" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="605" data-origin-height="76" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[ex.html]</span></b></p>
+<pre id="code_1622192373700" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script src = "/js/helloworld.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[helloworld.js]</span></b></p>
+<pre id="code_1622192391613" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>alert("HelloWorld!");</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #js #자바스크립트 #javascript #외부스크립트 #스크립트연결하기 #html파일js파일연결 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

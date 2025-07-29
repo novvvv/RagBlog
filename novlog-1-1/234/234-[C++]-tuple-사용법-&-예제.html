@@ -1,0 +1,176 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] tuple 사용법 & 예제</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] tuple 사용법 & 예제</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-06-10 23:12:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="background-color: #333333; color: #dddddd;"><b><span style="font-family: 'Nanum Gothic';">[C++] tuple</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="color: #781b33;"><u><b>잘못된 내용을 포함하고 있을 수 있습니다.</b></u></span></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">_contents</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> 튜플 초기화 : make_tuple</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#2</span> 튜플 원소 접근 : get</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#3</span> 튜플 원소 분해 : tie</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#4</span> 두 개의 튜플 연결 : tuple_cat&nbsp;</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#5</span> 서로 다른 튜플 변경 : swap</span></b></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">_ref </span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">https://www.youtube.com/watch?v=T9-agjKW4PQ</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> 튜플 초기화</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">tuple은 <span style="background-color: #333333; color: #dddddd;">&lt;tuple&gt;</span> 헤더에 정의되어 있다. 튜플의 선언 방식은 다음과 같다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">tuple 키워드</span>를 사용해 <span style="background-color: #333333; color: #dddddd;">&lt; &gt; 꺽쇠</span> 안에 <b>하나로 묶을 데이터타입을 나열</b>한다. 데이터 타입을 나열한 꺽쇠를 닫아준 뒤 <b>튜플의 이름을 작성</b>하고 <span style="background-color: #333333; color: #dddddd;">소괄호()</span> 안에 <b>tuple의 원소들을 데이터타입에 맞게 초기화</b>한다.</span></p>
+<pre id="code_1654868517076" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;tuple&gt;
+tuple&lt;int, string, char&gt; t1(21, "Nov", 'M');</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 <span style="background-color: #333333; color: #dddddd;">make_tuple</span> 함수를 이용해 선언과 초기화를 분리하는 방법도 있다.</span></p>
+<pre id="code_1654868811023" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>tuple&lt;int, string, char&gt; t1;
+t1 = make_tuple(21, "Nov", 'M');</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#2</span> 튜플 원소 접근</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">tuple은 <span style="background-color: #333333; color: #dddddd;">get</span>함수를 사용해 원소에 접근한다. <span style="background-color: #333333; color: #dddddd;">&lt;&gt; 꺽쇠</span> 안에 <b>접근할 원소의 인덱스</b>를 넣어준뒤, <span style="background-color: #333333; color: #dddddd;">() 소괄호</span> 안에 <b>접근할 튜플의 이름</b>을 적어준다.</span></p>
+<pre id="code_1654869080936" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+using namespace std;
+
+int main(){
+	tuple&lt;int, string, char&gt; t1;
+	t1 = make_tuple(21, "Nov", 'M');
+	cout &lt;&lt; get&lt;0&gt;(t1) &lt;&lt; endl; // 21
+	cout &lt;&lt; get&lt;1&gt;(t1) &lt;&lt; endl; // Nov 
+	cout &lt;&lt; get&lt;2&gt;(t1) &lt;&lt; endl; // M
+	return 0;
+}</code></pre>
+<pre id="code_1654869114464" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>[실행결과]
+21
+Nov
+M</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#3</span> 튜플 원소 분해</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">tie</span> 함수를 이용해 <b>tuple의 원소를 각각의 변수에 분해하여 초기화</b> 해 줄 수 있다. 이 때 데이터타입을 맞추어 주지 않으면 에러가 발생한다.</span></p>
+<pre id="code_1654869416188" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+using namespace std;
+
+int main(){
+	tuple&lt;int, string, char&gt; t1;
+	t1 = make_tuple(21, "Nov", 'M');
+	
+	int x;
+	string y;
+	char z;
+	
+	// tuple t1의 원소를 tie 함수를 이용해 x, y, z 변수에 각각 대입
+	tie(x, y, z) = t1;
+	cout &lt;&lt; x &lt;&lt; " " &lt;&lt; y &lt;&lt; " " &lt;&lt; z &lt;&lt; " ";
+	return 0;
+}</code></pre>
+<pre id="code_1654869459890" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>[실행결과]
+21 Nov M</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#4</span> 두 개의 튜플 연결</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">tuple_cat</span> 함수를 사용해 <b>서로 다른 두 개의 튜플을 연결</b>해 줄 수 있다. 이 때 두 튜플을 연결한 데이터를 저장할 새로운 튜플의 자료형은 프로그래머가 맞춰 주어야 한다.</span></p>
+<pre id="code_1654869685913" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+using namespace std;
+
+int main(){
+	tuple&lt;int, int&gt; t1(1, 2);
+	tuple&lt;int, int&gt; t2(3, 4);
+	tuple&lt;int, int, int, int&gt; t3 = tuple_cat(t1, t2); // t3 튜플에 t1, t2 튜플을 연결
+	cout &lt;&lt; get&lt;0&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;2&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;3&gt;(t3);
+	return 0;
+}</code></pre>
+<pre id="code_1654869698169" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행결과]
+1 2 3 4</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">일일이 자료형을 맞춰 주는 것이 번거롭다면 <span style="background-color: #333333; color: #dddddd;">auto 키워드</span>를 사용하는 것을 권장한다.</span></p>
+<pre id="code_1654869795086" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+using namespace std;
+
+int main(){
+	tuple&lt;int, int&gt; t1(1, 2);
+	tuple&lt;int, int&gt; t2(3, 4);
+	auto t3 = tuple_cat(t1, t2); // t3 튜플에 t1, t2 튜플을 연결
+	cout &lt;&lt; get&lt;0&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;2&gt;(t3) &lt;&lt; " " &lt;&lt; get&lt;3&gt;(t3);
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="color: #781b33;">#5</span> 서로 다른 튜플 변경 : swap</span></b></h2>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #dddddd;">swap</span> 함수를 사용하면 <b>서로 다른 두 개의 튜플을 스왑</b>할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">다음은 t1 tuple과 t2 tuple 안에 들어있는 원소들을 swap 함수를 이용해 스왑한 예제이다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">단, 변경 하고자 하는 두 튜플의 데이터타입은 모두 일치 해야만 한다.</span></p>
+<pre id="code_1654870072088" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+using namespace std;
+
+int main(){
+	tuple&lt;int, int&gt; t1(1, 2);
+	tuple&lt;int, int&gt; t2(3, 4);
+	cout &lt;&lt; "Before Swap" &lt;&lt; endl;
+	cout &lt;&lt; "t1 tuple : ";
+	cout &lt;&lt; get&lt;0&gt;(t1) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t1) &lt;&lt; endl;
+	cout &lt;&lt; "t2 tuple : ";	
+	cout &lt;&lt; get&lt;0&gt;(t2) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t2) &lt;&lt; endl;
+	
+	t1.swap(t2); //t1과 t2 tuple을 서로 스왑
+	cout &lt;&lt; "After Swap" &lt;&lt; endl;
+	cout &lt;&lt; "t1 tuple : ";
+	cout &lt;&lt; get&lt;0&gt;(t1) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t1) &lt;&lt; endl;
+	cout &lt;&lt; "t2 tuple : ";	
+	cout &lt;&lt; get&lt;0&gt;(t2) &lt;&lt; " " &lt;&lt; get&lt;1&gt;(t2) &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1654870084759" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>[실행결과]
+Before Swap
+t1 tuple : 1 2
+t2 tuple : 3 4
+After Swap
+t1 tuple : 3 4
+t2 tuple : 1 2</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #사용법 #C++ #STL #예제 #tuple #튜플 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

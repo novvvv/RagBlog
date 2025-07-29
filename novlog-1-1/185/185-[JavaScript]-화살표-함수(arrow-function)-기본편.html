@@ -1,0 +1,100 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] 화살표 함수(arrow function) 기본편</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] 화살표 함수(arrow function) 기본편</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-03-15 10:50:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="background-color: #dddddd; color: #000000; font-family: 'Nanum Gothic';">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="background-color: #dddddd; color: #000000; font-family: 'Nanum Gothic';">*지속적으로 내용을 추가 및 수정할 예정이며, 잘못된 내용에 대한 지적은 언제나 환영합니다!</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;">#</span>관련 포스팅</span></span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #006dd7;"><a style="color: #006dd7;" href="https://novlog.tistory.com/181" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">_함수 선언문</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #006dd7;"><a style="color: #006dd7;" href="https://novlog.tistory.com/183" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">_익명함수</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #006dd7;"><a style="color: #006dd7;" href="https://novlog.tistory.com/184" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">_콜백함수</span></a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="color: #781b33;">#</span>화살표 함수</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">#화살표 함수</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞선 포스팅에서 함수표현식과 함수선언문을 이용해 함수를 선언하는 방법에 대해 정리했다. 이번 포스팅에서는 ES6버전부터 지원하는 <span style="background-color: #dddddd;">=&gt;표기법(화살표 표기법)</span>을 사용해 함수선언을 더욱 간단하게 작성하는 화살표 함수의 기본적인 사용법에 대해 정리해 보고자 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">화살표 함수의 기본형</span>은 다음과 같다.</span></p>
+<pre id="code_1647307692653" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>// 매개변수가 없는 경우
+var/let/const 함수명 = () =&gt; { 실행문 };
+// 매개변수가 있는 경우
+var/let/const 함수명 = (파라미터1, 파라미터2, .. ) =&gt; { 실행문 };</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">파라미터 a, b를 받아 a와 b의 합을 리턴하는 sum 함수를 선언했다.</span></p>
+<pre id="code_1647307723525" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let sum = function(a, b) {
+    return a + b;
+}
+sum(1, 2);</code></pre>
+<pre id="code_1647307761832" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 3</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위 코드를 화살표 함수로 표현하면 아래와 같이 치환할 수 있다.</span></p>
+<pre id="code_1647307896446" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let sum = (a, b) =&gt; { return a + b; };
+sum(1, 2);</code></pre>
+<pre id="code_1647307905212" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 3</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 중괄호 안에 <span style="background-color: #dddddd;">함수 내용이 한 줄 뿐이라면 중괄호를 생략</span>할 수 있다. 이 때 <span style="background-color: #dddddd;">return문은 생략된 것으로 간주</span>한다.</span></p>
+<pre id="code_1647308020690" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let sum = (a, b) =&gt; a + b;
+sum(1, 2);</code></pre>
+<pre id="code_1647308030675" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 3</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">화살표 함수는 함수 표현식과 같이 사용해 함수를 동적으로 만들 수 있다. 다음 코드는 question 질문을 받아 confirm을 이용해 yes or no 를 판별한 후 그에 맞는 콜백함수(yes, no)를 호출하는 예제이다.</span></p>
+<pre id="code_1647308366149" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+ask(
+  "동의하십니까?",
+  function() { alert("YES!"); },
+  function() { alert("NO,,"); }
+);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">화살표 함수를 사용하면 콜백함수 부분을 아래처럼 간결하게 바꿔 줄 수 있다.</span></p>
+<pre id="code_1647308473673" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+ask(
+  "동의하십니까?",
+  () =&gt; { alert("YES!"); },
+  () =&gt; { alert("NO,,"); }
+);</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이상으로 화살표 함수의 사용법에 대해 간략하게 공부했다. 사실 화살표 함수는 단순히 코드를 간결하게 작성하기 위해서만 사용되지는 않는다. 화살표 함수의 심화적인 내용에 대해선 추후에 따로 정리할 예정이다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #js #javascript #화살표함수 #arrowfunction 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

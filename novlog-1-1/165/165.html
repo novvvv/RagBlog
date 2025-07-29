@@ -1,0 +1,177 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 2170 "선 긋기" 문제 풀이 & 소스 코드 With C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 2170 "선 긋기" 문제 풀이 & 소스 코드 With C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-02-15 00:42:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #f6e199;">GOLD5</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/2170">2170번: 선 긋기 (acmicpc.net)</a></span></p>
+<figure id="og_1644852212542" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2170번: 선 긋기" data-og-description="첫째 줄에 선을 그은 횟수 N(1 &le; N &le; 1,000,000)이 주어진다. 다음 N개의 줄에는 선을 그을 때 선택한 두 점의 위치 x, y(-1,000,000,000 &le; x &lt; y &le; 1,000,000,000)가 주어진다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2170" data-og-url="https://www.acmicpc.net/problem/2170" data-og-image="https://scrap.kakaocdn.net/dn/bWCpT2/hyNpd5zjMS/ckggy7pevCe2mLk2cTUkdk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2170" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2170">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bWCpT2/hyNpd5zjMS/ckggy7pevCe2mLk2cTUkdk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2170번: 선 긋기</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 선을 그은 횟수 N(1 &le; N &le; 1,000,000)이 주어진다. 다음 N개의 줄에는 선을 그을 때 선택한 두 점의 위치 x, y(-1,000,000,000 &le; x &lt; y &le; 1,000,000,000)가 주어진다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">선을 그을 때 선택한 두 점의 위치 x, y를 pair를 이용해 vector 자료구조에 입력받습니다.</span></p>
+<pre id="code_1644852527904" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int n;
+	cin &gt;&gt; n;
+	vector&lt;pair&lt;int,int&gt;&gt; line;
+	for (int i = 0 ; i &lt; n ; i++) {
+		int start, end;
+		cin &gt;&gt; start &gt;&gt; end;
+		line.push_back(make_pair(start, end));
+	}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 시작점(start)를 기준으로 벡터를 오름차 정렬합니다.</span></p>
+<pre id="code_1644852608126" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	// line vector "start" 기준 정렬
+	sort (line.begin(), line.end());</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">line 벡터의 0번째 페어의 x , y 좌표를 start와 end 변수에 저장합니다.</span></p>
+<pre id="code_1644852812824" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int start = line[0].first;
+	int end   = line[0].second;</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 line 벡터의 1번째 인덱스부터 비교를 시작합니다. i번째 인덱스의 x, y 좌표를 from , to 변수에 저장하고 end 변수와 비교합니다. 만약 <b>end 변수보다 from 변수가 작다면</b> , <b>두 선은 겹친다는 뜻</b>이기에 선을 하나로 만들어 줍니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반대로 <b>end 변수보다 from 변수가 크다면 두 선은 겹치지 않기에</b> 각각 따로 len(총 길이) 변수에 더해줍니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 과정을 분기문을 이용해 코드로 표현해 주면 됩니다.</span></p>
+<pre id="code_1644853239292" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	for (int i = 1 ; i &lt; n ; i++) {
+		int from = line[i].first;
+		int to = line[i].second;
+		// 겹치는 경우
+		if (from &lt;= end) {
+			end = (to &gt; end ? to : end);
+		}
+		// 겹치지 않는 경우
+		else {
+			len += end - start;
+			start = from;
+			end = to;
+		}
+	}
+	len += end - start;</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1644853257874" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;utility&gt;
+using namespace std;
+
+int main() {
+	// 시간초과 방지
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	
+	int n;
+	cin &gt;&gt; n;
+	vector&lt;pair&lt;int,int&gt;&gt; line;
+	for (int i = 0 ; i &lt; n ; i++) {
+		int start, end;
+		cin &gt;&gt; start &gt;&gt; end;
+		line.push_back(make_pair(start, end));
+	}
+	
+	// line vector "start" 기준 정렬
+	sort (line.begin(), line.end());
+	
+	int start = line[0].first;
+	int end   = line[0].second;
+	int len	  = 0;
+	for (int i = 1 ; i &lt; n ; i++) {
+		int from = line[i].first;
+		int to = line[i].second;
+		// 겹치는 경우
+		if (from &lt;= end) {
+			end = (to &gt; end ? to : end);
+		}
+		// 겹치지 않는 경우
+		else {
+			len += end - start;
+			start = from;
+			end = to;
+		}
+	}
+	len += end - start;
+	
+	cout &lt;&lt; len &lt;&lt; endl;
+	
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #선긋기 #BOJ #백준 #코딩테스트 #2170 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity UI] #UGUI VOL1 UI 기본 구성 요소 Canvas (캔버스)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity UI] #UGUI VOL1 UI 기본 구성 요소 Canvas (캔버스)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-06-23 17:09:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="200" height="200" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="200" height="200" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* UGUI의 기본적인 컴퍼넌트 Canvas에 대해 정리한 글 입니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #ffc1c8;">* 개인적인 공부 내용을 기록한 글이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#Canvas</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>* EventSystem</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>* Canvas Component</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">** Rect Transform</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">** Canvas</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">** Canvas Scaler</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">** Graphic Raycaster</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">#Canvas</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Canvas(캔버스)</span>는 <span style="background-color: #dddddd;">모든 UI 요소들의 최상위 요소</span>로, <span style="background-color: #dddddd;">UI는 모두 Canvas의 자식 요소로 존재</span>합니다. <b>Hierarchy 영역에서 오른쪽마우스 &rarr; UI &rarr; Canvas 를 클릭해 생성</b>하거나, 그냥 Text Image Button 등 <b>UI 요소를 생성하면 자동으로 생성</b>됩니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="568" data-origin-height="528" width="407" height="379" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="568" data-origin-height="528" width="407" height="379" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">* EventSystem</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Canvas를 생성하면 자동으로 EventSystem 오브젝트가 Scene에 배치되는데, 이는 <span style="background-color: #dddddd;">캔버스를 클릭 시 발생하는 이벤트를 관리하는 요소</span>입니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="437" data-origin-height="52" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="437" data-origin-height="52" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">* Canvas Component</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">캔버스를 생성하면 기본적으로 <span style="background-color: #333333; color: #ffffff;">Rect Transform , Canvas , Canvas Scaler, Graphic Raycaster </span>가 붙여져서 생성됩니다. 각 항목들의 주요 기능들을 간략하게 정리하고 넘어가도록 하겠습니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="473" data-origin-height="230" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="473" data-origin-height="230" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">** Rect Transform</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">캔버스의 위치를 결정하는 컴퍼넌트</span> 입니다. Transform 컴퍼넌트를 사용해 위치를 나타내는 일반적인 오브젝트와는 달리, UI는 Rect Transform을 사용합니다. Rect Transform에 대해서는 추후에 자세하게 정리 하도록 하겠습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">** Canvas</span></b></h4>
+<p><figure class="imageblock alignLeft" data-origin-width="502" data-origin-height="190" width="452" height="171" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="502" data-origin-height="190" width="452" height="171" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Render Mode</span> - 캔버스의 모드를 정하는 프로퍼티 입니다. 보통 고정 UI인 Screen Space - Overlay를 사용합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Pixel Perfect</span> - 캔버스를 픽셀(Pixel) 그래픽에 최적화 시켜 주는 프로퍼티 입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Sort Order</span> - 캔버스의 우선순위를 정합니다. Sort Order의 수치가 높을수록 캔버스를 더 앞에 출력해 줍니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Target Display </span>- 캔버스를 출력할 모니터(Display)를 정합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">** Canvas Scaler</span></b></span></h4>
+<p><figure class="imageblock alignLeft" data-origin-width="508" data-origin-height="144" width="430" height="122" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="508" data-origin-height="144" width="430" height="122" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">UI Scale Mode</span> - 캔버스 UI를 해상도에 따라 출력할 방식을 설정하는 프로퍼티 입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>- Constant Pixel Size</b> : 해상도의 변화에 관계없이 항상 동일한 캔버스를 출력합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>- Scale With Screen Size</b> : 해상도에 따라 유연하게 변하는 캔버스를 출력합니다. (보통 이 항목을 사용합니다.)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>- Constatn Physical Size</b> : 모니터의 DPI에 맞는 캔버스를 출력합니다. (거의 사용되지 않습니다.)</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">** Graphic Raycaster</span></b></span></h4>
+<p><figure class="imageblock alignLeft" data-origin-width="508" data-origin-height="164" width="465" height="150" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="508" data-origin-height="164" width="465" height="150" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">캔버스 안에 특정 UI (버튼, 이미지, 텍스트 등..) 을 클릭 했을 때 <span style="background-color: #dddddd;">반응을 담당하는 프로퍼티</span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Graphic Raycaster</span> <span style="background-color: #dddddd;">항목을 꺼주면, 마우스 클릭을 감지하지 못합니다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Canvas #캔버스 #uGUI #유니티UI 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

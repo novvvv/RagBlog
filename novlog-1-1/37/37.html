@@ -1,0 +1,166 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C#</p>
+                                    <p class="date">2021-05-30 18:18:57</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="200" height="204" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="200" height="204" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#1 객체지향의 시작 클래스(class)</span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">[학습 목표]</span></b></span></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><span style="font-family: 'Nanum Gothic';">객체 지향 프로그래밍에 대한 이해.</span></li>
+<li><span style="font-family: 'Nanum Gothic';">클래스(class) 문법을 이용한 "객체의 틀"을 제작하는 방법에 대한 숙지</span></li>
+<li><span style="font-family: 'Nanum Gothic';">new 연산자를 이용해 객체를 생성하는 방법에 대한 숙지</span></li>
+<li><span style="font-family: 'Nanum Gothic';">인스턴스화, 인스턴스의 용어의 의미에 대한 이해</span></li>
+</ul>
+<p style="text-align: left;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">[목차]</span></b></span></p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li><span style="font-family: 'Nanum Gothic';">객체 지향 프로그래밍(OOP)</span></li>
+<li><span style="font-family: 'Nanum Gothic';">클래스(Class)</span></li>
+<li><span style="font-family: 'Nanum Gothic';">new 연산자</span></li>
+<li><span style="">인스턴스화 &amp; 인스턴스</span></li>
+</ol>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 기록용으로 작성한 글이기에, 잘못 된 내용이 있을 수 있습니다.</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">#1 객체 지향 프로그래밍(OOP)</span></b></span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">컴퓨터 프로그래밍을 하기 위해 사용하는 언어는 절차 지향 언어와, 객체 지향 언어로 구분됩니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">초기에는 대부분 절차 지향 방식으로 프로그램들을 구성했으나, 프로그램이 커지면서, 더 이상 절차지향 방식으로 프로그래밍을 하는 것이 힘들어 졌습니다. 이에 대한 해결책으로 객체 지향 프로그래밍이 등장했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">객체 지향 프로그래밍이란, 현실세계의 상호작용을 프로그래밍으로 그대로 구현한 것인데, 말로만 들으면 이해가 가지 않을 수 있으니 예시를 통해 알아 보도록 하겠습니다.</span><span style="color: #000000;"></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;"><span style="background-color: #333333; color: #ffffff;">객체는</span> 기본적으로 <span style="background-color: #666666; color: #ffffff;">속성과 기능을 지니고 있습니다. </span></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">예를 들어 RPG게임을 플레이하는 한 플레이어가 있다고 가정</span>해 볼 때 <span style="background-color: #333333; color: #ffffff;">속성</span>으로는, <span style="background-color: #666666; color: #ffffff;">hp, atk(공격력)</span> .. 등이 있을 수 있고 <span style="background-color: #333333; color: #ffffff;">기능</span>으로는 <span style="background-color: #666666; color: #ffffff;">attack(공격), move(이동)</span> 등이 있을 수 있습니다. 이 것을 모델로 하여 직접 객체를 제작해 보도록 합시다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">#2 클래스(Class)</span></b></span></h2>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="background-color: #333333; color: #ffffff;">클래스</span>란, <span style="background-color: #333333; color: #ffffff;">"객체의 틀"을 만드는 문법</span>입니다. <span style="background-color: #666666; color: #ffffff;">class 뒤에 클래스의 이름을 명시하고, 괄호({ }) 안에 객체 틀의 정보를 입력</span>합니다.</span></p>
+<pre id="code_1622364679538" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>class Player
+    {
+
+    }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">"객체의 틀"을 이용해서 "객체"를 찍어 낼 수 있습니다.</span> 흔히 붕어빵 틀과 붕어빵을 예시로 들고는 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">제작한 객체의 틀(붕어빵 틀)을 사용해 객체(붕어빵)을 원하는 만큼 찍어내는 것이지요.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">이제, 객체의 틀 안에 속성을 정의해 보도록 합시다.</span></p>
+<pre id="code_1622364831209" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>class Player
+    {
+        public int hp;
+        public int atk;
+    }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞에서 말한 모델과 동일하게 제작하도록 하겠습니다. hp,atk(공격력) 변수를 정의합니다. 앞의 public은 접근 지정자 라는 것인데 public 없이 int자료형만 선언하면, Player 클래스 안에서만 사용하겠다는 의미가 됩니다. 접근 지정자에 대해서는 추 후에 자세하게 정리할 예정이니 이정도만 알고 넘어가셔도 됩니다. </span>다음으로 기능(함수)들을 정의해 보도록 하겠습니다.</p>
+<pre id="code_1622364944143" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>class Player
+    {
+        public int hp;
+        public int atk;
+         
+        public void attack()
+        {
+            Console.WriteLine("Player Attack!");
+        }
+        public void Move()
+        {
+            Console.WriteLine("Player Move!");
+        }
+    }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">Player 객체 틀이 완성됐습니다. 이제 제작한 Player 객체 틀을 이용해 객체를 생성해 보도록 합시다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b>#3 new 연산자</b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">new 연산자</span>는 프로그래머가 직접 제작한 <span style="background-color: #333333; color: #ffffff;">객체의 틀을 이용해서 객체를 찍어내는 역할을 하는 연산자</span>입니다.</span></p>
+<p data-ke-size="size16"><span>사용 방식은 다음과 같습니다.</span></p>
+<pre id="code_1622365121270" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>클래스이름 객체이름 = new 클래스이름();</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 예시로 든 Player 객체 틀을 이용해 player 객체를 생성한다고 하면 다음과 같이 선언하면 됩니다.</span></p>
+<pre id="code_1622365172856" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>Player player = new Player();</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 객체를 생성했으니, 객체를 사용해 보도록 합시다. <span style="background-color: #333333; color: #ffffff;">객체의 속성과 기능들은 (.)을 통해서 접근이 가능</span>합니다.</span></p>
+<pre id="code_1622365243299" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>player.hp = 100;
+player.atk = 10;
+
+player.Move();
+player.attack();</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이렇게, 객체의 속성들을 (.)을 이용해서 값을 넣어줄 수도 있고, 기능들을 (.)을 이용해서 사용할 수도 있습니다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">작성한 소스코드를 실행해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[전체 코드]</span></b></p>
+<pre id="code_1622365648151" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System;
+
+namespace TextRpg
+{
+    class Player
+    {
+        public int hp;
+        public int atk;
+         
+        public void attack()
+        {
+            Console.WriteLine("Player Attack!");
+        }
+        public void Move()
+        {
+            Console.WriteLine("Player Move!");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Player player = new Player();
+            player.hp = 100;
+            player.atk = 10;
+
+            player.Move();
+            player.attack();
+        }
+    }
+}</code></pre>
+<pre id="code_1622365714267" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>[실행결과]
+Player Move!
+Player Attack!</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">#4 인스턴스화 &amp; 인스턴스</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">인스턴스화</span> : <b>클래스로 부터 객체를 찍어내는 과정을 의미</b>하는 용어</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">인스턴스</span> : <b>특정 클래스로 부터 찍어낸 객체</b>를 해당하는 클래스의 인스턴스라고 부른다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 Player mage = new Player(); 와 같은 소스 코드가 있다고 가정해 보겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 때 <span style="background-color: #f6e199;">mage 객체를 찍어내는 과정</span>을 <span style="background-color: #333333; color: #ffffff;">"인스턴스화"</span> 라고 부르며, <span style="background-color: #f6e199;">mage 객체를</span> <span style="background-color: #333333; color: #ffffff;">Player 클래스의 "인스턴스"</span> 라고 부릅니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #ffc1c8;">그런데 왜 굳이 객체라는 말을 두고 인스턴스라는 새로운 용어를 사용하는 것 일까요?</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #ffc9af;">그 이유는 특정한 객체 (mage) 가 특정 클래스 (Player)의 객체라는 것을 강조하는 구체적인 의미를 갖도록 하기 위함</span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">객체 mage 라고 부르는 것 보다, Player 의 mage 인스턴스 라고 부르는 것이 객체의 관계를 표현 하는 데 직관적이기 때문이죠.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 2021.07.22 인스턴스화 &amp; 인스턴스 관련 내용 추가</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #new #CLASS #c# #클래스 #OOP #객체지향프로그래밍 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

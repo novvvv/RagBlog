@@ -1,0 +1,252 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity] 코루틴(Coroutine) 총 정리 _ (feat. RPG 포션 딜레이 예제)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity] 코루틴(Coroutine) 총 정리 _ (feat. RPG 포션 딜레이 예제)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-06-16 14:05:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="200" height="200" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="200" height="200" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>[목차]</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#0</b> 코루틴(Coroutine)을 사용하는 이유</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#1</b> 코루틴 사용 예제</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#1.1</b> 코루틴 선언 IEnumerator</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#1.2</b> 코루틴 실행 StartCoroutine()</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#2</b> 코루틴 중지</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#3</b> yield return VS yield break</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic'; background-color: #dddddd;">* 다음 포스팅은 개인적인 공부 내용을 기록한 글이기에, 잘못된 내용이 있을 수 있으며 지속적으로 수정해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#0 코루틴(Coroutine)을 사용하는 이유</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유니티에서 Update() 메소드는 화면에 변화를 일으킬 때 사용 하고는 합니다. Update() 메서드는 매 프레임마다 호출이 되기에, 60fps라면 1초에 60번이 호출 됩니다. <span style="background-color: #333333; color: #ffffff;">그런데 만약 5초동안 지연을 시켜야 하는 상황이 발생 한다면 어떻게 될까요?</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">Update() 메서드를 5 * 60 = 300번 호출하면 될 것입니다.</span> 하지만 이러한 딜레이가 발생하는 상황을 모두 Update() 구문에 정의하면 <span style="background-color: #dddddd;">기기의 성능에 따라서 프레임 드랍(Frame Drop) 을 발생하고 맙니다.</span> 이 때 <span style="background-color: #333333; color: #ffffff;">코루틴(Coroutine)</span>을 사용하면, <span style="background-color: #dddddd;">Update() 함수를 굳이 300번이나 호출하지 않고도 시간을 지연 시키는 것이 가능합니다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Noto Sans Light'; color: #000000;">#1 코루틴 사용 예제</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코루틴을 사용하지 않은 예제와, 코루틴을 사용한 예제 두 가지 소스코드로 나누어 비교해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">RPG게임에서 <span style="background-color: #333333; color: #ffffff;">포션을 마시고 다음 포션을 마실 때 까지의 딜레이를 5초를 설정하여 포션을 연속으로 마시지 못하게 하는 상황</span>을 예시로 들겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 빈 오브젝트(Character)와 C#스크립트(PotionDelay) 를 하나 씩 생성해 준 뒤 스크립트를 부착해 줍니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="337" data-origin-height="32" width="295" height="28" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="337" data-origin-height="32" width="295" height="28" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래는 <span style="background-color: #333333; color: #ffffff;">코루틴을 사용하지 않은 PotionDelay 예제</span> 입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1623816762470" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PotionDelay : MonoBehaviour
+{
+    public bool isDelay;
+    public float delayTime = 5.0f;
+    public float accumTime;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(isDelay == false)
+            {
+                isDelay = true;
+                Debug.Log("HP가 50 회복 되었습니다.");
+            }
+            else
+            {
+                Debug.Log("아직 포션을 사용할 수 없습니다.");
+            }
+        }
+
+        if(isDelay)
+        {
+            accumTime += Time.deltaTime;
+            if(accumTime &gt;= delayTime)
+            {
+                accumTime = 0.0f;
+                isDelay = false;
+            }
+        }
+    }
+}</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="674" data-origin-height="348" width="548" height="283" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="674" data-origin-height="348" width="548" height="283" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Space 를 누르면 isDelay 변수가 false인 경우 "HP가 50 회복 되었습니다." 라는 문구를 출력하고, isDelay 변수가 true인 경우 "아직 포션을 사용할 수 없습니다." 라는 문구를 출력합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇게 어려운 코드는 아니기에 설명은 생략 하도록 하겠습니다. 이제 이 코드를 <span style="background-color: #333333; color: #ffffff;">코루틴을 사용해 수정</span>해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1623817676055" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PotionDelay : MonoBehaviour
+{
+    public bool isDelay;
+    public float delayTime = 5.0f;
+    public float accumTime;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(isDelay == false)
+            {
+                isDelay = true;
+                Debug.Log("HP가 50 회복 되었습니다.");
+                StartCoroutine(Drink());
+            }
+            else
+            {
+                Debug.Log("아직 포션을 사용할 수 없습니다.");
+            }
+        }
+    }
+
+    IEnumerator Drink()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isDelay = false;
+    }
+}</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1193" data-origin-height="642" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1193" data-origin-height="642" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">실행 결과는 동일합니다. 이제, 코루틴 사용방법을 설명 하도록 하겠습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#1.1 코루틴 선언 IEnumerator</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>코루틴의 선언</b>은 <span style="background-color: #333333; color: #ffffff;">반환형을 IEnumerator 로 설정</span> 합니다. 그리고 일반적인 함수와 달리 <b>반환 시</b> <b>return 이 아닌</b>, <span style="background-color: #333333; color: #ffffff;">yield return</span> 으로 돌려 주어야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">yield return 뒤에는</span> <span style="background-color: #333333; color: #ffffff;">반환 시간</span>을 명시해 주는데, <span style="background-color: #dddddd;">명시한 반환 시간 만큼 유니티에 제어권을 돌려주어 코드 동작을 중지시키고, 시간이 지나면 다음 줄 부터 다시 코루틴이 동작합니다.</span> 대표적인 </span><span style="font-family: 'Nanum Gothic'; color: #000000;">반환 시간의 타입은 다음과 같습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">[1] null</span> : <span style="background-color: #dddddd;">1frame 만큼 코드 동작을 중지</span> 시킵니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">[2] new WaitForSeconds(s)</span> : <span style="background-color: #dddddd;">s초 만큼 동작을 중지</span> 시킵니다.&nbsp;</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">(* 다른 반환 타입의 종류가 궁금하시다면, 유니티 공식 사이트의 메뉴얼을 참고해 주세요)</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#1.2 코루틴 실행 StartCoroutine()</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코루틴의 실행 방법은 일반 함수와는 달리, <span style="background-color: #333333; color: #ffffff;">StartCoroutine() 메소드</span>를 이용하여 괄호 안에 코루틴이름() 을 넣어 주어야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 아래와 같이 <span style="background-color: #dddddd;">"코루틴 이름" 으로도 실행이 가능</span>합니다.</span></p>
+<pre id="code_1623818220860" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>StartCoroutine("Drink");</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#2 코루틴 중지</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">다음으로, <span style="background-color: #333333; color: #ffffff;">코루틴을 중지 시키는 방법</span>에 대해서 정리 하도록 하겠습니다. 아래는 코루틴이 <span style="background-color: #333333; color: #ffffff;">1초마다 로그를 출력하고, space 키를 누르면 코루틴을 중지하는 예제</span>입니다.</span></span></p>
+<pre id="code_1623818836734" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CourutineTest : MonoBehaviour
+{
+
+    void Start()
+    {
+        StartCoroutine("Test");
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StopCoroutine("Test");
+            Debug.Log("STOP CORUTINE");
+        }
+    }
+
+
+    IEnumerator Test()
+    {
+        int i = 1;
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            Debug.Log(i + "초");
+            i++;
+        }
+    }
+}</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="643" data-origin-height="292" width="513" height="233" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="643" data-origin-height="292" width="513" height="233" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코루틴은 <span style="background-color: #333333; color: #ffffff;">StopCoroutine() / StopAllCoroutines()</span> 함수로 중지 시킬 수 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">StopCoroutine()</span> 함수는 <span style="background-color: #dddddd;">해당하는 코루틴만 중지</span>시키고, <span style="background-color: #333333; color: #ffffff;">StopAllCoroutines()</span> 함수는 <span style="background-color: #dddddd;">모든 코루틴을 중지</span>시킵니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#3 yield return VS yield break</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 <span style="background-color: #dddddd;">yield return 과 yield break 의 차이</span>에 대해서 설명하고 마치도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1에서 yield return은 지정한 시간만큼 유니티에 제어권을 넘겨주어 대기하는 키워드라고 설명했습니다. yield return과 달리 <span style="color: #000000;"><span style="background-color: #333333; color: #ffffff;">yield break</span> 문은 <span style="background-color: #dddddd;">해당 키워드를 만나자 마자 코루틴을 빠져나옵니다.</span> 아래 코드를 실행시켜 보면,</span></span></p>
+<pre id="code_1623819288758" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>public class CourutineTest : MonoBehaviour
+{
+    void Start()
+    {
+
+        StartCoroutine(Return());
+        StartCoroutine(Break());
+    }
+
+    IEnumerator Return()
+    {
+        Debug.Log("Return() 1");
+        yield return null;
+        Debug.Log("Return() 2");
+    }
+
+    IEnumerator Break()
+    {
+        Debug.Log("Break() 1");
+        yield break;
+        Debug.Log("Break() 2");
+    }
+
+}</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="675" data-origin-height="176" width="571" height="149" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="675" data-origin-height="176" width="571" height="149" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">yield break; 아래의 Debug.Log("Break() 2")는 출력되지 않고 , 코루틴이 끝나 버렸음을 확인 가능합니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #유니티 #코루틴 #코루틴사용이유 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

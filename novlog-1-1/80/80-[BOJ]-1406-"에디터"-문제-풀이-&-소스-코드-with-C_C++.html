@@ -1,0 +1,153 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 1406 "에디터" 문제 풀이 & 소스 코드 with C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 1406 "에디터" 문제 풀이 & 소스 코드 with C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-07-10 21:19:37</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><b><span style="color: #006dd7;">#</span></b>INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER3</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">STACK(스택)</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="font-family: 'Noto Serif KR';">&infin; 문제 출처</span> : <a href="https://www.acmicpc.net/problem/1406" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1406</a></span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="1574" data-origin-height="639" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1574" data-origin-height="639" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1561" data-origin-height="702" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1561" data-origin-height="702" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><b><span style="color: #006dd7;">#</span></b>SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">입력받은 문자열을 커서를 기준으로 leftStack , rightStack 2개의 스택을 이용해 저장한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 abcdef 문자열을 입력 받았다고 가정하면 우선 abcdef 모든 문자열을 leftStack에 저장한다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="606" data-origin-height="388" width="470" height="301" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="606" data-origin-height="388" width="470" height="301" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">커서를 왼쪽으로 옮기는 L 명령을 입력 받으면, leftStack의 가장 위에 있는 원소인 f를 pop()하고, rightStack에 push()한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 결과적으로, abcde | f 인 상태가 된다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="606" data-origin-height="454" width="485" height="363" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="606" data-origin-height="454" width="485" height="363" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 처럼 커서를 기준으로 스택을 2개 활용하면, R/B/P 기능도 간단하게 구현이 가능하다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #006dd7;">#</span></b>CODE</span></h2>
+<pre id="code_1625919389014" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main() {
+	string str;
+	cin &gt;&gt; str;
+	stack&lt;char&gt; leftStack, rightStack;
+	for (char ch : str)
+	{
+		leftStack.push(ch);
+	}
+	
+	int testCase;
+	cin &gt;&gt; testCase;
+	while(testCase--)
+	{
+		char ch;
+		cin &gt;&gt; ch;
+		if (ch == 'L')
+		{
+			if(!leftStack.empty())
+			{
+				rightStack.push(leftStack.top());
+				leftStack.pop();
+			}
+		}
+		else if (ch == 'D')
+		{
+			if (!rightStack.empty())
+			{
+				leftStack.push(rightStack.top());
+				rightStack.pop();
+			}
+		}
+		else if (ch == 'B')
+		{
+			if (!leftStack.empty())
+			{
+				leftStack.pop();
+			}
+		}
+		else if (ch == 'P')
+		{
+			char tmp;
+			cin &gt;&gt; tmp;
+			leftStack.push(tmp);
+		}
+	}
+	
+	while (!leftStack.empty())
+	{
+		rightStack.push(leftStack.top());
+		leftStack.pop();
+	}
+	
+	while (!rightStack.empty())
+	{
+		cout &lt;&lt; rightStack.top();
+		rightStack.pop();
+	}
+	
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="1112" data-origin-height="54" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1112" data-origin-height="54" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="200" height="200" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="200" height="200" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #에디터 #알고리즘 #스택 #Stack #BOJ #백준 #1406번 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

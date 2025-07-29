@@ -1,0 +1,139 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 11403 경로찾기 C++ 문제풀이 & 소스코드</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 11403 경로찾기 C++ 문제풀이 & 소스코드</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/Graph</p>
+                                    <p class="date">2025-03-19 11:15:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #333333; color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유형 : <span style="background-color: #333333; color: #dddddd;">DFS Graph</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/11403" target="_blank" rel="noopener&nbsp;noreferrer">https://www.acmicpc.net/problem/11403</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 조건을 그대로 그래프 형태로 구현하면 되는 문제이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">항상 이러한 그래프 구현 문제는 문제 조건을 잘 읽어야 한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">11403 경로찾기 문제는 <span style="background-color: #333333; color: #dddddd;">"가중치가 없는" "방향 그래프"</span> 임에 유의하여 로직을 구현해야한다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="492" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="492"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">방향 그래프임에 유의하여 입력값이 1인 경우에만 인접 리스트에 노드를 추가한다.&nbsp;</span></p>
+<pre id="code_1742349785856" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    int line;
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            cin &gt;&gt; line;
+            if (line == 1) {
+                adj_list[i].push_back(j);
+            }
+        }
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">다음으로 노드의 개수(n)만큼 반복하여 i번째 노드와 연결된 모든 노드와의 dfs 탐색을 수행하여 vistit 배열을 초기화한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">1번 노드를 예시로 들어보면 1번노드에서 2번, 3번 노드와 연결된 경로가 존재하기에 visit 배열은 모두 1로 셋팅된다.&nbsp;</span></p>
+<pre id="code_1742350119145" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>vector&lt;int&gt; adj_list[101]; // 인접리스트
+int isVisit[101]; // 방문여부 표시
+
+void dfs(int u) {
+    for (int i = 0; i &lt; adj_list[u].size(); i++) {
+        if (!isVisit[adj_list[u][i]]) {
+            isVisit[adj_list[u][i]] = 1;
+            dfs(adj_list[u][i]);
+        }
+    }
+}</code></pre>
+<pre id="code_1742350175706" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    for (int i = 0; i &lt; n; i++) {
+        // i번째 노드와 연결된 모드 노드와의 dfs 탐색 수행
+        // 차례로 모든 노드를 방문하며 i번째 노드와 연결된 모든 노드의 값을 1로 출력한다.
+        memset(isVisit, 0, sizeof(isVisit));
+        dfs(i);
+        for (int j = 0; j &lt; n; j++) {
+            cout &lt;&lt; isVisit[j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; '\n';
+    }</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic';">CODE</span></h2>
+<pre id="code_1742350458647" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+vector&lt;int&gt; adj_list[101]; // 인접리스트
+int isVisit[101]; // 방문여부 표시
+
+void dfs(int u) {
+    for (int i = 0; i &lt; adj_list[u].size(); i++) {
+        if (!isVisit[adj_list[u][i]]) {
+            isVisit[adj_list[u][i]] = 1;
+            dfs(adj_list[u][i]);
+        }
+    }
+}
+
+int main() {
+    
+    cin.tie(0);
+    ios_base::sync_with_stdio(0);
+    
+    int n;
+    cin &gt;&gt; n;
+
+    int line;
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            cin &gt;&gt; line;
+            if (line == 1) {
+                adj_list[i].push_back(j);
+            }
+        }
+    }
+    
+    for (int i = 0; i &lt; n; i++) {
+        // i번째 노드와 연결된 모드 노드와의 dfs 탐색 수행
+        // 차례로 모든 노드를 방문하며 i번째 노드와 연결된 모든 노드의 값을 1로 출력한다.
+        memset(isVisit, 0, sizeof(isVisit));
+        dfs(i);
+        for (int j = 0; j &lt; n; j++) {
+            cout &lt;&lt; isVisit[j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; '\n';
+    }
+    
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

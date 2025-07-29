@@ -1,0 +1,173 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Git] #1 리눅스 기본 명령어 (pwd, cd, ls, rm, mkdir)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Git] #1 리눅스 기본 명령어 (pwd, cd, ls, rm, mkdir)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-07-26 15:49:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" data-origin-width="389" data-origin-height="175" data-filename="깃.png" width="245" height="110" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="389" data-origin-height="175" data-filename="깃.png" width="245" height="110" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">* 다음 포스팅은 깃(Git)의 사용방법에 대하여 정리한 것으로, 개인적인 공부 기록용으로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">* Window 운영체제를 기준으로 작성했습니다.</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="background-color: #333333; color: #ffffff; font-family: 'Nanum Gothic';">[목차]</span></p>
+<p data-ke-size="size18"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#1 리눅스 디렉터리 기호</span></b></p>
+<p data-ke-size="size18"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#2 디렉터리 이동</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#2.1 상위 디렉터리 이동 : cd ..</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#2.2 하위 디렉터리 이동 : cd Directory name</span></span></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#3 디렉터리 생성 : mkdir</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#4 디렉터리 목록 : ls</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#5 디렉터리 삭제 : rm</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">#6 현재 디렉터리 경로 출력 : pwd</span></span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="background-color: #333333; color: #ffffff; font-family: 'Nanum Gothic';">[Goal]</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 리눅스 디렉터리 관련 명령어에 대해 숙지</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 리눅스 디렉터리 기호</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">터미널 창에서의 깃(Git) 명령어는 리눅스 명령과 동일하다. 따라서, 이번 포스팅 에서는 깃을 사용하기 위해 알아 두어야 할 기본적인 리눅스 디렉터리(=폴더) 관련 명령에 대해 정리 하고자 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">리눅스는 파일의 경로나 위치를 나타낼 때 약속된 기호를 사용</span>한다. 약속된 기호는 다음과 같다.</span></p>
+<table style="border-collapse: collapse; width: 100%; height: 83px;" border="1" data-ke-align="alignLeft" data-ke-style="style8">
+<tbody>
+<tr style="height: 20px;">
+<td style="width: 50%; text-align: center; height: 20px;"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>기호</b></span></td>
+<td style="width: 50%; height: 20px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>설명</b></span></td>
+</tr>
+<tr style="height: 20px;">
+<td style="width: 50%; height: 20px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">~</span></td>
+<td style="width: 50%; height: 20px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">사용자의 홈 디렉터리를 가리킨다. 홈 디렉터리 경로는 'C/User/UserID' 로 사용자 디렉터리 라고도 부른다.</span></td>
+</tr>
+<tr style="height: 20px;">
+<td style="width: 50%; height: 20px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">./</span></td>
+<td style="width: 50%; height: 20px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">현재 사용자가 작업중인 디렉터리이다.</span></td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 50%; height: 23px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">../</span></td>
+<td style="width: 50%; height: 23px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">현재 디렉터리 기준 상위 디렉터리이다.</span></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위의 3가지 는 매우 중요한 기초적인 기호들이기에, 반드시 암기해 두어야 한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 디렉터리 이동</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">디렉터리 이동</span>은 <span style="background-color: #333333; color: #ffffff;">"상위 디렉터리 이동"</span>과 <span style="background-color: #333333; color: #ffffff;">"하위 디렉터리 이동"</span>으로 나뉜다.</span></p>
+<h4 data-ke-size="size20"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2.1 상위 디렉터리 이동 : cd ..</span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">상위 디렉터리 이동 명령어</span>는 <span style="background-color: #333333; color: #ffffff;">"cd .."</span> 이다. 다음은 홈 디렉터리에서 상위 디렉터리로 이동한 예시이다. 홈 디렉터리 경로는 /C/Users/유저이름 이기에, cd .. 명령을 2번 수행하면 Users 폴더를 거쳐 C로 이동한다. 참고로 cd는 <u><b>Change Directory</b></u>의 약자이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="425" data-origin-height="175" width="357" height="147" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="425" data-origin-height="175" width="357" height="147" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<h4 data-ke-size="size20"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2.2 하위 디렉터리 이동 : cd Directory Name</span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">하위 디렉터리 이동 명령어</span>는 <span style="background-color: #333333; color: #ffffff;">"cd 디렉토리 이름"</span> 이다. 다음은 c 폴더에서 Users 하위 디렉터리로 이동한 예시이다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="430" data-origin-height="120" width="376" height="105" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="430" data-origin-height="120" width="376" height="105" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="548" data-origin-height="228" width="435" height="181" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="548" data-origin-height="228" width="435" height="181" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 디렉터리 생성 : mkdir</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">디렉터리 생성 명령어</span>는 <span style="background-color: #333333; color: #ffffff;">"mkdir 디렉터리 이름"</span>으로 <u><b>make directory</b></u>의 약자이다. 다음은 홈 디렉터리 안에 MyDir 라는 디렉터리를 생성하고, MyDir 디렉터리로 이동해 test 라는 디렉터리를 생성한 예제이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="417" data-origin-height="172" width="373" height="154" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="417" data-origin-height="172" width="373" height="154" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';">#4 디렉터리 목록 : ls</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">현재 <span style="background-color: #333333; color: #ffffff;">디렉터리의 목록을 확인</span>하는 명령은 <span style="background-color: #333333; color: #ffffff;">"ls"</span>이다. ls 명령을 실행하니 #3에서 생성한 MyDir 안의 test 디렉터리가 출력된다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="418" data-origin-height="70" width="388" height="65" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="418" data-origin-height="70" width="388" height="65" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ls명령은 <span style="background-color: #333333; color: #ffffff;">-기호와 함께 옵션을 추가해서 사용</span>할 수도 있는데, 대표적인 ls 옵션은 다음과 같다.</span></p>
+<table style="border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft" data-ke-style="style8">
+<tbody>
+<tr>
+<td style="width: 50%;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">옵션</span></b></td>
+<td style="width: 50%;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">설명</span></b></td>
+</tr>
+<tr>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">-a</span></td>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">숨긴 디렉터리를 함께 표시한다.</span></td>
+</tr>
+<tr>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">-l</span></td>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">디렉터리의 상세 정보를 함께 표시한다.</span></td>
+</tr>
+<tr>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">-r</span></td>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">정렬 순서를 거꾸로 표시한다.</span></td>
+</tr>
+<tr>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">-t</span></td>
+<td style="width: 50%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">작성 시간 순으로 표시한다.</span></td>
+</tr>
+</tbody>
+</table>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#5 디렉터리 삭제 : rm</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">디렉터리 삭제 명령</span>은 <span style="background-color: #333333; color: #ffffff;">"rm 디렉터리 이름"</span> 으로 <u><b>remove</b></u>의 약자이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">-r 옵션</span>과 함께 사용하면, <span style="background-color: #333333; color: #ffffff;">디렉터리 안의 하위 디렉터리까지 모두 삭제</span>한다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 test 디렉터리와 하위 디렉터리까지 모두 삭제한 예시이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="416" data-origin-height="259" width="345" height="215" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="416" data-origin-height="259" width="345" height="215" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';">#6 현재 디렉터리 경로 출력 : pwd</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">현재 위치하는 디렉터리의 경로를 출력하는 명령어</span>는 <span style="background-color: #333333; color: #ffffff;">"pwd"</span>이다. pwd는 <b><u>"print working directory"</u></b>의 줄임말이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="412" data-origin-height="82" width="362" height="72" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="412" data-origin-height="82" width="362" height="72" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #디렉터리생성 #깃명령어 #리눅스명려엉 #디렉터리삭제 #디렉터리이동 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,281 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Flutter Row & Column Widget 사용법 총 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Flutter Row & Column Widget 사용법 총 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Flutter</p>
+                                    <p class="date">2023-04-11 14:58:10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Flutter FrameWork는 Row, Column 위젯을 사용해 UI를 구성합니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅에서는 Row, Column 위젯의 정의 및 사용법 그리고 Row, Column 위젯과 관련된 다양한 속성들 mainAxisAlignment, CrossAxisAlignment, mainAxisSize 의 사용법에 대해 정리할 예정입니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#0 Row &amp; Column Widget</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#0.1 Row Widget</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#0.2 Column Widget</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">? Row, Column Widget은 주축을 화면 최대의 크기를 차지한다.</span></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 MainAxisAlignment &amp; CrossAixsAlignment</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.1 MainAxisAlignment</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 CrossAxisAlignment</span></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 mainAxisSize</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#0 Row &amp; Column Widget</span></b></h2>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#0.1 Row Widget</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Row Widget</span>은 <b>가로 방향으로 위젯을 쌓을 때 사용</b>합니다. Row Widget 내부에 들어가는 위젯들은 <span style="background-color: #333333; color: #dddddd;">children 속성</span> 내부에 정의합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Container Widget child 속성에 Row Widget을 넣어준 뒤, Row Widget children 속성에 50.0 x 50.0 크기를 가지는 세 개의 Container Widget을 넣어 주었습니다.</span></p>
+<pre id="code_1681187929311" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          color: Colors.black,
+          child: Row(
+            children: [
+              Container(
+                color: Colors.blue,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueGrey,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueAccent,
+                width: 50.0,
+                height: 50.0,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코드를 실행해 보면, 다음과 같이 디바이스 화면에 가로 방향으로 Container Widget 들이 쌓여 있는 것을 확인할 수 있습니다.&nbsp;&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="250" height="511" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="250" height="511"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#0.2 Column Widget</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Column Widget</span>은 <b>세로 방향으로 위젯을 쌓을 때 사용</b>합니다. Row Widget과 마찬가지로 <span style="background-color: #333333; color: #dddddd;">children 속성</span>에 Column Widget 내부에 들어갈 위젯들을 정의합니다.&nbsp;</span></p>
+<pre id="code_1681188169000" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          color: Colors.black,
+          child: Column(
+            children: [
+              Container(
+                color: Colors.blue,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueGrey,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueAccent,
+                width: 50.0,
+                height: 50.0,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마찬가지로 코드를 실행하면 이번에는 반대로 세로 방향으로 Container Widget이 쌓여 있습니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="250" height="512" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="250" height="512"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">? Row, Column Widget은 주축을 화면 최대의 크기를 차지한다.</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Row, Column Widget은 기본적으로 <b>주축을 화면 최대의 크기를 차지하는 특징</b>을 지니고 있습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Row Widget</span>은 <b>가로를 기준으로 Widget을 쌓기에, 주축이 가로</b>입니다. 따라서 <b>화면의 가로 공간을 모두 차지</b>합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Column Widget</span>은 <b>세로를 기준으로 Widget을 쌓기에, 주축이 세로</b>입니다. 따라서 <b>화면의 세로 공간을 모두 차지</b>합니다.</span>&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="501" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="501"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 MainAxisAlignment &amp; CrossAxisAlignment</span></b></h2>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.1 MainAxisAlignment</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">MainAxisAlignment</span>는 <b>주축을 기준으로 요소를 정렬하는 속성</b>입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Row Widget</span>은 주축이 가로 이므로 <b>가로를 기준으로 요소를 정렬</b>하며,<span style="background-color: #333333; color: #dddddd;"> Column Widget</span>은 주축이 세로 이기에 <b>세로를 기준으로 요소를 정렬</b>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Row, Column Widget 내부에 <span style="background-color: #333333; color: #dddddd;">mainAxisAlignment</span> 속성을 이용해 사용합니다.</span></p>
+<pre id="code_1681189238918" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>	child: Container(
+          ...
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.[속성],
+            ...
+          ),
+        ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MainAxisAlignment 뒤에 들어갈 속성은 다음과 같습니다.&nbsp;</span></p>
+<pre id="code_1681189162406" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>mainAxisAlignment: MainAxisAlignment.start // 위젯을 시작 부분에 배치
+mainAxisAlignment: MainAxisAlignment.end // 위젯을 끝 부분에 배치
+mainAxisAlignment: MainAxisAlignment.center // 위젯을 중간에 배치
+mainAxisAlignment: MainAxisAlignment.spaceBetween // 위젯 사이의 간격이 동일하게 배치
+mainAxisAlignment: MainAxisAlignment.spaceEvenly // 동일 간격으로 배치하나, 끝 부분이 빈 공간으로 시작</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1681189640297" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>	child: Container(
+          ...
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.[속성],
+            ...
+          ),
+        ),</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 crossAxisAlignment</span></b></h3>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">MediaQuery</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">crossAxisAlignment 속성에 대해 알아 보기 전에 한 가지 설정해 주어야 할 것이 있습니다. 앞에서 <b>Row, Column Widget은 주축을 화면 최대 크기를 차지</b>한다고 했는데요, <b>횡축을 기준으로는 요소의 크기 만큼만 차지</b>하기 때문에 횡축의 사이즈를 늘려줄 필요가 있습니다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">횡축을 최대 사이즈만큼 설정하기 위해선 Container의 height, width 속성에 <span style="background-color: #333333; color: #dddddd;">MediaQuery</span>를 사용해야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MediaQuery란 <b>Device의 스크린 사이즈를 조절할 때 사용하는 속성</b>으로, <span style="background-color: #333333; color: #dddddd;">MediaQuery.of(Context).size</span> <b>코드를 사용해 화면의 크기 정보를 가져올 수 있습니다.&nbsp;</b></span></p>
+<pre id="code_1681190742485" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>        child: Container(
+          ...
+          height : MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          ...
+        ),</code></pre>
+<p><figure class="imageblock alignLeft" width="250" height="559" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" width="250" height="559"  />
+    </span>
+    <figcaption>Container의 height, width가 디바이스 화면의 최대만큼 차지</figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 crossAxisAlignment 속성을 사용할 준비를 모두 끝마쳤습니다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">crossAxisAlignment</span>는 <b>횡축을 기준으로 요소를 정렬하는 속성</b>입니다.</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Row Widget</span>은 <b>세로를 기준</b>으로, <span style="background-color: #333333; color: #dddddd;">Column Widget</span>은 <b>가로를 기준으로 요소를 정렬</b>합니다.&nbsp;</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">mainAxisAlignment와 마찬가지로 Row, Column Widget 내부에 <span style="background-color: #333333; color: #dddddd;">crossAxisAlignment</span> 속성을 사용해 정의합니다.&nbsp;</span></p>
+<pre id="code_1681190930078" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>	child: Container(
+          ...
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.[속성],
+            ...
+          ),
+        ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">crossAxisAlignment 뒤에 들어갈 속성은 다음과 같습니다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>start, end, center</b>는 동일하며, <b>stretch</b> 라는 속성이 추가되었습니다.</span></p>
+<pre id="code_1681191075921" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>crossAxisAlignment: CrossAxisAlignment.start // 위젯을 시작 부분에 배치
+crossAxisAlignment: CrossAxisAlignment.end // 위젯을 끝 부분에 배치
+crossAxisAlignment: CrossAxisAlignment.center // 위젯을 중간에 배치
+crossAxisAlignment: CrossAxisAlignment.stretch // 위젯을 횡축 방향으로 모두 차지하도록 배치</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1681191595379" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>	child: Container(
+          ...
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.[속성],
+            ...
+          ),
+        ),</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 mainAxisSize</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">mainAxisSize</span>는 <b>주축의 크기를 설정하는 속성</b>입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 <span style="background-color: #dddddd;">MediaQuery를 사용해 화면 전체에 Container 크기를 차지하도록 했던 코드를 삭제</span> 하도록 하겠습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>Row, Column Widget은 기본 값으로 주축의 크기만큼 화면을 차지하도록 설정</b> 되어 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나<b> 주축을 요소의 크기 만큼만 차지하도록 설정</b>하고 싶다면 <span style="background-color: #333333; color: #dddddd;">mainAxisSize</span> 속성을 사용하면 됩니다.&nbsp;</span></p>
+<pre id="code_1681192252029" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>        child: Container(
+          color: Colors.black,
+          // height : MediaQuery.of(context).size.height,
+          // width: MediaQuery.of(context).size.width,
+          child: [Column or Row] (
+            mainAxisSize: MainAxisSize.[속성],
+            children: [
+              Container(
+                color: Colors.blue,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueGrey,
+                width: 50.0,
+                height: 50.0,
+              ),
+              Container(
+                color: Colors.blueAccent,
+                width: 50.0,
+                height: 50.0,
+              ),
+            ],
+          ),
+        ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MainAxisSize에는 여러가지 속성이 존재하지만, 자주 사용되는 속성은 다음과 같습니다.</span></p>
+<pre id="code_1681192019240" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>mainAxisSize: MainAxisSize.max // 주축의 크기만큼 전부 차지합니다.
+mainAxisSize: MainAxisSize.min // 주축의 크기를 요소의 크기에 맞게 차지합니다.</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

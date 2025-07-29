@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] #1 입출력 방식 cin / cout / endl</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] #1 입출력 방식 cin / cout / endl</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-08-20 16:15:34</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: center;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">[C++]&nbsp;#1&nbsp;입출력&nbsp;방식&nbsp;cin&nbsp;/&nbsp;cout&nbsp;/&nbsp;endl</span></b></h2>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 헤더파일 선언</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 출력 std::cout</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 입력 std::cin</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 개행 std::endl&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">*개인적인 C++ 공부 내용을 정리하는 용도로 작성된 글 이기에 잘못된 내용이 있을 수 있습니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 헤더파일 선언</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, cin cout endl 을 사용하기에 앞서 헤더파일을 선언해 주어야 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C언어와 달리 헤더파일 뒤에 .h 확장자가 없음을 확인할 수 있는데 , <span style="background-color: #333333; color: #ffffff;">C++ 은 프로그래머가 정의하는 헤더파일이 아닌 표준 헤더파일 에서는 확장자 선언을 생략한다.</span></span></p>
+<pre id="code_1629442693253" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 출력 std::cout</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C++ 에서 출력은 <span style="background-color: #333333; color: #ffffff;">std::cout</span> 와 <span style="background-color: #333333; color: #ffffff;">&lt;&lt;연산자</span>를 이용한다. <b>cout는 console out 의 약자</b>이다.</span></p>
+<pre id="code_1629442944312" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>std::cout &lt;&lt; "hello"</code></pre>
+<pre id="code_1629443064829" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과] hello</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C언어처럼 %s %d %f 와 같은 <span style="background-color: #333333; color: #ffffff;">별도의 출력 포맷을 지정해 줄 필요가 없으며, 자동으로 적절한 출력이 이루어진다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음과 같이 <b>&lt;&lt; 연산자를 여러개 이어 붙여서 둘 이상의 데이터 출력을 명령할 수 도 있다.</b></span></p>
+<pre id="code_1629443052444" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>std::cout &lt;&lt; "HELLO" &lt;&lt; " " &lt;&lt; 1 ;</code></pre>
+<pre id="code_1629443072937" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과] HELLO 1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 입력 std::cin</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 C++ 에서의 입력은 <span style="background-color: #333333; color: #ffffff;">std::cin</span> 과 <span style="background-color: #333333; color: #ffffff;">&gt;&gt; 연산자</span>를 이용한다.<b> cin은 console in 의 약자</b>이다. std::cout와 마찬가지로 별도의 출력 포맷을 지정해 주지 않아도 된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래는 변수 2개를 입력받고 더한 결과를 출력하는 코드이다.</span></p>
+<pre id="code_1629443185786" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int val1, val2;
+std::cout &lt;&lt; "변수를 입력해 주세요 ";
+std::cin &lt;&lt; val1 &lt;&lt; val2;
+std::cout &gt;&gt; "val1 + val2 = " &gt;&gt; val1 + val2;</code></pre>
+<pre id="code_1629443225891" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과] 변수를 입력해 주세요 : 1 2
+val1 + val2 = 3</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#4 개행 std::endl</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 개행(줄 바꿈)은 <span style="background-color: #333333; color: #ffffff;">std::endl</span> 을 이용한다. <b>std::endl 대신 "\n"을 사용해도 상관 없으며 , 알고리즘 문제 풀이 에서는 endl은 속도가 느리기에 "\n" 사용이 권장 되기도 한다.</b></span></p>
+<pre id="code_1629443346535" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>std::cout &lt;&lt; "개행문자 테스트" &lt;&lt; endl;
+std::cout &lt;&lt; "개행문자 테스트2" &lt;&lt; "\n";</code></pre>
+<pre id="code_1629443364124" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과] 개행문자 테스트
+개행문자 테스트2</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #C++문법 #C++입력 #C++출력 #C++개행 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

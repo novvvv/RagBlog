@@ -1,0 +1,113 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] #3 이름공간 (NameSpace) & 범위 지정 연산자 ::</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] #3 이름공간 (NameSpace) & 범위 지정 연산자 ::</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-08-20 17:23:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 style="text-align: center;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[목차]</span></b></h2>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 이름공간(NameSpace)이란?</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 이름공간 선언 - namespace</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 범위지정 연산자 ::</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 이름공간 명시 - using</span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #ffffff; background-color: #333333;">* 개인적인 C++ 공부 내용을 정리하는 용도로 작성된 글 이기에 잘못된 내용이 있을 수 있습니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 이름공간(NameSpace)이란?</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">"이름공간"</span>이란 이름 <span style="background-color: #333333; color: #ffffff;">충돌문제 발생을 방지하기 위해서 특정 영역에 이름을 붙여주기 위한 문법</span>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 협업중인 A회사와 B회사가 다음과 같은 함수를 정의 했다고 가정해 보자.</span></p>
+<pre id="code_1629446935054" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>//A회사
+void MyFunc(){
+	std::cout &lt;&lt; "A Company Function" &lt;&lt; endl;
+}
+
+//B회사
+void MyFunc(){
+	std::cout &lt;&lt; "B Company Function" &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수 이름과 매개변수도 모두 동일하기에, 이름 충돌이 발생하고 만다. 따라서 위와 같은 상황을 해결하기 위해선는 한 회사가 양보해 함수의 이름을 변경 해야 할 것이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만, 이름공간 문법을 이용하면 함수의 이름을 변경하지 않고 이런 상황을 해결할 수 있다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 이름공간 선언 - namespace</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이름공간은 <span style="background-color: #333333; color: #ffffff;">namespace 키워드</span>를 이용해 선언한다. 아래는 <b>A회사의 이름공간 CompanyA 와 B회사의 이름공간 CompanyB를 선언해 위에서 발생한 이름 충돌을 막은 예제</b>이다.</span></p>
+<pre id="code_1629447124534" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>//A회사
+namespace CompanyA
+{
+void MyFunc(){
+	std::cout &lt;&lt; "A Company Function" &lt;&lt; endl;
+}
+}
+
+//B회사
+namespace CompanyB
+{
+void MyFunc(){
+	std::cout &lt;&lt; "B Company Function" &lt;&lt; endl;
+}
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 범위지정 연산자 ::</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">범위 지정 연산자</span>란, <span style="background-color: #333333; color: #ffffff;">이름공간을 지정할 때 사용하는 연산자</span>이다. 예를 들어 <b>CompanyA 이름공간에 존재하는 MyFunc() 함수를 사용</b>하고 싶다면, <b>CompanyA::MyFunc</b> 를 <b>CompanyB 이름공간에 존재하는 MyFunc() 함수를 사용</b>하고 싶다면, <b>CompanyB::MyFunc</b>와 같이 사용하면 된다.</span></p>
+<pre id="code_1629447255303" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>.. 생략
+int main()
+{
+	CompanyA::MyFunc();
+	CompanyB::MyFunc();
+	return 0;
+}</code></pre>
+<pre id="code_1629447271735" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과]
+A Company Function
+B Company Function</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#4 이름공간 명시 - using</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">using 키워드</span>를 사용하면 <span style="background-color: #333333; color: #ffffff;">별도의 이름공간명과 범위지정 연산자 :: 를 사용하지 않고 함수를 호출할 수 있다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">지금까지 cin , cout , endl 을 호출할 때 std::cin , std::cout , std::endl 와 같은 형태로 호출 해왔다. <b>(범위지정 연산자가 사용된 것을 보아 cin 이름공간에 정의된 함수들 이라는 것을 추측할 수 있다.)</b> <b>하지만 코드 상단부에 using 키워드를 이용해 미리 std 이름공간을 명시해 주면, 앞의 std:: 없이 바로 cin , cout , endl 함수를 사용할 수 있다.</b></span></p>
+<pre id="code_1629447599419" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std; // std 이름공간 선언
+
+int main()
+{
+    int val1;
+    // std:: 생략
+    cout &lt;&lt; "INPUT VALUE : ";
+    cin &gt;&gt; val1;
+    cout &lt;&lt; "VAL1 IS " &lt;&lt; val1 &lt;&lt; endl;
+}</code></pre>
+<pre id="code_1629447626858" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과]
+INPUT VALUE : 10
+VAL1 IS 10</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #C++문법 #C++네임스페이스 #C++이름공간 #C++std:: 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

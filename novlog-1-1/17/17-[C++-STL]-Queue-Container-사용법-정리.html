@@ -1,0 +1,125 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++ STL] Queue Container 사용법 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++ STL] Queue Container 사용법 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-05-06 08:12:15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Queue Container 구조 &amp; 특징</span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 멤버함수</span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 사용방법</span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 관련예제</span></b></p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="background-color: #333333; color: #ffffff;">INFO</span></b></span></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">Queue [큐] 컨테이너는 C++ STL 표준 라이브러리가 제공하는 컨테이너 어댑터로 사용자가 따로 구현하지 않고 편리하게 사용할 수 있도록 하는 자료구조 입니다. Queue [큐] 자료구조의 특징과 구조에 대해서는 Computer Basic - DataStructure 카테고리에 정리해 두었으니, 혹시 큐에 대한 개념이 없다면 다음 게시글을 참고해 주세요.<span>&nbsp;</span><a href="https://novlog.tistory.com/16?category=863229" target="_blank" rel="noopener">About Queue</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Queue Container 구조 &amp; 특징</span></b></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">● FIFO[First in , First Out] 방식으로 동작합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">● deque, list 컨테이너에 붙여서 사용 가능한 컨테이너 어댑터입니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #ffc9af;">(vector 컨테이너와는 같이 사용 불가능합니다.</span> 이유는 queue 컨테이너 어댑터를 사용하기 위해서는 앞에서 빼는 기능을 지니고 있어햐 하는데 벡터는 pop_front() 와 같은 멤버함수를 갖고 있지 않기 때문입니다.)</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">● deque 컨테이너를 기본적으로 사용합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="601" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="0" data-origin-height="0" width="601" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">대표적인 멤버함수는 총 6가지로, 원소를 추가하는 push , 원소를 삭제하는 pop , 맨 앞의 원소를 참조하는 front , 가장 뒤의 원소를 참조하는 back , 원소의 개수를 반환하는 size , queue가 비어있는지 확인하는 empty 등이 있습니다.</span></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 멤버함수</span></b></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">1. void push()</span> - 원소를 추가합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">2. void pop()</span> - 원소를 제거합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">3. value_type&amp; back()</span> - 가장 뒤의 원소에 접근합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">4. value_type&amp; front()</span> - 맨 앞의 원소에 접근합니다.&nbsp;</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">5. bool empty() const</span> - 원소가 비어있는지 확인합니다. (비어있으면 true를 반환합니다.)</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">6. size_type size() const</span> - 원소의 개수를 반환합니다.</span></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 사용방법</span></b></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">- &lt;queue&gt; 헤더파일을 include 해야 합니다.</span></p>
+<pre id="code_1620255527144" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;queue&gt;</code></pre>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">- 기본적인 생성자 형식은 <span style="background-color: #333333; color: #ffffff;">queue &lt;[data_type]&gt; [value_name];</span> 입니다.</span></p>
+<pre id="code_1620255623758" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>queue&lt;int&gt; q1; // int type queue
+queue&lt;string&gt; q2; // string type queue</code></pre>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">- 다른 컨테이너와 같이 사용하고자 한다면 <span style="background-color: #333333; color: #ffffff;">queue &lt;[data_type], [Container Type]&gt; [value_name];</span> 과 같이 선언합니다.</span></p>
+<pre id="code_1620255719886" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>queue&lt;int, list&lt;int&gt;&gt; lq; // 컨테이너 형식으로 list&lt;int&gt;를 사용하며, int형 원소를 저장하는 queue</code></pre>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 관련예제</span></b></h2>
+<pre id="code_1620256037642" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main()
+{
+	queue&lt;int&gt; q; // int type queue 선언 
+	
+	q.push(10); // '10' 추가 
+	q.push(20); // '20' 추가 
+	q.push(30);	// '30' 추가 
+	
+	cout &lt;&lt; "[Before Pop]" &lt;&lt; endl;
+	cout &lt;&lt; "size is " &lt;&lt; q.size() &lt;&lt; endl;
+	cout &lt;&lt; "front is " &lt;&lt; q.front() &lt;&lt; endl;
+	cout &lt;&lt; "back is " &lt;&lt; q.back() &lt;&lt; endl;
+	cout &lt;&lt; "empty ? " &lt;&lt; q.empty() &lt;&lt; endl;
+	
+	q.pop();
+	q.pop(); 
+	q.pop();
+	
+	cout &lt;&lt; "[After Pop]" &lt;&lt; endl;
+	cout &lt;&lt; "size is " &lt;&lt; q.size() &lt;&lt; endl;
+	cout &lt;&lt; "empty ? " &lt;&lt; q.empty() &lt;&lt; endl;
+	
+	return 0;
+}
+</code></pre>
+<pre id="code_1620256057360" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[Before Pop]
+size is 3
+front is 10
+back is 30
+empty ? 0
+
+[After Pop]
+size is 0
+empty ? 1</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #STL #컨테이너 #Queue #큐 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

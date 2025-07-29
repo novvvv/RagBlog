@@ -1,0 +1,202 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Java] String & StringBuilder 비교 & 메서드 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Java] String & StringBuilder 비교 & 메서드 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Java Fundamental</p>
+                                    <p class="date">2024-06-28 14:44:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">* 다음 포스팅은 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">String 메서드 파트는 지속적으로 추가해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">String</span></h2>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#문자열 선언 방법&nbsp;</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바에서 문자열은 객체의 주소를 저장하고 있는 참조형 타입이다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 문자열 변수에는 객체의 주소를 가리키는 참조값이 들어 가야만 한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 문자열은 매우 빈번하게 사용되는 자료형 이기에 "문자열 리터럴" 형태로 참조형 변수에 초기화 해 주어도 자바 컴파일러가 자동으로 코드를 객체 인스턴스를 생성하는 형태로 변환해 준다.&nbsp;</span></p>
+<pre id="code_1719469530116" class="java" data-ke-language="java" data-ke-type="codeblock"><code>    public static void main(String[] args) {
+    	// #1 객체 생성을 이용한 문자열 선언
+        String str = new String("novDev");
+        System.out.println("str = " + str);
+        // #2 문자열 리터럴을 이용한 문자열 선언
+        String str2 = "novDev"
+        System.out.println('str2 = " + str2);
+    }</code></pre>
+<pre id="code_1719469963774" class="java" data-ke-language="java" data-ke-type="codeblock"><code>str = novdev
+str2 = novdev</code></pre>
+<p data-ke-size="size18">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#문자열은 불변 객체이다</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바 언어에서 String은 불변 객체로 설계되어 있다. String 객체의 내부 코드를 보면 <span style="text-align: start;">보면 문자열은 priavate final로 선언된 "문자의 배열" 형태로 정의 되어 있다. <span style="text-align: start;">예를 들어 "novDev" 라는 문자열은 실제로 'n', 'o', 'v', 'D', 'e', 'v' 라는 6개의 문자 배열로 구성된다. (JAVA9 버전 이후로는 byte 배열 형태로 바뀌었다.)&nbsp;</span></span></span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/entry/JAVA-Immutable-Object-%EB%B6%88%EB%B3%80-%EA%B0%9D%EC%B2%B4" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';"><span style="text-align: start;"><span style="text-align: start;">불변객체란?</span></span></span></a></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 한 번 문자열을 선언하면 문자열을 다른 값으로 변경하는 것은 불가능하다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드를 보면 str 문자열 변수의 내부 값이 novDev에서 changedNovDev 문자열로 변경된 것 처럼 보이지만 실제로는 기존 값 ("novDev") 은&nbsp; 유지한 채 새로운 문자열 객체 ("changedNovDev") 를 생성한 뒤 반환하는 방식으로 동작한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">더 이상 참조 변수에 의해 참조되지 않은 문자열 ("novDev") 은 GC에 의해 메모리 공간이 수거된다.</span></p>
+<pre id="code_1719470258856" class="java" data-ke-language="java" data-ke-type="codeblock"><code>    public static void main(String[] args) {
+        String str = "novDev";
+        System.out.println("Before str = " + str);
+        str = "changedNovDev";
+        System.out.println("After str = " + str);
+    }</code></pre>
+<p><figure class="imageblock alignLeft" width="531" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="531"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#String이 불변 객체로 설계된 이유</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 자바의 문자열은 어째서 불변 객체로 설계되어 있는 것일까? 굳이 GC가 메모리를 수거하게 하는 번거로운 작업을 거치면서 까지 말이다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그 이유는 자바 내부에서 "문자열 풀" 이라는 기능을 통해 문자열 연산 최적화를 진행하기 때문이다. </span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바는 동일 값을 참조하는 인스턴스를 문자열 풀 이라는 공간에 메모리를 할당해 둔다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데 만약 문자열이 불변 객체가 아니라면 한 참조 변수에서 문자열의 값을 변경하면, 해당 문자열을 참조하고 있는 모든 참조 변수 내부의 문자열 값이 변경되는 현상이 발생하기 때문이다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*문자열 풀을 사용하지 않았을 경우 메모리 공간</span></p>
+<p><figure class="imageblock alignLeft" width="443" height="243" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="443" height="243"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*문자열 풀을 사용한 경우 메모리 공간</span></p>
+<p><figure class="imageblock alignLeft" width="441" height="270" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="441" height="270"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="color: #000000; text-align: start;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">StringMethod</span></h2>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#indexOf</span></b></h3>
+<table style="border-collapse: collapse; width: 100%; height: 36px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr style="height: 19px;">
+<td style="width: 21.8605%; height: 19px;">indexOf(String target)</td>
+<td style="width: 78.1395%; height: 19px;">파라미터로 전달된 문자열의 위치 인덱스를 반환한다. (해당 타깃 문자열이 존재하지 않는다면 -1 리턴)</td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 21.8605%; height: 17px;">indexOf(String target, int index)</td>
+<td style="width: 78.1395%; height: 17px;">탐색 하고자 하는 문자열의 index 위치 부터 target 문자열을 탐색한다.</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd;">indexOf 예제</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic';">문자열 내부의 특정 문자의 개수를 모두 카운트</span></b></p>
+<pre id="code_1720502954933" class="java" data-ke-language="java" data-ke-type="codeblock"><code>    public static void main(String[] args) {
+        String sentence = "hello, novv";
+        String target = "v";
+        int pos = sentence.indexOf(target);
+        int targetCount = 0;
+        while (pos &gt; -1) {
+            targetCount++;
+            pos = sentence.indexOf(target, pos + 1);
+        }
+        System.out.println("target : " + targetCount);
+    }</code></pre>
+<pre id="code_1720503023597" class="java" data-ke-language="java" data-ke-type="codeblock"><code>target : 2</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#toCharArray</span></b></h3>
+<table style="border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td style="width: 17.907%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">str.toCharArray</span></td>
+<td style="width: 82.093%;"><span style="font-family: 'Nanum Gothic'; color: #000000;">입력받은 문자열을 문자 배열 형태로 반환해 주는 메서드이다.</span></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd; text-align: start;">toCharArray 예제</span></p>
+<pre id="code_1720676216656" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Main {
+    public static void main(String[] args) {
+        String str = "novlog";
+        char[] charArr = str.toCharArray();
+        for (char c : charArr) {
+            System.out.print(c + " ");
+        }
+    }
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">StringBuilder</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">String 객체는 앞서 설명했듯이 불변 객체 이다. 따라서 한 번 객체를 생성하면 문자열 내부의 값을 변경할 수 없다. 반면에 StringBuilder는 가변 객체로 가변 크기의 문자 배열을 사용해 문자열을 저장한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 문자열을 연결 혹은 수정할 때 마다 객체를 새로 생성하지 않기에 메모리와 성능 면에서 효율적이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">특히 JAVA 언어로 알고리즘 문제를 풀이하는 경우 다음과 같은 상황에서 String 객체 대신 StringBuilder 객체를 사용하는 것이 좋다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#StringBuilder의 사용이 권장되는 상황</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 반복문 내부 에서 문자를 연결하는 상황&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 조건문을 통해 동적으로 문자열을 조합하는 경우</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">3. 복잡한 문자열의 특정 부분을 변경하는 경우</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 StringBuilder를 사용해 문자열 연산을 수행한 뒤 마지막에 String 객체로 변환 하여 성능을 최적화 시키는 것을 권장한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd;">#StringBuilder 관련 메서드&nbsp;</span></h3>
+<pre id="code_1719552868291" class="java" data-ke-language="java" data-ke-type="codeblock"><code> 	StringBuilder sb = new StringBuilder();
+        // 문자열 추가
+        sb.append("novDev");
+        System.out.println("sb = " + sb);
+
+        // 문자열 삽입
+        sb.insert(6, " Blog");
+        System.out.println("insert = " + sb);
+
+        // 문자열 삭제
+        sb.delete(6, 12);
+        System.out.println("delete = " + sb);
+
+        // 문자열 뒤집기
+        sb.reverse();
+        System.out.println("reverse = " + sb);
+
+        // String 변환
+        String string = sb.toString();
+        System.out.println("string = " + string);</code></pre>
+<pre id="code_1719552916941" class="java" data-ke-language="java" data-ke-type="codeblock"><code>[Result]
+sb = novDev
+insert = novDev Blog
+delete = novDev
+reverse = veDvon
+string = veDvon</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

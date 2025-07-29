@@ -1,0 +1,93 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 1008 "A/B" 문제 풀이 _ nov (feat.정밀도[precision])</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 1008 "A/B" 문제 풀이 _ nov (feat.정밀도[precision])</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-03-02 15:08:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #953b34; color: #ffffff;">BRONZE4</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/1008">1008번: A/B (acmicpc.net)</a></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>부동소수점과 정밀도(Precision)</b>에 대한 개념을 알고 있는지 확인하는 문제였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C/C++은 실수를 표현할 때 부동소수점 자료형인 float과 double을 사용한다. 고정소수점 방식은 부동소수점 방식에 비해 제약이 많기에 사용되지 않는다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 C/C++에서 실수를 표기할 때 어느정도 한계가 있다. <span style="background-color: #333333; color: #ffffff;">float</span>은 <b>소수점 아래 신뢰 가능 정도는 6자리</b> <span style="background-color: #333333; color: #ffffff;">double</span>은 <b>소수점 아래 신뢰 가능 정도가 14자리</b> 정도이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래는 printf 함수의 형식 지정자를 이용해 소수점 아래 20자리 까지 출력한 예제이다. 그냥 %lf를 하면 소수점 자릿수가 6자리로 고정되지만, <b>%.nlf를 하면 소수점 자리수가 n자리로 고정된다.</b></span></p>
+<pre id="code_1646200725064" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int main() {
+	float f = 3.14f;
+	double d = 3.14;
+	printf("%.20lf\n", f);
+	printf("%.20lf", d);
+	return 0;
+}</code></pre>
+<pre id="code_1646200828595" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>3.14000010490417480469
+3.14000000000000012434</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 BOJ 1008 A/B 문제를 풀이할 때 유의할 점은 다음과 같다. <span style="background-color: #ffffff;"><span style="color: #006dd7;"><b>실</b><b>제 정답과 출력값의 절대오차 또는 상대오차가 10</b></span></span><span style="color: #006dd7;"><b>-9</b></span><span style="background-color: #ffffff;"><span style="color: #006dd7;"><b>&nbsp;이하</b></span> 이어야 하기에, float 형이 아닌 double 형을 사용 해야만 한다.</span></span></p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #000000; font-family: 'Nanum Gothic';">그리고 소수점 자리수를 고정해 주기 위해서 <span style="background-color: #333333; color: #ffffff;">printf의 형식 지정자를 이용</span>하거나, <span style="background-color: #333333; color: #ffffff;">cout의 멤버인 precision 함수를 이용</span>할 수 도 있다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE_형식지정자</span></b></h2>
+<pre id="code_1646201180260" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+	double A, B;
+	scanf("%lf %lf",&amp;A, &amp;B);
+	// 소수점 아래 9자리 까지 출력
+	printf("%.9lf\n", A/B);
+	return 0;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE_precision</span></b></h2>
+<pre id="code_1646201208535" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	double A, B;
+	cin &gt;&gt; A &gt;&gt; B;
+	// 소수점 아래 15자리 까지 출력
+	cout.precision(15);
+	cout &lt;&lt; A / B &lt;&lt; endl;
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

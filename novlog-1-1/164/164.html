@@ -1,0 +1,109 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 3986 "좋은 단어" 문제 풀이 & 소스 코드 With C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 3986 "좋은 단어" 문제 풀이 & 소스 코드 With C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-02-11 13:43:16</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER4</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">STACK</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/3986">3986번: 좋은 단어 (acmicpc.net)</a></span></p>
+<figure id="og_1644554096442" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="3986번: 좋은 단어" data-og-description="이번 계절학기에 심리학 개론을 수강 중인 평석이는 오늘 자정까지 보고서를 제출해야 한다. 보고서 작성이 너무 지루했던 평석이는 노트북에 엎드려서 꾸벅꾸벅 졸다가 제출 마감 1시간 전에 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/3986" data-og-url="https://www.acmicpc.net/problem/3986" data-og-image="https://scrap.kakaocdn.net/dn/u9HO1/hyNmv6x0dp/FKevGtvLjPGrlRlu2iRy00/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/3986" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/3986">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/u9HO1/hyNmv6x0dp/FKevGtvLjPGrlRlu2iRy00/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">3986번: 좋은 단어</p>
+<p class="og-desc" data-ke-size="size16">이번 계절학기에 심리학 개론을 수강 중인 평석이는 오늘 자정까지 보고서를 제출해야 한다. 보고서 작성이 너무 지루했던 평석이는 노트북에 엎드려서 꾸벅꾸벅 졸다가 제출 마감 1시간 전에</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">스택 자료구조를 이용하면 간단하게 풀이 가능한 문제이다. 스택에 문자를 순차적으로 PUSH 하면서 겹치는 알파벳이 있으면 스택에서 POP 하면 된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ABBA 같은 '좋은 단어'는 스택이 모두 비어질 것이고, ABAB 같은 '나쁜 단어'는 스택에 문자가 남아 있을 것이다.</span></p>
+<p><figure class="imageblock alignLeft" width="276" height="212" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="276" height="212"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1644554526137" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main(){
+	int n;
+	cin &gt;&gt; n;
+	int cnt = 0;
+	for (int i = 0 ; i &lt; n ; i++) {
+		stack&lt;char&gt; stk;
+		string str;
+		cin &gt;&gt; str;
+		for (int j = 0 ; j &lt; str.length() ; j++) {
+			if (!stk.empty() &amp;&amp; stk.top() == str[j]) {
+				stk.pop();
+			}
+			else {
+				stk.push(str[j]);
+			}
+		}
+		if (stk.empty())
+			cnt++;
+	}
+	cout &lt;&lt; cnt &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C++ #알고리즘 #소스코드 #스택 #문제풀이 #BOJ #백준 #코딩테스트 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

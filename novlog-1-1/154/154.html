@@ -1,0 +1,82 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] 포인터와 const (feat. const 키워드의 위치에 따른 차이점)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] 포인터와 const (feat. const 키워드의 위치에 따른 차이점)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-02-02 15:14:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: justify;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #f6e199;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 상수를 가리키는 포인터 - const int *ptr</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 상수 포인터 - int const *ptr</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 상수를 가리키는 상수 포인터 - const int const *ptr</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const는 변수를 상수화 시킬 때 사용하는 키워드입니다. 포인터도 주소를 저장할 때 사용하는 "자료형" 이기에, 마찬가지로 const 키워드를 사용할 수 있습니다. 단, const 키워드의 위치에 따라 그 기능이 달라집니다.</span></p>
+<pre id="code_1643781258917" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int a = 100;
+const int *ptr = &amp;a;
+int const *ptr = &amp;a;
+const int const *ptr = &amp;a;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#1 상수를 가리키는 포인터 - const int *ptr</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const 키워드를 자료형 왼쪽에 붙여주면, <b>포인터가 가리키는 대상을 상수화</b> 시킵니다. (변수가 상수가 아니더라도 상수 취급을 합니다.)&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서, <b>주소는 변경이 가능</b>하지만 포인터로 직접 접근해 <b>값을 변경하는 것은 불가능</b>합니다. 상수를 가리키는 포인터는 주<b>로 함수의 파라미터에서, 실수로 배열을 변경하지 못하도록 사용합니다.&nbsp;</b></span></p>
+<pre id="code_1643781719808" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// 값 변경 X , 주소 변경 O
+int a = 100;
+int b = 200;
+const int *ptr = &amp;a;
+ptr = &amp;b; // o
+*ptr = 300; // x</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#2 상수 포인터 - int const *ptr</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const 키워드를 자료형과 포인터 사이에 붙여주면 <b>포인터 자체를 상수화</b> 시킵니다. 일반적으로 포인터를 상수화 시킨다고 하면 상수 포인터를 의미합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">상수 포인터는 포인터가 상수화 되었기에, <b>주소는 변경이 불가능</b> 하지만 <b>값을 변경하는 것을 가능</b>합니다.</span></p>
+<pre id="code_1643781858979" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// int const *ptr
+// 값 변경 O , 주소 변경 X
+int a = 100;
+int b = 200;
+int const *ptr = &amp;a;
+ptr = &amp;b; // x
+*ptr = 300; // o</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#3 상수를 가리키는 상수 포인터 - const int const *ptr</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1과 2의 개념을 모두 합친 포인터입니다. const 키워드를 양쪽에 붙여주면 <b>주소, 값 모두 변경이 불가능</b>합니다.</span></p>
+<pre id="code_1643781959668" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// const int const *ptr
+// 값 변경 X, 주소 변경 X
+int a = 100;
+int b = 200;
+const int const *ptr = &amp;a;
+ptr = &amp;b; // x
+*ptr = 300; // x</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #포인터 #상수포인터 #포인터와const #포인터상수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

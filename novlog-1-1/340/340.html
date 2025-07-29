@@ -1,0 +1,121 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Swift] 함수 VOL1 Argument Label, WildCard Patern</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Swift] 함수 VOL1 Argument Label, WildCard Patern</h2>
+                                <div class="box-info">
+                                    <p class="category">IOS/Swift Language</p>
+                                    <p class="date">2025-02-04 23:53:58</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성된 글이기에 <span style="background-color: #c0d1e7;">잘못된 내용을 포함하고 있을 수 있습니다. </span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">✨수정사항✨</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 백틱 기호를 활용한 파라미터 내부에서 예약어 사용 관련 내용 추가 -<b>2025.02.14</b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2. Argument Label 관련 내용 수정<b> -2025.02.26</b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Swift 함수 선언 방법</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift는&nbsp;<span style="text-align: start;"><span style="background-color: #333333; color: #dddddd;">func keyword</span>를 사용해 함수를 선언하며,</span> 다른 언어와 달리 함수의 파라미터는 <span style="background-color: #333333; color: #dddddd;">매개변수명 [Parameter Name]</span> 외에 <span style="background-color: #333333; color: #dddddd;">전달인자 레이블 [Argument Label]</span> 이라는 또 다른 이름을 가진다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">함수 선언 원형은 다음과 같다.&nbsp;</span></p>
+<pre id="code_1738679560716" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>func myFunc(매개변수 레이블1 파라미터 이름1: 데이터타입, 매개변수 레이블2 파라미터 이름2: 데이터 타입, ...) -&gt; 반환타입 {
+    return 반환데이터;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 말했듯이, Swift는 매개변수에 이름을 붙이는 <span style="background-color: #333333; color: #dddddd;">전달인자 레이블 [Argument Label]이라는</span> 문법을 제공한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Arugment Label 문법은 함수를 사용하는 클라이언트 측에서 매개변수의 역할을 보다 정확하게 표현하고자 할 때 사용한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Argument Label 문법을 사용해 재정의한 함수는 컴파일타임에 서로 다른 함수로 인식된다.&nbsp;</span></p>
+<pre id="code_1738679895361" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>/* Argument Lable 사용 x */
+func myAddFunc(param1: Int, param2: Int) -&gt; Int {
+    return param1 + param2;
+}
+
+/* Argument Label 사용 o */
+func myAddFunc(addVal1 param1: Int , addVal2 param2: Int) -&gt; Int {
+    return param1 + param2;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">단 주의해야할 부분은 Argument Label 문법을 사용해 정의한 함수의 호출부에는 기존 파라미터명이 아닌, <span style="background-color: #333333; color: #dddddd;">새롭게 명시한 전달인자 레이블명을 명시</span>해 주어야 한다는 것이다.</span></span></p>
+<pre id="code_1738783062061" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>print(myAddFunc(param1: 20, param2: 30))
+print(myAddFunc(addVal1: 10, addVal2: 20)) // * 함수 호출시에는 파라미터명이 아닌,  명시한 레이블명을 전달해 주어야 한다.</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ArgumentLabel 개념은 다른 프로그래밍 언어에서는 쉽게 찾아보기 힘든 문법이라 사용방법이 어색하게 느껴질 수도 있는데 정리하자면 아래와 같다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #dddddd;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">✨ </span></b></span><span style="background-color: #333333; color: #dddddd;">ArgumentLabel</span>은 <b>함수 외부에서 함수를 호출할때 사용되는 파라미터 이름</b>이며</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">ParameterName</span>은 <b>함수 내부에서 사용할 파라미터의 이름</b>이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">단, ArgumentLabel은 생략될 수 있으며 ArgumentLabel을 생략시 ParameterName은 ArgumentLabel이자 ParameterName이된다!</span><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">✨&nbsp;</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.1 Wildcard : UnderScore를 활용해 전달인자 레이블을 생략하는 방법</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수 선언 시 전달인자 레이블 부분에 <span style="background-color: #333333; color: #dddddd;">_ underScore</span> 기호를 작성해 주면 함수 호출부에서 전달인자 레이블을 생략하고 값만 전달하는 것이 가능하다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';"><b>Swift Apple 공식 가이드라인에서 또한 매개변수의 명확한 의미 전달이 필요하지 않은 경우에는 아래 예제와 같이 _ underscore를 활용해 전달인자 레이블을 생략하는 것을 권장</b>한다.&nbsp;</span><span style="font-family: 'Nanum Gothic';">&nbsp;</span></span></p>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';">이처럼 _ underScore를 사용해 값을 해체 혹은 무시하는 패턴을 (ArgumentLabel을 생략) 을 <span style="background-color: #333333; color: #dddddd;">WildCard패턴</span> 이라고 부른다.&nbsp;</span></span></p>
+<pre id="code_1738783626728" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>/* _underScore를 활용한 전달인자 레이블 생략 */
+func myAddFunc(_ param1: Int , _ param2: Int) -&gt; Int {
+    return param1 + param2;
+}
+
+print(myAddFunc(1, 2))</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 백틱 기호를 활용한 파라미터 내부에서 예약어 사용하기</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에서 변수명 혹은 파라미터명으로 <span style="background-color: #333333; color: #dddddd;">백틱(``)</span>을 사용하면 <span style="background-color: #333333; color: #dddddd;">예약어 (reserved keyword)</span>를 변수로 사용 가능하다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예시로 반복문을 만들 때 사용하는 for를 파라미터 이름으로 사용하고 싶다면 다음과 같이 함수를 정의하면 된다.&nbsp;</span></p>
+<pre id="code_1739516382542" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>func myReservedFunc(`for` : Int) -&gt; Int {
+    return `for` + 100
+}
+print(myReservedFunc(for: 200))</code></pre>
+<pre id="code_1739516390034" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>300</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">...Multi Paradigm Language</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift는 OOP (Object-Oriented)와 FP (Functional Programming) 패러다임을 혼합한 <b>Multi Paradigm Language (다중 패러다임 언어)이다.</b>&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, Swift는 필요에 따라 절차지향, 객체지향, 함수형 프로그래밍 스타일을 섞어서 사용할 수 있다는 것이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <b>Swift의 모든 함수는 First Class Object (일급객체) 로 취급되기에, 일반 값처럼 변수에 저장하거나 매개변수에 전달하는 것이 가능</b>하다.&nbsp;</span></p>
+<pre id="code_1738680659801" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>// 1. 함수를 변수에 저장
+func add(a: Int, b: Int) -&gt; Int {
+    return a + b
+}
+let myAddFunc = add  // 함수를 변수에 저장한다.
+print(myAddFunc(3, 5))  // 출력: 8
+
+// 2. 함수를 매개변수로 전달
+func calculate(a: Int, b: Int, operation: (Int, Int) -&gt; Int) -&gt; Int {
+    return operation(a, b)
+}
+let result = calculate(a: 10, b: 5, operation: add)  // 함수를 인자로 전달한다.
+print(result)</code></pre>
+<pre id="code_1738680665135" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>8
+15</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

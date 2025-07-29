@@ -1,0 +1,170 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C# 기초] 프로그램의 구성 - 솔루션/ 프로젝트/ 소스 코드 (feat. Hello World!)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C# 기초] 프로그램의 구성 - 솔루션/ 프로젝트/ 소스 코드 (feat. Hello World!)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C#</p>
+                                    <p class="date">2021-06-16 09:55:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="199" height="203" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="199" height="203" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#0</b> 프로젝트 생성</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#1</b> 솔루션/ 프로젝트/ 소스코드</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#2</b> 명령 프롬프트에서 exe파일 실행하기</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">*개인적인 공부 기록용으로 작성한 글이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#0 프로젝트 생성</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">VisualStudio를 실행 &gt; 새 프로젝트 만들기(N)</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1407" data-origin-height="743" width="818" height="432" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1407" data-origin-height="743" width="818" height="432" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">콘솔 애플리케이션 &gt; 다음(N)</span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="1403" data-origin-height="843" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1403" data-origin-height="843" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">프로젝트 이름(J) 입력</span> 후 <span style="background-color: #dddddd;">다음(N)</span></span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="1440" data-origin-height="861" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1440" data-origin-height="861" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">대상 프레임워크 설정</span> 후 <span style="background-color: #dddddd;">만들기(C)</span></span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="1381" data-origin-height="848" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1381" data-origin-height="848" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Sans Light';"><b><span style="color: #000000;">#1 솔루션 / 프로젝트 / 소스코드</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#0의 과정을 끝마치셨다면 기본적으로, Hello World! 문자열을 출력하는 소스코드가 작성되어 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">F5를 눌러 실행</span>시켜 봅니다.</span></p>
+<pre id="code_1623800039011" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System;
+
+namespace MyProject
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="151" data-origin-height="37" width="131" height="32" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="151" data-origin-height="37" width="131" height="32" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">콘솔창이 열리고 , Hello World! 문자열이 출력되며 exe 파일이 생성 되었을 것 입니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우측의<span style="background-color: #dddddd;"> "솔루션 탐색기" 에서 프로젝트 파일을 우클릭</span> 한 뒤, <span style="background-color: #dddddd;">"파일 탐색기에서 폴더 열기(X)"</span> 를 클릭합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 소스코드, 프로젝트 파일 등이 있는 폴더로 이동합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="595" data-origin-height="599" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="595" data-origin-height="599" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Program.cs (C# Source File) [소스코드] 가 모여서 MyProject(C# Project file) 하나의 [프로젝트] 파일을 이룹니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">프로젝트 파일은 프로그램 개발을 위한 기본 단위 입니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="672" data-origin-height="45" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="672" data-origin-height="45" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 Visual Studio Solution 유형의 .sln 확장자 파일이 보일텐데, 이것을 솔루션(Solution) 이라고 합니다. 솔루션은 프로젝트들을 묶는 역할을 수행합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="686" data-origin-height="31" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="686" data-origin-height="31" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, <span style="background-color: #dddddd;">cs(소스파일)이 모여서 project(프로젝트) 파일이 되고, 다시 프로젝트 파일이 모여서 sln(솔루션)파일</span>이 됩니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><b><span style="color: #000000; font-family: 'Noto Sans Light';">#2 명령 프롬프트에서 exe파일 실행하기</span></b></h2>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">#0에서 콘솔 애플리케이션을 선택 했던 것을 기억할 것 입니다. 콘솔 애플리케이션은 명령 프롬프트(cmd)에서 실행이 가능합니다. cmd에서 실행을 하기 위해서는 우선 <span style="background-color: #dddddd;">exe 파일이 존재하는 경로가 필요합니다.&nbsp;</span></span><span style="color: #000000; font-family: 'Nanum Gothic';"></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="676" data-origin-height="86" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png" data-origin-width="676" data-origin-height="86" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="679" data-origin-height="25" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_10.png" data-origin-width="679" data-origin-height="25" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="515" data-origin-height="24" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_11.png" data-origin-width="515" data-origin-height="24" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="985" data-origin-height="152" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_12.png" data-origin-width="985" data-origin-height="152" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">bin &gt; Debug &gt; net5.0</span> 폴더로 이동한 뒤, 경로를 복사해 줍니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 <span style="background-color: #dddddd;">윈도우 + R 키 + cmd 명령어</span>로 CMD창을 열어 줍니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">cd + 경로</span> 를 입력해, 해당 폴더로 이동합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="817" data-origin-height="38" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_13.png" data-origin-width="817" data-origin-height="38" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="background-color: #dddddd;">파일이름.exe</span> 를 입력하면, "Hello World!"가 출력됩니다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="956" data-origin-height="56" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_14.png" data-origin-width="956" data-origin-height="56" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #소스코드 #c# #cmd #C#문법 #프로젝트파일 #솔루션파일 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

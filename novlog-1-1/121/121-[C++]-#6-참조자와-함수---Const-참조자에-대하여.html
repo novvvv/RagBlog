@@ -1,0 +1,102 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] #6 참조자와 함수 - Const 참조자에 대하여</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] #6 참조자와 함수 - Const 참조자에 대하여</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-08-21 15:13:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[목차]</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 참조자의 단점</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 참조자의 상수 참조</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">*개인적인 C++ 공부 내용을 정리하는 용도로 작성된 글 이기에 잘못된 내용이 있을 수 있습니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 참조자의 단점</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a href="https://novlog.tistory.com/120?category=885400" target="_blank" rel="noopener">#5 참조자와 함수 - 참조자가 필요한 이유</a> 포스팅에서 참조자를 이용하면 포인터를 사용하는 것 보다 쉽게 Call-By-Reference 방식 함수를 선언할 수 있다고 공부했다. <b>하지만 참조자를 사용하는 방식은 단점이 존재한다.</b> 다음 코드를 보고 출력 결과를 예상해보자.</span></p>
+<pre id="code_1629524997091" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int num1 = 100;
+PrintNum1(100);
+cout &lt;&lt; PrintNum1(100) &lt;&lt; endl;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>C언어라면 무조건 100이 출력될 것이다</b>. <span style="background-color: #ffc9af;">하지만 C++은 얼마가 출력될 지 예측할 수 없다.</span> 그 이유는 아래처럼 매개 변수가 참조자로 선언 되어 있다면 Num1의 값이 변경될 수 도 있기 때문이다.</span></p>
+<pre id="code_1629525057457" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>void PrintNum1(int &amp;ref) { . . . }</code></pre>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">함수의 호출부만 보고 출력 결과를 예상할 수 없다는 것은 매우 불편한 일이다.</span> 코드가 한 줄이라면 단순히 함수의 형태를 확인하면 되겠지만 실제 프로젝트에서는 코드가 몇천 많게는 몇만 줄 까지 늘어나기 때문이다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그래도 <span style="background-color: #333333; color: #ffffff;">const 키워드를 이용하면 이런 단점을 어느정도 극복할 수는 있다.</span></span></p>
+<pre id="code_1629525274665" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>void PrintNum1 (const int &amp;ref) { . . . }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이렇게 <span style="background-color: #333333; color: #ffffff;">매개변수 부분의 참조자를 const 키워드로 상수화</span> 해 버리면 <span style="background-color: #333333; color: #ffffff;">함수 내부에서 참조자를 이용한 값 변경이 이루어지지 않음을 예측할 수 있다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 여전히 포인터 방식에 비해서는 불편한 것은 마찬가지이다. 그래서 참조자를 사용하지 않는 C++ 프로그래머도 다수 존재한다. 따라서, 포인터에 대한 공부도 착실하게 해 두어야 한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 참조자의 상수 참조</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const 키워드는 위의 예시처럼 매개변수의 참조자를 상수화 하는 것 에도 사용할 수 있지만, 한가지 기능이 더 있다. 바로 <span style="background-color: #333333; color: #ffffff;">참조자가 상수를 참조하게 하는 것이다.&nbsp;</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데 앞 서 <a href="https://novlog.tistory.com/119?category=885400" target="_blank" rel="noopener">#4 참조자(Reference) - 참조자는 변수의 별칭이다.</a> 포스팅 에서 참조자는 변수만 참조가 가능하다 했는데, 어떻게 참조자가 상수를 참조할 수 있는지 의문이 생길 수 있다. 하지만 <b>const 선언에 의해서 만들어진 변수는 평범한 변수와 다르다.</b> <span style="background-color: #333333; color: #ffffff;">const 선언으로 만든 변수를 "상수화된 변수" 라고 부른다.</span></span></p>
+<pre id="code_1629525573311" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int &amp;ref1 = 20; // Error - 상수 참조
+const int &amp;ref2 = 20; // Ok - 상수화된 변수 참조</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const 참조자를 이용해 상수를 참조하는 경우 <span style="background-color: #333333; color: #ffffff;">"임시변수"</span> 라는 것을 생성한다. 그리고 "임시변수"에 상수를 저장하고 참조자가 이를 참조하게 한다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="443" data-origin-height="102" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="443" data-origin-height="102" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>왜 굳이 임시변수 라는 번거로운 개념을 사용해 참조자가 상수를 참조할 수 있게 하는 것일까?</b> 답은 간단하다. 아래 두 가지 코드를 비교해 보자.</span></p>
+<pre id="code_1629525996312" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int Add(int &amp;x, int &amp;y)
+{
+	return x + y;
+}
+
+int main(){
+	int temp1 = 10;
+	int temp2 = 20;
+	cout &lt;&lt; Add(temp1, temp2) &lt;&lt; endl;
+}</code></pre>
+<pre id="code_1629526036889" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int Add(const int &amp;x, const int &amp;y)
+{
+	return x + y;
+}
+
+int main(){
+	cout &lt;&lt; Add(10, 20) &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단순히 비교해 봐도, 아래 코드가 직관적이고 깔끔해 보인다. 만약 const 키워드를 이용한 참조자의 상수 참조를 막아 두었다면 첫 번째 코드 처럼 매우 비효율 적이게 임시 변수를 따로 생성해서 Add 함수에 보내 주어야 했을 것이다.&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #C++문법 #C++참조자 #const참조자 #매개변수const #상수화된변수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

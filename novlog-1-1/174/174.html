@@ -1,0 +1,250 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>BFS #1 Flood Fill Algorithm (feat. BOJ 1926 그림)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">BFS #1 Flood Fill Algorithm (feat. BOJ 1926 그림)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Algorithm</p>
+                                    <p class="date">2022-03-02 14:15:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 포스팅은 <u><b>BaaaaaaaaarkingDog님의 실전 알고리즘 강좌 0x09강-BFS</b></u> 내용을 공부한 뒤 개인적인 공부 기록 용도로 다시 정리한 글 입니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">내용 출처 :</span> <a href="https://blog.encrypted.gg/941?category=773649">BaaaaaaaarkingDog | [실전 알고리즘] 0x09강 - BFS (encrypted.gg)</a></span></p>
+<figure id="og_1646197398261" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[실전 알고리즘] 0x09강 - BFS" data-og-description="안녕하세요 여러분, 드디어 올 것이 왔습니다. 마음의 준비를 단단히 하셔야 합니다.. 드디어 실전 알고리즘 강의에서 첫 번째 고비에 도달했는데&nbsp;이 강의와 함께 이번 고비를 잘 헤쳐나가면 좋" data-og-host="blog.encrypted.gg" data-og-source-url="https://blog.encrypted.gg/941?category=773649" data-og-url="https://blog.encrypted.gg/941" data-og-image="https://scrap.kakaocdn.net/dn/hnIT9/hyNA1h8yqp/RRguOjkGMeiaDCAKpi4lSk/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/dNmJL7/hyNzYm2y04/YnwPE3bm3Z1B3MnfSNPeb1/img.png?width=800&amp;height=450&amp;face=0_0_800_450"><a href="https://blog.encrypted.gg/941?category=773649" target="_blank" rel="noopener" data-source-url="https://blog.encrypted.gg/941?category=773649">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/hnIT9/hyNA1h8yqp/RRguOjkGMeiaDCAKpi4lSk/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/dNmJL7/hyNzYm2y04/YnwPE3bm3Z1B3MnfSNPeb1/img.png?width=800&amp;height=450&amp;face=0_0_800_450');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">[실전 알고리즘] 0x09강 - BFS</p>
+<p class="og-desc" data-ke-size="size16">안녕하세요 여러분, 드디어 올 것이 왔습니다. 마음의 준비를 단단히 하셔야 합니다.. 드디어 실전 알고리즘 강의에서 첫 번째 고비에 도달했는데&nbsp;이 강의와 함께 이번 고비를 잘 헤쳐나가면 좋</p>
+<p class="og-host" data-ke-size="size16">blog.encrypted.gg</p>
+</div>
+</a></figure>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 출처 : <a href="https://www.acmicpc.net/problem/1926">1926번: 그림 (acmicpc.net)</a></span></p>
+<figure id="og_1646197459621" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1926번: 그림" data-og-description="어떤 큰 도화지에 그림이 그려져 있을 때, 그 그림의 개수와, 그 그림 중 넓이가 가장 넓은 것의 넓이를 출력하여라. 단, 그림이라는 것은 1로 연결된 것을 한 그림이라고 정의하자. 가로나 세로" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1926" data-og-url="https://www.acmicpc.net/problem/1926" data-og-image="https://scrap.kakaocdn.net/dn/RUrXo/hyNASep1sm/iHnI3UiW5GRk3tByT5ZTWk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1926" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1926">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/RUrXo/hyNASep1sm/iHnI3UiW5GRk3tByT5ZTWk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1926번: 그림</p>
+<p class="og-desc" data-ke-size="size16">어떤 큰 도화지에 그림이 그려져 있을 때, 그 그림의 개수와, 그 그림 중 넓이가 가장 넓은 것의 넓이를 출력하여라. 단, 그림이라는 것은 1로 연결된 것을 한 그림이라고 정의하자. 가로나 세로</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">BFS 알고리즘</span> 이란 ? <b>그래프 이론에서 모든 노드를 지나가기 위해서 구현된 알고리즘</b>으로, <b>다차원 배열에서 각 칸을 방문할 때 "너비"를 우선으로 방문하는 알고리즘</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">플러드 필 알고리즘 [Flood Fill Algorithm]</span> 이란 ? <b>다차원 배열에서 특정 칸과 연결된 영역을 찾는 알고리즘</b>이다. 플러드 필 알고리즘이 사용된 대표적인 예로 <b>그림판의 색 채우기 명령</b>이 있다. 이러한 플러드 필 알고리즘을 BFS를 이용해 구현할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">BFS 구현</span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><b><span style="font-family: 'Nanum Gothic';">1. 시작하는 칸을 큐에 넣고 방문 표시를 남긴다.</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><b><span style="font-family: 'Nanum Gothic';">2. 큐에서 원소를 꺼내어 해당하는 칸의 상화좌우로 인접한 칸에 대하여 3번을 진행한다.</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><b><span style="font-family: 'Nanum Gothic';">3. 해당 칸을 이전에 방문했다면 아무 것도 수행하지 않고, 처음 방문 했다면 방문 표시를 남기고 해당 칸을 큐에 삽입한다.</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><b><span style="font-family: 'Nanum Gothic';">4. 큐가 빌 때 까지 2번을 반복한다.</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><b><span style="font-family: 'Nanum Gothic';">모든 칸이 큐에 한 번씩 들어가게 되기에 시간 복잡도는 칸이 N개 일때 O(N)이다.</span></b></span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">BFS Flood Fill Algorithm을 연습하기 좋은 <b>BOJ 1926 : 그림</b> 문제를 통해 알아 보도록 하겠다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">BOJ 1926 그림 문제의 목표는 흰색으로 연결된 그림의 개수와 그림들 중 가장 넓은 그림의 넓이를 출력하는 것이다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1646146338007" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#define X first
+#define Y second
+int board[502][502];
+bool vis[502][502];
+int n,m;
+int dx[4] = {1,0,-1,0};
+int dy[4] = {0,1,0,-1};</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 탐색에 필요한 기본 변수들을 선언한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>board 배열</b>은 보드의 정보를 저장할 배열이다. (흰색 칸은 1, 검은색 칸은 0으로 표현한다.)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>vis 배열</b>은 보드의 특정 칸을 탐색했는 지를 판별할 때 사용할 배열이다. 해당 칸을 탐색했다면 true, 탐색하지 않았다면 false로 초기화한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>변수 n, m</b>은 각 각 행과 열을 의미한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>dx, dy 배열</b>은 특정 칸의 상하좌우를 탐색할 때 사용할 변수이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">dx, dy 배열에 대해&nbsp; 부가적인 설명을 하자면 추후에 등장할 현재 칸의 위치에 대한 정보를 가지고 있는 cur (커서) 변수와 결합하여 사용할 예정이다. 여기서 x는 행 y는 열을 의미한다. </span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">예를 들어 cur.X(현재 칸의 X좌표) + dx[0] , cur.Y(현재 칸의 Y좌표) + dy[0] 를 하면 "아래 방향"을 가리킨다.<br /></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">혹은 cur.X(현재 칸의 X좌표) + dx[1] , cur.Y + dy[1] 을 하면 "우측 방향"을 가리킨다.</span></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1646146503669" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i++) {
+		for (int j = 0; j &lt; m; j++) {
+			cin &gt;&gt; board[i][j];
+		}
+	}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">행과 열 그리고 보드의 정보를 입력받는다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646146228523" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int num = 0; // 그림의 개수
+	int mx = 0; // 그림의 최대 넓이
+	for (int i = 0; i &lt; n; i++) {
+		for (int j = 0; j &lt; m; j++) {
+			if (board[i][j] == 0 || vis[i][j]) continue;
+		}
+	}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그림의 개수를 저장할 num 변수, 그림의 최대 넓이를 저장할 mx 변수를 선언한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 board[i][j]가 0 즉, 검은색 이거나, vis[i][j]가 true 즉, 이미 방문한 칸 이라면 continue한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646146745779" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	for (int i = 0; i &lt; n; i++) {
+		for (int j = 0; j &lt; m; j++) {
+			if (board[i][j] == 0 || vis[i][j]) continue;
+			num++; // 그림의 개수 추가
+			queue&lt;pair&lt;int,int&gt;&gt;Q;
+			// 시작하는 칸을 큐에 넣고 방문 표시를 남김.
+			Q.push({i,j});
+			vis[i][j] = 1;
+		}
+	}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째 if 구절을 통과 했다면 이제 탐색을 시작한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">시작하는 칸을 큐에 넣은 뒤, vis 배열을 이용해 방문 표시를 남긴다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646147341060" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>			...
+			int area = 0; // 그림의 넓이를 저장할 변수
+			while (!Q.empty()) {
+				area++;
+				// cur : 현재 탐색하고 있는 칸을 가리킴
+				pair&lt;int,int&gt; cur = Q.front(); Q.pop();
+				// nx, ny : 현재 커서(cur)기준 상하좌우 탐색
+				for (int dir = 0; dir &lt; 4; dir++) {
+					int nx = cur.X + dx[dir];
+					int ny = cur.Y + dy[dir];
+				}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">cur 변수에는 시작하는 칸 (0, 0)을 넣어 주고, 커서(cur) 변수와 nx, ny 변수를 이용해 커서기준 상하좌우를 탐색한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646147787723" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>					// nx, ny 가 범위를 벗어날 경우 continue;
+					if (nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= m) continue;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 nx, ny가 범위를 벗어난 경우 continue 해준다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646147836860" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>					// nx, ny 가 방문한 칸을 탐색하거나, 검은색 칸을 탐색할 경우 continue;
+ 					if (vis[nx][ny] || board[nx][ny] != 1) continue;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 nx, ny 가 방문한 칸을 탐색하거나, 검은색 칸을 탐색할 경우 continue 해준다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 조심해야 할 부분은 위의 두 조건식의 순서가 바뀌어서는 안된다. 왜냐하면 두 번째 조건식이 앞으로 갈 경우 vis[-1][0]과 같은 케이스를 탐색할 수 있어 런타임 에러가 발생할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646148021160" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>					vis[nx][ny] = 1;
+					Q.push({nx,ny});</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예외 조건식을 모두 통과했다면 해당 칸에 방문했다는 표시를 남기고, 커서를 해당 칸으로 옮긴다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646148175140" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>				mx = max(mx, area);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 area 변수에 저장된 값과 mx 값을 비교해 더 큰 값을 mx 변수에 저장 시켜 주면 된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"># 전체 코드</span></b></h2>
+<pre id="code_1646148450017" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define X first
+#define Y second
+int board[502][502];
+bool vis[502][502];
+int n,m;
+int dx[4] = {1,0,-1,0};
+int dy[4] = {0,1,0,-1};
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i++) {
+		for (int j = 0; j &lt; m; j++) {
+			cin &gt;&gt; board[i][j];
+		}
+	}
+	
+	int num = 0; // 그림의 개수
+	int mx = 0; // 그림의 최대 넓이
+	for (int i = 0; i &lt; n; i++) {
+		for (int j = 0; j &lt; m; j++) {
+			if (board[i][j] == 0 || vis[i][j]) continue;
+			num++; // 그림의 개수 추가
+			queue&lt;pair&lt;int,int&gt;&gt;Q;
+			// 시작하는 칸을 큐에 넣고 방문 표시를 남김.
+			Q.push({i,j});
+			vis[i][j] = 1;
+			int area = 0; // 그림의 넓이를 저장할 변수
+			while (!Q.empty()) {
+				area++;
+				// cur : 현재 탐색하고 있는 칸을 가리킴
+				pair&lt;int,int&gt; cur = Q.front(); Q.pop();
+				// nx, ny : 현재 커서(cur)기준 상하좌우 탐색
+				for (int dir = 0; dir &lt; 4; dir++) {
+					int nx = cur.X + dx[dir];
+					int ny = cur.Y + dy[dir];
+					// nx, ny 가 범위를 벗어날 경우 continue;
+					if (nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= m) continue;
+					// nx, ny 가 방문한 칸을 탐색하거나, 검은색 칸을 탐색할 경우 continue;
+ 					if (vis[nx][ny] || board[nx][ny] != 1) continue;
+					vis[nx][ny] = 1;
+					Q.push({nx,ny});
+				}
+				mx = max(mx, area);
+			}
+		}
+	}
+	cout &lt;&lt; num &lt;&lt; '\n' &lt;&lt; mx;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #그림 #C++ #알고리즘 #문제풀이 #백준 #BFS #1926 #floodfill #플러드필 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

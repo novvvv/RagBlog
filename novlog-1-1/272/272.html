@@ -1,0 +1,162 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] STL map vs multimap (feat. multimap equal_range)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] STL map vs multimap (feat. multimap equal_range)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-09-18 18:33:24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 다음 포스팅은 STL map 컨테이너와&nbsp; multimap 컨테이너의 차이점에 대해 다루고 있습니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map 혹은 multimap 컨테이너의 사용법에 대한 정보를 원하시는 분들은 다음 포스팅을 참고해 주세요.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/265" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; [C++] STL map Container 사용 방법 정리</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있으며,</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">지속적으로 수정해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">_Contents</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 Key값의 중복</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 [] 연산자</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 equal_range</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C++ STL 표준 라이브러리에는 map 과 multimap 컨테이너를 제공합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map과 multimap 컨테이너의 사용방법은 거의 동일하지만 몇 가지 차이점이 존재합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 Key값의 중복</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">- map 컨테이너는 키값의 중복을 허용하지 않는다.&nbsp;</span></p>
+<pre id="code_1663490779091" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	// map container - key값 중복 허용 x
+	map&lt;int, string&gt; myMap;
+	myMap.insert(make_pair(1, "nov"));
+	myMap.insert(make_pair(1, "novv"));
+	myMap.insert(make_pair(2, "novvv"));
+	cout &lt;&lt; "[Print myMap]" &lt;&lt; '\n';
+	for(const auto&amp; i : myMap){
+		cout &lt;&lt; "key : " &lt;&lt; i.first &lt;&lt; " value : " &lt;&lt; i.second &lt;&lt; '\n';
+	}
+    return 0;
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map 컨테이너는 키값의 중복을 허용하지 않습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위 코드를 실행시켜 보시면 중복된 두 번째 키 <b>(1, "novv") 의 입력을 무시합니다.</b></span></p>
+<p><figure class="imageblock alignLeft" width="231" height="84" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="231" height="84"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1663490918870" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[Print myMap]
+key : 1 value : nov
+key : 2 value : novvv</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd;">- multimap 컨테이너는 키값의 중복을 허용한다.</span></p>
+<pre id="code_1663491184769" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	multimap&lt;int, string&gt; myMultimap;
+	myMultimap.insert(make_pair(1, "nov"));
+	myMultimap.insert(make_pair(1, "novv"));
+	myMultimap.insert(make_pair(2, "novvv"));
+	cout &lt;&lt; "[Print myMultimap]" &lt;&lt; '\n';
+	for(const auto&amp; i : myMultimap){
+		cout &lt;&lt; "key : " &lt;&lt; i.first &lt;&lt; " value : " &lt;&lt; i.second &lt;&lt; '\n';
+	}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp;반면 multimap 컨테이너는 Key값의 중복을 허용합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(1, "novv") 키를 중복처리해 삭제시킨 map 컨테이너와 달리 multimap 컨테이너는 키값이 중복으로 입력되어도, Key - Value 쌍을 제거하지 않습니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="204" height="80" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="204" height="80"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1663491319124" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[Print myMultimap]
+key : 1 value : nov
+key : 1 value : novv
+key : 2 value : novvv</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 [] 연산자&nbsp;</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">- map 컨테이너는 [] 연산자를 사용해 키값에 접근할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map 컨테이너는 다음과 같이 <b>[] 연산자를 사용하여 키에 접근하여 Value를 출력할 수 있습니다.</b></span></p>
+<pre id="code_1663491643057" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	// Access to Key 1
+	cout &lt;&lt; "Key 1 -&gt; " &lt;&lt; myMap[1] &lt;&lt; '\n';</code></pre>
+<pre id="code_1663491573191" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>Key 1 -&gt; nov</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">- multimap 컨테이너는 [] 연산자를 사용해 키값에 접근할 수 없다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반면 multimap 컨테이너는 <b>[] 연산자를 사용해 키값에 접근하는 것이 불가능합니다.&nbsp;</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이유는 앞에서 설명드린 첫 번째 특성을 떠올려 보시면 당연한데, 애초에 multimap 컨테이너는 키값의 중복을 허용하기에 <b>중복되는 키값중 어떤 키에 접근할 지 판별하는 것이 불가능</b>하기 때문입니다.</span></p>
+<p><figure class="imageblock alignLeft" width="348" height="128" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="348" height="128"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 equal_range</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">multimap 컨테이너에 <span style="background-color: #333333; color: #dddddd;">find member function</span>을 사용해 중복된 키값에 접근해 보도록 하겠습니다.&nbsp;</span></p>
+<pre id="code_1663492807444" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	multimap&lt;int, string&gt;::iterator it = myMultimap.find(1);
+	if(it != myMultimap.end()){
+		cout &lt;&lt; "Key 1 -&gt; " &lt;&lt; it-&gt;second &lt;&lt; '\n';
+	}
+	else{
+		cout &lt;&lt; "myMultimap 컨테이너에 해당하는 원소가 존재하지 않습니다.";
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">중복된 키값들 중 <b>가장 첫 번째 키에 접근하여 "nov"를 출력</b>했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 C++은 <b>중복된 키에 대해 find 멤버 함수가 어떻게 접근하는지에 대한 정확한 표준을 제시하지 않습니다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>즉, 컴파일러 환경에 따라 완전히 상이한 랜덤값을 출력할 수 있다</b>는 것 입니다.&nbsp;</span></p>
+<pre id="code_1663492848963" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[Print myMultimap]
+key : 1 value : nov
+key : 1 value : novv
+key : 2 value : novvv
+Key 1 -&gt; nov</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 C++은 <span style="background-color: #333333; color: #dddddd;">equal_range member function</span> 을 제공합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">equal_range 함수는 <b>key값에 해당하는 원소의 "범위"를 pair객체 형태로 반환</b>해 줍니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">정확히는 <b>upper_bound 와 lower_bound를 각각 pair 객의 first, second 로 반환</b> 합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">upper_bound(key)</span> : key값에 해당하는 맨 마지막 원소의 <b>"다음" 원소를 가리키는 반복자</b>를 return 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">lower_bound(key)</span> : key값에 해당하는 맨 <b>첫 번째 원소를 가리키는 반복자</b>를 return 합니다.</span></p>
+<pre id="code_1663493200529" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	cout &lt;&lt; "[Print myMultimap ... Key1]" &lt;&lt; '\n';
+	auto range = myMultimap.equal_range(1);
+	for(auto iter = range.first; iter != range.second; ++iter){
+		cout &lt;&lt; iter-&gt;first &lt;&lt; " : " &lt;&lt; iter-&gt;second &lt;&lt; " " &lt;&lt; '\n';
+	}</code></pre>
+<pre id="code_1663493214676" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[Print myMultimap ... Key1]
+1 : nov
+1 : novv</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">reference&nbsp;</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"> <a href="https://cplusplus.com/reference/algorithm/equal_range/" target="_blank" rel="noopener">https://cplusplus.com/reference/algorithm/equal_range/</a></span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #multimap #lower_bound #upper_bound #equal_range #multimap 키값 접근 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

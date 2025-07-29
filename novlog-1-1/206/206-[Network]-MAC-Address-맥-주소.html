@@ -1,0 +1,74 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Network] MAC Address 맥 주소</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Network] MAC Address 맥 주소</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/CS</p>
+                                    <p class="date">2022-04-10 00:11:38</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="color: #781b33;"><b>잘못된 내용을 포함하고 있을 수 있습니다.</b></span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>출처 : 해킹 입문자를 위한 TCP/IP 이론과 보안 2/e</b></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#1 MAC주소란?</b><b></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#2 MAC주소가 필요한 이유</b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#3 MAC주소 확인방법</b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 MAC주소란?</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">MAC주소</span>란 <span style="color: #781b33;"><b>네트워크 장비가 가지는 고유한 주소로 LAN영역에서 내부 통신을 수행하기 위해 필요한 주소</b></span>이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MAC주소는 <b>"물리적 주소"</b> 라고도 불리는데 이는 MAC주소가 LAN카드(NIC)에 새겨진 주소이기 때문이다. 따라서 LAN 카드 한 장을 구입한다는 의미는 1개의 MAC주소를 구입한다는 의미와 동일하다. 또한 MAC주소는 하드웨어의 식별번호 같은 것이라 컴퓨터 뿐 만 아니라 공유기 라우터 스위치 등 모든 장비에 붙어있다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">10진수로 표기하는 IP주소와 달리 MAC주소는 <span style="color: #781b33;"><b>총 48비트</b></span>로 이루어진 <span style="color: #781b33;"><b>16진수 체계</b></span>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">IP주소를 Network ID , Host ID로 구분하는 것 처럼 MAC주소 또한 <span style="background-color: #333333; color: #dddddd;">OUI(24bit)</span>와 <span style="background-color: #333333; color: #dddddd;">일련번호(24bit)</span>로 구분한다.<span style="color: #781b33;"><b> OUI</b></span>는 <b>MAC주소를 생성하는 기업의 식별자</b>이며 <span style="color: #781b33;"><b>일련번호</b></span>는 <b>기업에서 부여한 각 하드웨어를 구분하는 번호</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 Network ID , Host ID가 가변적인 IP주소와 달리 <span style="color: #781b33;"><b>MAC주소의 OUI와 일련변호는 고정적이다.&nbsp;</b></span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 MAC주소가 필요한 이유</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 IP주소가 있는데 굳이 왜 MAC주소가 필요한 것일까?</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞에서 정리했듯이 같은 LAN영역 안에 있는 하드웨어 끼리는 스위치 장비를 이용해 MAC주소간 통신이 가능할 것이다. 이렇게 스위치 장비가 MAC주소를 기반으로 호스트간 통신을 구현해 주는 기능을 "스위칭"이라고 부른다. 하지만 같은 LAN영역이 아닌 다른 네트워크 영역의 PC와 통신하고 싶다면 IP주소가 필요하다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MAC주소를 학번, IP주소를 기숙사 주소와 같은 개념이라고 생각하면 이해하기 쉽다. 택배기사가 IP주소를 이용해 학생이 사는 기숙사 주소 까지는 알아 냈다고 하더라도, MAC주소(학번)를 모르면 누구에게 전달해 주어야 하는지 구분하지 못할 것이다. 따라서 상이한 LAN영역간 통신을 위해선 IP주소와 MAC주소가 모두 필요하다.&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 MAC주소 확인방법</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">cmd창에 <span style="background-color: #333333; color: #dddddd;">ipconfig/all</span> 명령어를 입력하면 PC에 대한 여러 정보가 출력되는데, 물리적 주소라고 되어 잇는 부분이 바로 MAC 주소이다. 혹은 MAC주소만을 보고 싶다면 <span style="background-color: #333333; color: #dddddd;">getmac /v</span> 명령어를 입력하면 된다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #IP주소 #차이점 #Mac주소 #맥주소 #사용이유 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

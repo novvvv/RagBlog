@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 .list-bg {
@@ -39,18 +39,16 @@ body {
 }
 
 .navbar {
-  position: relative;
-  width: 100%;
-  height: 30px;
+  background: white;
+  padding: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ddd;
+  height: 30px;
 }
 
 /* 좌측 로고 영역 */
 .navbar-logo {
-  position: absolute;
-  left: 20px;
   display: flex;
   align-items: center;
 }
@@ -60,28 +58,17 @@ body {
   display: block;
 }
 
-/* 가운데 메뉴 영역 */
-.navbar-menu {
-  margin: 0 auto; /* 수평 중앙 정렬 */
+
+
+/* 좌측 메뉴 영역 */
+.navbar-left {
   display: flex;
-  gap: 24px;
   align-items: center;
-}
-
-.navbar-menu a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
-
-.navbar-menu a:hover {
-  color: #888;
+  gap: 16px;
 }
 
 /* 우측 아이콘/버튼 */
 .navbar-right {
-  position: absolute;
-  right: 20px;
   display: flex;
   gap: 16px;
   align-items: center;
@@ -95,17 +82,18 @@ body {
 }
 
 .login-button {
-  padding: 6px 12px;
-  background-color: #444;
-  color: white;
+  background-color: transparent;
+  color: black;
   border: none;
-  border-radius: 4px;
+  padding: 0;
+  border-radius: 0;
   font-size: 14px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .login-button:hover {
-  background-color: #666;
+  background-color: transparent;
+  color: black;
 }
 
 /* write page input tag css */

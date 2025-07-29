@@ -1,0 +1,79 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[CodeForces] 977A Wrong Subtraction C++ 문제 풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[CodeForces] 977A Wrong Subtraction C++ 문제 풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-07-26 22:46:02</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">RATE : <b>800</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출처 : <span style="color: #1a5490;"><b>Codeforces Round #479 (Div. 3)</b></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://codeforces.com/problemset/problem/977/A" target="_blank" rel="noopener">https://codeforces.com/problemset/problem/977/A</a></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 조건대로 그대로 풀이하기만 하면 되는 간단한 문제였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">if the last digit of the number is non-zero, she decreases the number by one</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 digit(n)의 마지막 자리의 수가 0으로 끝나지 않는다면 1을 뺀다.</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">if the last digit of the number is zero, she divides the number by 10 (i.e. removes the last digit).</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 digit(n)의 마지막 자리의 수가 0으로 끝난다면 10으로 나눈다.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">n = 512, k = 4 인 상황을 예시로 들어 보도록 하자.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">512는 마지막 자리가 2이기에 1을 빼준다. &rarr; 511</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">511은 마지막 자리가 1이기에 1을 빼준다. &rarr; 510</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">510은 마지막 자리가 0이기에 10으로 나누어 준다. &rarr; 51</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">51은 마지막 자리가 1이기에 1을 빼준다. &rarr; 50</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">k가 4이기에 4번 계산을 모두 수행하면 50이 도출된다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1658843024383" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+int main(){
+	int n, k;
+	cin &gt;&gt; n &gt;&gt; k;
+	while(k--){
+		if(n % 10 == 0) n /= 10;
+		else n--;
+	}
+	cout &lt;&lt; n &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #문제풀이 #Codeforces #코드포스 #977A 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -24,21 +24,15 @@ export default async function RootLayout({ children }) {
       {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
       <body>
         <header className="navbar">
+          {/* 왼쪽 영역: About */}
+          <div className="navbar-left">
+            <Link href="/">@Do2</Link>
+          </div>
 
-          <nav className="navbar-menu">
-            <Link href="/">About</Link>
+          {/* 오른쪽 영역: Blog, Write, Login/Logout */}
+          <div className="navbar-right">
             <Link href="/list">Blog</Link>
             <Link href="/write">write</Link>
-            {
-              /* 
-
-                JSX는 기본적으로 If-statement 사용이 불가능하지만, 삼항 연산자는 사용 가능  
-                (if-statement) ? true-code (Html) : false-code (Html) 
-                현재 로그인된 유저 정보가 있는경우 : navBar userName, logout button 출력 
-                현재 로그인 정보가 없는 경우 : login button 출력 
-
-              */
-            }
 
             {
                 session ? 
@@ -51,8 +45,7 @@ export default async function RootLayout({ children }) {
                    </div>    
             }
 
-          </nav>
-
+          </div>
         </header>
         {children}
       </body>

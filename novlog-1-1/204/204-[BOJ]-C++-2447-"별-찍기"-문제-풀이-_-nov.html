@@ -1,0 +1,130 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 2447 "별 찍기" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 2447 "별 찍기" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-04-06 23:44:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 : <b>재귀/분할정복</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">문제 출처 :&nbsp;</span><a href="https://www.acmicpc.net/problem/2447">2447번: 별 찍기 - 10 (acmicpc.net)</a></span></p>
+<figure id="og_1649254538972" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2447번: 별 찍기 - 10" data-og-description="재귀적인 패턴으로 별을 찍어 보자. N이 3의 거듭제곱(3, 9, 27, ...)이라고 할 때, 크기 N의 패턴은 N&times;N 정사각형 모양이다. 크기 3의 패턴은 가운데에 공백이 있고, 가운데를 제외한 모든 칸에 별이 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2447" data-og-url="https://www.acmicpc.net/problem/2447" data-og-image="https://scrap.kakaocdn.net/dn/buHWib/hyNXvCYsyR/3bX9UjUPc78IbIf9Pknri1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2447" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2447">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/buHWib/hyNXvCYsyR/3bX9UjUPc78IbIf9Pknri1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2447번: 별 찍기 - 10</p>
+<p class="og-desc" data-ke-size="size16">재귀적인 패턴으로 별을 찍어 보자. N이 3의 거듭제곱(3, 9, 27, ...)이라고 할 때, 크기 N의 패턴은 N&times;N 정사각형 모양이다. 크기 3의 패턴은 가운데에 공백이 있고, 가운데를 제외한 모든 칸에 별이</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">큰 문제를 작은 문제로 나누어 풀이하는 분할정복 문제이다. 우선 배열의 원소를 모두 빈 칸으로 채워준다.</span></p>
+<pre id="code_1649255394980" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  int n;
+  cin &gt;&gt; n;  
+  for (int i = 0; i &lt; n; i++)
+    fill(board[i], board[i]+n, ' ');</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 재귀 함수를 정의한다. solve 함수는 사각형의 크기 n 과 탐색을 시작할 위치 x y 좌표를 입력받아 배열에 올바른 값(*)을 채워주는 역할을 수행하는 함수이다.</span></p>
+<pre id="code_1649255423563" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>void solve(int n, int x, int y) {
+  if (n == 1) {
+    board[x][y] = '*';
+    return;
+  }
+  for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 3; j++) {
+      if (i == 1 &amp;&amp; j == 1)
+        continue;
+      solve(n / 3, x + n / 3 * i, y + n / 3 * j);
+    }
+  }
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">3 * 3 사각형 을 예시로 생각해 보자. 다음 사각형은 9개의 1 * 1사각형으로 나눌 수 있다. 가운데 빈 사각형은 if 구절에 의해 continue 될 것이다. 가운데 공백을 제외한 나머지 8칸은 solve 함수를 재귀적으로 호출하여 "*" 문자로 채워진다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번에는 9 * 9인 케이스를 생각해 보자. 마찬가지로 이번에도 9개의 3 * 3 사각형으로 나눌 수 있다. 각 3 * 3 사각형 좌측 상단의 x y 좌표와 크기가 재귀적으로 호출될 것이며 3 * 3 사각형인 케이스와 같은 형태로 채워질 것이다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이처럼 3 * 3 사각형의 형태를 잘 구성해 놓으면 이를 이용해 9 * 9 , 27 * 27 .. 사각형도 재귀적으로 풀이할 수 있다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1649256110754" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+char board[2300][2300];
+
+void solve(int n, int x, int y) {
+  if (n == 1) {
+    board[x][y] = '*';
+    return;
+  }
+  for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 3; j++) {
+      if (i == 1 &amp;&amp; j == 1)
+        continue;
+      solve(n / 3, x + n / 3 * i, y + n / 3 * j);
+    }
+  }
+}
+
+int main(void) {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  
+  int n;
+  cin &gt;&gt; n;  
+  for (int i = 0; i &lt; n; i++)
+    fill(board[i], board[i]+n, ' ');
+  
+  solve(n, 0, 0);
+  for (int i = 0; i &lt; n; i++)
+    cout &lt;&lt; board[i] &lt;&lt; '\n';
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;"><b>출처</b> : 바킹독 알고리즘</span> <a href="https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0B/solutions/2447.cpp">basic-algo-lecture/2447.cpp at master &middot; encrypted-def/basic-algo-lecture &middot; GitHub</a></span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #재귀함수 #별찍기 #분할정복 #2447 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] encodeURIComponent & decodeURIComponent : URI 인코딩 & 디코딩</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] encodeURIComponent & decodeURIComponent : URI 인코딩 & 디코딩</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-06-23 00:13:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에&nbsp;<span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있습니다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*지속적으로 내용을 수정해 나갈 예정입니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">_Contents</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#1 인코딩 &amp; 디코딩</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#2 encodeURIComponent &amp; decodeURIComponent</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 인코딩 &amp; 디코딩</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">인코딩</span>이란 <b>사람이 인식 가능한 문자열을 바이트 형식으로 변환</b>하는 과정이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">디코딩</span>은 인코딩의 반대 개념으로 <b>바이트 형식을 문자열로 변환하는 과정</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">인코딩과 디코딩은 주로 HTTP 통신을 수행 시 URI에 한글 혹은 특수문자가 포함되어 있을 때 사용된다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">예를들어 다음 URI의 쿼리스트링 부분을 살펴보자.<span style="background-color: #dddddd;">(?이후가 쿼리 스트링이다.)</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">job에 프로그래머&amp;블로거 라는 값이 전달 되기를 기대했지만, &amp;특수문자는 &amp;자체로 인식되지 않고, 하나의 파라미터가 끝나고 다음 파라미터가 온다는 특수한 뜻으로 해석되어 버린다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 URI 주소에 한글이 포함되어 있을 경우 에러를 발생시킬 수 있다. 따라서 원하는 결과를 얻기 위해서는 job 부분의 "프로그래머&amp;블로거"를 따로 인코딩하여 요청을 보내야만 한다. </span></p>
+<p data-ke-size="size16"><span style="color: #000000;">이러한 처리를 <span style="background-color: #333333; color: #dddddd;">"이스케이핑(escaping)</span>" 이라고 부른다.</span><span style="color: #000000; font-family: 'Nanum Gothic';"></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">http://xxx.xxx.com?name=nov&amp;<span style="background-color: #dddddd;">job=프로그래머&amp;블로거</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 encodeURIComponet &amp; decodeURIComponent</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript는 인코딩 디코딩을 수행하기 위한 함수를 제공한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">encodeURIComponet &amp; decodeURIComponent</span> 함수에 인코딩 혹은 디코딩을 수행할 문자열을 보내면 인코딩 , 디코딩 된 문자열을 반환해 준다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 <b>job=프로그래머&amp;블로거 문자열을 encodeURIComponet 함수를 이용해 인코딩한 예제</b>이다.</span></p>
+<pre id="code_1655910595797" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>const uri = 'http://xxx.xxx.com?name=nov&amp;';
+const str = 'job=프로그래머&amp;블로거';
+console.log('Before : ', uri + str);
+const encodeStr = encodeURIComponent(str);
+console.log('After : ', uri + encodeStr);</code></pre>
+<pre id="code_1655910611028" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>[출력결과] 
+Before :  http://xxx.xxx.com?name=nov&amp;job=프로그래머&amp;블로거
+After :  http://xxx.xxx.com?name=nov&amp;job%3D%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%26%EB%B8%94%EB%A1%9C%EA%B1%B0</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #javascript #인코딩 #디코딩 #encodeURIComponent #decodeURIComponent 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

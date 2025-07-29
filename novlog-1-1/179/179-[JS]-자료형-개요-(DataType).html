@@ -1,0 +1,132 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JS] 자료형 개요 (DataType)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JS] 자료형 개요 (DataType)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-03-03 19:53:02</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자료형(DataType) 이란 컴퓨터가 처리하는 자료의 형태를 의미한다. JavaScript의 자료형은 크게 값이 하나인 "기본형"과 여러 개의 값을 담고 있는 "복합형"으로 구분할 수 있다. 복합형(배열, 객체)에 대해서는 추후에 자세하게 정리할 예정이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 typeof연산자</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 기본형</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2.1 숫자형_Number</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2.2 문자열_String</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">템플릿문자열</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2.3 불린형_Boolean</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2.4 undefined&amp;null</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 복합형</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">3.1 배열_Array</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">3.2 객체_Object</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">#1 typeof연산자</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript는 변수에 저장하는 값에 따라서 자료형이 자동으로 결정된다. 따라서 만약 <span style="color: #1a5490;"><b>변수가 어떤 자료형인지 알 고 싶을 때</b></span>는 <span style="background-color: #333333; color: #ffffff;">typeof 연산자</span>를 사용하면 된다. JavaScript의 typeof 연산자는 다음과 같은 두 가지 형태의 문법을 제공한다.</span></p>
+<pre id="code_1646300992791" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>1. typeof x
+2. typeof(x)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 기본형</span></b></h2>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2.1 숫자형_Number</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript에서 숫자는 <b>정수와 실수</b>로 나누어서 구분한다. 또한 <b>정수를 표현 방법에 따라서 10진수, 8진수, 16진수로 나누어서 구분</b>하기도 한다.</span></p>
+<pre id="code_1646301323289" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var num1 = 10;
+var num2 = 10.0;
+typeof num1;
+typeof num2;</code></pre>
+<pre id="code_1646301337550" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 'number' 'number'</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위의 소스코드의 출력 결과를 보면 알 수 있듯이 <span style="color: #1a5490;"><b>JavaScript는 정수와 실수를 모두 number로 취급한다.</b></span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2.2 문자열_String</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문자열은 <span style="color: #1a5490;"><b>작은따옴표(')</b> </span>혹은 <span style="color: #1a5490;"><b>큰따옴표(")</b></span>로 표현한다.</span></p>
+<pre id="code_1646301898355" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var str1 = "nov"; // 큰 따옴표로 묶음
+var str2 = 'log'; // 작은 따옴표로 묶음
+typeof str1;
+typeof str2;</code></pre>
+<pre id="code_1646301913178" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 'string' 'string'</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 <span style="color: #1a5490;"><b>큰따옴표로 묶은 문자형 안에 큰따옴표로 묶은 문장을 넣고 싶다면</b></span> <span style="color: #1a5490;"><b>큰따옴표가 중복되지 않도록 안에 있는 문장의 큰따옴표를 작은따옴표로 바꿔 주어야 한다.</b></span> <b>* 참고로 document.write는 html 태그와 같이 사용할 수 있다.</b></span></p>
+<pre id="code_1646302102186" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>document.write("&lt;span class="num"&gt;", 2022, "&lt;/span&gt;"); //error
+document.write("&lt;span class='num'&gt;", 2022, "&lt;/span&gt;"); //ok</code></pre>
+<pre id="code_1646302114017" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 2022</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">템플릿 문자열</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ES6버전 부터는 문자열은 따옴표 말고도 <span style="background-color: #333333; color: #ffffff;">백 틱( ` )</span> 으로 묶을수도 있다. 백 틱은 <span style="background-color: #333333; color: #ffffff;">그레이브(Grave)</span> 혹은 <span style="background-color: #333333; color: #ffffff;">백 쿼트(Back Quote)</span> 라고도 부른다. <b>* 참고로 백 틱의 위치는 물결(~)키에 존재한다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">표현식을 <span style="color: #1a5490;"><b>${...}</b></span>으로 감싸주고, <span style="color: #1a5490;"><b>백 틱( ` )을 이용해 문자열을 묶어주면 문자열 안에 표현식을 쉽게 끼워 넣을 수 있다.</b></span> 다음은 문자열을 백 틱( ` )으로 묶은 후 currentYear 변수를 끼워 넣은 예제 코드이다.</span></p>
+<pre id="code_1646302697324" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var currentYear = 2022;
+document.write(`올해는 ${currentYear}입니다.`);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2.3 불린형_Boolean</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">불린형은 <span style="color: #1a5490;"><b>True와 False값 만을 표현하는 자료형</b></span>이다. 주로 조건문에서 자주 사용된다.</span></p>
+<pre id="code_1646302950104" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var a = 10;
+var b = 20;
+var bIsBig = a &lt; b;
+typeof bIsBig;</code></pre>
+<pre id="code_1646302973888" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>'boolean'</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2.4 undefined &amp; null</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript는 undefined와 null또한 하나의 자료형으로 취급한다. <span style="color: #000000;">두 자료형은<span>&nbsp;</span></span>언뜻보면 비슷해 보이지만 확연한 차이점을 지니고 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">undefined</span>는 <span style="color: #1a5490;"><b>"처음부터 변수에 값이 할당되지 않았다."</b></span>는 의미이다. 아래와 같이 변수를 선언하고 아무런 값도 대입하지 않으면 자동으로 undefined값이 할당된다.</span></p>
+<pre id="code_1646303356135" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>//변수에 아무런 값도 할당하지 않음
+var unde;
+typeof unde</code></pre>
+<pre id="code_1646303367467" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과] 'undefined'</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">null</span>은 <span style="color: #1a5490;"><b>"존재하지 않는, 비어 있는" 값</b></span>을 나타낼 때 사용하는 자료형이다. 따라서 아래 코드처럼 선언해 주면 "currentYear의 값이 비어 있음"을 표현할 수 있다.</span></p>
+<pre id="code_1646303504653" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var currentYear = null;</code></pre>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* undefined도 null과 마찬가지로 변수에 직접 할당해 줄 수 있지만, 이는 권장되지 않는다. 변수의 값이 비어있음을 나타내기 위함이라면 null값을 사용하는 것이 바람직하다.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 복합형</span></b></h2>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">3.1 배열_Array</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">배열을 이용하면 여러 개의 변수들을 하나의 자료형에 저장할 수 있다.</span></p>
+<pre id="code_1646303722248" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var _html = "html";
+var _css  = "css";
+var _js   = "js";</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">배열에 저장할 자료를 <span style="color: #1a5490;"><b>쉼표( , )로 구분</b></span>해서 <span style="color: #1a5490;"><b>대괄호([ ])로 묶어주면</b></span> 배열을 선언할 수 있다.</span></p>
+<pre id="code_1646303890668" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var language = ["html", "css", "js"];</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>배열 안의 값에 접근</b>하고 싶다면 <span style="color: #1a5490;"><b>"인덱스"를 이용</b></span>하면 된다. <span style="color: #1a5490;"><b>배열 이름과 대괄호 안에 원소의 위치를 지정</b></span>해 주면 해당하는 원소에 접근할 수 있다.</span></p>
+<pre id="code_1646303968448" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>language[0];
+language[2];</code></pre>
+<pre id="code_1646303976552" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>'html'
+'js'</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">3.2 객체_Object</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">객체는<span style="color: #1a5490;"> <b>중괄호({ })</b></span>로 묶어서 사용하며, <span style="color: #1a5490;"><b>키(Key)와 값(Value)</b></span>을 <span style="color: #1a5490;"><b>콜론(:)</b></span>을 사용하여 <span style="color: #1a5490;"><b>한 쌍으로</b></span> 짝지어서 <span style="color: #1a5490;"><b>표현</b></span>한다. 객체 안의 원소에는 <span style="color: #1a5490;"><b>"객체이름.키"와 같이 접근할 수 있다.</b></span></span></p>
+<pre id="code_1646304100914" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var language = {
+    _html: "html",
+    _css : "css",
+    _js  : "javascript"
+}
+
+language._js</code></pre>
+<pre id="code_1646304221066" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>'javascript'</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자바스크립트 #javascript #문법 #자료형 #null #undefined #템플릿문자열 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

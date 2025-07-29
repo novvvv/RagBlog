@@ -1,0 +1,143 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] BOJ(백준) 11000 "강의실 배정" 문제 풀이 & 소스 코드</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] BOJ(백준) 11000 "강의실 배정" 문제 풀이 & 소스 코드</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-05-12 11:59:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제정보</span></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>출처</b> : <a href="https://www.acmicpc.net/problem/11000" target="_blank" rel="noopener">www.acmicpc.net/problem/11000</a></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>난이도</b> : <span style="background-color: #f6e199;">골드5</span></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>분류</b> : <span style="background-color: #333333; color: #ffffff;">그리디(GREEDY) 알고리즘</span></span></p>
+<p><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제분석</span></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">저는 11000 문제 풀이를 위해서 C++ STL의 우선순위 큐(priority_queue) 자료구조를 사용했습니다.</span></span><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;"></span></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 예제(1,3)(2,4)(3,5)를 통해서 설명하도록 하겠습니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, <span style="background-color: #333333; color: #ffffff;">시작시간을 기준으로 오름차 정렬</span>을 수행합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="291" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="0" data-origin-height="0" width="291" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로, <span style="background-color: #333333; color: #ffffff;">시작시간이 가장 빠른 수업의 끝나는 시간(3)을 우선순위 큐(priority_queue)에 push</span>합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">(* 참고로 priority_queue는 오름차순으로 설정합니다.)</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="361" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="0" data-origin-height="0" width="361" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">priority_queue 에 다음으로 시작시간이 빠른 수업의 끝나는시간(4)를 push 합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그 후 , 첫 번째 수업의 끝나는 시간(3)과 두 번째 수업의 시작 시간(2)를 비교합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">첫 번째 수업의 끝나는 시간(3)이 두 번째 수업의 시작 시간(2) 보다 크기에 강의실이 하나 더 필요합니다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 priority_queue 의 상태는 따로 변경하지 않고 3 (class1_end_time) , 4(class2_end_time) 을 push한 채로 냅둡니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="367" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="0" data-origin-height="0" width="367" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 3번째 수업의 끝나는 시간(5)를 priority_queue에 push합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그 후, priority_queue의 top값(3)과 세 번째 수업의 시작시간(3)을 비교합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">첫 번째 수업의 끝나는 시간(3)보다 세 번째 수업의 시작시간(3)이 크거나 같기에, 수업1과 수업3은 동시에 수강이 가능합니다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 강의실을 늘릴 필요가 없기에 첫 번째 수업의 끝나는 시간(3)을 pop 한뒤, 세 번째 수업의 끝나는 시간(5)를 push합니다.</span></p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="489" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="0" data-origin-height="0" width="489" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">반복이 끝났기에, priority_queue의 size (총 강의실 개수)를 출력합니다.</span></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#소스코드</span></h2>
+<pre id="code_1620788351232" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+vector&lt;pair&lt;int,int&gt;&gt; room; 
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+
+int main()
+{
+	int N;
+	cin &gt;&gt; N;
+	int a,b;
+	for (int i = 0 ; i &lt; N ; i++)
+	{
+		cin &gt;&gt; a &gt;&gt; b;
+		room.push_back(make_pair(a,b));
+	}
+	
+	// 시작시간을 기준으로 오름차정렬 
+	sort(room.begin(), room.end());
+	
+	// 첫 번째 수업의 끝나는 시간을 pq에 추가 
+	pq.push(room[0].second);
+	
+	for (int j = 1 ; j &lt; N ; j++)
+	{
+		if (pq.top() &lt;= room[j].first)
+		{
+			pq.pop();
+			pq.push(room[j].second);
+		}
+		
+		else
+		{
+			pq.push(room[j].second);
+		}
+	}
+	
+	cout &lt;&lt; pq.size();
+
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #C++ #알고리즘 #소스코드 #문제풀이 #BOJ #백준 #11000 #그리디알고리즘 #강의실배정 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

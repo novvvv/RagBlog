@@ -1,0 +1,150 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] strcpy strlen strcmp strcat _ 구현 코드</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] strcpy strlen strcmp strcat _ 구현 코드</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-01-27 10:46:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 이번 포스팅 에서는 <a href="https://novlog.tistory.com/148" target="_blank" rel="noopener">[C/C++] C언어 방식 문자열</a> 포스팅에서 알아본 문자열 함수들을 직접 구현해 보도록 하겠습니다.</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 strcpy</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 strlen</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 strcmp</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 strcat</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#1 strcpy</span></p>
+<pre id="code_1643247565146" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>/* 
+	strcpy - 문자열을 복사해주는 함수
+	dest 문자열에 src 문자열을 복사합니다.
+*/
+
+void strcpy(char *dest, const char *src){
+	while(*src != '\0'){ // NULL 문자열 까지 반복
+		*(dest++) = *(src++); // src의 문자열을 dest로 복사
+	}
+	*(dest) = '\0'; // dest의 마지막 문자열 NULL로 지정
+}
+
+int main(int argc, char* argv[]){
+	char dest[] = "";
+	char src[] = "MyString";
+	strcpy(dest, src);
+	cout &lt;&lt; "strcpy : " &lt;&lt; dest &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1643247599126" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>strcpy : MyString</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #ffffff;">#2 strlen</span></p>
+<pre id="code_1643247661048" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>/*
+	strlen - 문자열의 길이를 반환해 주는 함수
+*/
+
+int strlen(const char *src){
+	int cnt = 0;
+	while(*src != '\0'){ // NULL 문자열 까지 반복
+		*(src++);
+		cnt++; // 문자열 길이 (cnt) 증가
+	}
+	return cnt;
+}
+
+int main(int argc, char* argv[]){
+	int len = strlen(src);
+	cout &lt;&lt; "strlen : " &lt;&lt; len &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1643247681128" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>strlen : 8</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #ffffff;">#3 strcmp</span></p>
+<pre id="code_1643247759596" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>/* 
+	strcmp - 두 문자열을 비교해 주는 함수
+	문자열이 같을 경우 0을 반환,
+	문자열이 다를 경우 -1을 반환합니다.
+*/
+
+int strcmp(const char *str1, const char *str2){
+	
+	int str1Length = strlen(str1);
+	int str2Length = strlen(str2);
+	if (str1Length != str2Length) { return -1; } // 문자열의 길이가 다를 경우 -1 반환
+	
+	while(*str1 != '\0'){ // NULL 문자열 까지 반복
+		if(*str1 != *str2) { return -1; } // 중간에 서로 다른 문자가 존재할 경우 -1 반환
+		*str1++, *str2++;
+	} 
+	
+	return 0;
+}
+
+int main(int argc, char* argv[]){
+	cout &lt;&lt; "strcmp" &lt;&lt; endl;
+	char myString1[] = "NOVLOG";
+	char myString2[] = "NOVLOG";
+	cout &lt;&lt; "* 문자열이 같은 경우 " &lt;&lt; strcmp(myString1, myString2) &lt;&lt; endl;
+	
+	char myString3[] = "NOVLOG";
+	char myString4[] = "NOV";
+	cout &lt;&lt; "* [문자열이 다른 경우] " &lt;&lt; strcmp(myString3, myString4) &lt;&lt; endl;
+    
+	return 0;
+}</code></pre>
+<pre id="code_1643247773619" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>strcmp
+* 문자열이 같은 경우 0
+* [문자열이 다른 경우] -1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #ffffff;">#4 strcat</span></p>
+<pre id="code_1643247844212" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>/* 
+	strcat - 문자열을 이어 붙여 주는 함수
+	dest 문자열에 src 문자열을 이어 붙여 줍니다.
+*/
+
+char* strcat(char *dest, const char *src){
+	char *idx = dest; // dest의 첫 주소를 char 포인터에 저장
+	while(*dest != '\0') { dest++; } // desd의 NULL 문자까지 포인터 증가
+	while(*src != '\0') { *(dest++) = *(src++); } // src의 NULL 문자까지 포인터 증가 후 대입
+	*dest = '\0'; // dest의 마지막 문자에 NULL 문자 대입
+	return idx;
+}
+
+int main(int argc, char* argv[]){
+	char dest2[] = "NOV";
+	char src2[] = "LOG";
+	strcat(dest2, src2);
+	cout &lt;&lt; "strcat : " &lt;&lt; dest2 &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1643247857667" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>strcat : NOVLOG</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #C언어 #strlen구현코드 #strcat구현코드 #strcmp구현코드 #strcpy구현코드 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

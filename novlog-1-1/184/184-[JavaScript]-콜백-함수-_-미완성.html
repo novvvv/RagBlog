@@ -1,0 +1,92 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] 콜백 함수 _ 미완성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] 콜백 함수 _ 미완성</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-03-14 23:15:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">*지속적으로 내용을 추가 및 수정할 예정이며, 잘못된 내용에 대한 지적은 언제나 환영합니다!</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">_미완성된 글 입니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #781b33;">#</span> 콜백함수</b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;"><b>콜백함수</b></span>란 <span style="background-color: #dddddd;"><b>함수 안에 파라미터 형태로 들어가는 함수</b></span>를 의미한다. <span style="background-color: #dddddd;"><b>콜백함수를 이용하면 함수의 매개변수로 함수를 전달해 코드를 순차적으로 실행할 수 있도록 작성할 수 있다.</b></span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드의 동작 과정을 살펴보자. ask 함수 파라미터의 기능은 다음과 같다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">question</span> : 문자열을 입력받아 confrim 메시지 창에 출력한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">yes</span> : confirm의 yes를 눌렀을 때 실행되는 함수이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">no</span> : confrim의 no를 눌렀을 때 실행되는 함수이다.</span></p>
+<pre id="code_1647256709414" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function ask(question, yes, no) {
+    if (confirm(question)) yes()
+    else no();
+}
+function showOk() { alert("동의하셨습니다."); }
+function showCancel() { alert("취소 하셨습니다."); }
+ask("동의하십니까?", showOk, showCancel);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">여기서 <span style="background-color: #dddddd;"><b>showOk()</b></span>와 <span style="background-color: #dddddd;"><b>showCancel()</b></span>을 <span style="background-color: #dddddd;"><b>콜백함수</b></span>라고 부른다. <b>함수(showOk, showCancel)를 함수의 파라미터(yes, no)로 보낸 뒤 파라미터로 보낸 함수를 나중에 호출(call back) 하는 것이 콜백함수의 개념</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">브라우저 메시지 창에서 yes를 누르면 showOk가 콜백되고, no를 누르면 showCancel이 콜백된다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span> 이벤트 헨들러 &amp; 이벤트 리스너</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JS의 <span style="background-color: #333333; color: #ffffff;">이벤트 헨들러</span>와 <span style="background-color: #333333; color: #ffffff;">이벤트 리스너</span>가 대표적인 콜백함수의 예시이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">addEventListener의 첫번째 인자에는 발생 이벤트(클릭)를 두 번째 인자에는 첫 번째 인자로 설정한 이벤트가 발생했을 시 실행할 함수를 넣어 준다. 여기서 두 번째 인자에 넣은 함수가 바로 콜백함수이다.</span></p>
+<pre id="code_1647266541993" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;html lang="ko"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;test&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;button id="click"&gt;Click!&lt;/button&gt;			
+	&lt;/body&gt;
+ 	&lt;script&gt;
+		let a = document.getElementById("click");
+		a.onclick = prt; //event handler
+		a.addEventListener("click",prt); //event listener
+		function prt(){
+			document.write("JAVASCRIPT!");
+		}
+	&lt;/script&gt;
+&lt;/html&gt;</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #js #javascript #콜백함수 #callbackfunction 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

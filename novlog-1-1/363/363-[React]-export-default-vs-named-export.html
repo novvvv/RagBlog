@@ -1,0 +1,110 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[React] export default vs named export</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[React] export default vs named export</h2>
+                                <div class="box-info">
+                                    <p class="category">Front-end/React</p>
+                                    <p class="date">2025-06-26 21:26:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 아래 코드는 Next.JS 14 환경에서 테스트하였습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">React (JS ES6)에서 하나의 파일(Module)을 내보는 방식은 <span style="background-color: #c0d1e7;">export default</span> 방식과 <span style="background-color: #c0d1e7;">named export</span> 방식으로 구분된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">데이터를 내보내는 측에서는 <span style="background-color: #c0d1e7;">export keyword를 통해 내보낼 데이터를 명시</span>하며, <span style="background-color: #c0d1e7;">데이터를 받는 측에서는 import keyword를 사용해 받을 데이터를 정의</span>한다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">export default</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">export default 방식은 <span style="background-color: #c0d1e7;">단 하나의 데이터만을 내보낼 수 있으며 데이터 변수명을 재정의 가능</span>하다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 export default는 모듈 당 하나만 정의할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>data.js</b></span></p>
+<pre id="code_1750939096466" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let data = 20
+export default data</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>page.js</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">data.js 모듈에서 받은 data를 my_data라는 변수명으로 재정의한 뒤 my_data를 콘솔에 출력한다.&nbsp;</span></p>
+<pre id="code_1750939337557" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>import my_data from "./data.js"
+
+export default function Home() {
+  return (
+    console.log(my_data)
+  )
+}</code></pre>
+<pre id="code_1750939384900" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>20</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">named export </span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">named export는 default export와 달리 <span style="background-color: #c0d1e7;">여러 개의 변수 혹은 컴포넌트를 export 하는 것이 가능</span>하다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 반드시 import 하는 측에서 <span style="background-color: #c0d1e7;">중괄호 { }를 사용</span>해 가져와야 하며 <span style="background-color: #c0d1e7;">이름을 재정의 하는 것이 불가능</span>하다. (as를 사용해 별칭을 지정하는 것은 허용된다.)</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">data.js</span></b></p>
+<pre id="code_1750939962667" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>export let age = 20
+export let name = "nov"</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">page.js</span></b></p>
+<pre id="code_1750939973205" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>import {age, name} from "./data.js"
+
+export default function Home() {
+  return (
+    console.log(`name : ${name}, age : ${age}`)
+  )
+}</code></pre>
+<pre id="code_1750939982264" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>name : nov, age : 20</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">Component Export</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">변수뿐만 아니라 React의 Component를 반환하는 것 또한 가능하다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드는 export default 구문을 사용해 Hello World JSX 블록을 반환한 예제코드이다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>data.js</b></span></p>
+<pre id="code_1750940421092" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>export default function hello() {
+    return (
+        &lt;div&gt;Hello World!&lt;/div&gt;
+    )
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>page.js</b></span></p>
+<pre id="code_1750940459677" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>import hello from "./data.js"
+
+export default function Home() {
+  return (
+    hello()
+  )
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">export default vs named default&nbsp;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">export default를 사용함으로써 얻는 이점은 다음과 같다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. import 하는 대상에게 해당 모듈의 대표 컴포넌트를 명시할 수 있다. Component Export 예제 코드를 예시로 들어보면 page.js에서는 data.js 모듈로부터 hello와 관련된 모듈이 넘어올 것이라는 것을 예측할 수 있다.&nbsp;</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 네이밍이 가능하기에 충돌이 날 가능성이 적다.&nbsp;</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 라이브러리나 컴포넌트를 단일로 Export 하는 경우에는 export default를 사용하며,</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유틸 함수 혹은 컴포넌트의 묶음을 보내야 하는 경우에는 named export를 사용하면 된다.&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 2583 "영역 구하기" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 2583 "영역 구하기" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-03-24 01:13:07</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 유형 : <span style="background-color: #333333; color: #ffffff;">BFS</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/2583" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2583</a></span></p>
+<figure id="og_1648051448513" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2583번: 영역 구하기" data-og-description="첫째 줄에 M과 N, 그리고 K가 빈칸을 사이에 두고 차례로 주어진다. M, N, K는 모두 100 이하의 자연수이다. 둘째 줄부터 K개의 줄에는 한 줄에 하나씩 직사각형의 왼쪽 아래 꼭짓점의 x, y좌표값과 오" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2583" data-og-url="https://www.acmicpc.net/problem/2583" data-og-image="https://scrap.kakaocdn.net/dn/c7wQcJ/hyNOkIdcZ5/NV6nKju4Wp63c2E6psxAS1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2583" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2583">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/c7wQcJ/hyNOkIdcZ5/NV6nKju4Wp63c2E6psxAS1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2583번: 영역 구하기</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 M과 N, 그리고 K가 빈칸을 사이에 두고 차례로 주어진다. M, N, K는 모두 100 이하의 자연수이다. 둘째 줄부터 K개의 줄에는 한 줄에 하나씩 직사각형의 왼쪽 아래 꼭짓점의 x, y좌표값과 오</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제의 조건에 의하면 M X N 크기의 모눈종이에 K개의 직사각형의 좌측 하단 좌표와 우측 상단 좌표가 주어진다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이때 K개의 직사각형이 만들어지는 곳을 이동 불가능한 공간 (1) 로 초기화 시키고 나머지 빈 부분 (0) 에 대해서 BFS 알고리즘을 적용시키는 방식으로 풀이했다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">int board[101][101]</span> : 영역의 정보를 저장할 배열 (0 : 이동가능 1 : 이동 불가능)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">isVisited[101][10]</span> : 영역의 방문 여부를 저장할 배열</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">int dx[4], dy[4]</span> : 상하좌우 이동을 도와줄 변수</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 가로(m) 세로(n) 직사각형의 개수(k)를 입력받은 후 k개의 직사각형이 만들어지는 공간의 배열값을 1(이동불가)로 초기화한다.</span></p>
+<pre id="code_1648051652585" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int m, n, k;
+	cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;
+	while(k--){
+		int x, y, xx, yy;
+		cin &gt;&gt; x &gt;&gt; y &gt;&gt; xx &gt;&gt; yy;
+		for(int i = y; i &lt; yy; i++){
+			for(int j = x; j &lt; xx; j++){
+				board[i][j] = 1;
+			} 
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">주어진 좌표를 이용해 이동불가 공간을 잘 설정했다면, BFS 알고리즘을 적용 시키기만 하면 쉽게 해결된다.&nbsp; count 변수에는 영역의 개수가 저장되고 ans 벡터는 각 영역의 넓이가 저장된다.</span></p>
+<pre id="code_1648051755783" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int count = 0; // 영역의 개수
+	vector&lt;int&gt; ans; // 각 영역의 넓이
+	queue&lt;pair&lt;int,int&gt;&gt; Q;
+	for(int i = 0; i &lt; m; i++){
+		for(int j = 0; j &lt; n; j++){
+			if(board[i][j] == 1 || isVisited[i][j]) continue;
+			count++;
+			Q.push({i, j});
+			isVisited[i][j] = 1;
+			int width = 1;
+			while(!Q.empty()){
+				auto cur = Q.front();
+				Q.pop();
+				for(int dir = 0; dir &lt; 4; dir++){
+					int nx = cur.X + dx[dir];
+					int ny = cur.Y + dy[dir];
+					if(nx &lt; 0 || nx &gt;= m || ny &lt; 0 || ny &gt;= n) continue;
+					if(isVisited[nx][ny] || board[nx][ny] == 1) continue;
+					Q.push({nx, ny});
+					isVisited[nx][ny] = 1;
+					width++;
+				}
+			}
+			ans.push_back(width);
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">sort 함수를 이용해 ans 벡터를 오름차 정렬한 후 출력해 주면 된다.</span></p>
+<pre id="code_1648051810551" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	cout &lt;&lt; count &lt;&lt; '\n';
+	sort(ans.begin(), ans.end());
+	for(int i : ans) {
+		cout &lt;&lt; i &lt;&lt; " ";
+	}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;">#</span>CODE</span></b></h2>
+<pre id="code_1648051936818" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define X first
+#define Y second
+int board[101][101];
+bool isVisited[101][101];
+int dx[4] = {-1, 0, 1, 0};
+int dy[4] = {0, 1, 0, -1};
+
+int main(int argc, char* argv[]) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int m, n, k;
+	cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;
+	while(k--){
+		int x, y, xx, yy;
+		cin &gt;&gt; x &gt;&gt; y &gt;&gt; xx &gt;&gt; yy;
+		for(int i = y; i &lt; yy; i++){
+			for(int j = x; j &lt; xx; j++){
+				board[i][j] = 1;
+			} 
+		}
+	}
+	
+	int count = 0; // 영역의 개수
+	vector&lt;int&gt; ans; // 각 영역의 넓이
+	queue&lt;pair&lt;int,int&gt;&gt; Q;
+	for(int i = 0; i &lt; m; i++){
+		for(int j = 0; j &lt; n; j++){
+			if(board[i][j] == 1 || isVisited[i][j]) continue;
+			count++;
+			Q.push({i, j});
+			isVisited[i][j] = 1;
+			int width = 1;
+			while(!Q.empty()){
+				auto cur = Q.front();
+				Q.pop();
+				for(int dir = 0; dir &lt; 4; dir++){
+					int nx = cur.X + dx[dir];
+					int ny = cur.Y + dy[dir];
+					if(nx &lt; 0 || nx &gt;= m || ny &lt; 0 || ny &gt;= n) continue;
+					if(isVisited[nx][ny] || board[nx][ny] == 1) continue;
+					Q.push({nx, ny});
+					isVisited[nx][ny] = 1;
+					width++;
+				}
+			}
+			ans.push_back(width);
+		}
+	}
+	
+	cout &lt;&lt; count &lt;&lt; '\n';
+	sort(ans.begin(), ans.end());
+	for(int i : ans) {
+		cout &lt;&lt; i &lt;&lt; " ";
+	}
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #BOJ #백준 #BFS #2583 #영역구하기 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

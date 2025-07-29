@@ -1,0 +1,88 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] 템플릿 리터럴 : 백틱(``) 달러(${}) 문법 사용법</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] 템플릿 리터럴 : 백틱(``) 달러(${}) 문법 사용법</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-06-21 13:36:20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있습니다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*지속적으로 내용을 수정해 나갈 예정입니다. 혹여나 잘못된 내용이 있다면 언제든지 지적해 주시기 바랍니다!</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">_contents</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 템플릿 리터럴(Template Literal)</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.1 템플릿 리터럴 기능1 _ 개행</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 템플릿 리터럴 기능2 _ 표현식</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> 템플릿 리터럴(Template Literal)</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ES6 부터 새롭게 표기된 문자열 표기법으로 큰따옴표(" ")가 아닌 백틱(` `)을 사용해 문자열을 표기한다.</span></p>
+<pre id="code_1655784951869" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var str = "Hello JS!"; // 일반 문자열 표기범
+var templateStr = `Hello JS!!`; // 템플릿 문자열 표기법
+console.log(str);
+console.log(templateStr);</code></pre>
+<pre id="code_1655784966820" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과]
+Hello JS!
+Hello JS!!</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1.1</span> 템플릿 리터럴 기능1 _ 개행</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">템플릿 리터럴을 사용하면 <span style="color: #781b33;"><b>개행문자('\n') 없이도 개행</b></span>을 수행할 수 있다.</span></p>
+<pre id="code_1655785137097" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>// 일반 문자열 방식 줄바꿈
+var normalStr = "Hello!\nJS";
+console.log(normalStr);
+
+// 템플릿 리터럴 방식 줄바꿈
+var templateStr = `Hello
+JS!`;
+console.log(templateStr);</code></pre>
+<pre id="code_1655785482290" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[출력결과]
+Hello
+JS!</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1.2</span> 템플릿 리터럴 기능2 _ 표현식</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ES6이전 큰따옴표("")를 이용한 일반 문자열 방식에서 변수나 표현식을 삽입하고자 할 때 + 연산자를 이용하였다.</span></p>
+<pre id="code_1655785688596" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var num = 1;
+var str = " Nov!"
+var normalStr = "Hello" + str + num;
+console.log(normalStr);</code></pre>
+<pre id="code_1655785704971" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>[Output]
+Hello Nov!1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">템플릿 리터럴의 백틱(` `)안에 <span style="background-color: #333333; color: #dddddd;">달러기호${}</span>를 사용하면 변수나 표현식을 표현할 수 있다.</span></p>
+<pre id="code_1655785838645" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var num = 2;
+var str = " Nov!"
+var templateStr = `Hello${str}${1}`;
+console.log(templateStr);</code></pre>
+<pre id="code_1655785852997" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[Output]
+Hello Nov!2</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

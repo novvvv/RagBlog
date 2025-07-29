@@ -1,0 +1,78 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Setting] 안드로이드 스튜디오 background drawble xml 색상 적용이 안되는 현상</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Setting] 안드로이드 스튜디오 background drawble xml 색상 적용이 안되는 현상</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-07-11 23:03:34</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" data-origin-width="431" data-origin-height="440" data-filename="그림1.png" width="196" height="200" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="431" data-origin-height="440" data-filename="그림1.png" width="196" height="200" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">안드로이드 스튜디오를 공부하던 도중, 버튼의 background를 바꿔도 색상이 바뀌지 않는 현상이 발생했다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="428" data-origin-height="214" width="348" height="174" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="428" data-origin-height="214" width="348" height="174" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="100" data-origin-height="72" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="100" data-origin-height="72" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">구글링해보니, 버전이 업데이트 됨에 따라 <span style="font-family: 'Noto Serif KR';"><b>테마의 기본값이 Theme.MaterialComponents.DayNight.DarActionBar로 설정 되어 있어서 발생하는 현상</b></span> 이라고 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="font-family: 'Noto Serif KR';"><b>rex .. values .. themes .. themse.xml</b> </span>파일을 열어서, <span style="font-family: 'Noto Serif KR';"><b>parent 값을 "Theme.AppCompat.Light"로 변경</b></span>해 준다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="320" data-origin-height="269" width="269" height="226" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="320" data-origin-height="269" width="269" height="226" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="790" data-origin-height="691" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="790" data-origin-height="691" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">activity_main.xml로 돌아가서 Design 화면을 확인해 보면 정상적으로 색깔이 변경되어 있다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="83" data-origin-height="53" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="83" data-origin-height="53" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #androidstudio #안드로이드스튜디오 #버튼배경색 #background오류 #배경색변경안됨 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

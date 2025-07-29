@@ -1,0 +1,226 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[CSS] #1 선택자 (전체 선택자/ 타입 선택자/ 클래스 선택자/ id 선택자)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[CSS] #1 선택자 (전체 선택자/ 타입 선택자/ 클래스 선택자/ id 선택자)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2021-05-25 11:27:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="489" data-origin-height="464" data-filename="CSS.png" width="201" height="191" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="489" data-origin-height="464" data-filename="CSS.png" width="201" height="191" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="background-color: #333333; color: #ffffff;"><span style="font-family: 'Nanum Gothic';">[CSS] #1 선택자</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p style="text-align: center;" data-ke-size="size16"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">[목차]</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 전체 선택자 [universal selector]</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 타입 선택자 [type selector]</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 클래스 선택자 [class selector]</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 id 선택자 [id selector]</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#5 id 선택자 vs 클래스 선택자</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #fafafa; color: #000000; font-family: 'Nanum Gothic';">* 개인적인 공부내용 정리용으로 작성한 게시글이기에, 잘못된 내용이 있을 수 있으며 지속적으로 수정해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">선택자</span>란, <span style="background-color: #f6e199;">웹문서에 스타일을 적용할 태그(부분)을 알려주는 역할을 하는 것</span>으로 선택자의 종류는&nbsp;<span style="background-color: #333333; color: #ffffff;">[전체 선택자]</span><span style="color: #ffffff;"> </span><span style="background-color: #333333; color: #ffffff;">[타입 선택자] [클래스 선택자]</span> <span style="background-color: #333333; color: #ffffff;">[ID 선택자]</span> 4가지로 구분합니다.</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 전체 선택자 [universal selector]</span></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">전체 선택자</span>는 <span style="background-color: #f6e199;">문서의 모든 요소에 스타일을 적용할 때 사용</span>하며, <span style="background-color: #f6e199;">*(별표)</span>를 사용합니다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">주로 웹 브라우저의 기본 스타일을 초기화할 시 자주 사용하는데, 예를 들어 전체 선택자를 이용해 웹 문서 전체의 여백을 0으로 지정할 수 있습니다.</span></p>
+<pre id="code_1621907122289" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;u_selector&lt;/title&gt;
+    &lt;style&gt;
+        *{
+            margin: 0;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Universal Selector Example&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">다음과 같이 웹문서에는 기본적으로 단락이나 이미지별로 여백이 있는데, 전체 선택자를 사용한 오른쪽 그림은 여백이 사라진 것을 확인할 수 있습니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="678" data-origin-height="275" width="528" height="214" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="678" data-origin-height="275" width="528" height="214" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 타입 선택자 [type selector]</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">타입 선택자</span>는, <span style="background-color: #f6e199;">특정 태그를 사용한 모든 요소에 스타일을 적용할 때 사용</span>하는 선택자입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기본형은 다음과 같습니다.</span></p>
+<pre id="code_1621907662779" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>태그이름 { 스타일 규칙 }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 타입 선택자를 사용해, &lt;span&gt;태그가 사용된 모든 글자들의 색상을 파란색으로 바꾸는 에제입니다.</span></p>
+<pre id="code_1621907805972" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;t_selector&lt;/title&gt;
+    &lt;style&gt;
+        span{
+            color: blue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;span&gt;Type Selector Example&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="829" data-origin-height="154" width="651" height="121" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="829" data-origin-height="154" width="651" height="121" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 클래스 선택자 [class selector]</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">클래스 선택자</span>는 <span style="background-color: #f6e199;">특정 부분만 선택해서 스타일을 적용할 때 사용</span>합니다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">클래스 이름 앞에 <span style="background-color: #f6e199;">마침표(.)</span>를 붙여서 사용하며, 클래스 선택자를 적용하고자 하는 태그 안에 <span style="background-color: #f6e199;">class = "클래스이름"</span> 과 같이, class 속성을 사용해야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기본형은 다음과 같습니다.</span></p>
+<pre id="code_1621908100428" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>.클래스이름 { 스타일 규칙 }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "rule1" 이름의 클래스 선택자를 정의하고, 첫 째줄의 &lt;p&gt; 태그에만 스타일 규칙을 적용한 예제입니다.</span></p>
+<pre id="code_1621908340576" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;c_selector&lt;/title&gt;
+    &lt;style&gt;
+        .rule1{
+            color: red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class = "rule1"&gt;Class Selector Example&lt;/p&gt;
+    &lt;p&gt;Class Selector Example....&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="961" data-origin-height="224" width="672" height="157" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="961" data-origin-height="224" width="672" height="157" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">클래스 선택자는 <span style="background-color: #f6e199;">같은 요소에 2개 이상 적용하는 것도 가능</span>합니다. <span style="background-color: #f6e199;">클래스 선택자를 2개 이상 사용하는 경우</span>에는, <span style="background-color: #f6e199;">공백으로 구분</span>해서 스타일 이름을 적으면 됩니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은, "rule1" "rule2" 클래스 선택자를 첫 번째 줄의 &lt;p&gt;태그에 적용한 예제 입니다.</span></p>
+<pre id="code_1621908642015" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;c_selector&lt;/title&gt;
+    &lt;style&gt;
+        .rule1{
+            color: red;
+        }
+        .rule2{
+            font-style: italic; 
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class = "rule1 rule2"&gt;Class Selector Example&lt;/p&gt;
+    &lt;p&gt;Class Selector Example....&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="1098" data-origin-height="235" width="776" height="166" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1098" data-origin-height="235" width="776" height="166" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 id 선택자 [id selector]</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">id 선택자</span>는 #3 클래스 선택자와 마찬가지로 <span style="background-color: #f6e199;">특정 부분을 지정해서 스타일을 적용할 때 사용</span>하는데, <span style="background-color: #f6e199;">(#)기호</span>를 사용하며 적용하고자 하는 태그에 <span style="background-color: #f6e199;">id = "선택자이름"</span> 과 같이, id 속성을 사용해야 합니다. 단, 문서에서 여러번 적용 가능한 클래스 선택자와 달리 <span style="color: #000000; background-color: #ffc9af;">id 선택자는 단 한 번만 적용 가능합니다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기본형은 다음과 같습니다.</span></p>
+<pre id="code_1621908821225" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>#아이디명 { 스타일 규칙 }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "rule3" 이름의 아이디 선택자를 정의하고, 첫 번째 줄의 &lt;div&gt;태그에 적용한 예제입니다.</span></p>
+<pre id="code_1621909061216" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;id_selector&lt;/title&gt;
+    &lt;style&gt;
+        #rule3{
+            color: blue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id = "rule3"&gt;id Selector Example&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="957" data-origin-height="134" width="768" height="108" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="957" data-origin-height="134" width="768" height="108" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic';">#5 id 선택자 vs 클래스 선택자</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">id 선택자는 클래스 선택자보다 우선순위가 높습니다.</span> <span style="background-color: #f6e199;">따라서, id 선택자와 클래스 선택자가 동시에 적용된 경우에는 id 선택자의 스타일 형식만 태그에 반영됩니다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">다음은 <span style="background-color: #f6e199;">색상을 파란색으로 변경하는 id 선택자 "#id_selector"</span>와, <span style="background-color: #f6e199;">색상을 붉은색으로 변경하는 클래스 선택자 ".class_selector"</span>를 &lt;p&gt;태그에 적용한 예제입니다.</span></p>
+<pre id="code_1621910497170" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;id_class_selector&lt;/title&gt;
+    &lt;style&gt;
+        #id_selector{
+            color: blue;
+        }
+        .class_selector{
+            color: red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id = "id_selector" class = "class_selector"&gt;Example&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1141" data-origin-height="233" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="1141" data-origin-height="233" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #HTML #css #javascript #WEB #전체선택자 #클래스선택자 #id선택자 #타입선택자 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] STL List Container 사용 방법 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] STL List Container 사용 방법 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-08-15 14:56:11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있습니다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 다음 포스팅은 <span style="background-color: #333333; color: #dddddd;">C++ STL List Container의 사용 방법</span>에 대한 내용에 대해 기술하고 있으며, Linked List (연결 리스트) 의 개념 혹은 구현 방법에 대한 내용을 원하시는 분은 다음 포스팅을 참고해 주시기 바랍니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #dddddd; background-color: #333333;"><b><span style="font-family: 'Nanum Gothic';">_ Related</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><a style="color: #1a5490;" href="https://novlog.tistory.com/260" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; [DataStructure] 연결 리스트 : Linked List 개념 정리</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">&rarr; Linked List 구현 Witch C/C++ (미완성)</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #dddddd; background-color: #333333;"><b><span style="font-family: 'Nanum Gothic';">_Content</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#0 Access List Container With For &amp; at &amp; []</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 List Container Initialization : List 초기화 &amp; 선언</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#1.1 생성자를 이용한 초기화</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#1.2 assign memeber function 을 이용한 초기화</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 List Push &amp; Pop</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 List insert &amp; erase : List 삽입 &amp; 삭제</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#4 List Sort : List 정렬</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#5 List Copy : 리스트 복사</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#5.1 복사 생성자를 이용한 복사</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#5.2 대입 연산자를 이용한 복사</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#6 List Size : 리스트 크기 확인</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#0</span> Access List Container With For &amp; at &amp; []</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">STL List Container는 다른 Vector Deque Queue와 같은 시퀀스 컨테이너들과 달리 <span style="color: #1a5490;"><b>for문을 사용해 인덱스로 데이터에 접근하거나 접근 지정자 at &amp; [] 을 사용해 원소에 접근하는 것이 불가능</b></span>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그 이유는 연결 리스트 (Linked List) 의 구조를 알고 있으면 당연한데, Linked List는 <b>원소들이 메모리에 연속되게 저장된 구조가 아닌 각 원소가 다음 원소의 주소를 포함하고 있는 노드 기반 구조이기 때문</b>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 특정 지점의 요소에 직접 접근하는 것은 구조상 불가능합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 list에서 <span style="color: #1a5490;"><b>for문을 사용해 원소에 순차적으로 접근하고자 한다면 다음과 같이 iterator를 사용</b></span>해야 합니다.</span></p>
+<pre id="code_1660540083185" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int(5, 1);
+	for(list&lt;int&gt;::iterator it  = list_int.begin(); it != list_int.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 <span style="background-color: #333333; color: #dddddd;">C++11</span> 이상 부터는 <span style="background-color: #333333; color: #dddddd;">Range-Based-For 문법</span>을 사용해 인덱스에 순차적으로 접근하는 것을 허용합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Range-Based-For 문법을 모르시는 분들은 다음 포스팅을 참고해 주세요.</span></p>
+<p data-ke-size="size16"><a href="https://novlog.tistory.com/187?category=885400" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">[C++] range-based-for 범위 기반 for문</span></a></p>
+<pre id="code_1660540189943" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int(5, 1);
+	for(const auto&amp; i : list_int)
+		cout &lt;&lt; i &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#1</span> &nbsp;List Container Initialization : List 초기화 &amp; 선언</span></b></h2>
+<h3 data-ke-size="size23"><b><span style="color: #000000; font-family: 'Nanum Gothic';">#1.1 생성자를 이용한 초기화</span></b></h3>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #dddddd;">기본 형태</span> : <span style="color: #1a5490;"><b>list&lt;DataType&gt; ListName</b></span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#생성자를 이용해 특정 공간을 Default Value로 초기화 합니다.</span></b></span></p>
+<p data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">What is Default Value?</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">DataType Int, Double의 Default Value는 0, DataType Char의 Default Value 는 ' ' 입니다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1660539211082" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int(5);
+	for(const auto&amp; i : list_int)
+		cout &lt;&lt; i &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	
+	list&lt;double&gt; list_double(5);
+	for(const auto&amp; i : list_double)
+		cout &lt;&lt; i &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	
+	list&lt;char&gt; list_char(5);
+	for(const auto&amp; i : list_char)
+		cout &lt;&lt; i &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660539411354" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+, , , , ,</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#생성자를 이용해 요소의 개수, 특정 값을 지정하여 초기화 합니다.</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">[example]</span> list&lt;int&gt; list_int(5, 1) - int 자료형 요소 5개를 1로 초기화한 list 를 선언합니다.</span></p>
+<pre id="code_1660539450412" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int(5, 1);
+	for(const auto&amp; i : list_int)
+		cout &lt;&lt; i &lt;&lt; ", ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660539530324" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 1, 1, 1, 1, 1,</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#C++11 Uniform Initialization { } 를 사용해 특정 개수, 특정 값을 지정해 초기화 합니다.</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">[example]</span> list&lt;int&gt; list_int {1, 2, 3, 4, 5} - 원소 1, 2, 3, 4, 5 를 가지는 int 자료형 list를 선언합니다.</span></p>
+<pre id="code_1660539659392" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int {1, 2, 3, 4, 5};
+	for(const auto&amp; i: list_int) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660539676714" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 1 2 3 4 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 assign member function 을 이용한 초기화</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">assign memeber function</span> 을 사용하면 <span style="color: #1a5490;"><b>list를 선언한 후에 초기화</b> </span>하는 것이 가능합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">[example]</span> list_name.assign(개수,값)</span></p>
+<pre id="code_1660539767682" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; list_int;
+	// listValueName.assign(개수, 값);
+	list_int.assign(3, 4);
+	for(const auto&amp; i : list_int)
+		cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660539801518" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 4 4 4</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 List Push &amp; Pop</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">List Container는 다른 STL Container과 마찬가지로 가장 앞의 <span style="color: #1a5490;"><b>원소를 추가 &amp; 제거</b></span> 하는 <span style="background-color: #dddddd;">push_front() &amp; pop_front() member function</span> 과 가장 뒤에 원소를 추가 &amp; 제거 하는 <span style="background-color: #dddddd;">push_back() &amp; pop_back() member function</span>을 제공합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">참고로 List의 Push &amp; Pop 연산은 모두 <b>시간 복잡도 O(1)</b>에 수행합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>push_back(k)</b></span> - List의 가장 뒤에 원소 k를 삽입합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>push_front(k)</b></span> - List의 가장 앞에 원소 k를 삽입합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>pop_back()</b></span> - List의 가장 뒤에 있는 원소를 제거합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>pop_front()</b></span> - List의 가장 첫 번째 원소를 제거합니다.</span></p>
+<pre id="code_1660540574346" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main(){
+	list&lt;int&gt; myList {1, 2, 3, 4, 5};
+	cout &lt;&lt; "push_back(6) - ";
+	myList.push_back(6);
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	cout &lt;&lt; "push_front(0) - ";
+	myList.push_front(0);
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	cout &lt;&lt; "pop_back() - ";
+	myList.pop_back();
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	cout &lt;&lt; "pop_front() - ";
+	myList.pop_front();
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	return 0;
+}</code></pre>
+<pre id="code_1660540592002" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>push_back(6) - 1 2 3 4 5 6
+push_front(0) - 0 1 2 3 4 5 6
+pop_back() - 0 1 2 3 4 5
+pop_front() - 1 2 3 4 5</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#3</span> List insert &amp; erase : List 삽입 &amp; 삭제</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">List에서 중간에 원소를 삽입 혹은 삭제하는 연산 또한&nbsp;<span style="color: #1a5490;"><b>시간 복잡도 O(1)</b></span>에 수행합니다. </span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>insert(iterator, k)</b></span> - iterator가 가리키는 위치에 k를 삽입합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>erase(iterator)</b></span> - iterator가 가리키는 위치의 원소를 삭제합니다.</span></p>
+<p data-ke-size="size16"><span style="color: #1a5490;"><a style="color: #1a5490;" href="https://novlog.tistory.com/263" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">* erase member function 사용 시 주의점</span></a></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>remove(k)</b></span> - k에 해당하는 원소를 모두 삭제합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>remove_if(predicate)</b></span> - predicate 조건에 해당하는 원소를 모두 삭제합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">insert &amp; erase example</span></p>
+<pre id="code_1660540859356" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main(){
+	list&lt;int&gt; myList {1, 2, 3, 4, 5};
+	myList.insert(myList.begin(), 0);
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	myList.erase(myList.begin());
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+    	return 0;
+}</code></pre>
+<pre id="code_1660540890164" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result]
+0 1 2 3 4 5
+1 2 3 4 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">remove example</span></p>
+<pre id="code_1660540917153" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main(){
+	list&lt;int&gt; myList {1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
+	myList.remove(1);
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+}</code></pre>
+<pre id="code_1660540934976" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 2 2 3 3 4 4 5 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; background-color: #dddddd; color: #000000;">remove_if example</span></p>
+<pre id="code_1660540948008" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+bool predicate(int n){
+	return n &lt;= 2;
+}
+
+int main(){
+	list&lt;int&gt; myList {1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
+	myList.remove_if(predicate);
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#4</span> List Sort : 리스트 정렬</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>sort()</b></span> - List의 원소를 오름차(default) 정렬합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>reverse()</b></span> - List의 원소를 뒤집습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">sort example</span></p>
+<pre id="code_1660541098335" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main(){
+	list&lt;int&gt; myList {5, 4, 3, 2, 1};
+	cout &lt;&lt; "Before Sort - ";
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	cout &lt;&lt; "After Sort - ";
+	myList.sort();
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+}</code></pre>
+<pre id="code_1660541115926" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result]
+Before Sort - 5 4 3 2 1
+After Sort - 1 2 3 4 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">reverse example</span></p>
+<pre id="code_1660541163808" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main(){
+	list&lt;int&gt; myList {1, 2, 3, 4, 5};
+	cout &lt;&lt; "Before Reverse - ";
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	
+	cout &lt;&lt; "After Reverse - ";
+	myList.reverse();
+	for(const auto&amp; i : myList) cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+}</code></pre>
+<pre id="code_1660541171696" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>Before Reverse - 1 2 3 4 5
+After Reverse - 5 4 3 2 1</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#5</span> List Copy : 리스트 복사</span></b></h2>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#5.1 복사 생성자를 이용한 복사</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">[example]</span> list&lt;Data Type&gt; new_list(old_list)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>new_list</b></span> : old_list의 원소들이 복사 될 리스트</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>old_list</b></span> : new_list로 복사할 원소들이 저장되어 있는 리스트</span></p>
+<pre id="code_1660541536946" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; old_list {1, 2, 3, 4, 5};
+	list&lt;int&gt; new_list(old_list);
+	for(const auto&amp; i : new_list)
+		cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660541561066" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 1 2 3 4 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#5.2 대입 연산자를 이용한 복사</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">[example]</span> list&lt;Data Type&gt; new_list = old_list</span></p>
+<pre id="code_1660541618967" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; old_list {1, 2, 3, 4, 5};
+	list&lt;int&gt; new_list = old_list;
+	for(const auto&amp; i : new_list)
+		cout &lt;&lt; i &lt;&lt; " ";
+	cout &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660541627479" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 1 2 3 4 5</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#6</span> List Size : 리스트 크기 확인</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>size()</b></span> - 리스트의 사이즈를 반환합니다.</span></p>
+<pre id="code_1660541750667" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+int main(){
+	list&lt;int&gt; myList {1, 2, 3, 4, 5};
+	cout &lt;&lt; myList.size() &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<pre id="code_1660541757804" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result] 5</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C++ STL List 컨테이너에 대한 사용방법에 대해 정리해 보았습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">도움이 되셨다면 <span style="background-color: #dddddd;">공감</span> 부탁드립니다!</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">... 연결 리스트 연습에 도움이 되는 문제</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><a style="color: #1a5490;" href="https://novlog.tistory.com/262" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; 백준 1406 에디터</span></a></span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #사용방법 #사용법 #C++ #STL #리스트 #list #Container #연결리스트 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

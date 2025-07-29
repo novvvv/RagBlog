@@ -1,0 +1,225 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 1966 "프린터 큐" 문제 풀이 & 소스 코드 With C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 1966 "프린터 큐" 문제 풀이 & 소스 코드 With C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-01-29 01:33:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SIVLER3</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">DataStructure_QUEUE</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/1966">1966번: 프린터 큐 (acmicpc.net)</a></span></p>
+<figure id="og_1643357292156" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1966번: 프린터 큐" data-og-description="여러분도 알다시피 여러분의 프린터 기기는 여러분이 인쇄하고자 하는 문서를 인쇄 명령을 받은 &lsquo;순서대로&rsquo;, 즉 먼저 요청된 것을 먼저 인쇄한다. 여러 개의 문서가 쌓인다면 Queue 자료구조에" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1966" data-og-url="https://www.acmicpc.net/problem/1966" data-og-image="https://scrap.kakaocdn.net/dn/dlUY4H/hyNezNjxp9/A2KGIL2RlJ0foch3C2Tc30/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1966" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1966">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dlUY4H/hyNezNjxp9/A2KGIL2RlJ0foch3C2Tc30/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1966번: 프린터 큐</p>
+<p class="og-desc" data-ke-size="size16">여러분도 알다시피 여러분의 프린터 기기는 여러분이 인쇄하고자 하는 문서를 인쇄 명령을 받은 &lsquo;순서대로&rsquo;, 즉 먼저 요청된 것을 먼저 인쇄한다. 여러 개의 문서가 쌓인다면 Queue 자료구조에</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#SOVLE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://novlog.tistory.com/13" target="_blank" rel="noopener">pair</a> 와 <a href="https://novlog.tistory.com/17" target="_blank" rel="noopener">queue</a> <span style="color: #000000;">의 사용법을 연습할 수 있도록 해준 좋은 문제였습니다. 3번째 테스트 케이스 [6 , 0] [1 , 1 , 9 , 1 , 1 , 1] 를 예시로 풀이 하도록 하겠습니다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 queue와 pair를 이용해 각 중요도를 구별하기 위해서, 인덱스를 붙여 주었습니다. 만약 인덱스가 찾고자 하는 인덱스(M)와 동일하다면, pair.second()에 1을 찾고자 하는 인덱스가 아니라면 pair.second()에 0을 대입합니다.&nbsp;</span></p>
+<pre id="code_1643386090866" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>vector&lt;int&gt; v;
+queue&lt;pair&lt;int,int&gt;&gt; q;
+int cnt = 0;
+cin &gt;&gt; N &gt;&gt; M;
+		
+for (int i = 0 ; i &lt; N ; i++) {
+	int tmp;
+	cin &gt;&gt; tmp;
+	v.push_back(tmp);
+	if (i == M) { q.push({x, 1}); }
+	else { q.push({x, 0}); }
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">벡터에 들어있는 중요도값을 오름차 순으로 정렬합니다.</span></p>
+<pre id="code_1643386578121" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// 중요도 순으로 오름차 정렬 
+sort(v.begin(), v.end());</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 vector와 queue를 비교해 케이스에 따라 if 분기문을 수행합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">case1. 본인 순서이고, 찾고자 하는 인덱스(M)인 경우</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">case2. 본인 순서이지만, 찾고자 하는 인덱스(M)가 아닌 경우</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">case3. 본인 순서가 아닌경우</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*1 queue.front() 의 값과 vector.back() 값을 비교합니다. 중요도가 9보다 낮기에 본인 순서가 아니므로&nbsp; 뒤로 보내줍니다. (case3)</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*2 마찬가지로 본인 순서가 아니므로 뒤로 보내줍니다. (case3)</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*3 본인 순서이지만, 찾고자 하는 인덱스(M..1)이 아니므로 queue에서 pop() 해주고 vector 에서도 pop_back() 해줍니다. 다음으로 연산횟수(ans)를 1 증가시킵니다. (case2)</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*4 마찬가지로 본인 순서이지만, 찾고자 하는 인덱스가 아니므로 case2 과정을 수행합니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">*5 (앞의 두 개 인덱스는 case2 이므로 생략했습니다.) 본인 순서이고, 찾고자 하는 인덱스(queue.second()==1) 이기에 연산횟수(ans)를 1 증가시킨 후 반복문에서 break 합니다. (case1)</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1643387455827" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>		int ans = 0;
+		while(true){
+			// 본인 순서 O 
+			if (v.back() == q.front().first) {
+				// 본인 순서 O 인덱스 O
+				if (q.front().second == 1) {
+					ans++;
+					break;
+				}
+				// 본인 순서 O 인덱스 X
+				else {
+					v.pop_back();
+					q.pop();
+					ans++;
+				}
+			}
+			// 본인 순서 X
+			else {
+				q.push({q.front().first, q.front().second});
+				q.pop();
+			}
+		}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 ans값을 출력해 주면 됩니다.</span></p>
+<pre id="code_1643387473547" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>cout &lt;&lt; ans &lt;&lt; endl;</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1643357336154" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main(int argc, char* argv[]){
+	int testCase, N, M;
+	cin &gt;&gt; testCase;
+	while(testCase--){
+		vector&lt;int&gt; v;
+		queue&lt;pair&lt;int,int&gt;&gt; q;
+		cin &gt;&gt; N &gt;&gt; M;
+		
+		for (int i = 0 ; i &lt; N ; i++) {
+			int tmp;
+			cin &gt;&gt; tmp;
+			v.push_back(tmp);
+			if (i == M) { q.push({tmp, 1}); } // check
+			else { q.push({tmp, 0}); }
+		}
+		
+		// 중요도 순으로 오름차 정렬 
+		sort(v.begin(), v.end());
+		
+		int ans = 0;
+		while(true){
+			// 본인 순서 O 
+			if (v.back() == q.front().first) {
+				// 본인 순서 O 인덱스 O
+				if (q.front().second == 1) {
+					ans++;
+					break;
+				}
+				// 본인 순서 O 인덱스 X
+				else {
+					v.pop_back();
+					q.pop();
+					ans++;
+				}
+			}
+			// 본인 순서 X
+			else {
+				q.push({q.front().first, q.front().second});
+				q.pop();
+			}
+		}
+		
+		cout &lt;&lt; ans &lt;&lt; endl;
+	}
+	return 0;
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #소스코드 #1966 #문제풀이 #Queue #BOJ #백준 #Pair #프린터큐 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

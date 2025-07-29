@@ -4,6 +4,7 @@ import ListItem from "./ListItem"
 
 export const dynamic = 'force-dynamic'
 
+// forum db post collection 으로 부터 
 
 export default async function List() {
 

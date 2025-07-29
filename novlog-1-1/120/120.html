@@ -1,0 +1,106 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] #5 참조자와 함수 - 참조자가 필요한 이유 Call-By-Value & Call-By-Reference</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] #5 참조자와 함수 - 참조자가 필요한 이유 Call-By-Value & Call-By-Reference</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-08-21 14:40:52</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[목차]</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"># 참조자가 필요한 이유</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">*개인적인 C++ 공부 내용을 정리하는 용도로 작성된 글 이기에 잘못된 내용이 있을 수 있습니다.</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"># 참조자가 필요한 이유</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞선 <a href="https://novlog.tistory.com/119" target="_blank" rel="noopener">#4 참조자(Reference) - 참조자는 변수의 별칭이다.</a> 포스팅에서 참조자에 대해서 간략하게 알아 보았다. 하지만 여전히 <span style="background-color: #333333; color: #ffffff;">왜 굳이 메모리 공간에 참조자라는 것을 사용해 별칭을 하나 더 지어 주어야 하는 지</span> 찝찝한 기분이 사라지지 않을 것이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">사실 앞의 코드들은 단순히 예시일 뿐 이고, 참조자는 함수에서 큰 역할을 차지한다. <span style="background-color: #333333; color: #ffffff;">참조자를 사용하면 Call-By-Value 형태의 함수가 아닌, Call-By-Reference 형태의 함수를 선언할 수 있다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를 들어 <span style="background-color: #f6e199;">변수 X 와 변수 B 의 값을 바꾸는 temp 함수</span>를 아래와 같이 선언 했다고 가정해 보자.</span></p>
+<pre id="code_1629523579641" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// Call-By-Value
+int ChangeValue(int x, int y)
+{
+	int tmp = x;
+	x = y;
+	y = tmp;
+}
+
+int main(){
+	int x = 10;
+	int y = 20;
+	cout &lt;&lt; "BEFORE " &lt;&lt; "X : " &lt;&lt; x &lt;&lt; " Y : " &lt;&lt; y &lt;&lt; endl; 
+	ChangeValue(x, y);
+	cout &lt;&lt; "AFTER " &lt;&lt; "X : " &lt;&lt; x &lt;&lt; " Y : " &lt;&lt; y;
+	return 0;
+}</code></pre>
+<pre id="code_1629523597863" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[실행결과]
+BEFORE X : 10 Y : 20
+AFTER X : 10 Y : 20</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">결과를 확인해 보니, <span style="background-color: #ffc1c8;">예상한 바와 다르게 X와 Y의 값이 바뀌지 않았다.</span> 그 이유는 <b>ChangeValue 함수가 Call-By-Value 형태로 선언된 함수이기 때문이다. </b><span style="background-color: #333333; color: #ffffff;">Call-By-Value 형태로 선언된 함수 내부에서는 함수 외부에 선언된 변수에 접근할 수 없다.</span> 따라서, <span style="background-color: #333333; color: #ffffff;">함수 외부에 선언된 변수에 접근하고 싶다면 Call-By-Reference 형태로 함수를 선언해야 한다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 어떻게 <span style="background-color: #333333; color: #ffffff;">Call-By-Reference 형태로 함수를 선언</span>할 수 있을까? 방법은 2가지 있다. <span style="background-color: #333333; color: #ffffff;">악명 높은 포인터를 사용하는 방식</span>과, <span style="background-color: #333333; color: #ffffff;">참조자를 사용하는 방식</span>이다.</span></p>
+<pre id="code_1629524064312" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Call-By-Reference With Pointer
+int ChangeValue1(int* x, int* y)
+{
+	int tmp = *x;
+	*x = *y;
+	*y = tmp;
+}
+
+// Call-By-Reference With Reference
+int ChangeValue2(int &amp;x, int &amp;y)
+{
+	int tmp = x;
+	x = y;
+	y = tmp;
+}
+
+int main(){
+	int x = 10;
+	int y = 20;
+	cout &lt;&lt; "BEFORE " &lt;&lt; "X : " &lt;&lt; x &lt;&lt; " Y : " &lt;&lt; y &lt;&lt; endl; 
+	ChangeValue1(&amp;x, &amp;y);
+	cout &lt;&lt; "AFTER[Pointer] " &lt;&lt; "X : " &lt;&lt; x &lt;&lt; " Y : " &lt;&lt; y &lt;&lt; endl;
+	ChangeValue2(x, y);
+	cout &lt;&lt; "AFTER[Reference] " &lt;&lt; "X : " &lt;&lt; x &lt;&lt; " Y : " &lt;&lt; y;
+	return 0;
+}</code></pre>
+<pre id="code_1629524520295" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[실행결과]
+BEFORE X : 10 Y : 20
+AFTER[Pointer] X : 20 Y : 10
+AFTER[Reference] X : 10 Y : 20</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">포인터를 이용한 ChangeValue1 함수나, 참조자를 이용한 ChangeValue2 함수 둘다 동작은 동일하다. 프로그래머가 더 선호하는 방식을 택하여 Call-By-Reference 형태 함수를 선언하면 된다</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #CallByValue #CallByReference #C++문법 #C++참조자 #C++& #C++참조자가필요한이유 #C++참조자사용이유 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

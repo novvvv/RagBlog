@@ -1,0 +1,70 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Linux] 특정 프로세스 포트번호 확인 후 Kill 방법 정리 (lsof, kill)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Linux] 특정 프로세스 포트번호 확인 후 Kill 방법 정리 (lsof, kill)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Etc/Linux</p>
+                                    <p class="date">2025-04-27 13:05:46</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">인텔리제이를 사용해 스프링부트 프로젝트를 여러 개 실습하다 보니</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">프로세스 포트를 제대로 끊어주지 않아 포트가 충돌하는 오류가 빈번하게 발생했다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">매 번 찾아보는것도 번거로워서 그냥 블로그에 따로 정리해 두고자 한다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1745726001123" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>lsof -i :8080</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Terminal로 <span style="background-color: #333333; color: #dddddd;">lsof 명령어</span>를 사용해 <b>특정 포트번호를 점유하고 있는 프로세스 목록을 출력</b>한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">lsof는 list open files의 약자로 시스템에서 열려있는 파일에 대한 정보를 출력해 주는 리눅스 명령어다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">해당 포트를 점유중인 프로세스 아이디(PID)를 찾아 <span style="background-color: #333333; color: #dddddd;">kill 명령어</span>를 사용해 강제로 종료한다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1745726435215" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>kill -9 66111</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

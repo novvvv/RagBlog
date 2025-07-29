@@ -1,0 +1,92 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity] SceneManager 유니티 씬(Scene) 전환 제어</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity] SceneManager 유니티 씬(Scene) 전환 제어</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-08-04 21:19:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 유니티 공부 내용을 기록한 포스팅 이기에 잘못된 내용이 있을 수 있으며 지속적으로 수정해 나갈 예정입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #ffc1c8;">*다음 글은 아직 미완성입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">[목차]</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">#1 SceneManager</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">#2 BuildSettings</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">#3 LoadScene</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 SceneManager</span></h2>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">SceneManager 클래스</span>를 사용해 유니티에서 <span style="background-color: #333333; color: #ffffff;">scene 전환을 제어</span>할 수 있다. <span style="background-color: #333333; color: #ffffff;">scene 전환 제어 방식</span>은 <span style="background-color: #333333; color: #ffffff;">동기화 방식</span>과 <span style="background-color: #333333; color: #ffffff;">비동기화 방식</span>으로 나뉘는데, <span style="background-color: #333333; color: #ffffff;">동기화 방식은</span><b><span style="color: #006dd7;"> 씬을 호출하는 행동 이외에 다른 작업을 수행하지 않고</span></b> , <span style="background-color: #333333; color: #ffffff;">비동기화 방식은</span><b><span style="color: #006dd7;"> 씬을 호출하는 동시에 진행중인 작업을 실행한 뒤 호출이 완료되면 씬을 불러온다.</span> <span style="color: #006dd7;">비동기화 방식의 대표적인 예시로 로딩화면이 있다.</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">또한 씬을 불러오는 모드를 설정할 수 있는데, <span style="background-color: #333333; color: #ffffff;">Single 모드와 Addictive 모드</span>로 구분한다. <span style="background-color: #333333; color: #ffffff;">Single 모드</span>는 <b><span style="color: #006dd7;">현재 씬을 종료한 뒤 새로운 씬을 로드하는 방식</span></b>이고 , <span style="background-color: #333333; color: #ffffff;">Addictive 모드</span>는 <b><span style="color: #006dd7;">현재 씬 위에 추가적인 씬을 덮어 씌우는 방식</span></b>이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">우선 SceneManager를 사용하기 전에 다음 namespace 를 상단에 선언해 주어야 유니티에서 제공하는 씬 전환 기능을 사용할 수 있다.</span></p>
+<pre id="code_1628077496367" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>using UnityEngine;
+using UnityEngine.SceneManagement; //scene 이동 시 사용</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 BuildSettings</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">일단 서로 전환 하고자 하는 scene을 생성한 뒤 , BuildSettings에 scene을 추가해 주어야 한다. 유니티 엔진 우측 상단의 <span style="background-color: #333333; color: #ffffff;">[File] &gt; [Build Settings...]</span> 를 클릭 하거나 단축키 <span style="background-color: #333333; color: #ffffff;">[Ctrl + Shfit + B]</span> 를 눌러 Build Setting 옵션을 켜준다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="323" data-origin-height="392" width="301" height="366" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="323" data-origin-height="392" width="301" height="366" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 Projects 창에 존재하는 미리 제작해 둔 scene들을 Build Settings 의 Scenes In Build로, 드래그 앤 드랍 하여 추가 해준다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="630" data-origin-height="600" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="630" data-origin-height="600" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 LoadScene</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">SceneManager 클래스의 LoadScene("씬이름")</span> 을 사용해 <b><span style="color: #006dd7;">씬을 동기적으로 호출</span></b>할 수 있다. 괄호 안에는 <b><span style="color: #006dd7;">불러올 씬의 이름</span></b>을 적거나,<b><span style="color: #006dd7;"> BuildIndex</span></b>를 넣어 주면 되는데, BuildIndex는 앞서 설정한 Build Settings의 Index값을 의미한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">간단하게 [Main] scene의 Button을 클릭하면 [Play] scene으로 전환하는 코드를 작성해 보았다.</span></p>
+<pre id="code_1628079124667" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement; 
+
+public class Main : MonoBehaviour
+{
+    public void PlayBtn()
+    {
+        SceneManager.LoadScene("Play");
+    }
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #유니티 #유니티씬전환 #유니티맵이동 #유니티씬이동 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

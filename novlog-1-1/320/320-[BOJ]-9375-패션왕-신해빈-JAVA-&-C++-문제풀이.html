@@ -1,0 +1,144 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 9375 패션왕 신해빈 JAVA & C++ 문제풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 9375 패션왕 신해빈 JAVA & C++ 문제풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2024-08-26 13:14:42</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/9375" target="_blank" rel="noopener&nbsp;noreferrer">https://www.acmicpc.net/problem/9375</a></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<h3 style="text-align: center;" data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">#풀이</span></h3>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* Map 자료구조와 조합론을 사용해 풀이하였다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">각 테스트 케이스에서 n개의 의상 이름과 의상 종류가 공백으로 구분되어 주어진다.&nbsp;&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 때 같은 종류의 의상은 하나만 입을 수 있으며, 같은 이름을 가진 의상은 존재하지 않는다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉 다음과 같이 테스트 케이스가 주어졌다고 가정 시 </span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">hat headgear</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">sunglasses eyewear</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">turban headgear</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">의상 종류를 기준으로 케이스를 분류하면 다음과 같다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>{headgear : hat, turban} , {eyewear : sunglasses}</b></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 주어진 의상을 가지고 구성할 수 있는 옷의 조합을 구하면 된다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 핵심 조건은 다음과 같다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">1. 한 번 입었던 옷들의 조합은 다시 입지 않는다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">-&gt;&nbsp; 동일한 종류의 의상은 한 번만 선택 가능하다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">2. 알몸이 아닌 상태</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">-&gt; 의상을 아무것도 고르지 않은 조합은 불가능하다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;"><b>{headgear : hat, turban} , {eyewear : sunglasses}</b> 옷의 조합을 조합론으로 풀어보면</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;"><b>3C1 * 2C1 - 1</b> 이 된다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">여기서 2C1 {hat, turban} * 1C1 {sunglasses} 이 아닌 이유는 <span style="background-color: #c0d1e7;">해당 종류의 옷을 고르지 않은 상태를 포함</span>시켜야 하기 때문이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">따라서 <span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;"><span>&nbsp;</span>2C1 {hat, truban} * 1C1 {sunglasses}<span>&nbsp;조합이 아니라 </span></span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;"><span><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">3C1 {hat, truban, Null} * 2C1 {sunglasses, Null} 이 되어야 한다.</span></span></span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">마지막에 1을 제외하는 경우는 문제에서 제시한 조건인 "2. 알몸이 아닌 상태" 를 제외하기 위함이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<h3 style="text-align: center;" data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">#Java</span></b></h3>
+<pre id="code_1724643034860" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int testCase = Integer.parseInt(br.readLine());
+        for (int i = 0; i &lt; testCase; i++) {
+
+            Map&lt;String, Integer&gt; clothMap = new HashMap&lt;&gt;();
+            int res = 1;
+            int n = Integer.parseInt(br.readLine());
+            for (int j = 0; j &lt; n; j++) {
+
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                st.nextToken(); // hat headgear -&gt; 앞의 의상 이름 (hat) 정보는 필요 없으니 버린다.
+                String clothType = st.nextToken();
+                clothMap.put(clothType, clothMap.getOrDefault(clothType, 0) + 1);
+
+            }
+
+            // 옷장에 존재하는 의상으로 만들 수 있는 모든 조합의 수
+            for (String string : clothMap.keySet()) {
+                res *= clothMap.get(string) + 1;
+            }
+
+            // 아무것도 입지 않은 조합을 제외
+            System.out.println(res - 1);
+        }
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 style="text-align: center;" data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#C++</span></b></h3>
+<pre id="code_1724645602308" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;unordered_map&gt;
+using namespace std;
+#include &lt;iostream&gt;
+
+int main() {
+
+    int testCase;
+    cin &gt;&gt; testCase;
+    for (int i = 0; i &lt; testCase; i++) {
+        int n;
+        cin &gt;&gt; n;
+        unordered_map&lt;string, int&gt; clothMap;
+        string clothName, clothType;
+        for (int j = 0; j &lt; n; j++) {
+            cin &gt;&gt; clothName &gt;&gt; clothType;
+            clothMap[clothType]++;
+        }
+
+        int res = 1;
+        for (const auto&amp; pair : clothMap) {
+            res *= pair.second + 1;
+        }
+        cout &lt;&lt; res - 1 &lt;&lt; endl;
+    }
+
+    return 0;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

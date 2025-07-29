@@ -1,0 +1,155 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[GitHub] #2 깃허브에 파일 올리고 내려받기 (git push / git pull)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[GitHub] #2 깃허브에 파일 올리고 내려받기 (git push / git pull)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-07-30 17:54:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fxl8jt%2FbtraNIWVOkT%2FrSy39orxCCk7yF0E5nKURk%2Fimg.jpg" width="299" data-origin-width="800" data-origin-height="450" data-filename="github.jpg" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.jpg" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fxl8jt%2FbtraNIWVOkT%2FrSy39orxCCk7yF0E5nKURk%2Fimg.jpg" width="299" data-origin-width="800" data-origin-height="450" data-filename="github.jpg" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>* 다음 포스팅은 깃허브(GitHub)의 사용방법에 대하여 정리한 것으로, 개인적인 공부 기록용으로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</b></span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>* Git 관련 내용에 대한 이해가 부족하신 분은 Git 카테고리의 글을 먼저 읽고 GitHub 포스팅을 읽어 주세요.</b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #ffffff; font-family: 'Nanum Gothic'; background-color: #333333;">[목차]</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#1 깃허브에 파일 올리기 : git push</b></span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- 1.1 깃허브에서 직접 커밋하기</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>#2 깃허브에서 파일 내려받기 : git pull</b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>[목표]</b></span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- 깃허브(GitHub) 원격 저장소에 파일을 올리고, 내려 받는 방법에 대해 이해한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 깃허브에 파일 올리기 : git push</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #006dd7;">지역 저장소 (내 컴퓨터) 의 파일을 원격 저장소 (Git Hub) 에 올리는 것</span></b>을 <span style="background-color: #333333; color: #ffffff;">"푸시(Push)"</span> 라고 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 명령을 CLI 창에 입력해 보자.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627634018204" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git push -u origin master</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #006dd7;">지역 저장소의 브랜치 (origin) 을 원격 저장소의 브랜치 (master) 로 푸시 하라는 의미</span></b>이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">'-u' 옵션</span>은 <b><span style="color: #006dd7;">지역 저장소의 브랜치를 원격 저장소의 브랜치와 연결하기 위한 것으로 처음 한 번만 사용</span></b>하면 된다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="969" data-origin-height="239" data-filename="1.png" width="718" height="177" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="969" data-origin-height="239" data-filename="1.png" width="718" height="177" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">명령을 실행하면 , 로그인 하라는 창이 뜰텐데 로그인하면 된다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="618" data-origin-height="538" data-filename="2.png" width="459" height="400" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="618" data-origin-height="538" data-filename="2.png" width="459" height="400" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">깃허브 저장소로 가보면 , GitHub #1 에서 실습했던, test1.txt 파일이 성공적으로 커밋 되었음을 확인 가능하다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1280" data-origin-height="146" data-filename="3.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1280" data-origin-height="146" data-filename="3.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">한 번이라도 저장소를 연결 했다면 다음 부터는 git push 명령 만으로 깃허브 저장소에 커밋이 가능하다. test1.txt 파일을 적당히 수정해 주고, 커밋한 뒤 푸시 해보자.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627634385900" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ vim test1.txt // test1.txt 파일 수정
+$ git commit -am "New Message!" // add &amp; commit
+$ git push // 깃허브 저장소로 push</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="710" data-origin-height="335" data-filename="4.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="710" data-origin-height="335" data-filename="4.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">수정한 내용과 커밋 메시지가 성공적으로 깃허브에 업로드 되었다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="1280" data-origin-height="274" data-filename="5.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1280" data-origin-height="274" data-filename="5.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #000000;">-1.1 깃허브에서 직접 커밋하기</span></span></h3>
+<p><span style="color: #000000;">깃허브 원격 저장소에서 직접 커밋 하는 것 또한 물론 가능하다. 저장소로 들어가서 우측 상단의 <span style="background-color: #333333; color: #ffffff;">[Add file]</span>을 클릭하고, <span style="background-color: #333333; color: #ffffff;">[Create new file]</span>을 클릭한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1280" data-origin-height="332" data-filename="6.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="1280" data-origin-height="332" data-filename="6.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">커밋 메시지는 자동으로 작성 되는데 , 원한다면 수정도 가능하다. <span style="background-color: #333333; color: #ffffff;">[Commit new file]</span>을 클릭해 준다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1280" data-origin-height="362" data-filename="7.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="1280" data-origin-height="362" data-filename="7.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">저장소를 새로고침 해보면, 깃허브 저장소에서 직접 커밋한 test2.txt 파일이 올라가 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="1280" data-origin-height="194" data-filename="8.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="1280" data-origin-height="194" data-filename="8.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 깃허브에서 파일 내려받기 : git pull</span></h2>
+<p><span style="color: #000000;"><b><span style="color: #006dd7;">원격 저장소 (Git Hub)에 있는 코드를 지역 저장소 (내 컴퓨터)로 가져오는 과정</span></b>을 <span style="background-color: #333333; color: #ffffff;">"풀(Pull)"</span> 이라고 한다.</span><span style="color: #000000;">1.1에서 깃허브에서 직접 커밋한 test2.txt 파일은 내 컴퓨터에 존재하지 않을 것이다. 연습으로 test2.txt 파일을 풀(pull) 해보자.</span><span style="color: #000000;">다음 명령어를 차례로 입력해 보자.</span></p>
+<pre id="code_1627635008510" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git pull origin master // 원격 저장소에서 master 브랜치로 pull 한다.
+$ git log // 로그를 출력한다.</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">로그를 출력해 보니, text2.txt 파일이 지역 저장소로 성공적으로 가져왔음을 확인 가능하다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="798" data-origin-height="644" data-filename="9.png" width="714" height="576" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="798" data-origin-height="644" data-filename="9.png" width="714" height="576" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #깃 #깃허브 #깃허브사용법 #깃허브파일올리기 #깃허브파일내려받기 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

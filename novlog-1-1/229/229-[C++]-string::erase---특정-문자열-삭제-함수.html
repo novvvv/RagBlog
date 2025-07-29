@@ -1,0 +1,143 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] string::erase - 특정 문자열 삭제 함수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] string::erase - 특정 문자열 삭제 함수</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-06-05 01:07:43</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">[C++] string::erase</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="color: #781b33;"><u><b>잘못된 내용을 포함하고 있을 수 있습니다.</b></u></span></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">_contents</span></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> string::erase</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#2</span> example</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.1 sequnce _ 특정 길이 만큼의 문자열 제거</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.2 ch _ 특정 위치의 문자 제거</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.3 range _ 특정 범위를 지정해 문자열 제거</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.4 erase &amp; find _ 특정 문자를 탐색하여 제거</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1</span> string::erase</span></b></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&lt;string&gt;헤더에 정의된 erase함수는 문자열에서 특정한 문자열을 제거해주는 기능을 수행하는 함수이다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">erase 함수의 사용법은 3가지로 나뉜다.</span></p>
+<pre id="code_1654356334599" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>string&amp; erase(size_t pos = 0, size_t len = npos); // pos부터 len 길이만큼 문자열을 제거한다.
+iterator erase(const_iterator p); // p에 해당하는 문자를 제거한다.
+iterator erase(const_iterator first, const_iterator last); // (first, last] 길이의 문자열을 제거한다.</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 style="text-align: left;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#2</span> example</span></b></h2>
+<h3 style="text-align: left;" data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#2.1 sequnce _ 특정 길이 만큼의 문자열 제거</span></h3>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>첫 번째 파라미터</b>로 <b>제거할 문자열의 시작 위치</b>를, <b>두 번째 파라미터</b>로 <b>제거할 문자열의 길이</b>를 넣어 주어 삭제를 수행한다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "This&nbsp;is&nbsp;test&nbsp;sentence" 문자열에서 "This "를 삭제하는 코드이다.</span></p>
+<pre id="code_1654356732040" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+	string str = "This is test sentence";
+	// string&amp; erase(size_t pos = 0, size_t len = npos);
+	// pos부터 len길이 만큼의 문자를 제거한다.
+	// ... delete "This "
+	str.erase(0, 5);
+	cout &lt;&lt; str &lt;&lt; endl;
+
+	return 0;
+}</code></pre>
+<pre id="code_1654356770830" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행결과] test sentence</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#2.2 ch _ 특정 위치의 문자열 제거</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">iterator를 이용해 특정 위치의 문자를 제거한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">문자열이름.erase(문자열이름.begin() + (제거할 위치 - 1))</span> 형식으로 특정 문자를 삭제할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "This is test sentence" 문자열에서 세 번째 위치에 존재하는 "i" 문자를 삭제하는 예제이다.</span></p>
+<pre id="code_1654357618823" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+	string str = "This is test sentence";
+	// iterator erase(const_iterator p);
+	// p에 위치하는 문자를 제거한다.	
+	// ... delete "i"
+	str.erase(str.begin() + 2);
+	cout &lt;&lt; str &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1654358016317" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행결과] Ths is test sentence</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">#2.3 range _ 특정 범위를 지정해 문자열 제거</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">erase 함수에 <span style="color: #781b33;"><b>두 개의 파라미터 (first, last)</b></span> 를 보내어 <b>지정 범위의 문자열을 제거</b>할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>(first, last] 범위의 문자열을 삭제</b>하며, 이 때 <b>last는 삭제 범위에 포함되지 않는다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "This is text sentence"에서 "is text"(공백 포함) 문자열을 삭제하는 예제이다.</span></p>
+<pre id="code_1654357982735" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+	string str = "This is test sentence";
+	// iterator erase(const_iterator first, const_iterator last);
+	// (first, last] 에 해당하는 문자를 제거한다. 즉, last는 제거하지 않는다.
+	// ... delete "is test "
+	str.erase(str.begin() + 5, str.begin() + 13);
+	cout &lt;&lt; str &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1654358054870" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행결과] This sentence</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd;">#2.4 erase &amp; find _ 특정 문자를 탐색하여 제거</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #dddddd;">string::erase</span> 함수와 <span style="background-color: #333333; color: #dddddd;">string::find</span> 함수를 같이 사용하면 <span style="color: #781b33;"><b>원하는 문자를 탐색해 제거</b></span>할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #dddddd;">string::find</span> 함수는 <span style="color: #781b33;"><b>특정 문자열에서 원하는 문자를 찾을 때 사용하는 함수</b></span>로, <b>탐색에 성공 시 찾고자 하는 문자의 첫 번째 이터레이터를 반환</b>한다. <a href="https://novlog.tistory.com/136" target="_blank" rel="noopener">_about find function</a></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">다음은 "Hello, C++!" 문자열에서 ","(콤마)를 탐색해 제거한 예제이다.</span></p>
+<pre id="code_1654358546486" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+	// erase &amp; find function 
+	// Hello, C++! -&gt; Hello C++!
+	string str = "Hello, C++!";
+	str.erase(find(str.begin(), str.end(), ','));
+	cout &lt;&lt; str &lt;&lt; endl;	
+	return 0;
+}</code></pre>
+<pre id="code_1654358583574" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[실행결과] Hello C++!</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #STL #string #erase #문자열삭제 #특정문자열삭제 #문자열삭제함수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

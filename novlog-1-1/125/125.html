@@ -1,0 +1,85 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 10808 "알파벳 개수" 문제 풀이 & 소스 코드 with C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 10808 "알파벳 개수" 문제 풀이 & 소스 코드 with C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-08-24 16:47:17</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #781b33; color: #ffffff;">BRONZE2</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">자료구조</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 출처 :</span> <a href="https://www.acmicpc.net/problem/10808" target="_blank" rel="noopener">https://www.acmicpc.net/problem/10808</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1580" data-origin-height="836" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1580" data-origin-height="836" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알파벳의 개수를 저장할 alpha[26] 배열을 선언하고, 문자열을 입력받아 아스키코드를 이용해서 해당하는 알파벳의 개수를 1씩 추가시켜 주었다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">정말 간단한 문제라서 다른 좋은 방식으로 풀이할 수 있나 고민해 보았는데,,, 아직은 잘 모르겠다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">아스키코드에 대한 개념만 알고 있었다면 간단하게 풀이할 수 있는 문제였다.</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#CODE</span></h2>
+<pre id="code_1629791083076" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+int alpha[26];
+
+int main()
+{
+	string str;
+	cin &gt;&gt; str;
+	for (int i = 0; i &lt; str.length(); ++i) {
+		int temp = str[i] - 97;
+		alpha[temp] += 1;
+	}
+	
+	for (int i = 0; i &lt; 26; ++i) {
+		cout &lt;&lt; alpha[i] &lt;&lt; " ";
+	}
+	
+	return 0;
+}</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1117" data-origin-height="56" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1117" data-origin-height="56" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #해설 #알고리즘 #소스코드 #문제풀이 #BOJ #백준 #10808 #알파벳개수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

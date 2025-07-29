@@ -1,0 +1,112 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 15990 "1, 2, 3 더하기 5" 문제 풀이 & 소스 코드 With C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 15990 "1, 2, 3 더하기 5" 문제 풀이 & 소스 코드 With C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-07-31 14:04:24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SIVLER3</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">DP(다이나믹 프로그래밍)</span></span><br /><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/15990" target="_blank" rel="noopener">https://www.acmicpc.net/problem/15990</a></span></p>
+<figure id="og_1627707248932" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="15990번: 1, 2, 3 더하기 5" data-og-description="각 테스트 케이스마다, n을 1, 2, 3의 합으로 나타내는 방법의 수를 1,000,000,009로 나눈 나머지를 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/15990" data-og-url="https://www.acmicpc.net/problem/15990" data-og-image="https://scrap.kakaocdn.net/dn/iyPJV/hyK3LKbe0p/5UTJu8ruEQxiuh6GHVxsUk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/15990" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/15990">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/iyPJV/hyK3LKbe0p/5UTJu8ruEQxiuh6GHVxsUk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">15990번: 1, 2, 3 더하기 5</p>
+<p class="og-desc" data-ke-size="size16">각 테스트 케이스마다, n을 1, 2, 3의 합으로 나타내는 방법의 수를 1,000,000,009로 나눈 나머지를 출력한다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">전에 정리했던 <a href="https://novlog.tistory.com/92?category=880607" target="_blank" rel="noopener">9095</a> DP 문제에서 <span style="background-color: #333333; color: #ffffff;">"1,2,3이 연속해서 나오면 안된다."</span>는 조건이 추가되었다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">마찬가지로 마지막에 나오는 수</span>에 집중하면 된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">DP[n][i] = 숫자 n을 1, 2, 3의 합으로 나타내는 방법의 수 , i = 마지막 수 라고 가정</span>한다.<b><span style="color: #006dd7;"> ( 1 &lt;= i &lt;= 3)</span></b></span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #006dd7;">DP[n][1] = DP[n-1][2] + DP[n-1][3]</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #006dd7;">DP[n][2] = DP[n-2][1] + DP[n-2][3]</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #006dd7;">DP[n][3] = DP[n-3][1] + DP[n-3][2]</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">와 같이 나타낼 수 있다. 왜냐하면 만약 <b><span style="color: #006dd7;">마지막의 수가 1이라면, 앞에 나오는 수는 1이 될 수 었으니, 2 혹은 3이 나와야 하기 때문이다.</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서, <b><span style="color: #006dd7;">n을 1, 2, 3의 합으로 만들 수 있는 방법의 가짓수는</span></b> <span style="background-color: #333333; color: #ffffff;">DP[n][1] + DP[n][2] + DP[n][3]</span> 이다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#CODE</span></h2>
+<pre id="code_1627707672397" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+long long dp[1000001][4];
+const long long mod = 1000000009L;
+const int limit = 100000;
+
+int main(){
+	// DP SOLVE
+	for (int i=1; i&lt;=limit; i++){
+		if (i-1 &gt;= 0){
+			dp[i][1] = dp[i-1][2] + dp[i-1][3];
+			if (i == 1){
+				dp[i][1] = 1;
+			}
+		}
+		
+		if (i-2 &gt;= 0){
+			dp[i][2] = dp[i-2][1] + dp[i-2][3];
+			if (i == 2){
+					dp[i][2] = 1;
+				}
+		}
+		
+		if (i-3 &gt;= 0){
+			dp[i][3] = dp[i-3][1] + dp[i-3][2];
+			if (i == 3){
+				dp[i][3] = 1;
+			}
+		}
+		
+		dp[i][1] %= mod;
+		dp[i][2] %= mod;
+		dp[i][3] %= mod;
+	}
+	
+	//PRINT
+	int t;
+	cin &gt;&gt; t;
+	while(t--){
+		int n;
+		cin &gt;&gt; n;
+		cout &lt;&lt; (dp[n][1] + dp[n][2] + dp[n][3]) % mod &lt;&lt; "\n";
+	}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="1108" data-origin-height="54" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1108" data-origin-height="54" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #알고리즘 #소스코드 #문제풀이 #백준 #15990 #123더하기5 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

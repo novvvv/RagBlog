@@ -1,0 +1,89 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Android] #5 setContentView & findViewByID (XML 파일에서 뷰 불러오기)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Android] #5 setContentView & findViewByID (XML 파일에서 뷰 불러오기)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-07-16 18:34:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="188" data-origin-height="192" data-filename="그림1.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="188" data-origin-height="192" data-filename="그림1.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#ANDROID setContentView &amp; findViewByID</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">#setContentView</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">#findViewByID</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #f6e199;">*개인적인 안드로이드 공부 내용을 정리한 글 이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span>setContentView</span></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">안드로이드 스튜디오에서 처음 프로젝트를 생성하면, 기본적으로 activity_main.xml 레이아웃과 MainActivity.java 파일이 생성된다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">activity_main.xml 레이아웃</span>에서 <span style="background-color: #f6e199;">화면에 표시될 디자인을 구성</span>하고, <span style="background-color: #333333; color: #ffffff;">MainActivity.java 파일</span>에서는 <span style="background-color: #f6e199;">activity_main.xml 레이아웃을 세부적으로 구성하거나, 제어를 담당</span>한다. (MainActivity.java 에서도 디자인을 바꿀 수 도 있다.)</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데, MainActivity.java 파일의 초기 소스코드를 보면 다음과 같이 onCreate 함수가 작성되어 있다.</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="color: #000000;"><span style="background-color: #333333; color: #ffffff;">onCreate 함수</span>에 대해 자세하게 이해하기 위해서는 액티비티의 생명주기라는 것을 공부해야 하는데, 이번 포스팅의 주제는 이것이 아니니 추 후에 다루도록 하겠다. 그냥 <span style="background-color: #f6e199;">Activity가 처음 실행될때 가장 먼저 호출되는 메소드</span>라고 이해하고 넘어 가도록 하자.</span></span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><span style="color: #000000;">onCreate함수 안에 <span style="background-color: #333333; color: #ffffff;">setContentView() </span>메소드가 작성되어 있는데, 이 메소드는 <span style="background-color: #f6e199;">레이아웃 xml의 내용을 파싱하여 뷰를 생성 및 속성을 설정하는 역할을 담당</span>한다. 즉, setContentView() 메소드가 <span style="background-color: #f6e199;">MainActivity.java 파일과 activity_main.xml 레이아웃 파일을 연결</span>해 주는 역할을 하는 것이다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="432" data-origin-height="114" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="432" data-origin-height="114" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #000000;">setContentView() 메서드를 보면 괄호 안에 <span style="background-color: #333333; color: #ffffff;">R.layout.activity_main</span> 가 보인다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="930" data-origin-height="186" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="930" data-origin-height="186" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">R = res 폴더 , layout = res 폴더 안의 layout 폴더 , activity_main = layout 폴더 안의 activity_main.xml 파일을 의미</span>한다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">setContentView() <span style="background-color: #f6e199;">메소드의 인자로 리소스ID를 전달하여 레이아웃이 출력</span>되게 된다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데 어떻게 변수만으로 XML 파일을 가리킬 수 있는지 의문이 생길 수 있다. 그 이유는 안드로이드 스튜디오는 자동으로 리소스를 관리해 주는 기능을 갖고 있기에 가능한 것이다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span>findViewByID</span></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">setContentView() 메서드를 이용해 xml 파일을 연결하고 레이아웃을 출력하게 하는 것 까지 공부했는데, <span style="background-color: #ffc1c8;">한 가지 문제</span>가 있다. <span style="background-color: #ffc1c8;">activity_main.xml 레이아웃에서 프로그래머가 새롭게 생성한 뷰 (버튼, 텍스트 등..)는 초기 설정만 정의되어 있기에 영향을 줄 수 가 없다.&nbsp;</span></span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #f6e199;">새롭게 생성한 뷰에 영향을 주기 위해서는</span> activity_main.java 에서 <span style="background-color: #333333; color: #ffffff;">findViewByID 메소드</span>를 이용해야 한다.</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">우선, 각 뷰에 맞는 객체를 생성</span>해 준다. <span style="background-color: #333333; color: #ffffff;">다음으로 findViewByID 메서드를 이용해서 괄호 안에 R.id.객체id 를 적어준다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="695" data-origin-height="256" width="590" height="217" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="695" data-origin-height="256" width="590" height="217" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 button 객체를 이용해 원하는 함수를 정의한다 던가 디자인을 변경하는 등 사용자가 원하는 기능을 Button 뷰에 설정할 수 있다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #안드로이드 #onCreate #setContentView #findviewbyid #안드로이드스튜디오 #뷰연결 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] 쉼표의 여러가지 기능 _ 콤마 연산자 (Comma Operator) 와 분리자 (Seperator)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] 쉼표의 여러가지 기능 _ 콤마 연산자 (Comma Operator) 와 분리자 (Seperator)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-01-03 14:30:10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #ffffff;">* 개인적인 공부 기록용으로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">쉼표</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">-1 분리자 (Seperator)</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">-2 콤마 연산자 (Comma Operator)</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">-3 콤마 연산자의 우선순위</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">-4 사용예제</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C++에서의 쉼표(,)는 다양한 기능을 수행한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">-1 분리자 (Seperator)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째로 우리에게 가장 익숙한 <b><span style="color: #1a5490;">분리자(Seperator) 기능</span></b>이 있다.</span></p>
+<pre id="code_1641186698793" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int a , b;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">분리자는 말 그대로 변수의 선언을 구분해 준다. 예를 들어 위와 같이 변수의 선언부에 분리자를 사용하면 한줄에 변수 a와 b를 메모리 공간에 할당할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">-2 콤마 연산자 (Comma Operator)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 쉼표(,)는 <b><span style="color: #1a5490;">콤마 연산자 (Comma Operator) 기능</span></b>을 수행한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">콤마 연산자란 <b><span style="color: #1a5490;">두가지 표현식을 동시에 표현하도록 도와주는 연산자</span></b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">콤마 연산자는 첫 번째 표현식을 평가한 후 다음 표현식을 차례로 평가한다. 따라서 다음 코드를 실행시켜 보면 변수 a에는 20이 할당된다.</span></p>
+<pre id="code_1641186904120" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int a = (10 , 20);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">-3 콤마 연산자의 우선순위</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 콤마 연산자를 사용할 때 주의해야 할 점이 있다. 바로 <b><span style="color: #1a5490;">콤마 연산자는 우선순위가 가장 낮은 연산자</span></b>라는 것이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 다음 식과 같이 괄호를 지워버리면, 콤마 연산자보다 대입 연산자 (=) 의 연산자 우선순위가 더 높아서 컴파일러는 다음과 같이 해석한다.</span></p>
+<pre id="code_1641187119164" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int a = 10 , 20;</code></pre>
+<pre id="code_1641187134346" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>(int a = 10) , 20;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">-4 사용예제</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">콤마 연산자는 for 반복문에서 유용하게 사용된다. 다음과 같이 콤마 연산자를 이용하면 두개의 표현식 (x++ , y++)를 하나로 묶어줄 수 있다.</span></p>
+<pre id="code_1641187227172" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>for (int x = 0, y = 0 ; x &lt; 10 ; x++, y++) {
+	...
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드에서 앞의 콤마는 Sepertor(분리자) 이고, 뒤의 콤마는 Comma Operator(콤마 연산자) 이다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/제목 없음.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #콤마연산자 #분리자 #쉼표역할 #콤마역할 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

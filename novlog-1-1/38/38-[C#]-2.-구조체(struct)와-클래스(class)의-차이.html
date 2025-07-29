@@ -1,0 +1,166 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C#] 2. 구조체(struct)와 클래스(class)의 차이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C#] 2. 구조체(struct)와 클래스(class)의 차이</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C#</p>
+                                    <p class="date">2021-05-30 19:04:28</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="199" height="203" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="199" height="203" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #ffffff;">#2 구조체 vs 클래스</span></p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b>[학습목표]</b></span></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><span style="font-family: 'Nanum Gothic';">구조체와 클래스의 차이에 대한 이해</span></li>
+<li><span style="font-family: 'Nanum Gothic';">복사와 참조에 대한 개념 숙지</span></li>
+</ul>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b>[목차]</b></span></p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li><span style="font-family: 'Nanum Gothic';">구조체(struct) vs 클래스(class)</span></li>
+</ol>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 기록용으로 작성한 글이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">구조체(struct) vs 클래스(class)</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a href="https://novlog.tistory.com/37" target="_blank" rel="noopener">#1 객체지향의 이해와 클래스</a> 포스팅을 보셨다면, 다음과 같은 의문이 들 수 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">구조체(struct)와 클래스(class)의 차이는 무엇인가?</span> 구조체도 클래스와 동일하게 구조체의 이름으로 선언하고 (.)연산자를 이용해 값 또는 함수에 접근하기 때문에 이런 궁금증이 생길 수 있습니다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드를 보고 차이점에 대해 이해해 보도록 합시다.</span></p>
+<pre id="code_1622368187108" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>    class Knight
+    {
+        public int hp;
+        public int atk;
+    }
+
+    struct Mage
+    {
+        public int hp;
+        public int atk;
+    }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">hp, atk 멤버를 갖고 있는 Knight 클래스와 Mage 구조체를 선언합니다. </span></p>
+<pre id="code_1622368284752" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>        Mage mage = new Mage();
+        mage.hp = 50;
+        mage.atk = 20;
+
+        Knight knight = new Knight();
+        knight.hp = 100;
+        knight.atk = 10;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">mage 객체와 kngiht 객체를 생성해 준 뒤, hp와 atk 값을 초기화 해 줍니다. <b>*단 mage 구조체는 new Mage()를 생략해도 상관 없습니다.</b></span></p>
+<pre id="code_1622368346209" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>        static void HealMage(Mage mage)
+        {
+            mage.hp += 10;
+        }
+
+        static void HealKnight(Knight knight)
+        {
+            knight.hp += 10;
+        }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 힐을 수행하는 함수를 정의해 줍니다. HealMage 함수는 mage(구조체)를 파라미터로 받으며, HealKnight 함수는 knight(클래스)를 파라미터로 받습니다. 기능은 hp값을 10을 더해 주는 것으로 동일합니다.</span></p>
+<pre id="code_1622368437849" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>            Mage mage = new Mage();
+            mage.hp = 50;
+            mage.atk = 20;
+            HealMage(mage);
+
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.atk = 10;
+            HealKnight(knight);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그리고, mage에는 HealMage함수를 knight에는 HealKnight함수를 적용해 줍니다. 이제 Console.WriteLine() 함수로 mage와 kngiht의 체력(hp)를 확인해 보도록 합시다.</span></p>
+<pre id="code_1622368526806" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>            Console.WriteLine(mage.hp);
+            Console.WriteLine(knight.hp);</code></pre>
+<pre id="code_1622368548922" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>[실행결과]
+50
+110</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">실행결과를 보시면 knight의 체력은 100 -&gt; 110으로 변경되어 정상적으로 HealKnight함수가 적용된 반면, mage의 체력은 50 -&gt; 50 으로 HealMage함수가 정상적으로 적용되지 않았습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이런 차이가 발생하는 이유는 <span style="background-color: #333333; color: #ffffff;">클래스(class) 즉, kngiht는 참조방식으로 동작</span>하는 반면 , <span style="background-color: #333333; color: #ffffff;">구조체(struct) 즉, mage는 복사방식으로 동작</span>하기 때문입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">kngiht는 HealKngiht()함수에 본체를 그대로 보내주었지만, mage는 HealMage()함수에 자신의 복사체를 보내줬기에, 본체의 hp에는 영향을 미치지 못하는 것이지요. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">이것이 바로 구조체와 클래스의 차이입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약, <span style="background-color: #333333; color: #ffffff;">구조체로 정의한 mage의 체력을 직접 참조하고 싶다면 파라미터 앞에 ref 키워드를 붙여주면 됩니다.</span></span></p>
+<pre id="code_1622368806995" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>        static void HealMage(ref Mage mage)
+        {
+            mage.hp += 10;
+        }
+        
+        HealMage(ref mage);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래는 전체 코드입니다.</span></p>
+<pre id="code_1622368851479" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System;
+
+namespace TextRpg
+{
+    class Knight
+    {
+        public int hp;
+        public int atk;
+    }
+
+    struct Mage
+    {
+        public int hp;
+        public int atk;
+    }
+
+    class Program
+    {
+        static void HealMage(Mage mage)
+        {
+            mage.hp += 10;
+        }
+
+        static void HealKnight(Knight knight)
+        {
+            knight.hp += 10;
+        }
+
+        static void Main(string[] args)
+        {
+            Mage mage = new Mage();
+            mage.hp = 50;
+            mage.atk = 20;
+            HealMage(mage);
+
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.atk = 10;
+            HealKnight(knight);
+
+            Console.WriteLine(mage.hp);
+            Console.WriteLine(knight.hp);
+        }
+    }
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Ref #CLASS #c# #struct #참조방식 #복사방식 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

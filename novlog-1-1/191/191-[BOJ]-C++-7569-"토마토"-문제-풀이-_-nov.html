@@ -1,0 +1,198 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 7569 "토마토" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 7569 "토마토" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-03-24 12:59:23</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #f6e199;">GOLD5</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제유형 : <span style="background-color: #333333; color: #ffffff;">BFS</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/7569">7569번: 토마토 (acmicpc.net)</a></span></p>
+<figure id="og_1648093645825" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="7569번: 토마토" data-og-description="첫 줄에는 상자의 크기를 나타내는 두 정수 M,N과 쌓아올려지는 상자의 수를 나타내는 H가 주어진다. M은 상자의 가로 칸의 수, N은 상자의 세로 칸의 수를 나타낸다. 단, 2 &le; M &le; 100, 2 &le; N &le; 100, " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/7569" data-og-url="https://www.acmicpc.net/problem/7569" data-og-image="https://scrap.kakaocdn.net/dn/PcrQU/hyNOkBDMbi/npc4f46vkKg3erqZ41ywhk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/7569" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/7569">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/PcrQU/hyNOkBDMbi/npc4f46vkKg3erqZ41ywhk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">7569번: 토마토</p>
+<p class="og-desc" data-ke-size="size16">첫 줄에는 상자의 크기를 나타내는 두 정수 M,N과 쌓아올려지는 상자의 수를 나타내는 H가 주어진다. M은 상자의 가로 칸의 수, N은 상자의 세로 칸의 수를 나타낸다. 단, 2 &le; M &le; 100, 2 &le; N &le; 100,</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a href="https://www.acmicpc.net/problem/7576" target="_blank" rel="noopener">BOJ7576: 토마토</a> 문제와 거의 같은 문제이다. 다른 점 이라면 단지 Z축 좌표가 하나 추가 되었다는 것 뿐이다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000;"><span style="background-color: #dddddd;">int board[103][103][103]</span> : 토마토의 정보를 저장해 줄 3차원 배열이다.</span><span style="color: #000000;"><span style="background-color: #dddddd;">bool isVisited[103][103][103]</span> : 방문 여부를 저장해 줄 3차원 배열이다.</span><span style="color: #000000;"><span style="background-color: #dddddd;">int dist[103][103][103]</span> : 거리의 정보를 저장해 줄 배열이다. dist 배열을 이용해 최소 일수를 계산한다.</span><span style="color: #000000;"><span style="background-color: #dddddd;">int checked[103][103][103]</span> : 토마토가 모두 익지 못하는 상황을 체크하기 위한 배열이다.&nbsp;</span><span style="color: #000000;"><span style="background-color: #dddddd;">int dx[6], dy[6], dz[6</span>] : x, y, z 축으로 이동하는 것을 도와주는 좌표 배열이다.</span></p>
+<pre id="code_1648094069719" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#define Z first
+#define X second.first
+#define Y second.second
+int board[103][103][103];
+bool isVisited[103][103][103];
+int dist[103][103][103];
+int checked[103][103][103];
+int dx[6] = {0, 0, 1, 0, 0, -1};
+int dy[6] = {0, -1, 0, 0, 1, 0};
+int dz[6] = {1, 0, 0, -1, 0, 0};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000;">BFS 알고리즘을 위해 큐를 하나 선언했는데, 평면이 아닌 3차원이기에,&nbsp; 페어에 페어를 중첩시키는 방향으로 문제를 풀이했다. 혹은 STL의 튜플(tuple)을 이용해도 된다.&nbsp;</span></p>
+<pre id="code_1648094057991" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int m, n, h;
+	cin &gt;&gt; m &gt;&gt; n &gt;&gt; h;
+	queue&lt;pair&lt;int, pair&lt;int, int&gt;&gt;&gt; Q;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">for 3중첩을 이용해 배열에 정보를 입력받는다.</span></p>
+<pre id="code_1648094129693" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	for(int k = 0; k &lt; h; k++){
+		for(int i = 0; i &lt; n; i++){
+			for(int j = 0; j &lt; m; j++){
+				cin &gt;&gt; board[k][i][j];
+				if(board[k][i][j] == 1) {
+					isVisited[k][i][j] = 1;
+					Q.push({k, {i, j}});
+				}
+				if(board[k][i][j] == 0) {
+					checked[k][i][j] = -1;
+				}
+			}
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">BFS알고리즘을 수행한다.</span></p>
+<pre id="code_1648094153141" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	while(!Q.empty()){
+		auto cur = Q.front();
+		Q.pop();
+		for(int dir = 0; dir &lt; 6; dir++){
+			int nx = cur.X + dx[dir];
+			int ny = cur.Y + dy[dir];
+			int nz = cur.Z + dz[dir];
+			if(nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= m || nz &lt; 0 || nz &gt;= h) continue;
+			if(isVisited[nz][nx][ny] || board[nz][nx][ny] != 0) continue;
+			dist[nz][nx][ny] = dist[cur.Z][cur.X][cur.Y] + 1;
+			isVisited[nz][nx][ny] = 1;
+			checked[nz][nx][ny] = 0;
+			Q.push({nz, {nx, ny}});
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 day 변수에 거리값을 저장한 후 출력하면 된다.</span></p>
+<pre id="code_1648094184537" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int day = 0;
+	for(int k = 0; k &lt; h; k++){
+		for(int i = 0; i &lt; n; i++){
+			for(int j = 0; j &lt; m; j++){
+				if(checked[k][i][j] == -1) {
+					cout &lt;&lt; -1 &lt;&lt; '\n';
+					return 0;
+				}		
+				day = max(day, dist[k][i][j]);
+			}
+		}
+	}
+
+	cout &lt;&lt; day &lt;&lt; '\n';</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';"><span style="color: #781b33;">#</span>CODE</span></b></h2>
+<pre id="code_1648094312521" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define Z first
+#define X second.first
+#define Y second.second
+int board[103][103][103];
+bool isVisited[103][103][103];
+int dist[103][103][103];
+int checked[103][103][103];
+int dx[6] = {0, 0, 1, 0, 0, -1};
+int dy[6] = {0, -1, 0, 0, 1, 0};
+int dz[6] = {1, 0, 0, -1, 0, 0};
+
+int main(int argc, char* argv[]) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int m, n, h;
+	cin &gt;&gt; m &gt;&gt; n &gt;&gt; h;
+	queue&lt;pair&lt;int, pair&lt;int, int&gt;&gt;&gt; Q;
+	for(int k = 0; k &lt; h; k++){
+		for(int i = 0; i &lt; n; i++){
+			for(int j = 0; j &lt; m; j++){
+				cin &gt;&gt; board[k][i][j];
+				if(board[k][i][j] == 1) {
+					isVisited[k][i][j] = 1;
+					Q.push({k, {i, j}});
+				}
+				if(board[k][i][j] == 0) {
+					checked[k][i][j] = -1;
+				}
+			}
+		}
+	}
+
+	while(!Q.empty()){
+		auto cur = Q.front();
+		Q.pop();
+		for(int dir = 0; dir &lt; 6; dir++){
+			int nx = cur.X + dx[dir];
+			int ny = cur.Y + dy[dir];
+			int nz = cur.Z + dz[dir];
+			if(nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= m || nz &lt; 0 || nz &gt;= h) continue;
+			if(isVisited[nz][nx][ny] || board[nz][nx][ny] != 0) continue;
+			dist[nz][nx][ny] = dist[cur.Z][cur.X][cur.Y] + 1;
+			isVisited[nz][nx][ny] = 1;
+			checked[nz][nx][ny] = 0;
+			Q.push({nz, {nx, ny}});
+		}
+	}
+	
+	int day = 0;
+	for(int k = 0; k &lt; h; k++){
+		for(int i = 0; i &lt; n; i++){
+			for(int j = 0; j &lt; m; j++){
+				if(checked[k][i][j] == -1) {
+					cout &lt;&lt; -1 &lt;&lt; '\n';
+					return 0;
+				}		
+				day = max(day, dist[k][i][j]);
+			}
+		}
+	}
+
+	cout &lt;&lt; day &lt;&lt; '\n';
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #토마토 #C++ #알고리즘 #소스코드 #BOJ #백준 #7569 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

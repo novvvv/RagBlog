@@ -1,0 +1,107 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[PS] BOJ9935 문자열 폭발 JAVA 답안 & 풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[PS] BOJ9935 문자열 폭발 JAVA 답안 & 풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2024-07-31 19:31:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="position: absolute;" data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">접근1 문자열 탐색 후 폭발 문자열을 제거해 나가는 방식 </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">입력으로 주어진 문자열 <b>ex) mirkovC4nizCC44</b> 에서 폭발 <b>문자열 ex) C4</b> 이 탐색된다면 기존 문자열에서 폭발 문자열이 탐색되지 않을 때 까지 지속적으로 삭제해 나간다.</span></p>
+<div style="background-color: #1e1f22; color: #bcbec4;">
+<pre class="java" data-ke-language="java"><code>* 단순 문자열 탐색 O(N^2)
+* 1. 입력받은 문자열에서 폭발 문자열이 탐색 되는 지 확인
+* 2. 폭발 문자열이 존재한다하면 해당 문자열을 제거 후, 새로운 문자열 생성
+* -&gt; 문자열이 비어 있거나, 폭발 문자열이 존재하지 않을 때 까지 다음 동작을 반복.</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위와 같은 방식은 문자열 내부에서 폭발 문자열을 탐색하는 과정에서 for 문이 2번 중첩 되기에 <span style="background-color: #c0d1e7;">O(N^2)</span> 만큼 시간 복잡도가 소요되게 된다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 문제에서 제시한 문자열의 최대 길이는 1,000,000 이기에, O(N^2) 알고리즘으로 풀이 시 대략 1조번의 연산이 수행된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 해당 알고리즘으로 문제를 풀이하면 시간 초과가 발생한다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">접근2 STACK 자료구조를 사용한 방식</span>&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 시간 복잡도를 최소화 하기 위해 <span style="background-color: #c0d1e7;">STACK 자료구조</span>를 사용하여 문자열을 받는 즉시 처리하도록 로직을 변경했다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음과 같이 문자열을 입력받을 때 마다 폭발 문자열을 탐색하면 문자열의 길이 즉, <span style="background-color: #c0d1e7;">O(N)</span> 만에 문제를 풀이할 수 있다.</span></p>
+<p><figure class="imageblock alignLeft" width="337" height="439" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="337" height="439"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">로직은 다음과 같다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 <span style="background-color: #c0d1e7;">폭발 문자열 C4</span>의 <span style="background-color: #c0d1e7;">마지막 글자 4</span> 가 스택에 들어온다면 <span style="background-color: #c0d1e7;">해당 글자를 기준으로 폭발 문자열의 길이 만큼 새로운 스택에 추가</span>한다.</span></p>
+<p><figure class="imageblock alignLeft" width="372" height="347" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="372" height="347"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그 다음 cmpStk에 들어있는 값과 폭발 문자열을 비교하여, 동일하다면 그대로 제거해 주면 되고 동일하지 않다면 다시 기존 스택에 추가해 준다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 과정을 문자열의 길이 만큼 반복한 뒤 기존 스택의 내용을 거꾸로 출력해 주면 된다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java" target="_blank" rel="noopener&nbsp;noreferrer">https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java</a></span></p>
+<figure id="og_1722421765711" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="object" data-og-title="PS/BOJ/202408/BOJ9935.java at main &middot; novvvv/PS" data-og-description="알고리즘 문제 풀이 코드 모음. Contribute to novvvv/PS development by creating an account on GitHub." data-og-host="github.com" data-og-source-url="https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java" data-og-url="https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java" data-og-image="https://scrap.kakaocdn.net/dn/caN00g/hyWG2mNlT3/FZCxVjQZgk2iLo1U8KlQRk/img.png?width=1200&amp;height=600&amp;face=0_0_1200_600"><a href="https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java" target="_blank" rel="noopener" data-source-url="https://github.com/novvvv/PS/blob/main/BOJ/202408/BOJ9935.java">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/caN00g/hyWG2mNlT3/FZCxVjQZgk2iLo1U8KlQRk/img.png?width=1200&amp;height=600&amp;face=0_0_1200_600');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">PS/BOJ/202408/BOJ9935.java at main &middot; novvvv/PS</p>
+<p class="og-desc" data-ke-size="size16">알고리즘 문제 풀이 코드 모음. Contribute to novvvv/PS development by creating an account on GitHub.</p>
+<p class="og-host" data-ke-size="size16">github.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

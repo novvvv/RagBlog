@@ -1,0 +1,180 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[DataStructure] 연결 리스트 : Linked List 개념 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[DataStructure] 연결 리스트 : Linked List 개념 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Algorithm</p>
+                                    <p class="date">2022-08-14 19:20:37</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있습니다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 다음 포스팅은 Linked List (연결 리스트) 자료구조의 개념에 대한 내용을 포함하고 있으며 <span style="background-color: #dddddd;">실질적인 구현 및 STL list의 사용 방법에 대한 정보를 원하시는 분은 다음 포스팅을 참고</span>해 주세요.</span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">연관 포스팅</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&rarr; Linked List 구현 with C/C++ (미완성)</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><a style="color: #1a5490;" href="https://novlog.tistory.com/261" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; C++ STL List 사용 방법</span></a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">_Contents</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 연결 리스트란?</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 연결 리스트의 종류</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.1 단일 연결 리스트 (Singly Linked List)</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.2 이중 연결 리스트 (Doubly Linked LIst)</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.3 원형 연결 리스트 (Circular Linked List)</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 연결 리스트의 시간 복잡도</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.1 N번째 원소 탐색</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.2 원소 삽입</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.3 원소 삭제</span></b><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#4 배열 vs 연결 리스트</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 연결 리스트란?</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">연결 리스트 (Linked List)</span> 란 <span style="color: #1a5490;"><b>원소들 사이의 선후 관계가 일대일로 대응되는 선형 자료구조</b></span> 입니다. 즉, 원소를 저장할 때 다음 원소의 위치 정보를 포함 시키는 방식으로 구현되어 있습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">원소 5 10 15 20 을 배열 자료구조를 이용해 저장해 보도록 하겠습니다.&nbsp;</span></p>
+<pre id="code_1660468509907" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>int arr[5] = {5, 10, 15, 20};</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 다음과 같이 인덱스 0번부터 3번까지 원소가 메모리에 연속되게 저장됩니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번에는 연결 리스트 자료구조를 활용해 원소들을 저장해 보겠습니다. C++ STL 의 list 컨테이너를 사용했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">(앞서 미리 얘기했듯이, 이번 포스팅에서는 리스트 자료구조의 사용방법에 대한 내용을 포함하고 있지 않습니다.)</span></p>
+<pre id="code_1660468839899" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>list&lt;int&gt; myList {5, 10, 15, 20};</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">배열과 달리 메모리에 연속적으로 저장되지 않으며, 각 원소가 다음 원소에 대한 위치 정보를 포함하고 있습니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 연결 리스트의 종류</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">연결 리스트는 크게 3가지 종류로 구분할 수 있습니다.</span></p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.1 단일 연결 리스트 (Singly Linked List)</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">가장 기본적인 형태의 연결 리스트입니다. <span style="color: #1a5490;"><b>각 원소가 다음 원소의 주소의 정보를 포함하고 있는 연결 리스트</b></span> 입니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.2 이중 연결 리스트 (Doubly Linked List)</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>각 원소가 이전 원소의 주소 정보와 다음 원소의 주소 정보를 모두 들고 있는 형태의 연결 리스트</b></span> 입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단일 연결 리스트와 달리 각 원소 마다 메모리를 하나 씩 더 사용해야 한다는 단점이 있습니다. <u><b>C++ STL List 컨테이너는 이중 연결 리스트로 구현되어 있습니다.&nbsp;</b></u></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2.3 원형 연결 리스트 (Circular Linked List)</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>마지막 원소와 첫 번째 원소가 연결되어 있는 형태의 연결 리스트</b></span>입니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 연결 리스트의 시간 복잡도</span></b></h2>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.1 N번째 원소 탐색</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">연결 리스트에서 <span style="color: #1a5490;"><b>N번째 원소를 탐색</b></span>하기 위해선, <span style="color: #1a5490;"><b>O(N)</b></span>의 시간이 소요됩니다. O(1)에 바로 원소에 접근할 수 있는 배열과 달리 상당히 비효율 적 이라고 할 수 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">원리는 어찌보면 당연한데 {5, 10, 15, 20} 의 원소가 저장된 연결 리스트에서 원소 15를 탐색하기 위해선 첫 번째 원소인 5부터 순차적으로 탐색해 나가야 되기 때문입니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.2 원소 삽입</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">연결 리스트에서 <span style="color: #1a5490;"><b>원소를 추가</b></span>하는 연산은 <span style="color: #1a5490;"><b>O(1)</b></span>의 시간의 소요됩니다. 예를 들어 원소 10과 15 사이에 13 이라는 원소를 새로 추가해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">10이 가리키는 주소를 15의 주소에서 13의 주소로 변경하고 13이 가리키는 주소를 15로 변경하기만 하면 됩니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3.3 원소 삭제</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>원소 삭제 연산</b></span> 또한 <span style="color: #1a5490;"><b>O(1)</b></span>의 시간이 소요됩니다. 원소 13을 삭제하는 상황을 예시로 들어보면 원소 10이 가리키는 주소를 13에서 15로 변경해 주기만 하면 됩니다. 물론 연결 리스트를 실제로 구현할 시 원소 13은 가비지 값이 되기에 따로 처리해 주어야 합니다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 배열 vs 연결 리스트</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 배열과 연결 리스트를 비교해 보고 마치도록 하겠습니다.</span></p>
+<table style="border-collapse: collapse; width: 100%; height: 97px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr style="height: 17px;">
+<td style="width: 33.3333%; height: 17px; text-align: center;">&nbsp;</td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">Array</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">Linked List</span></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 33.3333%; height: 29px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">K 번째 원소 접근</span></td>
+<td style="width: 33.3333%; height: 29px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">O(1)</span></td>
+<td style="width: 33.3333%; height: 29px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">O(K)</span></td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">원소 삽입 &amp; 삭제</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">O(N)</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">O(1)</span></td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">메모리 배치 형태</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">연속</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">불연속 (노드 형태)</span></td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">Overhead</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">X</span></td>
+<td style="width: 33.3333%; height: 17px; text-align: center;"><span style="font-family: 'Nanum Gothic'; color: #000000;">O(N)</span></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">* Overhead (추가 필요 공간)</span> - 앞서 설명했듯이 연결 리스트는 각 원소가 다음 혹은 이전의 주소값을 포함하고 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <span style="color: #1a5490;"><b>32bit 컴퓨터의 경우엔 4Nbyte 64bit 컴퓨터의 경우엔 8Nbyte의 메모리 공간이 추가로 필요</b></span>합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">정리하자면 <span style="background-color: #333333; color: #dddddd;">배열</span>은 <span style="color: #1a5490;"><b>원소에 접근하는 데는 효율적이지만 원소 삽입 &amp; 삭제에 있어서는 비효율적</b></span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반대로 <span style="background-color: #333333; color: #dddddd;">연결 리스트</span>는 <span style="color: #1a5490;"><b>원소에 접근하는 데는 비효율적 이지만 원소 삽입 &amp; 삭제는 O(1)으로 효율적</b></span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>따라서 원소의 삽입과 삭제가 빈번하게 일어나는 경우에는 연결 리스트 사용을 고려</b></span>해 보는 것이 좋습니다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C++ #알고리즘 #LinkedList #연결리스트 #단일연결리스트 #이중연결리스트 #원형연결리스트 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

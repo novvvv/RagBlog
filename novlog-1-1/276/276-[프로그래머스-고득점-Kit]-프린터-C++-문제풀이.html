@@ -1,0 +1,160 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[프로그래머스 고득점 Kit] 프린터 C++ 문제풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[프로그래머스 고득점 Kit] 프린터 C++ 문제풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-09-27 23:10:23</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">분류 : <span style="background-color: #333333; color: #dddddd;">스택/큐</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #333333; color: #dddddd;">LEVEL2</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42587" target="_blank" rel="noopener">https://school.programmers.co.kr/learn/courses/30/lessons/42587</a></span></p>
+<figure id="og_1664285962717" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="프로그래머스" data-og-description="코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요." data-og-host="programmers.co.kr" data-og-source-url="https://school.programmers.co.kr/learn/courses/30/lessons/42587" data-og-url="https://programmers.co.kr/" data-og-image="https://scrap.kakaocdn.net/dn/zyC42/hyPVjP37FG/CrcYSNnlMkTDGNZ3rH0xKK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/L57Zb/hyPVqO96ht/SQbN8YSqN2zhBoqLwOzz6k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://school.programmers.co.kr/learn/courses/30/lessons/42587" target="_blank" rel="noopener" data-source-url="https://school.programmers.co.kr/learn/courses/30/lessons/42587">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/zyC42/hyPVjP37FG/CrcYSNnlMkTDGNZ3rH0xKK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/L57Zb/hyPVqO96ht/SQbN8YSqN2zhBoqLwOzz6k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">프로그래머스</p>
+<p class="og-desc" data-ke-size="size16">코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">queue 자료구조를 이용해 문제를 풀이하였습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 <b><span style="background-color: #dddddd;">priorities 벡터의 중요도 정보를 queue를 하나 선언하여 차례로 저장</span></b>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 같<b><span style="background-color: #dddddd;">은 중요도를 가진 원소의 정보를 구분</span></b>할 수 있어야 하기에 <span style="background-color: #333333; color: #dddddd;">pair</span>를 이용하여 <b><span style="background-color: #dddddd;">중요도와 인덱스를 같이 저장</span></b>했습니다.</span></p>
+<pre id="code_1664286282569" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    queue&lt;pair&lt;int, int&gt;&gt; printer;
+    for(int i = 0; i &lt; priorities.size(); ++i)
+        printer.push(make_pair(priorities[i], i));</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/그림01.jpg"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">queue의 원소를 pop하는 기준</span>은 다음과 같습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 현재 문서가 가장 높은 중요도를 가지고 있는 경우. 즉, 자기 자신의 차례인 케이스</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1.1 자기 자신의 차례이고, 그 문서가 location인 케이스 (사용자가 인쇄를 요청한 문서인 경우)</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1.2 자기 자신의 차례이지만, 그 문서가 location이 아닌 케이스 (사용자가 인쇄를 요청하지 않은 문서인 경우)</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 현재 문서가 가장 높은 중요도를 가지고 있지 않은 경우. 즉, 자기 자신의 차례가 아닌 케이스</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">저는 <b><span style="background-color: #dddddd;">현재 문서가 가장 높은 중요도를 가지고 있는 지 판별</span></b>하기 위한, <span style="background-color: #333333; color: #dddddd;">max_element</span> 변수를 하나 선언했습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">max_element 변수는 priorities vector에서 가장 높은 값으로 설정됩니다.</span></p>
+<pre id="code_1664286930824" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>int max_value = *max_element(priorities.begin(), priorities.end());</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/그림02.jpg"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그리고, 만약 max_element 크기의 중요도를 가진 문서가 queue에서 빠져 나오는 경우 해당 위치의 중요도를 0으로 바꾼 뒤 priorities vector 내부의 중요도의 최댓값을 다시 탐색하여 max_element 변수에 저장합니다.,</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/그림03.jpg"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위 과정을 코드로 표현하면 다음과 같습니다.</span></p>
+<pre id="code_1664287085313" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    while(!printer.empty()){
+        // 본인 순서 O
+        if(printer.front().first == max_value){
+            // 본인 순서 O, 인덱스 O
+            if(printer.front().second == location){
+                answer++;
+                break;
+            }
+            // 본인 순서 O,  인덱스 X
+            else{
+                priorities[printer.front().second] = 0;
+                max_value = *max_element(priorities.begin(), priorities.end());
+                printer.pop();
+                answer++;
+            }
+        }
+        
+        // 본인 순서 X
+        else{
+            printer.push(printer.front());
+            printer.pop();
+        }
+    }</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#CODE</span></b></h2>
+<pre id="code_1664287189290" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int solution(vector&lt;int&gt; priorities, int location) {
+    int answer = 0;
+    int max_value = *max_element(priorities.begin(), priorities.end());
+    queue&lt;pair&lt;int, int&gt;&gt; printer;
+    for(int i = 0; i &lt; priorities.size(); ++i)
+        printer.push(make_pair(priorities[i], i));
+    while(!printer.empty()){
+        // 본인 순서 O
+        if(printer.front().first == max_value){
+            // 본인 순서 O, 인덱스 O
+            if(printer.front().second == location){
+                answer++;
+                break;
+            }
+            // 본인 순서 O,  인덱스 X
+            else{
+                priorities[printer.front().second] = 0;
+                max_value = *max_element(priorities.begin(), priorities.end());
+                printer.pop();
+                answer++;
+            }
+        }
+        
+        // 본인 순서 X
+        else{
+            printer.push(printer.front());
+            printer.pop();
+        }
+    }
+    return answer;
+}</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #소스코드 #문제풀이 #큐 #프로그래머스 #올바른괄호 #고득점키트 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

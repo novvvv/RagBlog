@@ -1,0 +1,205 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity Function] 충돌 처리 Collision & Trigger 관련 함수/예제</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity Function] 충돌 처리 Collision & Trigger 관련 함수/예제</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-06-13 17:14:49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="201" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="201" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">[목차]</span></b></span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#1</b> 충돌 발생조건</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#2</b> Collision </span><span style="font-family: 'Nanum Gothic'; color: #000000;">- OnCollisionEnter(),&nbsp; <span style="color: #000000;">OnCollisionStay(),&nbsp; </span><span style="color: #000000;">OnCollisionExit()</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#3</b> Trigger </span><span style="font-family: 'Nanum Gothic'; color: #000000;">- OnTriggerEnter(), <span style="color: #000000;">OnTriggerStay(), </span><span style="color: #000000;">OnTriggerExit()</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;"><span style="color: #000000;">* 개인적인 공부 내용을 기록하기 위한 용도로 작성된 게시글 이기에, 잘못된 내용이 있을 수 있습니다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">#1 충돌 발생조건</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 충돌이 일어나기 위해서는, 두 오브젝트가 모두 Collider를 갖고 있어야 하며, 둘 중 하나 이상은 RigidBody 컴퍼넌트를 갖고 있어야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 두 개의 오브젝트 중 하나의 오브젝트만 움직인다면, 움직이는 오브젝트가 RigidBody 컴퍼넌트를 가지고 있어야 합니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #000000;">#2 Collision</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Collision</span>은 <span style="background-color: #dddddd;">실제로 물리적 충돌을 감지하여 충돌을 처리하는 클래스</span>입니다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 따라서 두 오브젝트 모두 RigidBody 컴퍼넌트의 <span style="background-color: #dddddd;">Is Kinematic</span> (체크 하면 외부 물리효과를 무시함.) 항목이 비활성화 되어 있어야만 합니다.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">[Collision 관련 함수]</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;"><b>OnCollisionEnter(Collision collision)</b></span> : 두 객체가 충돌 시 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b><span style="background-color: #dddddd;">OnCollisionStay(Collision collision)</span></b> : 두 객체가 충돌하는 동안 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b><span style="background-color: #dddddd;">OnCollisionExit(Collision collision</span></b>) : 두 객체가 충돌을 끝마치면 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #ffffff; font-family: 'Nanum Gothic'; background-color: #333333;">[OnCollisionEnter() 예제]</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 좌측의 검은색 공이 우측의 흰색 공과 충돌 시 흰색 공의 색깔을 검은색으로 변하는 예제 입니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="636" data-origin-height="424" width="464" height="309" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="636" data-origin-height="424" width="464" height="309" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic'; background-color: #dddddd;">검은색 공에 적용된 C# 스크립트 : BallController&nbsp;</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- 단순히 Input 함수들을 이용해 WASD 방향으로 이동을 수행하는 스크립트 입니다.</span></p>
+<pre id="code_1623570332117" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallController : MonoBehaviour
+{
+    [SerializeField]
+    private float _speed = 10.0f;
+
+    void Start()
+    {
+        //rigid = GetComponent&lt;Rigidbody&gt;();
+    }
+
+    void Update()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.back * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector3.left * _speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * _speed * Time.deltaTime);
+        }
+    }
+}</code></pre>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic'; background-color: #dddddd;">흰색 공에 적용된 C# 스크립트 : CollisionDetected</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- OnCollisionEnter() 함수를 이용해 , 충돌을 감지하여 충돌 시 공의 색상을 검은색으로 바꿔주는 기능을 수행합니다.</span></p>
+<pre id="code_1623570433566" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollisionDetected : MonoBehaviour
+{
+    MeshRenderer mesh;
+    Material mat;
+
+    void Start()
+    {
+        mesh = GetComponent&lt;MeshRenderer&gt;();
+        mat = mesh.material;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Sphere")
+        {
+            mat.color = new Color(0, 0, 0);
+        }
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[실행결과]</span></b></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1002" data-origin-height="498" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1002" data-origin-height="498" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 Trigger</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">Trigger</span>은 Collision과 달리 <span style="background-color: #dddddd;">Collider 를 이용해 충돌을 감지하는 클래스</span> 입니다. <span style="background-color: #dddddd;">실제적인 물리적 충돌 연산을 하지 않고, 충돌을 감지 하기에 Is Kinematic 의 활성화 여부는 영향을 받지 않습니다.</span> 따라서, 파라미터도 Collision이 아닌 Collider 입니다. 단, Trigger을 사용하기 위해서는 <span style="background-color: #dddddd;">해당하는 게임 오브젝트의 Collider에<i> <b>Is Trigger</b></i> 항목을 활성화</span> 해 주어야 합니다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 보통 특정 영역에 오브젝트가 진입했을 시 , 이벤트가 발생하는 상황에서 자주 사용됩니다.&nbsp;</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">[Trigger 관련 함수]</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="background-color: #dddddd;">OnTriggerEnter(Collider other)</span></b> : 두 객체가 충돌 시 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b><span style="background-color: #dddddd;">OnTriggerStay(Collider other)</span></b> : 두 객체가 충돌하는 동안 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b><span style="background-color: #dddddd;">OnTriggerExit(Collider other)</span></b> : 두 객체가 충돌을 끝마치면 호출되는 함수 입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #ffffff; font-family: 'Nanum Gothic'; background-color: #333333;">[OnTriggerStay() 예제]</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 검은색 공이 투명한 큐브 영역에 들어갈 시 공의 색이 하얀색으로 변하는 예제 입니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="690" data-origin-height="416" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="690" data-origin-height="416" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[사전작업]</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* Cube 오브젝트의 Collider에서 <b>Is Trigger 항목을 활성화</b> 해 줍니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="903" data-origin-height="344" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="903" data-origin-height="344" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">검은색 공에 적용된 C# 스크립트 :<b> BallController</b> (#2와 동일)&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="background-color: #dddddd;">TriggerDetected</span></b> - OnTriggerStay() 함수를 이용해 검은색 공이 박스 영역에 진입 시, 색깔이 흰색으로 바뀌는 역할을 수행합니다.</span></p>
+<pre id="code_1623571547452" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TriggerDetected : MonoBehaviour
+{
+    MeshRenderer mesh;
+    Material mat;
+
+    void Start()
+    {
+        mesh = GetComponent&lt;MeshRenderer&gt;();
+        mat = mesh.material;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.name == "Cube")
+        {
+            mat.color = new Color(1, 1, 1);
+        }
+    }
+
+}</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1412" data-origin-height="474" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="1412" data-origin-height="474" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #유니티 #유니티3D #충돌처리 #충돌감지 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

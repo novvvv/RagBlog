@@ -1,0 +1,167 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 20436 ZOAC 3 C++ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 20436 ZOAC 3 C++ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2024-11-23 22:59:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #c1bef9;"><b>시뮬레이션 &amp; 구현</b></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <b><span style="background-color: #dddddd;">SILVER4</span></b></span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>#SOLVE</b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 주어진 조건대로 차근차근 구현하면 되는 비교적 간단한 구현 문제이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 키보드 자판을 저장할 2차원 배열을 선언한 뒤, 정보를 저장한다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="572" height="171" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="572" height="171"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1732369285758" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>/* value */
+vector&lt;vector&lt;char&gt; &gt; board(3);
+const vector&lt;char&gt; line1 = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'};
+const vector&lt;char&gt; line2 = {'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'};
+const vector&lt;char&gt; line3 = {'z', 'x', 'c', 'v', 'b', 'n', 'm'};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 처음 왼손 검지 손가락 오른손 검지 손가락 알파벳 위치를 입력받은 뒤 변수에 저장한다.&nbsp;</span></p>
+<pre id="code_1732369398365" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // current_x1, current_y1 : 왼손 검지 손가락 위치 (x1, y1)
+    // current_x2, current_y2 : 오른손 검지 손가락 위치 (x2, y2)
+    int current_x1, current_y1, current_x2, current_y2;
+
+    char sL, sR;
+    cin &gt;&gt; sL &gt;&gt; sR;
+
+    // #2 초기 왼손, 오른손 위치 셋팅
+    for (int i = 0; i &lt; board.size(); i++) {
+        for (int j = 0; j &lt; board[i].size(); j++) {
+            if (sL == board[i][j]) {
+                current_x1 = i;
+                current_y1 = j;
+            }
+            if (sR == board[i][j]) {
+                current_x2 = i;
+                current_y2 = j;
+            }
+        }
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 입력받은 문자열을 기반으로 cal_left_finger_distance 함수를 호출할지 cal_right_finger_distance 함수를 호출할지 여부를 결정한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 제시한 조건에 따르면 한글 자판 기준 모음으로 된 키보드 자판을 눌렀을 경우 cal_left_finger_distance 함수를 , 자음으로 된 키보드 자판을 눌렀을 경우 cal_right_finger_distance 함수를 호출한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 주의해야할 부분은 자판을 누르는 시간 또한 고려해 주어야 한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1732369471967" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // #3 메인 로직
+    int res_distance = 0;
+    string command;
+    cin &gt;&gt; command;
+
+    for (int i = 0; i &lt; command.size(); i++) {
+
+        if (command[i] == 'q' || command[i] == 'w' || command[i] == 'e' || command[i] == 'r' || command[i] == 't' ||
+            command[i] == 'a' || command[i] == 's' || command[i] == 'd' || command[i] == 'f' || command[i] == 'g' ||
+            command[i] == 'z' || command[i] == 'x' || command[i] == 'c' || command[i] == 'v') {
+            res_distance += cal_left_finger_distance(command[i]); // 이동시간
+            res_distance++; // 누르는시간
+        }
+
+        else {
+            res_distance += cal_right_finger_distance(command[i]);
+            res_distance++;
+        }
+
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">cal 메서드 내부 로직이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단순히 현재 위치의 x, y좌표와 입력받은 알파벳의 x, y좌표의 거리를 계산해 반환해 주는 함수이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c1bef9;">현재 왼손 검지 손가락이 q 위치에 있고 cal_left_finger_distance 함수로 알파벳 "x"가 입력값으로 들어왔다고 가정</span>해 보자.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 q에서 x는 x좌표로 1만큼 Y좌표로 -2만큼 떨어져 있기에 총 이동 거리는 <b>|0 - 1| + |0 - 2|&nbsp; = 3</b> 이 된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1732369772681" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>int cal_left_finger_distance(char to) {
+    int distance = 0;
+    for (int i = 0; i &lt; board.size(); i++) {
+        for (int j = 0; j &lt; board[i].size(); j++) {
+            if (board[i][j] == to) {
+                distance = abs(current_x1 - i) + abs(current_y1 - j);
+                current_x1 = i;
+                current_y1 = j;
+                return distance;
+            }
+        }
+    }
+    return distance;
+}
+
+int cal_right_finger_distance(char to) {
+    int distance = 0;
+    for (int i = 0; i &lt; board.size(); i++) {
+        for (int j = 0; j &lt; board[i].size(); j++) {
+            if (board[i][j] == to) {
+                distance = abs(current_x2 - i) + abs(current_y2 - j);
+                current_x2 = i;
+                current_y2 = j;
+                return distance;
+            }
+        }
+    }
+    return distance;
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#C++</span></b></h3>
+<p data-ke-size="size16"><a href="https://github.com/novvvv/PS/blob/main/BOJ/C%2B%2B/2024/20436.cpp" target="_blank" rel="noopener&nbsp;noreferrer">https://github.com/novvvv/PS/blob/main/BOJ/C%2B%2B/2024/20436.cpp</a></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

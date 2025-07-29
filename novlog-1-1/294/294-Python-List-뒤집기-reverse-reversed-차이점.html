@@ -1,0 +1,144 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Python List 뒤집기 reverse reversed 차이점</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Python List 뒤집기 reverse reversed 차이점</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2023-05-09 20:54:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Python은 List를 거꾸로 뒤집는 <span style="background-color: #333333; color: #dddddd;">reverse() reversed()</span> 내장함수를 따로 제공합니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">언뜻 보면 비슷해 보이는 내장함수지만, 설계상 큰 차이가 존재합니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅에서는 <b>reverse() reversed( ) 메서드를 이용해 리스트를 거꾸로 뒤집는 방법</b>과, 예제 그리고 reverse() reversed() 메서드의 차이점에 대해서 정리해 보고자 합니다.&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#1 reverse method</span></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">reverse() 함수</span>는 <b>List의 순서를 거꾸로 뒤집는 Python 내장 함수</b>입니다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(다른 Sequence 자료형 Tuple, String, Dictionary 등에서 사용이 불가능하고, <b>오로지 List 에서만 사용 가능</b>합니다.)</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">사용 방법 : 뒤집을 리스트 변수명.reverse()</span></p>
+<pre id="code_1683630448170" class="python" data-ke-language="python" data-ke-type="codeblock"><code>myList = [1, 2, 3, 4, 5]
+myList.reverse()
+print(myList)</code></pre>
+<pre id="code_1683630464406" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Output
+[5, 4, 3, 2, 1]</code></pre>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 유의 해야할 점이 있습니다. 다음 Python reverse 함수 내부 구현 코드를 보면 알 수 있듯이, <span style="background-color: #333333; color: #dddddd;">reverse 함수</span>는 <b>return 값이</b> <span style="background-color: #333333; color: #dddddd;">None</span> 입니다. 즉, 변경된 리스트 복사본을 리턴해 주는 것이 아닌 <b>원본 리스트의 값을 직접 바꾼다</b>는 것 입니다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <b>원본 리스트의 변경이 일어나면 안되는 상황이라면 reverse 함수를 사용 해서는 안됩니다.&nbsp;</b></span></p>
+<pre id="code_1683630244863" class="python" data-ke-language="python" data-ke-type="codeblock"><code># reverse 함수 내부 구현 코드
+def reverse(self) -&gt; None:
+    """
+    Reverse the order of the elements in the list in place.
+    """
+    n = len(self)
+    for i in range(n // 2):
+        self[i], self[n-i-1] = self[n-i-1], self[i]</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* Return 값이 None이기에, 리스트가 아닌 None을 출력</span></p>
+<pre id="code_1683630644519" class="python" data-ke-language="python" data-ke-type="codeblock"><code>myList = [1, 2, 3, 4, 5]
+print(myList.reverse())</code></pre>
+<pre id="code_1683630654091" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Output
+None</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#2 reversed method</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">reversed 함수</span>는 <span style="background-color: #333333; color: #dddddd;">reverse 함수</span>와 달리 <b>List 자료형 뿐 만 아니라 다른 반복 가능한 Iterable Object 시퀀스 자료형 (Tuple, String, Dictionary ..) 에서 모두 사용 가능</b>합니다. <span style="text-align: start;">reversed 함수 또한 Iterable Object를 뒤집는 기능을 수행하며, iterator를 반환합니다.&nbsp;</span>즉, <b>reversed 함수는 원본 객체에 영향을 끼치지 않습니다.&nbsp;</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">사용 방법 : reversed(뒤집을 리스트 변수명)</span></p>
+<pre id="code_1683631213105" class="python" data-ke-language="python" data-ke-type="codeblock"><code># 원본 객체 (myList)에 영향을 끼치지 않는다.
+myList = [1, 2, 3, 4, 5]
+newList = reversed(myList)
+print(f"myList &rarr; {myList}")
+print(f"newList &rarr; {newList}")</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#2.1 reversed method는 iterator를 반환한다.&nbsp;</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 출력 결과를 보시면 <b>원본 객체인 myList의 값은 변경되지 않았음</b>을 확인 가능합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 <b>reversed 메서드를 사용해 리스트를 뒤집은 새로운 객체는 iterator를 반환</b> 했습니다.&nbsp;</span></p>
+<pre id="code_1683631258943" class="python" data-ke-language="python" data-ke-type="codeblock"><code>myList &rarr; [1, 2, 3, 4, 5]
+newList &rarr; &lt;list_reverseiterator object at 0x7fd450fee390&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#2.2 reversed method with for loop</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">reversed method의 반환값은&nbsp; iterator 이기에 <span style="background-color: #333333; color: #dddddd;">for loop</span> 와 함께 사용할 수 있습니다.&nbsp;</span></p>
+<pre id="code_1683633163862" class="python" data-ke-language="python" data-ke-type="codeblock"><code># List
+print("List")
+myList = [1, 2, 3, 4, 5]
+for i in reversed(myList):
+    print(i, end="")
+    
+# String
+print("\nString")
+myString = "novDev"
+for c in reversed(myString):
+    print(c, end="")</code></pre>
+<pre id="code_1683633221461" class="python" data-ke-language="python" data-ke-type="codeblock"><code>[출력결과]
+List
+54321
+String
+veDvon</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#2.3 reversed method with list &amp; tuple</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">reversed 메서드</span>는 뒤집힌 객체 그 자체가 아닌 <span style="background-color: #333333; color: #dddddd;">iterator object</span>를 반환하기에, <b>list, tuple .. 등과 같은 자료형 변환 메서드를 사용해 사용하고자 하는 타입의 객체로 타입을 변환</b>을 해 주어야 합니다.&nbsp;</span></p>
+<pre id="code_1683631885790" class="python" data-ke-language="python" data-ke-type="codeblock"><code># List
+myList = [1, 2, 3, 4, 5]
+newList = list(reversed(myList))
+print(f"myList &rarr; {myList}")
+print(f"newList &rarr; {newList}")
+
+# Tuple
+myTuple = (1, 2, 3, 4, 5)
+newTuple = tuple(reversed(myTuple))
+print(f"myTuple &rarr; {myTuple}")
+print(f"newTuple &rarr; {newTuple}")</code></pre>
+<pre id="code_1683631945969" class="python" data-ke-language="python" data-ke-type="codeblock"><code>myList &rarr; [1, 2, 3, 4, 5]
+newList &rarr; [5, 4, 3, 2, 1]
+myTuple &rarr; (1, 2, 3, 4, 5)
+newTuple &rarr; (5, 4, 3, 2, 1)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#2.4 reversed method with string&nbsp;</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">str 함수</span>는 <b>매개변수로 보낸 객체를 str object로 변환해 주는 함수</b>이지만, reversed object 는 예외로 str object 로 변환 시켜 주지 못합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이는 reversed object가 앞서 정리 했듯이 iterator object이기 때문인데 <span style="text-align: start;"><span style="background-color: #333333; color: #dddddd;"> iterator</span>는 객<b>체의 원소를 하나씩 제공하는 객체</b>로, 다음 값을 제공하기 위해서 반복자를 계속 유지하는 특징이 있습니다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="text-align: start;">따라서 <b>iterator object는 str 함수를 이용해 문자열로 변환할 수 없습니다.&nbsp;</b></span><span style="text-align: start;"></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 <b>reversed method를 사용해 string을 뒤집고 싶다면</b> str 함수가 아닌 <span style="background-color: #333333; color: #dddddd;">join 함수</span><b>를 사용</b>해야 합니다.</span></p>
+<pre id="code_1683632296670" class="python" data-ke-language="python" data-ke-type="codeblock"><code># String
+myString = "novDev"
+newString = "".join(reversed(myString))
+print(f"myString &rarr; {myString}")
+print(f"newString &rarr; {newString}")</code></pre>
+<pre id="code_1683632308364" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Output
+myString &rarr; novDev
+newString &rarr; veDvon</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#정리</span></b></h2>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. reverse 메서드는 list object 에서만 사용 가능한 list 전용 함수로 반환값이 존재하지 않고 원본 객체를 직접 변경 하기에 사용에 주의가 필요하다.</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. reversed 메서드는 list 뿐 만 아니라 다른 시퀀스 자료형 에서 모두 사용 가능하다.</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">3. reversed 메서드는 반환값으로 iterator를 리턴하기에 원하는 형태로 사용하기 위해서 list, tuple, join 등 과 같은 함수를 추가로 사용해 원하는 객체로 변경해 주어야 한다.&nbsp;</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 본 포스팅은 개인적인 공부 내용을 기록하기 위해서 작성한 포스팅 입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹여나 잘못된 내용이 있다면 댓글로 남겨주시면 바로 수정 하도록 하겠습니다.&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

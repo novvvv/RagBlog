@@ -1,0 +1,204 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 17298 "오큰수" 문제 풀이 & 소스 코드 with C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 17298 "오큰수" 문제 풀이 & 소스 코드 with C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-07-14 19:45:06</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span>INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">난이도 : <span style="background-color: #f3c000;">GOLD4</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Noto Serif KR'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">자료구조.스택(STACK)</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="font-family: 'Noto Serif KR';">&infin; 문제 출처 :</span> <a href="https://www.acmicpc.net/problem/17298" target="_blank" rel="noopener">https://www.acmicpc.net/problem/17298</a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1560" data-origin-height="590" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1560" data-origin-height="590" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1594" data-origin-height="436" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1594" data-origin-height="436" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span>SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">처음에는 이중 for문과 스택을 같이 사용해서 시도해 보았다.</span></p>
+<pre id="code_1626258141957" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main()
+{
+	int N;
+	cin &gt;&gt; N;
+	int ary[N];
+	int solve[N];
+
+	for (int i = 0 ; i &lt; N ; ++i)
+	{
+		int tmp;
+		cin &gt;&gt; tmp;
+		ary[i] = tmp;
+	}
+	
+	stack&lt;int&gt; stk;
+	for (int i = 0 ; i &lt; N - 1 ; ++i)
+	{
+		for (int j = i + 1 ; j &lt; N ; ++j)
+		{
+			if (ary[i] &lt; ary[j])
+			{
+				stk.push(ary[j]);
+			}
+		}
+		
+		if (stk.empty())
+		{
+			solve[i] = -1;
+		}
+		
+		else
+		{
+			while(!(stk.size() == 1))
+			{
+				stk.pop();
+			}
+			solve[i] = stk.top();
+			stk.pop();
+		}
+	}
+	
+	solve[N-1] = -1;
+	
+	for (int i = 0 ; i &lt; N ; ++i)
+	{
+		cout &lt;&lt; solve[i] &lt;&lt; " ";
+	}
+	
+	return 0;
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">테스트 케이스는 통과한 듯 했는데 이중 for문이라 그런지 시간 초과가 발생했다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1110" data-origin-height="47" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1110" data-origin-height="47" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">두 번째 시도는 for문의 중첩을 지우고 스택만을 활용해 풀어 보았다. 우선, 스택이 비어있으면&nbsp; 스택에 인덱스 값을 집어넣는다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1166" data-origin-height="401" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1166" data-origin-height="401" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로, A[stk.top()] (3) 보다 A[i] (5) 가 큰지 비교한다. 5가 더 크기에, NGE[1] 의 오큰수는 5가 된다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1166" data-origin-height="401" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1166" data-origin-height="401" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">while 반복부를 작성한 이유는 다음과 같다. 만약 3의 오큰수를 찾고 싶다고 한다면, 우측의 원소들 (5,2,7) 중에서 처음 만난 3보다 큰 수가 무조건 오큰수가 된다. 즉, 2와 7은 탐색할 필요가 없다는 것이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 3 오른쪽 원소를 탐색하면서 3보다 큰 수를 만났다면 , 처음 만난 3보다 큰 수를 NGE[3의 인덱스] 에 집어 넣고, 3에 대한 탐색은 끝났으니 스택을 pop 하는 것이다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 위의 과정을 모두 끝마친 후에도, 스택에 원소가 남아있다면 해당 인덱스의 오른쪽에는 오큰수가 존재하지 않는다는 의미이니, -1을 대입한다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="338" data-origin-height="159" width="272" height="128" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="338" data-origin-height="159" width="272" height="128" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span>CODE</span></h2>
+<pre id="code_1626259351339" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	int n;
+	cin &gt;&gt; n;
+	vector&lt;int&gt; A(n);
+	vector&lt;int&gt; NGE(n);
+	for (int i = 0 ; i &lt; n ; ++i)
+	{
+		cin &gt;&gt; A[i];
+	}
+	
+	stack&lt;int&gt; stk;
+	stk.push(0); // 예외처리 
+	for (int i = 1 ; i &lt; n ; ++i)
+	{
+		if (stk.empty())
+		{
+			stk.push(i);
+		}
+		while (!stk.empty() &amp;&amp; A[stk.top()] &lt; A[i])
+		{
+			NGE[stk.top()] = A[i];
+			stk.pop();
+		}
+		stk.push(i);
+	}
+	
+	// 반복을 마친 뒤에도, 스택이 비어있지 않은 경우 
+	while (!stk.empty())
+	{
+		NGE[stk.top()] = -1;
+		stk.pop();
+	}
+	
+	for (int i = 0 ; i &lt; n ; ++i)
+	{
+		cout &lt;&lt; NGE[i] &lt;&lt; " ";
+	}
+	return 0;
+}</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1107" data-origin-height="51" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="1107" data-origin-height="51" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="200" height="200" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="200" height="200" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C++ #C언어 #알고리즘 #스택 #BOJ #백준 #17298 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

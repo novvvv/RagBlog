@@ -1,0 +1,176 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Java] 메모리 구조 & 스태틱 변수, 메서드 완벽 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Java] 메모리 구조 & 스태틱 변수, 메서드 완벽 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Java Fundamental</p>
+                                    <p class="date">2024-02-17 15:11:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Java 프로그래밍 언어를 공부할 때 메모리 구조에 대한 이해는 반드시 요구되는 기본 사항이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">메모리 구조에 대해 명확하게 파악하고 있으면 어떤 식으로 인스턴스가 생성되며, GC[Garbage Collector]가 정확히 어떤 방식으로 동작하는지, static value 는 어떤 영역에 할당되는 지 등 다양한 심화 지식을 이해하는 데 도움이 된다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 자바의 메모리 구조와 스태틱 키워드에 대하여 정리해 보고자 한다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용이 있을 수 있으며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">혹여나 틀린 정보가 있다면 언제든지 댓글로 남겨 주시기 바랍니다!</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">목차</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Java Memory Structure</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Static</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 멤버 변수의 구분</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 스태틱 변수 접근</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 언제 스태틱 변수를 사용해야 할까?</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 스태틱 메서드</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Java Memory Structure</span></h2>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바의 메모리 구조는 크게 1. 메서드 영역 [Method Area] 2. 스택 영역 [Stack Area]&nbsp; 3. 힙 영역 [Heap Area] 등 으로 구분된다. (그 이외에도 PC 레지스터, 네이티트 메소드 스택 등이 있지만 크게 중요한 내용은 아니니 여기서는 설명하지 않는다.)&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">1. 메서드 영역 [Method Area]&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">클래스 정보를 보관하거나, 프로그램을 실행하는데 필요한 공통 데이터를 관리하는 영역이다. <span style="background-color: #ffffff; text-align: left;"><b>클래스, 메소드, 상수, static 변수 등의 정보를 저장</b>한다.&nbsp;</span></span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="background-color: #333333; color: #dddddd; text-align: left; font-family: 'Nanum Gothic';">2. 스택 영역 [Stack Area]</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="background-color: #ffffff; color: #000000; text-align: left; font-family: 'Nanum Gothic';">실제로 프로그램이 실행되는 영역이다. 메서드 호출시 스택 프레임이 생성되어 스택 구조로 스택 영역에 쌓이게 된다. <span style="background-color: #ffffff; text-align: left;">메<b>소드 호출과 관련된 지역 변수, 메소드 호출, 리턴 값 등이 저장</b>된다.&nbsp;</span></span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="background-color: #333333; color: #dddddd; text-align: left; font-family: 'Nanum Gothic';">3. 힙 영역 [Heap Area]&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="background-color: #ffffff; color: #000000; text-align: left; font-family: 'Nanum Gothic';"><span style="background-color: #ffffff; text-align: left;">new 키워드를 통해 할당된 <b>동적으로 생성된 객체(인스턴스)와 배열이 저장</b>되는 영역이다. GC[Garbage Collector] 처리가 실행되는 중요한 영역으로, 쓰레드의 수 만큼 힙 영역이 생성된다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Static</span></h2>
+<h3 style="text-align: left;" data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">멤버 변수의 구분</span></h3>
+<p><figure class="imageblock alignLeft" width="429" height="207" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="429" height="207"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">멤버 변수는 static keyword 여부에 따라 다음과 같이 두 가지로 구분된다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">1. instance value</span> : static keyword가 붙지 않은 변수로, <b>인스턴스가 생성될 때 마다 새롭게 생성</b>된다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">2. static value</span> : static keyword가 붙은 변수로, 클래스 자체에 접근 가능하기에, <b>인스턴스 생성 여부와 관계 없이 접근 가능</b>하다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>스태틱 변수[Static Value] 는 앞서 말한 메서드 영역 중 클래스 영역에 생성되는 변수</b>이다. 스태틱 변수 이외에 <b>클래스 변수, 정적 변수</b> 라고도 부른다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 인스턴스를 생성하지 않아도 접근하여 사용할 수 있다는 특징이 있으며, JVM에 로딩 되는 순간 메모리에 할당되어 종료 되는 순간 까지 생명 주기를 이어 간다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<h3 style="text-align: left;" data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">스태틱 변수 접근</span></h3>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">클래스명.스태틱변수명</span> or <span style="background-color: #333333; color: #dddddd;">인스턴스명.스태틱변수명</span> 형태로 스태틱 변수에 접근할 수 있다. <b>(단, 클래스 내부에서는 앞의 클래스 명을 생략 가능하다.)</b></span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b><span style="color: #ef5369;">그러나 인스턴스명.스태틱변수명 형태로 스태틱 변수에 접근하는 방식은 권장되지 않는다.</span> </b>실행 결과는 동일하지만, 코드 가독성에 문제가 생긴다. <b>나중에 코드를 볼 때 이게 인스턴스 변수인지, 클래스 변수인지 혼동이 생길 수 있기 때문</b>이다.</span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">애당초 대부분의 IDE에서도 인스턴스로 스태틱 변수에 접근할 경우 경고를 날려준다.</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드는 <u><b>Slime 클래스의 jumpPower 스태틱 변수에 두 가지 방식으로 접근한 코드이다.</b></u></span></p>
+<pre id="code_1708148612661" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Slime{
+    public int level; // instance value
+    public int hp; // instance value
+    public static int jumpPower = 10; // static value;
+    
+    public Slime(int level, int hp){
+        this.level = level;
+        this.hp = hp;
+    }
+}</code></pre>
+<pre id="code_1708148627621" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Main {
+    public static void main(String[] args) {
+        Slime normalSlime = new Slime(8, 10);
+        System.out.println("Normal Slime level : " + normalSlime.level + ", hp : " + normalSlime.hp);
+        System.out.println("클래스명으로 접근");
+        System.out.println("[클래스명] Normal Slime jumpPower : " + Slime.jumpPower);
+        System.out.println("인스턴스명으로 접근");
+        System.out.println("[인스턴스명] Normal Slime jumpPower : " + normalSlime.jumpPower);
+    }
+
+}</code></pre>
+<pre id="code_1708148978489" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Normal Slime level : 8, hp : 10
+클래스명으로 접근
+[클래스명] Normal Slime jumpPower : 10
+인스턴스명으로 접근
+[인스턴스명] Normal Slime jumpPower : 10</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">언제 스태틱 변수를 사용해야 할까?</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>스태틱 변수는 클래스에 종속되는 변수이다.</b> 즉, 인스턴스가 생성될 때 마다 새롭게 할당되는 멤버 변수들과 달리 <b>항상 동일한 값을 유지</b>한다는 것이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <span style="background-color: #ffffff; text-align: left;"><b>여러 객체 간에 데이터를 공유해야 하는 경우 static 변수를 사용하면 효율적이다.</b> 예를 들어 모든 슬라임의 점프력을 15로 고정하고 싶다면 각각 객체마다 접근하여 jumpPower 값을 수정할 필요 없이 클래스에 직접 접근해 jumpPower 값을 15로 초기화 해 주면 모든 객체에 해당 정보가 반영된다.</span></span></p>
+<pre id="code_1708149074555" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Main {
+    public static void main(String[] args) {
+        Slime normalSlime1 = new Slime(8, 10);
+        Slime normalSlime2 = new Slime(8, 7);
+        System.out.println("[적용전] Normal Slime level : " + normalSlime1.level + ", hp : " + normalSlime1.hp + ", jumpPower : " + Slime.jumpPower);
+        System.out.println("[적용전] Normal Slime level : " + normalSlime2.level + ", hp : " + normalSlime2.hp + ", jumpPower : " + Slime.jumpPower);
+        Slime.jumpPower = 15; // normalSlime1, normalSlime2에 변경 결과가 모두 반영
+        System.out.println("[적용후] Normal Slime level : " + normalSlime1.level + ", hp : " + normalSlime1.hp + ", jumpPower : " + Slime.jumpPower);
+        System.out.println("[적용전] Normal Slime level : " + normalSlime2.level + ", hp : " + normalSlime2.hp + ", jumpPower : " + Slime.jumpPower);
+    }
+
+}</code></pre>
+<pre id="code_1708149087852" class="java" data-ke-language="java" data-ke-type="codeblock"><code>[적용전] Normal Slime level : 8, hp : 10, jumpPower : 10
+[적용전] Normal Slime level : 8, hp : 7, jumpPower : 10
+[적용후] Normal Slime level : 8, hp : 10, jumpPower : 15
+[적용전] Normal Slime level : 8, hp : 7, jumpPower : 15</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">스태틱 메서드</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">static keyword는 변수 뿐 만 아니라 메서드에도 사용 가능하다. 스태틱 메서드 또한 스태틱 변수와 동일하게 별도의 인스턴스 생성 없이 해당 클래스에 직접 접근하여 메서드를 사용할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 스태틱 메서드는 다음과 같은 규칙을 가진다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. static method는 클래스 내부의 static method 혹은 static value에만 접근 가능하다.</span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. static method는 instance value에 접근할 수 없다.</span></b></p>
+<pre id="code_1708149340051" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Slime{
+    public int level; // instance value
+    public int hp; // instance value
+    
+    public static int jumpPower = 10; // static value;
+    public static void jump(){
+        System.out.println("슬라임이 " + jumpPower + " 높이로 점프합니다."); // static method
+    }
+    
+    // instance value 접근시 에러
+    /* public static void jump(){
+        System.out.println(level + "슬라임이 " + jumpPower + " 높이로 점프합니다."); // static method
+    } */
+    
+    public Slime(int level, int hp){
+        this.level = level;
+        this.hp = hp;
+    }
+}</code></pre>
+<pre id="code_1708149358268" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Main {
+    public static void main(String[] args) {
+        Slime.jump();
+    }
+}</code></pre>
+<pre id="code_1708149380187" class="java" data-ke-language="java" data-ke-type="codeblock"><code>슬라임이 10 높이로 점프합니다.</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="letter-spacing: 0px; font-family: 'Nanum Gothic'; color: #000000;">특정 클래스의 인스턴스 객체를 생성해서 접근하는 경우, 해당 객체의 멤버변수를 사용하는 목적이 클 것이다. 그<b>렇기에 멤버 변수를 사용할 필요가 없는 메서드는 static 메서드로 선언하여 클래스를 통해 직접 접근할 수 있도록 코드를 작성</b>하는 것이 좋다.&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

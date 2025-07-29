@@ -1,0 +1,127 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 1654 랜선 자르기 C++ 문제풀이 (feat. Binary_Search_Algorithm)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 1654 랜선 자르기 C++ 문제풀이 (feat. Binary_Search_Algorithm)</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2024-09-21 17:41:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 style="text-align: center;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#Info</span></b></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/1654" target="_blank" rel="noopener&nbsp;noreferrer">https://www.acmicpc.net/problem/1654</a></span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style2" />
+<h2 style="text-align: center;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#Logic</span></b></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만들 수 있는 최대 랜선의 길이를 구하는 문제이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">처음으로 가장 단순한 알고리즘인 <span style="background-color: #c0d1e7;">브루트포스 방식</span>으로 접근해 보았다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1cm부터 랜선의 최대 길이만큼 반복문을 돌려서, <span style="background-color: #c0d1e7;">가능한 모든 경우를 계산하는 로직</span>이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 해당 방식은 시간 복잡도가 최소 O(N) 만큼 소모되며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">랜선의 최대 길이는 2^31 - 1 이기에 절대로 시간제한 2초 안에 통과할 수 없다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 이분탐색 풀이로 접근해 보았다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/entry/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Binary-Search-Algorithm" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">About Binary Search</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이분탐색 알고리즘은 시간 복잡도가 O(LogN) 만큼 걸리기에, 충분히 통과 가능하다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 랜선의 개수 K, 필요한 랜선의 개수 N을 입력 받은 뒤</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">랜선의 길이 정보를 lines vector에 저장한다.</span></p>
+<pre id="code_1726907534669" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    int K, N;
+    vector&lt;int&gt; lines;
+    cin &gt;&gt; K &gt;&gt; N;
+    for (int i = 0; i &lt; K; i++) {
+        int temp = 0;
+        cin &gt;&gt; temp;
+        lines.push_back(temp);
+    }</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Algorithm 헤더에 정의된 max_element 메서드를 사용하여,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">랜선 길이가 저장된 벡터에서 최대 길이 값을 maxLineLength 변수에 저장한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://novlog.tistory.com/entry/CSTL-maxelement-minelement-%EB%B0%B0%EC%97%B4%EB%B2%A1%ED%84%B0%EC%97%90%EC%84%9C-%EC%B5%9C%EB%8C%80%EC%B5%9C%EC%86%8C-%EC%B0%BE%EA%B8%B0" target="_blank" rel="noopener">About max_element</a></span></p>
+<pre id="code_1726907632501" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // maxLineLength 랜선 내부 최대값
+    auto maxLineIter = max_element(lines.begin(), lines.end());
+    int maxLineLength = *maxLineIter;</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 메인 로직이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제에서 제시한 최대값이 2^31 로 매우 크기에</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">탐색에 수행할 left, right, mid 변수값을 long long 타입으로 선언하여</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">오버플로우를 방지한다.&nbsp;</span></p>
+<pre id="code_1726907657320" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>
+    // overflow 방지 long long type 선언
+    long long res = 0;
+    long long left = 1, right = maxLineLength, mid;</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1cm ~ 라인 최대 길이 만큼 이분 탐색을 진행한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 생성된 라인 개수 (currentLines) 가 필요 라인 개수 N보다 크다면, 최대값을 비교하여 라인 최대값을 갱신한 뒤,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">left 값을 mid + 1로 변경한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">생성된 라인 개수 (currentLines) 가 필요 라인 개수 N보다 작다면</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">right 값만 mid - 1 로 변경한다.</span></p>
+<pre id="code_1726907816466" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    while (left &lt;= right) {
+
+        mid = (left + right) / 2;
+        int currentLines = 0; // 생성된 라인 개수
+
+        for (int i = 0; i &lt; K; i++) {
+            currentLines += lines[i] / mid;
+        }
+
+        // case1: 생성된 라인 개수(currentLines) &gt;= 필요한 라인 개수(N)
+        if (currentLines &gt;= N) {
+            left = mid + 1;
+            res = max(res, mid); // 라인 길이 최대값 정보 저장
+        }
+
+        // case2: 생성된 라인 개수(currentLines) &lt; 필요 라인 개수(N)
+        else {
+            right = mid - 1;
+        }
+
+    }
+
+    cout &lt;&lt; res &lt;&lt; '\n';</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style2" />
+<p style="text-align: center;" data-ke-size="size16"><a href="https://github.com/novvvv/PS/blob/main/BOJ/202409/C%2B%2B/BOJ1654.cpp" target="_blank" rel="noopener&nbsp;noreferrer">https://github.com/novvvv/PS/blob/main/BOJ/202409/C%2B%2B/BOJ1654.cpp</a></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

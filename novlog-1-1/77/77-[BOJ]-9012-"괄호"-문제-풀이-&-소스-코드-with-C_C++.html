@@ -1,0 +1,149 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 9012 "괄호" 문제 풀이 & 소스 코드 with C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 9012 "괄호" 문제 풀이 & 소스 코드 with C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-07-08 21:37:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">#INFO</span></b></h2>
+<p><figure class="imageblock alignLeft" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="201" height="201" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="318" data-origin-height="318" data-filename="boj.png" width="201" height="201" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>난이도</b> : <span style="background-color: #9d9d9d; color: #ffffff;">SILVER4</span></span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>알고리즘 유형</b> : <span style="background-color: #333333; color: #ffffff;">STACK(스택)</span></span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">&infin; 문제 출처 :</span></b> <a href="https://www.acmicpc.net/problem/9012" target="_blank" rel="noopener">https://www.acmicpc.net/problem/9012</a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1578" data-origin-height="663" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1578" data-origin-height="663" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1574" data-origin-height="667" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1574" data-origin-height="667" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">VPS(괄호 문자열)이 성립하기 위해서는, 모든 여는 괄호와 닫는 괄호의 짝이 맞아야 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>(()() 문자열의 경우</b>는, <b>첫 번째 여는 괄호의 닫는 괄호가 존재하지 않기에 VPS가 아니다.</b></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="341" data-origin-height="79" width="207" height="48" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="341" data-origin-height="79" width="207" height="48" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>(()()()) 문자열의 경우</b>는, <b>모든 여는 괄호와 닫는 괄호의 짝이 존재하기에, VPS가 성립한다.</b></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="544" data-origin-height="79" width="331" height="48" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="544" data-origin-height="79" width="331" height="48" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">스택 자료구조</span>를 이용해 문제를 풀이 하였는데, 여는 괄호만 스택에 넣는 방식을 채택하였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반복문을 이용해 <span style="background-color: #333333; color: #ffffff;">문자열을 처음부터 끝까지 돌려서 여는 괄호를 만나면 push하고, 닫는 괄호를 만나면 여는 괄호 하나를 pop 한다. 반복이 모두 끝났을 때 스택이 비어있다면 VPS 문자열 이기에 YES를 스택이 비어있지 않다면 VPS 문자열이 아니기에 NO를 반환한다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1121" data-origin-height="429" width="782" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="1121" data-origin-height="429" width="782" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 다음과 같은 상황도 생각해 주어야 한다. <span style="background-color: #333333; color: #ffffff;">스택은 모두 비어있지만, 닫는 괄호의 짝이 존재하지 않는 경우</span>이다. 따라서,<span style="background-color: #333333; color: #ffffff;"> 스택이 빈 경우에만 여는 괄호를 pop하고 스택이 비었고, 닫는 괄호를 만난 경우라면 닫는 괄호의 짝이 존재하지 않는 상황이니 NO를 반환한다.</span></span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="785" data-origin-height="429" width="606" height="331" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="785" data-origin-height="429" width="606" height="331" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1625747718164" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+string solution(string str) {
+	stack&lt;char&gt; stk;
+	for (char ch : str) {
+		if (ch == '('){
+			stk.push(ch);
+		}
+		else 
+		{
+			if(!stk.empty())
+			{
+				stk.pop();
+			}
+			else
+			{
+				return "NO";
+			}
+		}
+	}
+	
+	if (stk.empty())
+	{
+		return "YES";
+	}
+	
+	else
+	{
+		return "NO";
+	}
+}
+
+int main()
+{
+	int testCase;
+	cin &gt;&gt; testCase;	
+	while(testCase--) {
+		string str;
+		cin &gt;&gt; str;
+		cout &lt;&lt; solution(str) &lt;&lt; '\n';
+	}
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="1106" data-origin-height="55" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="1106" data-origin-height="55" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #알고리즘 #BOJ #백준 #9012 #스택자료구조 #괄호문자열 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

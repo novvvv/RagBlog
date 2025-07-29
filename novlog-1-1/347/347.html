@@ -1,0 +1,168 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Swift] Optional Vol1 - Non Optional Vs Optional (feat. String vs String?)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Swift] Optional Vol1 - Non Optional Vs Optional (feat. String vs String?)</h2>
+                                <div class="box-info">
+                                    <p class="category">IOS/Swift Language</p>
+                                    <p class="date">2025-02-23 20:00:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* Swift Language의 <span style="background-color: #333333; color: #dddddd;">Optional Type에 대해 정리한 시리즈입니다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">* Non Optional Type과 Optional Type의 차이점에 대해 정리해 보았습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">#1 nil</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에는 다른 일반적인 프로그래밍 언어와는 달리 <span style="background-color: #333333; color: #dddddd;">Optional이라는</span> 개념이 존재한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift 공식문서에 나와있는 Optional에 대한 소개를 읽어보면 다음과 같다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="background-color: #333333; color: #f5f5f7; text-align: left; font-family: 'Nanum Gothic';">A type that represents either a wrapped value or the absence of a value.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">"Wrapped 된 값 혹은 값이 없음을 나타내는 타입"</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">불친절한 Siwft 공식문서 내용은 무시하고 쉽게 설명하자면 Optional Type이란 nil을 사용할 수 있는 타입이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">nil이란 "값이 없음"을 나타내기 위한 타입이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift의 외에 다른 언어를 공부하다 넘어온 개발자는 nil = null 인가?라고 생각할 수도 있으나 그렇지는 않다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C/Java에서의 NULL은 메모리 주소를 가리키지 않는 포인터 (C++의 경우 nullptr)이며</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에서의 nil은 단순히 "값이 없음"이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">말이 길어졌는데 내용을 요약해 보자면</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">Swift에서 nil은 "값이 없음"을 뜻하며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">Optional Type은 nil 값을 대입할 수 있는 타입이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 nil을 어떤 값에나 대입할 수 있는 것은 아니다.</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c0d1e7;">#2 Non Optional Type vs Optional Type</span>&nbsp;</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift의 DataType은 <span style="background-color: #333333; color: #dddddd;">Non Optional Type</span>과 <span style="background-color: #333333; color: #dddddd;">Optional Type</span>으로 크게 두 가지로 구분할 수 있다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Non Optional Type</span>은 이름에서 유추 가능하듯이 <b>Optional 타입이 아닌 타입</b>으로, 우리가 <b>일반적으로 사용하는 String, Int, Double.. 등과 같은 데이터 타입</b>이다.</span></p>
+<pre id="code_1740306638532" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var nonOptionalString: String;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Optional Type</span>은 <b>데이터타입 뒤에 ? 또는 !를 붙여서 표현</b>한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅에서는 우선 ?를 붙인 Optional을 예시로 작성해 나간다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><u><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* ?와 !의 차이점은 추후에 따로 포스팅을 작성할 예정입니다.</span></b></u></p>
+<pre id="code_1740306739469" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var optionalString: String?
+var optionalString: String!</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">Non Optional Type은 nil 값을 대입할 수 없으며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';">반드시 초기화를 해 주어야 사용 가능하다.&nbsp;&nbsp;</span><br /><span style="font-family: 'Nanum Gothic';">아래처럼 nonOptionalString 변수를 선언만 하고 값을 대입하지 않은 상태로 변수에 접근하면 에러가 발생한다.&nbsp;</span></p>
+<pre id="code_1740306918555" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var nonOptionalString: String;
+// nonOptionalString = nil // error - non Optional Type은 Nil 값을 대입할수 없다.
+// print("nonOptionalString - \(nonOptionalString)") // error - non Optional은 초기화와 동시에 값을 가져야함.</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">* nonOptionalString을 선언과 동시에 "nov"로 초기화한 코드</span></b></span></p>
+<pre id="code_1740306949259" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var nonOptionalString: String = "nov"
+print("nonOptionalString - \(nonOptionalString)")</code></pre>
+<pre id="code_1740306984751" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>nonOptionalString - nov</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반면 Optional Type은 nil값을 대입할 수 있으며</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">별도로 초기화하지 않아도 nil로 초기화되기에 바로 접근은 가능하다.</span></p>
+<pre id="code_1740307234492" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var optionalString: String?;
+print("OptionalString - \(optionalString)")</code></pre>
+<pre id="code_1740307241617" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>OptionalString - nil</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Non Optional Type과 Optional Type의 차이점을 표로 정리해 보았다.</span></p>
+<table style="border-collapse: collapse; width: 100%; height: 69px;" border="1" data-ke-align="alignLeft" data-ke-style="style8">
+<tbody>
+<tr style="height: 17px;">
+<td style="width: 14.186%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">Type</span></td>
+<td style="width: 39.1861%; height: 17px;"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">Non Optional Type</span></b></span></td>
+<td style="width: 46.6279%; height: 17px;"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">Optional Type&nbsp;</span></b></span></td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 14.186%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">선언 방식</span></td>
+<td style="width: 39.1861%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">기존 변수 선언과 동일</span></td>
+<td style="width: 46.6279%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">데이터 타입 뒤에&nbsp; ? or !&nbsp;</span></td>
+</tr>
+<tr style="height: 17px;">
+<td style="width: 14.186%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">nil&nbsp;</span></td>
+<td style="width: 39.1861%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">대입 불가능</span></td>
+<td style="width: 46.6279%; height: 17px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">대입 가능</span></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 14.186%; height: 18px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">초기화</span></td>
+<td style="width: 39.1861%; height: 18px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">값을 초기화 해야지만 사용 가능</span></td>
+<td style="width: 46.6279%; height: 18px;"><span style="font-family: 'Nanum Gothic'; color: #000000;">별도로 초기화 하지 않아도 자동으로 Nil로 초기화</span></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">#3 String과 String? 은 다른 타입인가?</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Optional에 대한 개념을 명확하게 정리하고 넘어가지 않고 바로 IOS 프로그래밍에 들어가면 다음과 같은 의문이 들 수 있다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그래서 String 타입과 String? 타입은 다른 타입인가?</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞에서 설명했듯이 <span style="background-color: #333333; color: #dddddd;">다르다.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">String은 Non Optional Type인 String 타입이고,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">String?은 Optional Type인 String? 타입인 것이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><b><span style="color: #000000;">무엇보다 String에는 nil 값이 들어갈 수 없다.</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">아래 코드를 실행해 보면 optionalString은 <b>"nov"</b>가 아닌</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>Optional("nov")</b>라는 값이 출력된다.</span></p>
+<pre id="code_1740307710751" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var nonOptionalString: String = "nov"
+print("nonOptionalString - \(nonOptionalString)")
+var optionalString: String? = "nov"
+print("OptionalString - \(optionalString)")</code></pre>
+<pre id="code_1740307924058" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>nonOptionalString - nov
+OptionalString - Optional("nov")</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉 optionalString 내부에 들어있는 "nov"라는 String 값은&nbsp; Optional이라는 껍데기에 의해 둘러 쌓여있는 상태라고 이해하면 된다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 optional 껍데기 내부의 "nov" 알맹이를 사용하기 위해서는 optional 껍데기를 깨 부셔야 하는데</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이렇게 <span style="background-color: #333333;"><span style="color: #dddddd;">Optional을 벗기는 과정을 Optional</span> <span style="color: #dddddd;">unwrapping</span></span>이라고 부른다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Optional unwrapping을 여기서 설명하기엔 글이 너무 길어질 것 같아 다음 포스팅에서 자세하게 정리할 예정이다.</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">#4 그래서 Optional을 왜 사용하는데?</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Optional이 값이 없음을 뜻하는 nil을 대입할 수 있는 타입이라는 것은 알겠는데,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그래서 굳이 Optional이라는 번거로운 개념을 사용하면서까지 Optional Type을 사용해야 하는지 의문이 들 수 있다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 Optional은 실제로 매우 빈번히 사용된다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 로그인 페이지에서 사용자가 아무런 값도 입력하지 않고 로그인을 눌렀다고 상황을 가정해 보자.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 서버로 어떤 값이 전송되어야 할까?</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이럴때 값이 없음을 뜻하는 nil이 필요하다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 0이나 "" 같은 빈 문자열을 보내면 되지 않냐고 할 수 있다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 실제로 0이라는 값을 보낸 것이라면?</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그리고 프로젝트에 참여하는 프로그래머에게 하나하나 알려줄 수도 없는 노릇이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다고 빈값이니까 애플리케이션을 Kill 할 수도 없다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">Swift를 처음 배우는 입장에서는 필요 없는 기능이라고 생각할 수 있으나</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">실제로 IOS 개발을 진행하다 보면 예외처리 과정을 간소화해 주는 고마운 문법이라고 느낄 수 있을 것이다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 이어지는 포스팅 에서는<b> Optional Unwrapping</b>에 대해서 설명하도록 하겠습니다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Android Studio 에뮬레이터 분리 및 항상 맨 앞으로 오도록 설정</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Android Studio 에뮬레이터 분리 및 항상 맨 앞으로 오도록 설정</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Flutter</p>
+                                    <p class="date">2023-04-11 01:58:58</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Android Studio에서 처음으로 가상 환경 에뮬레이터를 실행하면 다음과 같이 Device Manager Tap 에 고정되어 출력됩니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 에뮬레이터를 Device Manager Tab에서 분리하는 방법과, 안드로이드 스튜디오를 클릭해도 에뮬레이터가 화면에서 뒤로 사라지는 현상을 방지하기 위한 방법에 대해서 소개해 드리도록 하겠습니다.&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #000000;"><b><span style="color: #000000;">#1 에뮬레이터 분리하기</span></b></span></h2>
+<p><figure class="imageblock alignLeft" width="389" height="484" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="389" height="484"  />
+    </span>
+    <figcaption>Device Mananger Tab 에 고정된 에뮬레이터</figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #000000; color: #dddddd;">File &rarr; Settings...</span> 혹은 <span style="background-color: #000000; color: #dddddd;">Ctrl + Alt + S</span> 단축키를 클릭합니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Settings 화면이 출력되면, <span style="background-color: #000000; color: #dddddd;">Emulator</span> 탭을 클릭한 뒤, <span style="background-color: #000000; color: #dddddd;">Launch in a tool Window</span> 항목의 체크를 해제하고 <span style="background-color: #000000; color: #dddddd;">Apply</span>를 눌러 줍니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Android Studio를 재부팅 해 주시면 에뮬레이터가 분리된 것을 확인할 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 에뮬레이터 맨 앞으로 고정하기</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">안드로이드 스튜디오를 클릭 시 에뮬레이터가 뒤로 가는 것을 방지하기 위해 설정을 하도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">에뮬레이터의 가장 하단에 있는 <span style="background-color: #000000; color: #dddddd;">...</span> 아이콘을 클릭합니다.</span></p>
+<p><figure class="imageblock alignLeft" width="284" height="488" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="284" height="488"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #000000; color: #dddddd;">Extended Controls</span> 라는 설정 창이 출력되는데, <span style="background-color: #000000; color: #dddddd;">Settings</span> 탭을 클릭 후, <span style="background-color: #000000; color: #dddddd;">Emulator always on top</span> 항목을 활성화 해 주면</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>에뮬레이터가 윈도우 화면 위에 항상 고정</b> 됩니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

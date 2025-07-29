@@ -1,0 +1,159 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 18115 카드 놓기 Cpp 문제풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 18115 카드 놓기 Cpp 문제풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/BOJ</p>
+                                    <p class="date">2025-04-03 16:14:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">INFO</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #333333; color: #dddddd;">SILVER3</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제유형 : <span style="background-color: #333333; color: #dddddd;">DataStructure Deque</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/18115" target="_blank" rel="noopener&nbsp;noreferrer">https://www.acmicpc.net/problem/18115</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">SOLVE</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞 뒤가 모두 뚫려있는 Deque 자료구조를 사용해 문제를 풀이했다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예제 입력2를 예시로 문제에서 제시해주는 값을 정리해보면 다음과 같다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">초기 상태 : 알 수 없음&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기술 사용 순서 : 2 3 3 2 1</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">최종 상태 : 5 4 3 2 1</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, <span style="background-color: #c0d1e7;">기술을 거꾸로 사용하며 반대로 적용</span>시키면 초기 상태를 구할 수 있다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="495" height="87" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="495" height="87"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">n개의 명령을 저장할 n크기의 cmd 벡터를 정의한 뒤 명령을 입력받는다.</span></p>
+<pre id="code_1743663309657" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    int n;
+    cin &gt;&gt; n;
+    
+    vector&lt;int&gt; cmd(n);
+    for(int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; cmd[i];
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">명령을 뒤에서부터 반대로 적용시킨다.&nbsp;</span></p>
+<pre id="code_1743664322767" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // 기술을 거꾸로 사용 &amp; 거꾸로 적용
+    int card = 1;
+    deque&lt;int&gt; dq;
+    for (int i = n - 1; i &gt;= 0; i--) {
+        // skill 1 : 맨 뒤에 원소를 추가 
+        if (cmd[i] == 1) {
+            dq.push_back(card);
+        } 
+        else if (cmd[i] == 2) {
+            int tmp_cmd = dq.back();
+            dq.pop_back();
+            dq.push_back(card);
+            dq.push_back(tmp_cmd);
+        }
+        else if (cmd[i] == 3) {
+            dq.push_front(card);
+        }
+        card++;
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">카드를 덱에서 위에서부터 출력한다.</span></p>
+<pre id="code_1743664343815" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>    // 초기 카드 상태를 위에서 부터 출력
+    while(!dq.empty()) {
+        cout &lt;&lt; dq.back() &lt;&lt; " ";
+        dq.pop_back();
+    }</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic';">CODE</span></h2>
+<pre id="code_1743664404975" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;deque&gt;
+using namespace std; 
+
+int main() {
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
+    int n;
+    cin &gt;&gt; n;
+    
+    vector&lt;int&gt; cmd(n);
+    for(int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; cmd[i];
+    }
+    
+    // 기술을 거꾸로 사용 &amp; 거꾸로 적용
+    int card = 1;
+    deque&lt;int&gt; dq;
+    for (int i = n - 1; i &gt;= 0; i--) {
+        // skill 1 : 맨 뒤에 원소를 추가 
+        if (cmd[i] == 1) {
+            dq.push_back(card);
+        } 
+        else if (cmd[i] == 2) {
+            int tmp_cmd = dq.back();
+            dq.pop_back();
+            dq.push_back(card);
+            dq.push_back(tmp_cmd);
+        }
+        else if (cmd[i] == 3) {
+            dq.push_front(card);
+        }
+        card++;
+    }
+
+    // 초기 카드 상태를 위에서 부터 출력
+    while(!dq.empty()) {
+        cout &lt;&lt; dq.back() &lt;&lt; " ";
+        dq.pop_back();
+    }
+}
+
+// 기술 목록
+// 1. 제일 위의 카드 1장을 바닥에둔다. 
+// 2. 위에서 2번째 카드를 바닥에 둔다. (2장 이상인 경우만 가능)
+// 3. 제일 밑에 있는 카드를 바닥에 둔다. (2장 이상일때만 가능)
+
+// 카드 N장이 있다. 
+// 1~n까지의 정수가 중복되지 않게 있다. 
+// 기수을 n번 사용해서 카드를 다 내려놓았을 때, 위에서부터 1.2...n이 적혀있었다. 
+
+// 2 ... 1 2 3
+// 3 ... 
+// 기술 1번 사용 -&gt; 맨뒤에 원소를 넣어준다. 
+// 기술 2번 사용 -&gt; 맨뒤에서 2번째에 원소를 넣어준다.
+// 기술 3번 사용 -&gt; 원소를 맨 앞에 넣어준다.</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

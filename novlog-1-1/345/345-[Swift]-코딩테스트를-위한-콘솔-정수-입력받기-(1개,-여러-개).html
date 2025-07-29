@@ -1,0 +1,70 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Swift] 코딩테스트를 위한 콘솔 정수 입력받기 (1개, 여러 개)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Swift] 코딩테스트를 위한 콘솔 정수 입력받기 (1개, 여러 개)</h2>
+                                <div class="box-info">
+                                    <p class="category">IOS/PS With Swift</p>
+                                    <p class="date">2025-02-15 15:35:53</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 style="color: #000000;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">정수 1개 입력받기&nbsp;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">readLine() 메서드로 입력받은 값은 String이기에<span style="background-color: #333333; color: #dddddd;"><span>&nbsp;</span>Int() 메서드</span>를 사용해 형변환을 진행해 주면 된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, Int()로 변환한 값은 Int값이 아닌<span>&nbsp;</span><span style="background-color: #333333; color: #dddddd;">Int?</span><span>&nbsp;</span>이기에<span style="background-color: #333333; color: #dddddd;">! 연산자</span>를 사용해 값을<span>&nbsp;</span><b>UnWrapping</b><span>&nbsp;</span>해주어야 한다.&nbsp;</span></p>
+<pre id="code_1739600997975" class="swift" style="background-color: #f8f8f8; color: #383a42;" data-ke-type="codeblock" data-ke-language="swift"><code>import Swift;
+
+var input = Int(readLine()!)!
+print(input)</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="color: #333333; text-align: start;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c0d1e7;">정수 여러 개 입력받기</span></span></h2>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">결론부터 말하자면 공백을 포함한 정수값을 입력받기 위해서는 아래와 같이 작성해 주면 된다.&nbsp;</span></p>
+<pre id="code_1739601169117" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>let pInput = readLine()!.split(separator: " ").map { Int($0)! }</code></pre>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">입력값으로 <b>"1 2 3 4 5"</b>가 들어온 상황을 가정한다. </span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 말했듯이 </span><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">readLine()</span> 메서드로 값을 입력받으면&nbsp;<b>String? Optional값이기에! 연산자를</b> 이용해 값을 Unwrapping 한다.</span></p>
+<pre id="code_1739601053147" class="nix" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="swift"><code>let pInput = readLine()!</code></pre>
+<pre id="code_1739601053147" class="tap" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="swift"><code>"1 2 3 4 5"</code></pre>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">split 메서드</span>를 사용해 공백을 기준으로 문자열을 나누어 배열에 저장한다.&nbsp;</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이때 반환값은 <b>[String] 타입 배열</b>이다.&nbsp;</span></p>
+<pre id="code_1739601053147" class="swift" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="swift"><code>let pInput = readLine()!.split(separator: " ")</code></pre>
+<pre id="code_1739601053147" class="json" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-language="swift" data-ke-type="codeblock"><code>["1", "2", "3", "4", "5"]</code></pre>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">map</span>을 사용해 <b>배열의 각 요소에 대해 함수를 적용해 기존 문자열 배열을 정수형 배열로 변환시켜야 한다.</b>&nbsp;</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 <span style="background-color: #333333; color: #dddddd;">Int($0)</span>을 배열 내부의 각 요소에 적용시키면 <b>String 타입의 요소를 Int? Optional 타입 변환을 시도</b>한다.</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp;</span><span style="font-family: 'Nanum Gothic'; color: #000000;">예시로 "1"을 Int(1)로 변환하며, "a"와 같은 숫자가 아닌 문자열 값은 nil이 반환된다.&nbsp;</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">실제 프로덕트 코드라면 안전하게 Nil check를 해주는 것이 바람직하겠지만 코딩테스트 환경에서는 어차피 정수값만 들어올 것이기에 !를<b> 사용해 강제로 언래핑</b>을해준다.&nbsp;</span></p>
+<pre id="code_1739601053147" class="swift" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="swift"><code>let pInput = readLine()!.split(separator: " ").map { Int($0)! }</code></pre>
+<pre id="code_1739601053148" class="json" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="swift"><code>[1, 2, 3, 4, 5]</code></pre>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

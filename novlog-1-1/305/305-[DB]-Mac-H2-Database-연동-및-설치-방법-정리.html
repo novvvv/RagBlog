@@ -1,0 +1,97 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[DB] Mac H2 Database 연동 및 설치 방법 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[DB] Mac H2 Database 연동 및 설치 방법 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Spring</p>
+                                    <p class="date">2024-03-29 21:12:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="http://www.h2database.com/html/download.html" target="_blank" rel="noopener&nbsp;noreferrer">http://www.h2database.com/html/download.html</a></span></p>
+<figure id="og_1711766848619" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Downloads" data-og-description="Downloads Version 2.2.224 (2023-09-17) Windows Installer (SHA1 checksum: 1e4cda116519e8f95cac8298b1a4d7cbd50073ec) Platform-Independent Zip (SHA1 checksum: 8de40da72b269ae1d7a899f25aa0bbcb242b6220) Version 2.1.214 (2022-06-13) Windows Installer (SHA1 check" data-og-host="www.h2database.com" data-og-source-url="http://www.h2database.com/html/download.html" data-og-url="http://www.h2database.com/html/download.html" data-og-image=""><a href="http://www.h2database.com/html/download.html" target="_blank" rel="noopener" data-source-url="http://www.h2database.com/html/download.html">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Downloads</p>
+<p class="og-desc" data-ke-size="size16">Downloads Version 2.2.224 (2023-09-17) Windows Installer (SHA1 checksum: 1e4cda116519e8f95cac8298b1a4d7cbd50073ec) Platform-Independent Zip (SHA1 checksum: 8de40da72b269ae1d7a899f25aa0bbcb242b6220) Version 2.1.214 (2022-06-13) Windows Installer (SHA1 check</p>
+<p class="og-host" data-ke-size="size16">www.h2database.com</p>
+</div>
+</a></figure>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위 주소로 이동하여, Platform-Independent Zip 파일을 다운로드 받는다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" width="656" height="299" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="656" height="299"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">윈도우는 별도의 권한 설정 없이도, h2 db 파일을 실행시킬 수 있지만,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">맥은 따로 터미널에서 권한을 부여해 주어야 한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">h2 데이터베이스 디렉터리의 bin 폴더로 이동한 뒤</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<pre id="code_1711766945561" class="java" data-ke-language="java" data-ke-type="codeblock"><code>cd h2 // h2 directory 이동
+cd bin // bin directory 이동</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>h2.sh 파일</b>에 대한 권한을 허용해 준다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>&nbsp;chmod</b>는 <b>Change Mode</b>의 약자로, 유저에게 권한을 부여할 때 사용한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<pre id="code_1711766961837" class="java" data-ke-language="java" data-ke-type="codeblock"><code>chmod 755 h2.sh</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 아래와 같은 웹페이지가 열릴텐데, 좌측 하단의 연결을 눌러주면,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">h2 데이터베이스가 로컬에 생성된다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" width="483" height="376" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="483" height="376"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">콘솔로 돌아가 파일 리스트를 확인하여</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">test.mv.db 파일에 생성 되어 있으면 성공이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

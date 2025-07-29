@@ -1,0 +1,138 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Cpp] STL 2D Vector</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Cpp] STL 2D Vector</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/PS With C++</p>
+                                    <p class="date">2025-04-30 10:22:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Cpp STL의 <span style="background-color: #1a5490; color: #dddddd;">2차원 벡터를 생성하는 방법에 대해 정리한 문서</span>입니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">개인적인 공부 내용을 정리하는 용도로 작성한 글이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2차원 벡터를 선언하는 방법은 크게 2가지로 구분됩니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Case1. 벡터 내부에 벡터를 선언하여 2차원 벡터를 생성하는 방식</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Case2. <span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">1차원 벡터 배열을 사용해 2차원 벡터처럼 사용하는 방식</span></span></b></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1번째 케이스는 Row, Column이 모두 동적인 벡터로 벡터 안에 백터가 들어가 있는 형태입니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반면 2번째 케이스는 Row는 정적이지만 Column은 동적인 벡터로 1차원 벡터를 배열 형태로 선언하여</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">실제로는 1차원 벡터이지만 2차원 벡터와 같이 사용 가능합니다. </span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">주로 그래프 관련 알고리즘 문제를 풀이할때 인접리스트를 정의할때 2번 방식을 자주 사용합니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h3 style="text-align: left;" data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 <span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">벡터 내부에 벡터를 선언하여 2차원 벡터를 생성하는 방식</span></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #1a5490; color: #dddddd;">vector&lt;vector&lt;int&gt;&gt; vector_name</span> 형태로 선언합니다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">행과 열이 모두 동적인 형태로 할당됩니다. </span></p>
+<pre id="code_1745904388116" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    vector&lt;vector&lt;int&gt;&gt; myVec; // Row : Dynamic, Column : Dynamic
+    cout &lt;&lt; "Row, Column이 모두 동적인 벡터" &lt;&lt; endl;
+    
+    // 0~2번 Row 추가
+    myVec.push_back(vector&lt;int&gt;()); // 0번 Row 추가
+    myVec.push_back(vector&lt;int&gt;()); // 1번 Row 추가
+    myVec.push_back(vector&lt;int&gt;()); // 2번 Row 추가
+    
+    myVec[0].push_back(1);
+    myVec[0].push_back(1);
+    myVec[0].push_back(1);
+    
+    myVec[1].push_back(10);
+    myVec[1].push_back(10);
+    myVec[1].push_back(10);
+    myVec[1].push_back(10);
+    
+    myVec[2].push_back(100);
+    myVec[2].push_back(100);
+    
+    for (int row = 0; row &lt; myVec.size(); row++) {
+        cout &lt;&lt; row &lt;&lt; "번 째 행 - ";
+        for (int column = 0; column &lt; myVec[row].size(); column++) {
+            cout &lt;&lt; myVec[row][column] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+<pre id="code_1745904591850" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>Row, Column이 모두 동적인 벡터
+0번 째 행 - 1 1 1 
+1번 째 행 - 10 10 10 10 
+2번 째 행 - 100 100 
+Program ended with exit code: 0</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 <span style="text-align: center;">1차원 벡터 배열을 사용해 2차원 벡터처럼 사용하는 방식</span></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #1a5490; color: #dddddd;">vector&lt;int&gt; vector_name[n]</span> 형태로 선언합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">실제로 2차원 벡터는 아니지만 2차원 벡터 처럼 사용 가능합니다.</span></p>
+<pre id="code_1745976004619" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    
+    vector&lt;int&gt; myVec[3];
+    
+    // 0번째 Row에 Column 추가
+    myVec[0].push_back(1);
+    myVec[0].push_back(1);
+    myVec[0].push_back(1);
+    
+    // 1번째 Row에 Column 추가
+    myVec[1].push_back(2);
+    myVec[1].push_back(2);
+    myVec[1].push_back(2);
+    
+    // 2번째 Row에 Column 추가
+    myVec[2].push_back(3);
+    myVec[2].push_back(3);
+    
+    for (int row = 0; row &lt; 3; row++) {
+        cout &lt;&lt; "#" &lt;&lt; row &lt;&lt; "번 행 - ";
+        for (int column = 0; column &lt; myVec[row].size(); column++) {
+            cout &lt;&lt; myVec[row][column] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+<pre id="code_1745976022271" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#0번 행 - 1 1 1 
+#1번 행 - 2 2 2 
+#2번 행 - 3 3 
+Program ended with exit code: 0</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

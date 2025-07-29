@@ -1,0 +1,155 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] 생성자 함수를 이용한 객체 생성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] 생성자 함수를 이용한 객체 생성</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-05-14 23:44:20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/다운로드.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 생성자 함수(Constructor)</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 생성자 함수 동작 방식</span></b></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Reference</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">모던 자바스크립트 Deep Dive 234p~246p</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://ko.javascript.info/constructor-new">new 연산자와 생성자 함수 (javascript.info)</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a href="https://novlog.tistory.com/217?category=867814" target="_blank" rel="noopener">이전 포스팅</a> (객체 리터럴을 이용한 객체 생성) 에서 객체 리터럴 방식 { ... }을 이용한 객체 생성 방법에 대해 알아 보았다. 객체 리터럴 방식은 직관적으로 객체를 쉽게 생성할 수 있지만 동일한 프로퍼티를 갖는 객체를 여러 개 생성해야 하는 경우에는 같은 프로퍼티를 여러 번 기술해 주어야 하기에 코드 생산성이 떨어진다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 <b>new 연산자와 생성자 함수를 이용하여 객체를 생성하는 방법</b>에 대해 정리해 보고자 한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#1 생성자 함수(Constructor)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">생성자 함수란 new연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수로, 생성자 함수에 의해 생성된 객체를 인스턴스 라고 부른다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">생성자 함수와 일반 함수의 기술적인 차이는 없지만 생성자 함수는 보통 아래의 관례를 따른다.</span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">1. 함수 이름의 첫 글자는 대문자로 시작한다.</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">2. new 연산자와 함께 호출한다.&nbsp;</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">* new 연산자 없이 생성자 함수를 호출 시 일반 함수로 동작한다.</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반지름(radius)을 프로퍼티로 가지고 있고 지름의 길이를 리턴하는 getDiameter메서드를 지닌 circle1, circle2 객체를 객체 리터럴 방식을 이용해 선언해 보았다.</span></p>
+<pre id="code_1652536899860" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>const circle1 = {
+    radius: 10,
+    getDiameter(){
+        return 2 * this.radius;
+    }
+};
+
+const circle2 = {
+    radius: 20,
+    getDiameter(){
+        return 2 * this.radius;
+    }
+};
+
+circle1.getDiameter(); // print 20
+circle2.getDiameter(); // print 40</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">두 객체의 다른 점 이라고는 radius 프로퍼티의 값 뿐인데 같은 내용의 코드를 여러번 작성하니 매우 비효율적이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1652537175797" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>// Construtor 생성자 함수를 이용한 객체 생성 방식
+function Circle(radius){
+    this.radius = radius;
+    this.getDiameter = function(){
+        return 2 * this.radius;
+    };
+}
+
+// 인스턴스 생성
+const circle1 = new Circle(10);
+const circle2 = new Circle(20);
+
+console.log(circle1.getDiameter()); // print 20
+console.log(circle2.getDiameter()); // print 40</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">생성자 함수를 이용한 방식으로 코드를 변경해 보았다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반지름의 값(radius)을 인수로 받는 Circle 생성자 함수를 정의한 뒤, new 연산자와 함께 Circle 생성자 함수를 호출해 인스턴스(circle1, circle2)를 생성했다.&nbsp;</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">* 이 때 생성자 함수 내부에서 this는 생성자 함수가 (미래에) 생성할 인스턴스를 가리킨다. (참고로 JS에서 this가 가리키는 값은 함수 호출방식에 따라 동적으로 결정된다.)</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이처럼 중복되는 코드가 여러번 발생할 경우 생성자 함수 방식을 이용해 객체를 생성하면 여러번 코드를 작성할 필요 없이 효율적인 코드를 작성할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">#2 생성자 함수 동작 방식</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">new연산자를 이용해 생성자 함수를 호출하면 생성자 함수는 다음과 같은 알고리즘을 따른다.</span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">1. 빈 객체 생성 및 this 바인딩</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">2. 인스턴스 초기화</span></b></span></p>
+<p data-ke-size="size16"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">3. this(인스턴스) 반환</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 빈 객체 생성 및 this 바인딩</span></b></p>
+<pre id="code_1652537812992" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function Circle(radius){
+	// 1. 암묵적으로 빈 객체가 생성되고 생성된 인스턴스는 this에 바인딩된다.
+    console.log(this); // testCode .. Cirlce{} 
+    this.radius = radius;
+    this.getDiameter = function(){
+        return 2 * this.radius;
+    };
+}
+
+const circle1 = new Circle(10);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">생성자 함수를 호출 시 가장 먼저 빈 객체가 생성된다. 그리고 생성된 빈 객체(인스턴스)는 this에 바인딩된다. 이 과정은 런타임 이전에 실행된다. console.log(this) 콘솔 출력문을 사용해 Circle 생성자 함수 내부에서 this를 출력해 보니 Circle{} 빈 객체가 출력됨을 확인할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 인스턴스 초기화</span></b></p>
+<pre id="code_1652538002169" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function Circle(radius){
+	// 1. 암묵적으로 빈 객체가 생성되고 생성된 인스턴스는 this에 바인딩된다.
+    console.log(this); // testCode .. Cirlce{} 
+    // 2. 인스턴스 초기화
+    // 생성자 함수 내부에 기술되어 있는 코드를 한 줄씩 싱행해 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function(){
+        return 2 * this.radius;
+    };
+}
+
+const circle1 = new Circle(10);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">빈 객체가 생성되었다면 다음으로 인스턴스 초기화가 수행된다. 생성자 함수 내부에 기술되어 있는 코드를 한 줄씩실행해 나가며 생성한 빈 객체(인스턴스)를 초기화 한다. 이 과정은 프로그래머가 직접 기술한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">3. this 반환</span></b></p>
+<pre id="code_1652538135047" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function Circle(radius){
+	// 1. 암묵적으로 빈 객체가 생성되고 생성된 인스턴스는 this에 바인딩된다.
+    console.log(this); // testCode .. Cirlce{} 
+    // 2. 인스턴스 초기화
+    // 생성자 함수 내부에 기술되어 있는 코드를 한 줄씩 싱행해 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function(){
+        return 2 * this.radius;
+    };
+    // 3. this 반환
+}
+
+const circle1 = new Circle(10);
+console.log(circle1); // Circle&nbsp;{radius: 10, getDiameter: &fnof;}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">인스턴스 초기화를 끝마치면 마지막으로 this 바인딩 값 즉, 인스턴스를 리턴한다. 만약 this가 아닌 다른 객체를 명시적으로 반환하면 return문에 명시한 객체가 반환되게 된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 생성자 함수 내부에서 this가 아닌 다른 객체 또는 값을 반환하는 것은 생성자 함수의 기본 메커니즘을 파괴하는 행위이기에 return문을 이용한 객체 혹은 값의 반환 과정은 생략하는 것을 권장한다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자바스크립트 #javascript #This #객체생성 #생성자함수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

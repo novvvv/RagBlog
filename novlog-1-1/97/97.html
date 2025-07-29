@@ -1,0 +1,164 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Git] #4 깃 버전 관리 VOL2 - 스테이징 & 커밋 (status , add , commit , log , commit -am)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Git] #4 깃 버전 관리 VOL2 - 스테이징 & 커밋 (status , add , commit , log , commit -am)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-07-27 18:17:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignLeft" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbr5rbo%2Fbtrav7CmlrA%2FAoonoCM4FV2GEoVXlvFCr0%2Fimg.png" width="245" data-origin-width="389" data-origin-height="175" data-filename="깃.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbr5rbo%2Fbtrav7CmlrA%2FAoonoCM4FV2GEoVXlvFCr0%2Fimg.png" width="245" data-origin-width="389" data-origin-height="175" data-filename="깃.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>* 다음 포스팅은 깃(Git)의 사용방법에 대하여 정리한 것으로, 개인적인 공부 기록용으로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</b></span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>* Window 운영체제를 기준으로 작성했습니다.</b></span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">목차</span></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 깃 상태 확인 : <span style="color: #006dd7;">git status</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 스테이징 :<span style="color: #006dd7;"> git add</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 커밋 :<span style="color: #006dd7;"> git commit</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#4 저장소에 저장된 버전 확인 :<span style="color: #006dd7;"> git log</span></span></b></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #006dd7;">* --stat 옵션</span></span></b></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#5 스테이징 &amp; 커밋 일괄 처리 : <span style="color: #006dd7;">git commit -am</span></span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">... BEFORE START</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 깃 버전 관리 VOL1 포스팅 에서 깃 저장소를 만들고 , 버전 관리에 대한 전체적인 개요와 용어들을 소개 하였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 실제로 명령어를 통해 스테이징과 커밋을 실습해 보고자 한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 깃 상태 확인 : git status</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MyGit 디렉터리 (버전 관리를 수행할 디렉터리) 로 이동하여,<span style="color: #006dd7;"> git status</span> 명령어를 입력해 보자. <span style="color: #006dd7;">git status</span> 는 <span style="background-color: #333333; color: #ffffff;">깃 상태를 확인하는 명령어이다.</span></span></p>
+<pre id="code_1627374688938" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git status</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러면 아래 그림과 같이 3가지 문구가 출력된다. 각각이 의미하는 바는 다음과 같다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">On branch master</span> : 현재 master 브랜치에 있다는 의미이다. (브랜치에 대해서는 추후에 자세하게 정리할 예정이다.)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">No commits yet </span>: 아직 커밋한 파일이 없다는 의미이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">nothing to commit</span> : 현재 커밋할 파일이 없다는 의미이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="642" data-origin-height="134" width="565" height="118" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="642" data-origin-height="134" width="565" height="118" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이제 버전 관리를 수행할 txt 파일을 만들어 보자. <span style="color: #006dd7;">vim 편집기를 이용해 Test.txt 파일을 하나 생성하고 , hello 문구를 입력하고 종료</span>한다. (Vim 편집기의 사용방법에 대해서는 <a href="https://novlog.tistory.com/95?category=879416" target="_blank" rel="noopener">#2 리눅스 편집기 빔(Vim) 사용방법</a> 포스팅에서 이미 다루었다. 혹시 빔 편집기에 대한 지식이 부족하다면 참고 하도록 하자.)</span></p>
+<pre id="code_1627375130998" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ vim Test.txt
+$ ls</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="464" data-origin-height="112" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="464" data-origin-height="112" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 스테이징 : git add</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #006dd7;">작업 트리에 존재하는 Test.txt 파일을 스테이지 영역으로 스테이징</span> 해보자. 다음 명령어를 입력한다.</span></p>
+<pre id="code_1627375306393" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git add Test.txt</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">깃 명령은 리눅스를 기반으로 하기에, 윈도우에서 git add 명령을 입력하면 다음과 같은 메시지가 출력된다. (warning: LF will be replaced by CRLF int (txt 파일명) The file will have its original line endings in your working directory)</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="709" data-origin-height="85" width="642" height="77" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="709" data-origin-height="85" width="642" height="77" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이는 자동으로 텍스트 파일의 CRLF 문자를 LF 문자로 변환하여 커밋을 수행할 것이라는 의미인데, 윈도우와 리눅스의 개행문자 (줄바꿈 문자)가 다르기 때문에 출력되는 메시지이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">윈도우는 CRLF 라는 개행 문자를 사용하는 반면 리눅스는 LF 개행 문자를 사용한다. 말이 길어졌는데 프로그래머가 따로 어떠한 조치를 해야 하는 것은 아니기에 <span style="background-color: #ffc1c8;">무시해도 된다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 작업트리에 존재하는 모든 파일을 한 번에 스테이지 영역으로 옮기고 싶다면, git add 명령 뒤에 파일 이름 대신 마침표(.)를 붙이면 된다.</span></p>
+<pre id="code_1627379448203" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git add . // 작업트리 -&gt; 스테이지 일괄처리</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">깃의 상태를 확인해 보자.</span></p>
+<pre id="code_1627375643402" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git status</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">nothing to commit 이라는 글자가 Changes to be commited: 라는 문구로 바뀌었다. 아래와 같이 출력되면 Test.txt 파일을 성공적으로 작업 트리 영역에서 스테이지 영역으로 옮긴 것이다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="1178" data-origin-height="172" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1178" data-origin-height="172" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="930" data-origin-height="218" width="599" height="140" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="930" data-origin-height="218" width="599" height="140" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#3 커밋 : git commit</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #006dd7;">스테이지 영역에 존재하는 Test.txt 파일을 저장소(Repository)로 옮겨보자.</span> 즉, <span style="color: #006dd7;">버전을 만드는 것</span> 인데 이를 <span style="background-color: #333333; color: #ffffff;">"커밋(Commit)"</span> 이라고 부른다. 커밋을 할 때는 간단하게 어떠한 변경 사항이 있는지 <span style="background-color: #333333; color: #ffffff;">커밋 메시지</span>를 남겨 두는데 <span style="color: #006dd7;">git commit 명령과 -m 옵션을 결합</span> 시키면 된다. 다음 명령을 입력해 보자.</span></p>
+<pre id="code_1627376192629" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git commit -m "msg1"</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">필자는 따로 newTest.txt 파일을 스테이지 영역에 올려 두어서, 2 files changed, 2 insertions(+) 라고 출력 되었는데, 위의 과정을 따라왔다면 1 files changed, 1 insertions(+) 라고 출력 될 것이다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="466" data-origin-height="114" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="466" data-origin-height="114" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#4 저장소에 저장된 버전 확인 : git log</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #006dd7;">저장소에 저장된 버전을 확인</span>해 보자. 다음 명령어를 입력한다.</span></p>
+<pre id="code_1627376450483" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git log</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이메일 주소, 커밋 메시지 등 여러 정보가 함께 출력된다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="642" data-origin-height="138" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="642" data-origin-height="138" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="930" data-origin-height="219" width="660" height="155" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="930" data-origin-height="219" width="660" height="155" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<h4 data-ke-size="size20"><span style="font-family: 'Noto Serif KR';"><b><span style="color: #006dd7;">* --stat 옵션</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">git log 명령어에 --stat 옵션을 함께 사용하면, 더욱 자세하게 버전 정보를 확인할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">파일의 변경점 이라던지 각 버전이 어떠한 파일들과 연관이 되어 있는지 출력해 준다.</span></p>
+<pre id="code_1627379699771" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git log --stat</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="651" data-origin-height="386" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png" data-origin-width="651" data-origin-height="386" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#5 스테이징 &amp; 커밋 일괄 처리 : git commit -am</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">한 번 커밋한 적이 있는 파일은 <span style="background-color: #333333; color: #ffffff;">git commit -am</span> 명령으로 <span style="color: #006dd7;">스테이징과 커밋을 한 번에 처리</span>하는 것이 가능하다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #006dd7;">작업트리에 존재하는 Test.txt 파일의 내용을 Vim 편집기를 이용해 약간 수정해 주고, 다음 명령어를 입력</span>해 주자.</span></p>
+<pre id="code_1627376778545" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>$ git commit -am "msg2"
+$ git log</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">수정된 Test.txt의 내용이 저장된 새로운 버전 정보가 출력된다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="643" data-origin-height="245" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_10.png" data-origin-width="643" data-origin-height="245" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #깃 #COMMIT #깃허브 #깃입문 #깃사용법 #커밋방법 #스테이징방법 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

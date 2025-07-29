@@ -1,0 +1,128 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 1074 "Z" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 1074 "Z" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-04-01 01:14:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제유형 : <span style="background-color: #333333; color: #ffffff;">재귀</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/1074">1074번: Z (acmicpc.net)</a></span></p>
+<figure id="og_1648740542136" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1074번: Z" data-og-description="한수는 크기가 2N &times; 2N인 2차원 배열을 Z모양으로 탐색하려고 한다. 예를 들어, 2&times;2배열을 왼쪽 위칸, 오른쪽 위칸, 왼쪽 아래칸, 오른쪽 아래칸 순서대로 방문하면 Z모양이다. N &gt;&nbsp;1인 경우, 배열을" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1074" data-og-url="https://www.acmicpc.net/problem/1074" data-og-image="https://scrap.kakaocdn.net/dn/cjRdiW/hyNTo4VuLj/pwTRsbNbPw2OzlrKyJhdkK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bde5OB/hyNTlmPrhC/oJ6FNukE3rvXqRjb1ZzWek/img.jpg?width=1066&amp;height=1070&amp;face=0_0_1066_1070,https://scrap.kakaocdn.net/dn/ubt61/hyNTkIdIYH/geUSEDMAMElcYmmfnK79M0/img.jpg?width=646&amp;height=650&amp;face=0_0_646_650"><a href="https://www.acmicpc.net/problem/1074" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1074">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cjRdiW/hyNTo4VuLj/pwTRsbNbPw2OzlrKyJhdkK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bde5OB/hyNTlmPrhC/oJ6FNukE3rvXqRjb1ZzWek/img.jpg?width=1066&amp;height=1070&amp;face=0_0_1066_1070,https://scrap.kakaocdn.net/dn/ubt61/hyNTkIdIYH/geUSEDMAMElcYmmfnK79M0/img.jpg?width=646&amp;height=650&amp;face=0_0_646_650');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1074번: Z</p>
+<p class="og-desc" data-ke-size="size16">한수는 크기가 2N &times; 2N인 2차원 배열을 Z모양으로 탐색하려고 한다. 예를 들어, 2&times;2배열을 왼쪽 위칸, 오른쪽 위칸, 왼쪽 아래칸, 오른쪽 아래칸 순서대로 방문하면 Z모양이다. N &gt;&nbsp;1인 경우, 배열을</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">n=1(2 x 2)인 경우 r c 가 주어졌을 때 해당하는 칸을 몇 번째로 방문할 수 있는지는 자명하다. 문제 조건에서 Z 모양으로 왼쪽 위칸 오른쪽 위칸 왼쪽 아래칸 오른쪽 아래칸 순서로 방문한다고 제시했기 때문이다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">n=2 (4 x 4)인 경우 r(2) c(2) 가 주어졌을 때 해당 칸을 몇 번째로 방문하는 지 알 수 있는 방법에 대해 생각해 보자.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">좌측 상단부터 우측 하단까지 4개의 구역으로 구분한다. 다음으로 n = 1 일때의 구조를 그대로 따라가면 r = 2 , c = 2 구역의 칸은 4번째로 방문함을 알 수 있다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번에는 r = 3 , c = 2 에 해당하는 칸을 몇 번째로 방문하는 지 알아보자. 1구역 2구역 까지는 n = 1 일때의 규칙에 따라 모두 채워져 있을 것이다. 다음으로 r = 3, c = 2 칸은 3구역의 2번째 칸 이기에 10번째로 방문하는 칸 임을 확인할 수 있다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위의 풀이를 토대로 유추해 보았을 때 n = 1 정보가 n = 2 에 사용되고 있음을 알 수있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, k 번째를 구하면 k + 1 번째를 구할 수 있다는 뜻이다. 또한 n = 1 의 방문하는 순서는 자명하다. 따라서 이 문제는 재귀 구조로 풀이할 수 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코드는 간단하다. 크기 n , 행 r , 열 c 의 정보를 입력받아 위치 정보를 반환하는 함수 func를 선언하고, 1, 2, 3, 4 구역에 따라 그에 알맞는 방문 순서를 재귀적으로 호출시키면 된다.</span></p>
+<pre id="code_1648743161275" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// 크기 n , 행 r , 열 c 의 정보를 입력받아 위치 정보를 반환하는 함수
+int func(int n, int r, int c){
+	if(n == 0 ) return 0; // base condition
+	int half = 1 &lt;&lt; (n-1);
+	if(r &lt; half &amp;&amp; c &lt; half) return func(n-1, r, c);
+	else if(r &lt; half &amp;&amp; c &gt;= half) return half*half + func(n-1, r, c-half);
+	else if (r &gt;= half &amp;&amp; c &lt; half) return 2*half*half + func(n-1, r-half, c);
+	return 3*half*half + func(n-1, r-half, c-half);
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1648743231592" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+// 크기 n , 행 r , 열 c 의 정보를 입력받아 위치 정보를 반환하는 함수
+int func(int n, int r, int c){
+	if(n == 0 ) return 0; // base condition
+	int half = 1 &lt;&lt; (n-1);
+	if(r &lt; half &amp;&amp; c &lt; half) return func(n-1, r, c);
+	else if(r &lt; half &amp;&amp; c &gt;= half) return half*half + func(n-1, r, c-half);
+	else if (r &gt;= half &amp;&amp; c &lt; half) return 2*half*half + func(n-1, r-half, c);
+	return 3*half*half + func(n-1, r-half, c-half);
+}
+
+int main(void) {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+	int n, r, c;
+	cin &gt;&gt; n &gt;&gt; r &gt;&gt; c;	
+	cout &lt;&lt; func(n, r, c);
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #BOJ #재귀함수 #백준 #1074Z 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

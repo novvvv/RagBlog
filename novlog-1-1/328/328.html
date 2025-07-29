@@ -1,0 +1,169 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Java] Multi Thread Memory Visibility & Volatile Keyword</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Java] Multi Thread Memory Visibility & Volatile Keyword</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Multi Thread Programming</p>
+                                    <p class="date">2024-10-04 22:17:33</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #1a5490;"><b>#Memory Visibility</b>&nbsp;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">메모리 가시성 (Memory Visibility) 문제</span>는 <b>멀티 스레드 환경에서 발생하는 특정 스레드에서 변경한 정보가 바로 다른 스레드에 보이지 않는 현상</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이는 CPU 아키텍쳐 구조로 인해 발생한다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">메인 메모리로부터 직접 데이터를 불러오는 것은 CPU로부터의 거리가 멀리 떨어져 있기에 상대적으로 속도가 느리다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c0d1e7;">따라서 CPU는 속도 향상을 위해 CPU 근처에 작은 크기의 캐시 메모리를 배치하여 속도를 향상시키는 구조를 채택</span>한다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바 멀티 스레드 환경에서 또한 각 스레드는 고유의 캐시 메모리를 가진다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">CPU 아키텍쳐와 동일하게 스레드는 메인 메모리로부터 직접 값을 읽는 대신, 스레드의 캐시 메모리로 값을 복사한 뒤 사용한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#Memory Visibility Example</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드에서는 Main, MyThread 2개의 스레드가 등장한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Main 스레드는 MyThread를 호출한 뒤, 1초간 sleep 상태에 빠지고 MyThread 내부 멤버변수 Flag를 False로 변경한뒤 작업을 종료한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">멀티스레딩의 특성에 따라 각각의 스레드는 별도의 스택 메모리 공간이 할당되며, MyTask Runnable 인스턴스는 힙 메모리 공간에 할당된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(* Runnable 객체의 경우 다른 일반 객체와 마찬가지로, 모든 스레드가 자원을 공유할 수 있도록 힙 메모리에 자원이 할당된다.)</span></p>
+<p><figure class="imageblock alignLeft" width="568" height="310" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-10-02 20.28.13.png" width="568" height="310"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" width="568" height="348" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-10-02 20.27.56.png" width="568" height="348"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1727266267071" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        System.out.println("Main Thread Start!");
+        MyTask myTask = new MyTask();
+        Thread MyThread = new Thread(myTask, "MyThread");
+        MyThread.start();
+        Thread.sleep(1000);
+        myTask.flag = false;
+        System.out.println("Main Thread End!");
+    }
+
+    // 1s 주기로 출력
+    static class MyTask implements Runnable {
+        boolean flag = true;
+
+        @Override
+        public void run() {
+            System.out.println("MyThread Start!");
+            while (flag) {
+                // flag가 false로 바뀌면 탈출
+            }
+            System.out.println("MyThread End!");
+        }
+    }
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 Main Thread에서 flag 속성의 값을 False로 변경하여도 Main Thread만 종료되고 MyThread는 여전히 루프를 빠져나오지 못한채 계속 실행된다.&nbsp;</span></p>
+<pre id="code_1727868605301" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Main Thread Start!
+MyThread Start!
+Main Thread End!
+(...MyThread Running)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#Thread Cache Memory</span>&nbsp;</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위와 같은 문제가 발생하는 이유는 각각의 스레드가 별도의 캐시 메모리를 보유하고 있기 때문이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Main Thread와 MyThread Thread는 CPU와의 속도 차이를 개선하기 위해 스레드 내부의 별도의 캐시 메모리를 위한 공간을 할당한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그 다음 Heap 영역에 선언된 MyTask Runnable 인스턴스 내부의 flag 자원을 각 스레드의 캐시 메모리로 로드한다.&nbsp;</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-10-04 22.01.20.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">myTask.flag = false 코드 부분이 실행되면 Heap Memory에 존재하는 flag 값은 false로 바뀐다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Main Thread Cache Memory 내부에 존재하는 flag 값도 false로 변경된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 MyThread Thread Cache Memory 내부에 존재하는 flag 값은 여전히 True 상태로 남아있게된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 Main Thread 가 종료 되더라도 MyThread는 여전히 while 반복문을 빠져나오지 못해 프로그램이 종료되지 않고 무한 루프에 빠지는 것이다.&nbsp;</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-10-04 22.08.23.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">MyThread가 언제 메인 메모리로 부터 flag 값을 읽어 False로 변경할 지 예측하는 것은 CPU 스케줄링 기법에 따라 달라지기에 사실상 불가능하다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">정말 최악의 경우 영원히 메모리로 부터 값을 읽어들이지 않을 가능성도 존재한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp;</span></p>
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#Volatile</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">성능을 약간 포기하는 대신 메모리 가시성 문제를 해결할 수 있는 방안이 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">여러 스레드가 공유로 사용하는 자원에 <span style="background-color: #333333; color: #c0d1e7;">Volatile keyword</span>를 명시하는 것이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이렇게 하면 각 스레드가 고유의 캐시 메모리를 사용하지 않고, 메인 메모리로 부터 직접 값을 읽어 들이게된다.&nbsp;</span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-10-04 22.13.25.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1728047692793" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        System.out.println("Main Thread Start!");
+        MyTask myTask = new MyTask();
+        Thread MyThread = new Thread(myTask, "MyThread");
+        MyThread.start();
+        Thread.sleep(1000);
+        myTask.flag = false;
+        System.out.println("Main Thread End!");
+    }
+
+    static class MyTask implements Runnable {
+        volatile boolean flag = true;
+
+        @Override
+        public void run() {
+            System.out.println("MyThread Start!");
+            while (flag) {
+                // flag가 false로 바뀌면 탈출
+            }
+            System.out.println("MyThread End!");
+        }
+    }
+
+}</code></pre>
+<pre id="code_1728047713019" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Main Thread Start!
+MyThread Start!
+Main Thread End!
+MyThread End!</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 캐시 메모리를 사용할 때 보다 성능이 떨어지기에 꼭 필요한 상황에서만 volatile을 사용해야 한다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

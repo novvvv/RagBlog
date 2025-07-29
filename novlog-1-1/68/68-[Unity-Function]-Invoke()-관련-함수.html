@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity Function] Invoke() 관련 함수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity Function] Invoke() 관련 함수</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-06-26 21:41:11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="201" height="201" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="901" data-origin-height="901" data-filename="unitylogo.png" width="201" height="201" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 Invoke?</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 Invoke() 관련 함수 및 사용방법</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #ffffff; background-color: #333333;">* 개인적인 유니티 공부내용 기록을 위해 작성한 포스팅으로, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 Invoke?</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유니티는 시간을 지연시키는 기능인 수행하는 <span style="background-color: #333333; color: #ffffff;">인보크(Invoke) 함수</span>와 <span style="background-color: #333333; color: #ffffff;">코루틴(Coroutine)</span>을 제공한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">단순 시간 지연을 위해서는 Invoke()를 사용하며 , 세부적인 조정이 필요한 경우에는 코루틴(Coroutine)을 사용한다고 한다. <a href="https://novlog.tistory.com/54?category=869706" target="_blank" rel="noopener">(코루틴 관련 포스팅) </a></span><span style="color: #000000;">Invoke()를 사용하며 느낀점은 일단 코루틴에 비해 직관적이고, 사용하기가 간편하다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 Invoke() 관련 함수 및 사용방법</span></h2>
+<p data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">*Invoke("메서드 이름" , 지연시간)&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">"지연시간" 만큼의 시간이 흐른 뒤, 메서드가 호출된다. 아래와 같이 코드를 작성하면, 5초 뒤에 WaitForSecond5f 함수가 호출되어, 5초가 지났습니다. 라는 로그를 출력한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">*InvokeRepeating("함수이름", "지연시간", "반복시간")</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">"지연시간" 만큼의 시간이 흐른 뒤, "함수이름" 메서드가 호출되며, "반복시간" 만큼 반복한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">*CancleInvoke("반복중인 Invoke 함수이름")</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반복중인 Invoke 함수의 호출을 중단시킨다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

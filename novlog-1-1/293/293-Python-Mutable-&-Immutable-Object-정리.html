@@ -1,0 +1,169 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Python Mutable & Immutable Object 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Python Mutable & Immutable Object 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2023-05-06 20:53:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Python 언어는 객체를 <span style="background-color: #333333; color: #dddddd;">Mutable Object</span>와 <span style="background-color: #333333; color: #dddddd;">Immutable Object</span> 두 가지로 구분합니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Mutable Object란 상태를 변경 가능한 객체로 대표적으로 <b>List, Set, Dictionary ..</b> 등이 있으며 Immutable Object는 상태를 변경 불가능한 객체로 <b>Int, Float, Tuple, Str, Bool Type</b> 등이 존재합니다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">?Index</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Immutable Object &amp; Mutable Object</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Immutable Object와 Mutable Object의 객체 참조</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#3 Immutable Object는 항상 값이 같은 경우에 동일한 객체를 참조하는가?</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#1 Immutable Object &amp; Mutable Object</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Immutable Object</span>는 상태 즉, <b>값을 변경할 수 없기에 객체의 불변성과 안정성을 보장</b>할 수 있으며 <b>값이 동일한 경우 객체를 복제하지 않고 같은 주소를 참조</b>하기에 메모리를 절약할 수 있다는 장점이 있습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 <b>객체의 값을 변경 하고자 하는 경우에는 기존 객체를 수정하지 못하기에 또 다른 객체를 만들어 할당</b> 해야만 합니다. 그렇기에 오히려 <b>객체의 값을 변경해야 하는 상황이나 데이터가 큰 객체를 사용하는 경우에는 메모리 사용량이 늘어날 수 있다</b>는 단점이 있습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Mutable Object</span>는 Immutable Object와 달리 <b>상태를 변경할 수 있습니다.</b> 따라서 <b>객체의 불변성과 안정성을 보장받을 수 없기에 주의</b>가 필요합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 Mutable Object는 원본 객체를 수정할 수 있기에, <b>객체의 값의 변경이 빈번하게 일어나는 상황에서는 오히려 성능상 이점</b>을 얻을 수 있습니다.&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 Immutable Object 와 Mutable Object 의 객체 참조</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>Immutable Object는 값이 같은 경우 항상 동일한 곳을 참조</b>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">str_1과 str_2는 Immutable Object인 str type "Immutable Object"를 참조하기에 새로운 객체를 만들지 않고, 객체를 하나 만 생성한 뒤 같은 주소를 가리키도록 하여 메모리를 절약 하도록 한 것입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">* hex()</span> &rarr; 16진수로 변환하여 출력하도록 도와주는 메서드입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">* id()</span> &rarr; 메모리 주소를 출력하도록 도와주는 메서드입니다.&nbsp;</span></p>
+<pre id="code_1683371561763" class="python" data-ke-language="python" data-ke-type="codeblock"><code># immutable Object
+# 상태 변경이 불가능한 객체. 
+# 같은 값을 저장하는 경우 동일한 주소를 참조한다. 
+print("Immutable Object")
+str_1 = "Immutable Object"
+str_2 = "Immutable Object"
+print(f'str_1 &rarr; {hex(id(str_1))}')
+print(f'str_2 &rarr; {hex(id(str_2))}')</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1683371780958" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Immutable Object
+str_1 &rarr; 0x7f9a66576370
+str_2 &rarr; 0x7f9a66576370</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>Mutable Object는 값이 동일 하더라도 새로운 객체를 생성하여 각 각 서로 다른 객체의 주소를 참조</b>합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">myList_1 과 my_List2 는 Muttable Object인 list Type을 참조하기에 리스트의 형태는 동일하나 같은 주소를 참조하지 않고 서로 다른 주소를 참조합니다.&nbsp;</span></p>
+<pre id="code_1683372022427" class="python" data-ke-language="python" data-ke-type="codeblock"><code># mutable Object
+# 상태 변경이 가능한 객체.
+# 같은 값을 저장하는 경우 새로운 객체를 생성해 다른 주소를 참조한다. 
+print("Mutable Object")
+myList_1 = [1, 2, 3, 4, 5]
+myList_2 = [1, 2, 3, 4, 5]
+print(f'myList_1 &rarr; {hex(id(myList_1))}')
+print(f'myList_2 &rarr; {hex(id(myList_2))}')</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1683372135422" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Mutable Object
+myList_1 &rarr; 0x7ffb6c958230
+myList_2 &rarr; 0x7ffb6c958c30</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#3 Immutable Object는 항상 값이 같은 경우에 동일한 주소를 참조하는가?</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 Immutable Object는 상태를 변경할 수 없는 객체이기에, 값이 동일한 경우에는 객체를 새로 생성하지 않고 동일한 주소를 가리킨다고 말씀 드렸습니다. 그렇다면 Immutable Object는 값이 동일하다면 언제나 같은 주소를 참조할까요?</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">결론부터 말하자면 <span style="background-color: #333333; color: #dddddd;">"대체로 그렇지만 항상 그런 것은 아닙니다."</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그 이유는 특정 함수의 동작 방식으로 인해 발생합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예시로 다음 코드를 보면 num_2와 num_3의 값이 100에서 101로 변경됨에 따라 101 값을 담고있는 새로운 객체를 생성하여 num_2와 num_3는 새롭게 생성된 객체를 가리킵니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이것이 일반적인 Immutable Object의 동작 방식입니다.&nbsp;</span></p>
+<pre id="code_1683372556631" class="python" data-ke-language="python" data-ke-type="codeblock"><code>num_1 = 100
+num_2 = 100
+num_3 = 100
+
+print(f"Before")
+print(f"num_1 &rarr; {hex(id(num_1))}")
+print(f"num_2 &rarr; {hex(id(num_2))}")
+print(f"num_3 &rarr; {hex(id(num_3))}")
+
+num_2 += 1
+num_3 += 1
+
+print(f"After")
+print(f"num_1 &rarr; {hex(id(num_1))}")
+print(f"num_2 &rarr; {hex(id(num_2))}")
+print(f"num_3 &rarr; {hex(id(num_3))}")</code></pre>
+<p><figure class="imageblock alignLeft" width="391" height="281" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="391" height="281"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1683372632486" class="python" data-ke-language="python" data-ke-type="codeblock"><code>Before
+num_1 &rarr; 0x7f16ac9df100
+num_2 &rarr; 0x7f16ac9df100
+num_3 &rarr; 0x7f16ac9df100
+After
+num_1 &rarr; 0x7f16ac9df100
+num_2 &rarr; 0x7f16ac9df120
+num_3 &rarr; 0x7f16ac9df120</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 다음 코드를 보면 str_1, str_2 는 Str Type Immutable Object 임에도 불구하고, 서로 같은 값인 "Nov"를 가리키는데 참조하는 주소가 서로 다릅니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이는 <span style="background-color: #333333; color: #dddddd;">replace() method</span>의 동작 방식에서 기인합니다. replace()는 문자열의 특정 값을 변경해 주는 메서드 입니다. 하지만&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">str type은 Immutable Object 이기에 상태의 변경은 불가능 합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>따라서 replace() 함수는 원본 문자열의 값을 직접 수정하는 것이 아닌 변경된 새로운 문자열 객체를 생성하여 반환</b>합니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 str_1과 str_2는 최종적으로 다른 주소를 참조하게 됩니다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="528" height="263" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="528" height="263"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1683372832390" class="python" data-ke-language="python" data-ke-type="codeblock"><code>print("Before")
+str_1 = "nov"
+str_2 = "nov"
+print(f"str_1 &rarr; {hex(id(str_1))}")
+print(f"str_2 &rarr; {hex(id(str_1))}")
+
+print("After")
+str_1 = str_1.replace('n', 'N')
+str_2 = "Nov"
+print(f"str_1 &rarr; {hex(id(str_1))}")
+print(f"str_2 &rarr; {hex(id(str_2))}")</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">기존의 "nov" 객체는 이제 아무런 변수도 참조하지 않기에 Python의 <span style="background-color: #333333; color: #dddddd;">Garbage Collector</span>가 메모리 누수를 막기 위하여 필요 없어진 쓰레기 객체인 "nov" 문자열 객체를 수집해 가게 됩니다.</span></p>
+<p><figure class="imageblock alignLeft" width="569" height="197" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="569" height="197"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 본 포스팅은 개인적인 공부 내용을 기록하기 위해 작성한 글 이기에, 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹여나 틀린 내용이 있다면 댓글로 남겨 주시면 바로 수정 하도록 하겠습니다. ?</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[HTML] a 태그 _ 밑줄 제거 / 이미지 링크 / 목차 (앵커)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[HTML] a 태그 _ 밑줄 제거 / 이미지 링크 / 목차 (앵커)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-03-05 01:06:07</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#1</span> a 태그</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">- a 태그 주요 속성</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#2</span> 하이퍼링크 밑줄 글자색 제거</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#3</span> 앵커(anchor)</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 id="content1" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#1</span> a 태그</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&lt;a&gt;태그는 "링크"를 만들 때 사용하는 태그이다. &lt;a&gt; 태그를 텍스트와 함께 사용하면 <span style="background-color: #dddddd;">텍스트 링크</span>가 되고, 이미지와 함께 사용하면 <span style="background-color: #dddddd;">이미지링크</span>가 된다. 기본형은 다음과 같다.</span></p>
+<pre id="code_1646407639771" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!--텍스트 링크--&gt;
+&lt;a href="링크주소" [속성="속성 값"]&gt; text &lt;/a&gt;
+&lt;!--이미지 링크--&gt;
+&lt;a href="링크주소" [속성="속성 값"]&gt; &lt;img src="이미지 파일 경로"&gt; &lt;/a&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 구글 메인 홈페이지로 이동하는 예시 코드이다.&nbsp;</span></p>
+<pre id="code_1646407766496" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;!doctype html&gt;
+&lt;html lang="ko"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;link_test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+	&lt;a href="https://www.google.com/"&gt;GOOGLE&lt;/a&gt;
+	&lt;a href="https://www.google.com/"&gt;&lt;img src="Google.png"&gt;&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">[a 태그의 주요 속성]</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">href</span> - 링크한 문서 혹은 사이트의 주소를 입력한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">target</span> - 링크한 내용이 표시될 위치를 지정한다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp; &nbsp; <span style="background-color: #dddddd;">_blank</span> : 링크 내용을 새 탭에서 연다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&nbsp; &nbsp; <span style="background-color: #dddddd;">_self</span> : target 속성의 기본 값으로 링크가 있는 화면에서 열린다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">download</span> - 링크한 내용을 보여주는 것이 아니라 다운로드한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#2</span> 하이퍼 링크 밑줄 글자색 제거</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">텍스트 링크는 텍스트와 링크를 구분하기 위해 기본적으로 밑줄이 있는 파란색 글자로 표시된다. 또한 링크를 한 번 클릭 하면 보라색으로 바뀐다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">CSS코드를 이용하면 초기 기본 설정을 변경할 수 있다. <span style="background-color: #dddddd;">text-decoration</span> 속성을 이용해 밑줄을 제거하고, <span style="background-color: #dddddd;">color</span> 속성을 이용해 글자의 색깔을 검은색으로 변경했다.</span></p>
+<pre id="code_1646408538369" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>	&lt;style&gt;
+		a {
+			text-decoration:none;
+			color:black;
+		}
+	&lt;/style&gt;</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;">#3</span> 앵커(anchor)</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">'앵커(anchor)'</span>란 <span style="color: #1a5490;"><b>한 페이지 내에서 링크를 만들 수 있는 기능</b></span>이다. 한 페이지에 많은 내용을 포함하고 있는 경우 앵커를 사용하면 특정 요소를 클릭 원하는 위치로 이동할 수 있도록 도와준다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>이동하고 싶은 위치에 id속성을 이용해 앵커를 만들어 준다.</b></span> 이 때 <span style="color: #1a5490;"><b>앵커의 이름은 각각 다른 이름을 지정</b></span>해야 한다. 다음으로 <span style="color: #1a5490;"><b>a 태그의 href 속성을 이용해 앵커를 표시</b></span>한다. 단, a태그의 앵커 이름 앞에는 <span style="background-color: #dddddd;">#</span>을 붙여서 앵커를 표시한다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<pre id="code_1646409382525" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;a href="#앵커 이름"&gt; 텍스트 or 이미지 &lt;/a&gt;
+&lt;태그 id="앵커 이름"&gt; 텍스트 or 이미지 &lt;/태그&gt;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앵커를 사용해 #1 a 태그 부분으로 바로 이동하도록 html 소스를 수정해 보도록 하겠다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 우측 상단의 기본모드를 HTML로 변경한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 원하는 위치에 id 속성을 이용해 앵커를 생성해 준다. #1 부분으로 이동할 것 이기에, #1 a태그 단락에 앵커를 걸어 주었다.&nbsp;</span><a href="#content1">이동</a></p>
+<p><figure class="imageblock alignCenter" width="909" height="92" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="909" height="92"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #HTML #앵커 #a태그 #목차만들기 #링크밑줄제거 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

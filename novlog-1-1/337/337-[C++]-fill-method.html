@@ -1,0 +1,118 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] fill method</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] fill method</h2>
+                                <div class="box-info">
+                                    <p class="category">Problem Solving/PS With C++</p>
+                                    <p class="date">2025-01-26 08:41:25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*C++ STL Algorithm 헤더의 fill 메서드 사용 방법에 대해 다룬 포스팅입니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부 내용을 기록하기 위해 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#fill&nbsp;</span></b></h2>
+<pre id="code_1737847723812" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>void fill (ForwardIterator first, ForwoardIterator last, const T&amp; value);</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Header - <span style="background-color: #333333; color: #dddddd;">&lt;algorithm&gt;</span>&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">지정 범위의 요소들을 <b>"타입에 맞는 값"</b> 으로 채워준다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">int type 배열이라면 int 타입에 맞는 값으로 각 요소를 설정하며, 이터레이터를 지원하기에 vector, array와 같은 다른 STL 컨테이너에서 사용 가능하다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#배열에서 fill 함수를 사용한 예제</span></b></h4>
+<pre id="code_1737847914957" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    
+    int arr[5];
+    fill(arr, arr + 5, 1);
+    for (auto i : arr) cout &lt;&lt; i &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+<pre id="code_1737847931372" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>1 1 1 1 1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2차원 배열에서 fill 함수를 사용한 예제</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*2차원 배열의 경우 1차원 배열과 달리 각 행을 포인터로 접근해야 하기에 &amp;연산자를 붙여 주어야 한다.</span></p>
+<pre id="code_1737848106938" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+
+    int arr[5][5];
+    fill(&amp;arr[0][0], &amp;arr[5][5], 1);
+    for (int i = 0; i &lt; 5; i++) {
+        for (int  j = 0; j &lt; 5; j++) {
+            cout &lt;&lt; arr[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+<pre id="code_1737848180738" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 각 행을 직접 루프를 돌며 fill 메서드로 초기화해 주는 방법도 가능하다.&nbsp;</span></p>
+<pre id="code_1737848297908" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+
+    int arr[5][5];
+
+    // 각 행을 1로 초기화
+    for (int i = 0 ; i &lt; 5; i++) {
+        fill(arr[i], arr[i] + 5, 1);
+    }
+
+    for (int i = 0; i &lt; 5; i++) {
+        for (int  j = 0; j &lt; 5; j++) {
+            cout &lt;&lt; arr[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+<pre id="code_1737848307270" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

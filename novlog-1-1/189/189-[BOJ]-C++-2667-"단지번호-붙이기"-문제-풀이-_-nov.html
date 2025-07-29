@@ -1,0 +1,163 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 2667 "단지번호 붙이기" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 2667 "단지번호 붙이기" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-03-23 23:36:37</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 유형 : <span style="background-color: #333333; color: #ffffff;">BFS</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출처 : <a href="https://www.acmicpc.net/problem/2667" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2667</a></span></p>
+<figure id="og_1648046020016" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2667번: 단지번호붙이기" data-og-description="&lt;그림 1&gt;과 같이 정사각형 모양의 지도가 있다. 1은 집이 있는 곳을, 0은 집이 없는 곳을 나타낸다. 철수는 이 지도를 가지고 연결된 집의 모임인 단지를 정의하고, 단지에 번호를 붙이려 한다. 여" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2667" data-og-url="https://www.acmicpc.net/problem/2667" data-og-image="https://scrap.kakaocdn.net/dn/cjvFVx/hyNM8PPPHP/kdc99KZGqo6wLFhRHcuGIk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2667" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2667">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cjvFVx/hyNM8PPPHP/kdc99KZGqo6wLFhRHcuGIk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2667번: 단지번호붙이기</p>
+<p class="og-desc" data-ke-size="size16">&lt;그림 1&gt;과 같이 정사각형 모양의 지도가 있다. 1은 집이 있는 곳을, 0은 집이 없는 곳을 나타낸다. 철수는 이 지도를 가지고 연결된 집의 모임인 단지를 정의하고, 단지에 번호를 붙이려 한다. 여</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">연결된 영역(단지)의 개수와 각 영역(단지)의 넓이를 오름차 순으로 출력하면 되는 간단한 BFS 문제이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">string board[27]</span> : 단지의 정보를 저장할 배열 0 : 집이 없는곳 1 : 집이 있는 곳</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">bool isVisited[27]</span> : 단지의 방문 여부를 저장할 배열</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">int dx[4] , int dy[4]</span> : 상하좌우 이동을 도와줄 변수</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">크기 n 배열의 정보를 입력받는다.</span></p>
+<pre id="code_1648045777420" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int n;
+	cin &gt;&gt; n;
+	for(int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; board[i];
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">count 변수에는 연결된 영역(단지)의 개수를 area 벡터에는 영역의 넓이를 저장한다.</span></p>
+<pre id="code_1648045802600" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	int count = 0;
+	vector&lt;int&gt; area;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 board[i][j]가 '1' 즉, 집이 있는 곳 이고 !isVisited[i][j] 방문하지 않은 집일 경우 BFS 탐색을 시작한다.&nbsp;</span></p>
+<pre id="code_1648045861360" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	for(int i = 0; i &lt; n; i++) {
+		for(int j = 0; j &lt; n; j++) {
+			if(board[i][j] == '1' &amp;&amp; !isVisited[i][j]) {
+				queue&lt;pair&lt;int,int&gt;&gt; Q;
+				count++;
+				Q.push({i, j});
+				isVisited[i][j] = 1;
+				int width = 1;
+				while(!Q.empty()) {
+					auto cur = Q.front(); 
+					Q.pop();
+					for(int dir = 0; dir &lt; 4; dir++) {
+						int nx = cur.X + dx[dir];
+						int ny = cur.Y + dy[dir];
+						if(nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= n) 
+							continue;
+						if(board[nx][ny] == '0' || isVisited[nx][ny] == 1) 
+							continue;
+						Q.push({nx,ny});
+						isVisited[nx][ny] = 1;
+						width++;
+					}
+				}
+				area.push_back(width);
+			}
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">count (단지의 개수) 를 출력하고, sort 함수를 이용해 area 벡터를 오름차 순으로 정렬한 뒤 벡터의 모든 원소를 출력한다.</span></p>
+<pre id="code_1648045950256" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>	cout &lt;&lt; count &lt;&lt; '\n';
+	sort(area.begin(), area.end());
+	for (int i : area) {
+		cout &lt;&lt; i &lt;&lt; '\n';
+	}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#</span>CODE</span></b></h2>
+<pre id="code_1648046135921" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define X first
+#define Y second
+string board[27];
+bool isVisited[27][27];
+int dx[4] = {-1, 0, 1, 0};
+int dy[4] = {0, 1, 0, -1};
+
+int main(int argc, char* argv[]) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin &gt;&gt; n;
+	for(int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; board[i];
+	}
+	
+	int count = 0;
+	vector&lt;int&gt; area;
+
+	for(int i = 0; i &lt; n; i++) {
+		for(int j = 0; j &lt; n; j++) {
+			if(board[i][j] == '1' &amp;&amp; !isVisited[i][j]) {
+				queue&lt;pair&lt;int,int&gt;&gt; Q;
+				count++;
+				Q.push({i, j});
+				isVisited[i][j] = 1;
+				int width = 1;
+				while(!Q.empty()) {
+					auto cur = Q.front(); 
+					Q.pop();
+					for(int dir = 0; dir &lt; 4; dir++) {
+						int nx = cur.X + dx[dir];
+						int ny = cur.Y + dy[dir];
+						if(nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= n) 
+							continue;
+						if(board[nx][ny] == '0' || isVisited[nx][ny] == 1) 
+							continue;
+						Q.push({nx,ny});
+						isVisited[nx][ny] = 1;
+						width++;
+					}
+				}
+				area.push_back(width);
+			}
+		}
+	}
+	
+	cout &lt;&lt; count &lt;&lt; '\n';
+	sort(area.begin(), area.end());
+	for (int i : area) {
+		cout &lt;&lt; i &lt;&lt; '\n';
+	}
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #BOJ #백준 #2667 #단지번호붙이기 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] BOJ(백준) 4796 "캠핑" 문제 풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] BOJ(백준) 4796 "캠핑" 문제 풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2021-04-27 14:56:43</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제 정보</span></h2>
+<p><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#문제분석</span></h2>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">간단한 문제이지만, 조심하지 않으면 실수하기 쉬운 문제이다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">테스트케이스로 <span style="background-color: #666666; color: #ffffff;">(5, 8, 20)</span> 이 주어졌다고 가정하겠다. 총 휴가 기간(V)은 20일이고, 연속하는 8일(P)동안 캠핑장을 5일(L)동안만 사용 가능하다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">휴가기간동안 캠핑장을 최대로 이용하기 위해선 8일 중 5일을 모두 사용해야 하는것은 당연하다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서, 16일동안 캠핑장을 10일 이용한뒤, 나머지 4일을 모두 이용하면 최대 이용 기간은 14일이 된다.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그런데 여기에 함정이 있다. <span style="background-color: #666666; color: #ffffff;">만약 테스트 케이스로 (3, 8, 20) 이 주어졌다고 가정해보자.</span> 8일 중 3일을 모두 사용하면, 16일동안 6일이 사용 가능하고 나머지는 4일이 남는다. <span style="background-color: #666666; color: #ffffff;">여기서 남은 일수인 4일을 모두 더해버리면 문제의 조건 (연속하는 8일중 3일만 이용할 수 있다.) 에 위반된다.</span>&nbsp;</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그래서 나는 <span style="background-color: #333333; color: #ffffff;">삼항 연산식을 이용</span>해 나머지 일수를 다음과 같이 선언해 주었다.</span></p>
+<pre id="code_1619452044406" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int na = V % P &gt; L ? L : V % P;</code></pre>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">이 부분만 조심하면 다른 부분은 문제 없이 풀이 가능할 것이다. :)</span></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#소스코드&nbsp;</span></h2>
+<pre id="code_1619452108594" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int L,P,V;
+int result;
+
+int main()
+{
+	ios_base::sync_with_stdio(false); 
+	cin.tie(0);
+	
+	int cnt = 1;
+	
+	while(true){
+		cin &gt;&gt; L &gt;&gt; P &gt;&gt; V;	
+		
+		if (!L &amp;&amp; !P &amp;&amp; !V) { break; }
+		
+		int mok = V / P;
+		int na = V % P &gt; L ? L : V % P;
+		result = mok * L + na;
+		
+		cout &lt;&lt; "Case " &lt;&lt; cnt &lt;&lt; ": " &lt;&lt; result &lt;&lt; "\n";
+		cnt ++;
+	}
+
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p><figure class="imageblock alignCenter" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;"><span style="font-family: 'Nanum Gothic';"><a href="https://www.acmicpc.net/problem/4796" target="_blank" rel="noopener">www.acmicpc.net/problem/4796</a></span></p>
+<figure id="og_1619452189824" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="4796번: 캠핑" data-og-description="입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄로 이루어져 있고, L, P, V를 순서대로 포함하고 있다. 모든 입력 정수는 int범위이다. 마지막 줄에는 0이 3개 주어진다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/4796" data-og-url="https://www.acmicpc.net/problem/4796" data-og-image="https://scrap.kakaocdn.net/dn/GgodD/hyJ0xS4nJd/JmKkhZKdGcTCqSJje0o291/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/4796" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/4796">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/GgodD/hyJ0xS4nJd/JmKkhZKdGcTCqSJje0o291/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">4796번: 캠핑</p>
+<p class="og-desc">입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄로 이루어져 있고, L, P, V를 순서대로 포함하고 있다. 모든 입력 정수는 int범위이다. 마지막 줄에는 0이 3개 주어진다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #C++ #알고리즘 #소스코드 #BOJ #백준 #GREEDY #그리디 #캥핑 #4796 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

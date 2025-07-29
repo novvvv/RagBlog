@@ -1,0 +1,284 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Flutter Navigator 페이지 간 데이터 주고 받기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Flutter Navigator 페이지 간 데이터 주고 받기</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Flutter</p>
+                                    <p class="date">2024-08-07 16:07:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Navigator를 이용해 페이지 전환하기</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Navigator는 Stack 구조로 동작합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 firstPage.dart 파일에서 sceondPage.dart 파일로 화면을 전환할 경우 firstPage 위에 secondPage가 쌓이는 구조입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 firstPage 위에 secondPage를 push 하는 부분입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c0d1e7;">builder 파라미터의 반환부에 추가할 페이지 클래스 인스턴스를 할당</span>해 주면 됩니다.</span></p>
+<pre id="code_1723012100102" class="java" data-ke-language="java" data-ke-type="codeblock"><code>              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return SecondPage();
+                  },
+                ),
+              );</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">아래 코드는 secondPage에서 firstPage로 이동하는 부분입니다. 페이지는 스택 구조로 이루어져 있기에 <span style="background-color: #c0d1e7;">pop 동작을 수행해 주면 가장 마지막에 push된 secondPage가 제거</span>됩니다.</span></p>
+<pre id="code_1723012233465" class="java" data-ke-language="java" data-ke-type="codeblock"><code>              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("BeforePage"),
+              ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="489" height="425" >
+    <span data-lightbox="lightbox">
+        <img src="./img/123.png" width="489" height="425"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">main.dart</span></p>
+<pre id="code_1723011914946" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: FirstPage(),
+      ),
+    ),
+  );
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">firstPage.dart</span></p>
+<pre id="code_1723012619661" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import 'package:flutter/material.dart';
+
+class FirstPage extends StatelessWidget {
+  const FirstPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Center(
+            child: Text(
+              "First Page",
+              style: TextStyle(
+                fontSize: 50.0,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return SecondPage();
+                  },
+                ),
+              );
+            },
+            child: Text("NextPage"),
+          ),
+        ],
+      ),
+    );
+  }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; background-color: #333333; color: #dddddd;">secondPage.dart</span></p>
+<pre id="code_1723012635550" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import 'package:flutter/material.dart';
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Text(
+                  "Second Page",
+                  style: TextStyle(
+                    fontSize: 50.0,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("BeforePage"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="color: #000000; text-align: start;" data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Navigator를 이용해 데이터 주고 받기</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #c0d1e7;">secondPage로 부터 텍스트를 받아와 firstPage UI에 출력될 텍스트 내용을 변경</span>해 보도록 하겠습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">pop 함수의 내부 구현 구조를 뜯어보면 다음과 같습니다. </span></p>
+<pre id="code_1723013639442" class="java" data-ke-language="java" data-ke-type="codeblock"><code>void pop&lt;T extends Object?&gt;([ T? result ])</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">pop 메서드의 내부 파라미터는 제네릭 T 타입으로 선언되어 있기에 타입의 제한 없이 들어갈 수 있습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">pop 메서드 내부로 "Changed String" 문자열을 대입해 주었습니다.&nbsp;</span></p>
+<pre id="code_1723014045545" class="java" data-ke-language="java" data-ke-type="codeblock"><code>              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(
+                    "Changed String"
+                  );
+                },
+                child: Text("BeforePage"),
+              ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">secondPage에서 전송된 문자열을 firstPage에서 전달받습니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 유의해야 할 점은 문자열을 받을 때 까지 기다려야 하기에 <span style="background-color: #c0d1e7;">push 함수를 async 비동기 함수로 설정</span>해야 합니다.</span></p>
+<pre id="code_1723014149016" class="java" data-ke-language="java" data-ke-type="codeblock"><code>          ElevatedButton(
+            onPressed: () async {
+              str = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return SecondPage();
+                  },
+                ),
+              );
+              setState(() {});
+            },
+            child: Text("NextPage"),
+          ),</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="color: #dddddd; background-color: #333333;"><span style="font-family: 'Nanum Gothic';">firstPage.dart</span></span></p>
+<pre id="code_1723014207037" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import 'package:bloggingtest/secondPage.dart';
+import 'package:flutter/material.dart';
+
+class FirstPage extends StatefulWidget {
+  const FirstPage({super.key});
+
+  @override
+  State&lt;FirstPage&gt; createState() =&gt; _FirstPageState();
+}
+
+class _FirstPageState extends State&lt;FirstPage&gt; {
+  String str = "First Page";
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Center(
+            child: Text(
+              str,
+              style: TextStyle(
+                fontSize: 50.0,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              str = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return SecondPage();
+                  },
+                ),
+              );
+              setState(() {});
+            },
+            child: Text("NextPage"),
+          ),
+        ],
+      ),
+    );
+  }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">secondPage.dart</span></p>
+<pre id="code_1723014256123" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import 'package:bloggingtest/firstPage.dart';
+import 'package:flutter/material.dart';
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Text(
+                  "Second Page",
+                  style: TextStyle(
+                    fontSize: 50.0,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(
+                    "Changed String"
+                  );
+                },
+                child: Text("BeforePage"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="398" height="390" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2024-08-07 16.04.54.png" width="398" height="390"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,319 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] STL map Container 사용 방법 정리 (feat. map & [hash_map]unordered_map & multi_map)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] STL map Container 사용 방법 정리 (feat. map & [hash_map]unordered_map & multi_map)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-08-28 19:20:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 다음 포스팅은 <b>STL map Container의 사용 방법</b> 및 </span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>map &amp; multimap &amp; unordered_map[hash_map]</b>에 관련된 내용을 포함하고 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Hash Table에 관한 선수지식이 부족하신 분들은 다음 포스팅을 참고해 주세요.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/264" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; [DataStructure] Hash 자료구조 개념 정리</span></a></span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 <span style="background-color: #dddddd;">잘못된 내용을 포함하고 있을 수 있으며,</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">지속적으로 수정해 나갈 예정입니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #dddddd; background-color: #333333;"><span style="font-family: 'Nanum Gothic';">_Contents</span></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 About map container</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1.1 map &amp; multimap</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">- map container Time Complexity</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1.2 unordered_map[hash_map]</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">- unordered_map Time-Complexity</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">- hash map</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #1a5490;">#1.3 map vs multimap vs unordered_map</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 STL map container 사용법</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-1 Declare 선언</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-2 Insert 원소 삽입</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-2.1 Insert Member Function</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-2.2 std::operator::[]</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-3 Search 원소 탐색</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-4 Access 원소 접근</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">-5 Erase 원소 삭제</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">-2.2 std::operator::[] 관련 내용 추가 ... 2022-09-23</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1 About map container</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">오늘 설명드릴 <span style="background-color: #dddddd;">map container</span>는 <span style="background-color: #dddddd;">Associative container</span> 의 일종입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>Associative container (연관 컨테이너)</b> 는 <b>객체를 일정한 규칙에 따라 조직화 하여 Key - Value 형태로 원소를 저장</b>하며, <b>Key 값을 통해 Value에 접근</b>합니다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 map container도 마찬가지로 Key값을 이용해 빠르게 container의 value에 접근할 수 있지만 요소의 위치를 지정할 수는 없습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1.1 map &amp; multimap</span></b></span></h3>
+<p data-ke-size="size16"><span style="letter-spacing: 0px; font-family: 'Nanum Gothic'; color: #000000;">C++ STL은 다양한 형태의 map container를 제공합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 <span style="background-color: #333333; color: #dddddd;">map</span>과 <span style="background-color: #333333; color: #dddddd;">multi_map</span>의 특징에 대해 정리해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째로 가장 기본이 되는 <span style="background-color: #333333; color: #dddddd;">map</span> 입니다. map은 <span style="background-color: #dddddd;"><b>key값을 기준으로 정렬된 상태로 자료를 저장</b></span>합니다. 또한<span style="background-color: #dddddd;"><b> key 값의 중복을 허용하지 않습니다.</b></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반면에 <span style="background-color: #333333; color: #dddddd;">multi_map</span>은 컨테이너의 이름에서 유추할 수 있듯이 <span style="background-color: #dddddd;"><b>key 값의 중복을 허용합니다.</b></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map과 multi_map은 Key 값의 중복 허용 여부만 다른 뿐 <b>사용 방법은 동일</b>합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">- map container Time Complexity</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map과 multimap은 <span style="background-color: #333333; color: #dddddd;">Red-Black-Tree</span> 라는 <b>균형 이진 트리 자료구조로 구현</b>되어 있기에 <span style="background-color: #dddddd;"><b>삽입/삭제/탐색 연산</b></span>이 <span style="background-color: #dddddd;"><b><span style="color: #000000;">O(logN)</span></b></span>의 시간이 소요됩니다. 일반 이진 탐색 트리 자료구조는 <span style="background-color: #dddddd;"><b>최악의 경우 O(N)의 시간이 소요</b></span>되기에 이러한 단점을 보완하기 위해 고안된 자료구조입니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 map 컨테이너와 multimap 컨테이너를 선언하여 비교한 예제입니다. (map 컨테이너에 대한 자세한 사용법은 이어서 따로 정리할 예정이니, 지금은 출력 결과만 확인해 주세요.)</span></p>
+<pre id="code_1661588528887" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main(){
+	map&lt;string, int&gt; myMap;
+	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));	
+	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";
+	
+	multimap&lt;string, int&gt; myMultiMap;
+	myMultiMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMultiMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMultiMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	myMultiMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	cout &lt;&lt; '\n';
+	for(const auto&amp; i : myMultiMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";	
+	return 0;
+}</code></pre>
+<pre id="code_1661588543469" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Output]
+[Apple, 100] [Banana, 200] [Orange, 300]
+[Apple, 100] [Banana, 200] [Orange, 300] [Orange, 300]</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출력 결과를 확인해 보면 map 으로 선언된 myMap은 중복된 Orange Key를 제거하지만 multimap 으로 선언된 myMultiMap 컨테이너는 중복된 Orange Key를 제거하지 않음을 확인할 수 있습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1.2 unordered_map</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">unordered_map</span>은 <b><span style="background-color: #dddddd;">C++1</span><span style="background-color: #dddddd;">1</span></b> 버전 부터 추가된 컨테이너로 이름에서도 유추할 수 있듯이 <span style="background-color: #dddddd;"><b>정렬되지 않은 형태로 자료를 저장</b></span>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map과 동일하게 <span style="background-color: #dddddd;"><b>자료의 중복을 허용하지 않습니다.</b></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Red-Black-Tree로 구현된 map &amp; multimap 컨테이너와 달리 <span style="background-color: #333333; color: #dddddd;">Hash Table</span>을<b>&nbsp;기반으로 구현</b>되어 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Hash Table</span>이란 <b>Key값을 Hash Function에 대입하여 Hash 값으로 바꾼 뒤, 추출한 Hash 값을 기반으로 데이터를 함께 저장하는 방식</b>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Hash 자료구조에 대한 자세한 설명은 다음 게시글을 참고해 주세요</span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/264" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; Hash 자료구조 개념 정리</span></a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">- unordered_map Time-Complexity</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Hash 자료구조를 기반으로 구현되어 있어 <b><span style="background-color: #dddddd;">삽입/삭제/추가 연산</span></b>이 <b><span style="background-color: #dddddd;">O(1)</span></b>시간이 소요됩니다. 따라서 <b>자료가 많아질수록 unordered_map 컨테이너의 효율은 크게 증가</b>합니다. 단, Hash Function 의존도가 높아 유사한 key값이 많아질 경우 해시 충돌이 발생할 수 있다는 단점이 있습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 map container와 unordered_map container를 비교한 예제입니다.&nbsp;</span></p>
+<pre id="code_1661598872766" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;unordered_map&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main(){
+	map&lt;string, int&gt; myMap;
+	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));	
+	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";
+	
+	unordered_map&lt;string, int&gt; um;
+	um.insert(pair&lt;string, int&gt;("Apple", 100));
+	um.insert(pair&lt;string, int&gt;("Banana", 200));
+	um.insert(pair&lt;string, int&gt;("Orange", 300));
+	um.insert(pair&lt;string, int&gt;("Orange", 300));
+	cout &lt;&lt; '\n';
+	for(const auto&amp; i : um)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";	
+	
+	
+	return 0;
+}</code></pre>
+<pre id="code_1661598889506" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Result]
+[Apple, 100] [Banana, 200] [Orange, 300]
+[Orange, 300] [Apple, 100] [Banana, 200]</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 두 container 모두 중복된 Orange Key를 제거합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 입력된 Key 값을 ASCII 순으로 정렬하는 map container와 달리 unordered_map container는 자료를 오름차로 정렬하지 않습니다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">- hash_map</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">hash_map은 C++ STL에서 제공하지 않는 <b><span style="background-color: #dddddd;">비표준 컨테이너</span></b> 입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C++11 이전에는 프로그래머가 원하지 않아도 자동으로 자료가 정렬되는 std::map container를 사용해야 했기에 불필요한 오버헤드를 감수 해야만 했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 프로그래머들은 <b>namespace stdext</b>에 존재하는 <b>비표준 컨테이너인 hash_map</b>을 사용했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 C++11 표준부터 앞에서 소개드린 Hash Table로 구현된 std::unordered_map 이라는 새로운 컨테이너가 등장했습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 hash_map은 오늘날 사용되지 않게 되었습니다. (hash_map을 사용하고자 하면 할 수 있지만 사용 시 경고가 출력됩니다.)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러므로 hash 자료구조로 구현된 map을 사용하고자 하신다면 unordered_map 컨테이너를 사용하시면 됩니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#1.3 map vs multimap vs unordered_map</span></b></span></h3>
+<p data-ke-size="size16"><b><span style="color: #000000; font-family: 'Nanum Gothic';">1. map</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 원소를 Key값을 기준으로 자동으로 정렬한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 중복을 허용하지 않는다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Red-Black-Tree 자료구조를 기반으로 설계되어 탐색/삭제/추가 연산이 평균&nbsp;O(logN)&nbsp;시간이 걸린다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">2. multimap</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 원소를 Key값을 기준으로 자동으로 정렬한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 중복을 허용한다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- Red-Black-Tree 자료구조를 기반으로 설계되어 탐색/삭제/추가 연산이 평균 O(logN) 시간이 걸린다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">3. unordered_map</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 원소를 자동으로 정렬하지 않는다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- 중복을 허용하지 않는다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">- Hash Table을 기반으로 설계되어 탐색/삭제/추가 연산이 평균 O(1) 시간이 걸린다. (최악의 경우 O(logN))</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">#2 STL map container 사용법</span></b></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map 컨테이너의 사용방법에 대해 간략하게 정리해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">(unordered_map, multimap 의 사용법은 map과 동일하니 따로 정리하지 않겠습니다.)</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선 map container를 사용하기 위해선 <b><span style="background-color: #dddddd;">map header를 include</span></b> 해 줘야 합니다. <b>(unordered_map 이라면 unordered_map header를 include 합니다.)</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 std를 생략하기 위해 <b><span style="background-color: #dddddd;">using namespace std;</span></b> 를 작성해 네임스페이스를 생략합니다.</span></p>
+<pre id="code_1661659709549" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;map&gt;
+using namespace std;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">1. Declare : 선언</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map은 자료를 <span style="background-color: #dddddd;"><b>pair로 저장</b></span>합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">STL pair에 대한 내용은 다음 포스팅에 정리되어 있습니다.</span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/13?category=860653" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; Pair Container 사용법 정리 With Vector, Typedef, sort</span></a></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map&lt;key, value&gt; 변수이름 형태로 선언하며 <span style="background-color: #dddddd;"><b>first에 저장되는 값이 key</b></span> &nbsp;<span style="background-color: #dddddd;"><b>second에 저장되는 값이 value</b></span> 입니다.</span></p>
+<pre id="code_1661659852091" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>map&lt;string, int&gt; myMap;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">2. Insert : 원소 삽입</span></b></span></h3>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">2.1 Insert member function</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map에 자료를 추가하는 연산은 <span style="background-color: #333333; color: #dddddd;">insert member function</span>을 사용합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞서 pair를 사용해 map을 선언했으니, 삽입 연산 또한 pair를 이용합니다.</span></p>
+<pre id="code_1661660164653" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">2.2 std::map::operator[]&nbsp;</span></b></span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Access element operaor []</span> 를 이용해 map에 key-value 쌍을 추가할 수 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">opeartor[]는 키에 접근할 때도 사용되며, <b>map container에 키값이 존재하지 않는 경우 size를 1 증가시키고 새로운 key-value 원소를 추가</b>합니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">example code1) map에 key 값이 존재하는 경우</span></b></p>
+<pre id="code_1663941161752" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	map&lt;string,int&gt; myMap;
+	myMap.insert(pair&lt;string,int&gt;("Key1", 1));
+	cout &lt;&lt; "Key1 &rarr; " myMap["Key1"] &lt;&lt; endl;
+	return 0;
+}</code></pre>
+<pre id="code_1663941213456" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>Key1 &rarr; 1</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">example code2) map에 key 값이 존재하지 않는 경우</span></b></p>
+<pre id="code_1663941324247" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	map&lt;string,int&gt; myMap;
+	myMap.insert(pair&lt;string,int&gt;("Key1", 1));
+	// Key2의 Value를 따로 지정해 주지 않았기에 default-value 0으로 초기화 됩니다.
+	cout &lt;&lt; "Key2 &rarr; " &lt;&lt; myMap["Key2"] &lt;&lt; endl;
+	myMap["Key3"] = 3;
+	cout &lt;&lt; "Key3 &rarr; " &lt;&lt; myMap["Key3"] &lt;&lt; endl;
+	return 0; 
+}</code></pre>
+<pre id="code_1663941362159" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>Key2 &rarr; 0
+Key3 &rarr; 3</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">3. Search : 원소 탐색</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map container의 자료를 탐색하는 방법은 2가지로 나뉩니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째는<span style="background-color: #333333; color: #dddddd;"> iterator를 사용해 원소에 순차적으로 접근하는 방법</span> 입니다.</span></p>
+<pre id="code_1661674801177" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>	map&lt;string, int&gt;::iterator it;
+	for(it = myMap.begin(); it != myMap.end(); it++)
+		cout &lt;&lt; "[" &lt;&lt; (*it).first &lt;&lt; ", " &lt;&lt; it -&gt; second &lt;&lt; "]" &lt;&lt; " ";</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 <span style="background-color: #dddddd;"><b>auto keyword</b></span>와 C++11 버전 이상부터 추가된 <b><span style="background-color: #dddddd;">Range-Based-For 문법</span></b>을 활용하면 더 깔끔하게 원소에 접근할 수 있습니다.</span></p>
+<pre id="code_1661674900932" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">range-based-for 문법에 대한 내용은 다음 포스팅을 참고해 주세요.</span></p>
+<p data-ke-size="size16"><span style="color: #0593d3;"><a style="color: #0593d3;" href="https://novlog.tistory.com/187?category=885400" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; range-based-for 범위 기반 for문</span></a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">4. Access : 원소 접근</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">map container는 <b><span style="background-color: #dddddd;">map_name[key_name]</span></b> 형태로 <b>value에 접근 혹은 수정</b>할 수 있습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 "Orange" Key 의 Value를 300에서 400으로 수정한 예시입니다.</span></p>
+<pre id="code_1661674965526" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	map&lt;string, int&gt; myMap;
+	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	myMap["Orange"] = 400;
+	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";
+	return 0;
+}</code></pre>
+<pre id="code_1661674996173" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Output]
+[Apple, 100] [Banana, 200] [Orange, 400]</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">5. Erase - 원소 삭제</span></b></span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">- iterator로 원소를 지정하여 삭제하기</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째는 <b><span style="background-color: #dddddd;">erase 멤버함수의 인자를 iterator로 지정하여 삭제하는 방법</span></b>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 myMap의 첫 번째 Key 값인 Apple을 iterator로 지정한 뒤 erase 멤버 함수의 인자로 보내어 삭제한 에제입니다.</span></p>
+<pre id="code_1661675602408" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	map&lt;string, int&gt; myMap;
+	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	map&lt;string, int&gt;::iterator it = myMap.begin();
+	myMap.erase(it);
+	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";
+	return 0;
+}</code></pre>
+<pre id="code_1661675616664" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Output]
+[Banana, 200] [Orange, 300]</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">- key값으로 원소를 지정하여 삭제하기</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">두 번째 방법은 <span style="background-color: #dddddd;"><b>erase 멤버함수의 인자로 키값을 보내어 삭제하는 방법</b></span>입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 Banana Key를 erase 멤버함수의 인자로 보내어 삭제한 예시입니다.</span></p>
+<pre id="code_1661675723104" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;map&gt;
+using namespace std;
+
+int main(){
+	map&lt;string, int&gt; myMap;
+	myMap.insert(pair&lt;string, int&gt;("Apple", 100));
+	myMap.insert(pair&lt;string, int&gt;("Banana", 200));
+	myMap.insert(pair&lt;string, int&gt;("Orange", 300));
+	myMap.erase("Banana");
+	for(const auto&amp; i : myMap)
+		cout &lt;&lt; "[" &lt;&lt; i.first &lt;&lt; ", " &lt;&lt; i.second &lt;&lt; "]" &lt;&lt; " ";
+	return 0;
+}</code></pre>
+<pre id="code_1661675787914" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>[Output]
+[Apple, 100] [Orange, 300]\</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><span style="color: #000000;"><b><span style="font-family: 'Nanum Gothic';">Related</span></b></span></p>
+<p style="text-align: center;" data-ke-size="size16"><a href="https://novlog.tistory.com/272" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; map vs multimap</span></a></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #사용방법 #사용법 #C++ #STL #map #unordered_map #hash_map #multi_map 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

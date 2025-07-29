@@ -1,0 +1,93 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Unity Error] No MonoBehaviour scripts in the file, or their names do not match the file name 해결 방법</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Unity Error] No MonoBehaviour scripts in the file, or their names do not match the file name 해결 방법</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/GameDevelop</p>
+                                    <p class="date">2021-04-30 11:00:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><span style="font-family: 'Nanum Gothic'; color: #000000;">유니티로 게임을 만들던 도중 다음과 같은 오류가 발생하였다. </span><span style="font-family: 'Nanum Gothic'; color: #000000;">플레이어에 스크립트를 추가하려고 하면 </span><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">The script don't inherit a native class that can manage a script.</span> 라는 에러가 발생했다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">그리고 스크립트를 눌러보니 Inspector에는 다음과 같은 경고 메시지가 출력된다.</span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">No MonoBehaviour scripts in the file, or thier names do not match the file name.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">구글링을 해보니, 다양한 상황에서 발생하는 오류라곤 하는데,,, 일단 나는 쉽게 해결 가능했다.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 스크립트를 열어서 <span style="background-color: #333333; color: #ffffff;">클래스가 MonoBehaviour 를 제대로 상속하고 있는지 확인</span>하다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="533" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="0" data-origin-height="0" width="533" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 문제없이 상속하고 있다면 다음으로, <span style="background-color: #333333; color: #ffffff;">클래스명과 스크립트 명이 일치하는지 확인</span>한다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="468" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="0" data-origin-height="0" width="468" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">유니티 엔진으로 돌아가서 확인해 보니, 스크립트 명이 Player라고 되어있었다. </span></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">아마 Rename 하면서 같이 변경이 안되었던것 같다 ,,</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">클래스명을 스크립트명과 일치하게 변경해 준 뒤 저장</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="527" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="0" data-origin-height="0" width="527" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="font-family: 'Nanum Gothic'; color: #000000;">정상적으로 스크립트가 추가된다..!</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="0" data-origin-height="0" width="339" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="0" data-origin-height="0" width="339" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #방법 #에러 #오류 #해결 #유니티 #Unity #유니티엔진 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[CodeForces] 1075A The King's Race C++ 문제 풀이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[CodeForces] 1075A The King's Race C++ 문제 풀이</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-07-27 20:43:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Rate : <b>900</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출처 : <b><span style="color: #1a5490;">Lyft Level 5 Challenge 2018 - Final Round (Open Div. 2)</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://codeforces.com/problemset/problem/1075/A" target="_blank" rel="noopener">https://codeforces.com/problemset/problem/1075/A</a></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">처음에는 각 퀸과 코인 사이의 거리를 좌표로 나타내어 <span style="background-color: #dddddd;">점과 직선 사이의 거리 공식</span>을 이용해 문제를 풀이 하고자 하였다.</span></p>
+<pre id="code_1658920991788" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+int main(){
+	long long n, r, c;
+	cin &gt;&gt; n &gt;&gt; r &gt;&gt; c;
+	long long whiteLen = (r - 1) * (r - 1) + (c - 1) * (c - 1);
+	long long blackLen = (n - r) * (n - r) + (n - c) * (n - c);
+	if(whiteLen &lt; blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	else if(blackLen &lt; whiteLen) cout &lt;&lt; "Black" &lt;&lt; '\n';
+	else if(whiteLen == blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 13번 테스트 케이스에서 integer overflow가 발생하였다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번에는 거리가 아닌 <span style="background-color: #dddddd;">"이동 횟수"</span>를 기준으로 문제에 접근하였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #dddddd;">Queen 과 Coin 사이의 세로 길이 가로 길이 중 더 긴 값을 각 퀸의 이동 횟수로 설정</span>한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 <b>white Queen의 이동 횟수가 Black Queen 보다 작다면 White를 출력</b>한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반대로 <b>Black Queen의 이동 횟수가 white Queen 보다 작다면 Black을 출력</b>한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>white Queen의 이동 횟수와 Black Queen의 이동 횟수가 동일한 경우</b>에는 체스의 룰 상 white Queen 이 먼저 이동을 시작하기에 <b>White를 출력</b>한다.</span></p>
+<p><figure class="imageblock alignLeft" width="None" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="None"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1658921432390" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int main(){
+	long long n, r, c;
+	cin &gt;&gt; n &gt;&gt; r &gt;&gt; c;
+	long long whiteLen = max(r - 1, c - 1);
+	long long blackLen = max(n - r, n - c);
+	if(whiteLen &lt; blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	else if(blackLen &lt; whiteLen) cout &lt;&lt; "Black" &lt;&lt; '\n';
+	else if(whiteLen == blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1658922079895" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int main(){
+	long long n, r, c;
+	cin &gt;&gt; n &gt;&gt; r &gt;&gt; c;
+	long long whiteLen = max(r - 1, c - 1);
+	long long blackLen = max(n - r, n - c);
+	if(whiteLen &lt; blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	else if(blackLen &lt; whiteLen) cout &lt;&lt; "Black" &lt;&lt; '\n';
+	else if(whiteLen == blackLen) cout &lt;&lt; "White" &lt;&lt; '\n';
+	return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #문제풀이 #코드포스 #1075A 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

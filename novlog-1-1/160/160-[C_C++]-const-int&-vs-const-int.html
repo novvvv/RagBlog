@@ -1,0 +1,82 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C/C++] const int& vs const int</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C/C++] const int& vs const int</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2022-02-06 17:57:52</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const 키워드는 변수의 값이 변경되지 않기를 원하는 경우 변수를 상수화 시키는 용도로 사용하곤 합니다.</span></p>
+<pre id="code_1644137089829" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int a = 10;
+const int a = 10; // 상수화</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const는 변수 뿐 만 아니라 포인터 혹은 참조자(&amp;)에도 사용이 가능합니다. 이번 포스팅에서는 <span style="color: #1a5490;"><b>const를 참조자(&amp;)에 사용한 예시와 const와 참조자를 함께 사용 시 얻을 수 있는 이점</b></span>에 대해 정리해 보도록 하겠습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">참조자에 100과 같은 값(리터럴)을 대입하려고 하면 에러가 발생합니다. 그 이유는 어찌보면 당연한데 참조자는 변수의 메모리 주소를 저장하는 문법인데 리터럴 값을 대입하려고 하니 오류가 발생하는 것 입니다.</span></p>
+<pre id="code_1644137174353" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int&amp; a = 100; // error;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 아래처럼 <span style="background-color: #333333; color: #ffffff;">const 키워드를 앞에 붙여주면 참조자에도 값(리터럴)을 대입할 수 있습니다.</span></span></p>
+<pre id="code_1644137323695" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>const int&amp; a = 100; // const 키워드 사용 시 가능</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 왜 굳이 const 키워드와 참조자를 사용하면서 까지 값을 대입해야 하는지 의문이 들 수 있습니다.</span></p>
+<pre id="code_1644137384084" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>const int a = 100;
+const int&amp; a = 100;
+// 무슨 차이 ?</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">참조자의 const 사용은 함수의 파라미터로 사용 시 그 진가를 발휘합니다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 보통의 Call-By-Reference 방식의 함수였다면 불가능할 <span style="background-color: #333333; color: #ffffff;">리터럴을 바로 함수의 인자로 보내는 것이 가능</span>해 집니다.</span></p>
+<pre id="code_1644137507351" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// Call-By-Reference_3
+void prtX(const int &amp;x)
+{
+	cout &lt;&lt; x &lt;&lt; endl;
+}
+
+void prtY(int &amp;y)
+{
+	cout &lt;&lt; y &lt;&lt; endl;
+}
+
+int main(){
+	prtX(6) // ok
+    	prtY(6) // error
+	return 0;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 <span style="background-color: #333333; color: #ffffff;">const int&amp;</span>를 함수의 파라미터로 사용하면 const int와 달리 <b>변수의 복사가 일어나지 않습니다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">const int 방식으로 함수의 파라미터를 받을 때는 call-by-value 즉, 값에 의한 전달 방식이기에 변수의 복사가 발생해 복사 손실 문제가 발생합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 const int&amp; 방식으로 보내면 <b>call-by-reference 이기에 복사 손실 문제에서 자유롭습니다.</b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* call-by-value와 call-by-reference 관련 포스팅은 다음을 참고해 주세요. <a href="https://novlog.tistory.com/159?category=885400" target="_blank" rel="noopener">link</a></span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #참조자 #const int& #const int #복사손실 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

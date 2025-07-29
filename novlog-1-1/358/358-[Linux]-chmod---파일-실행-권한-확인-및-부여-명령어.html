@@ -1,0 +1,62 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Linux] chmod - 파일 실행 권한 확인 및 부여 명령어</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Linux] chmod - 파일 실행 권한 확인 및 부여 명령어</h2>
+                                <div class="box-info">
+                                    <p class="category">? Etc/Linux</p>
+                                    <p class="date">2025-05-10 13:39:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;">h2 Database sh 파일 실행 시 <span style="background-color: #333333; color: #dddddd;">premission denied</span> 접근 권한 없음 현상 발생&nbsp;</span></p>
+<pre id="code_1746851608811" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>(base) xxx@xxx-ui-noteubug bin % ./h2.sh
+zsh: permission denied: ./h2.sh</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">ls -l</span> 명령어를 입력해 파일 접근 권한 출력&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;">가장 앞의 <span style="background-color: #333333; color: #dddddd;">-는 일반 파일, d는 디렉토리</span>를 의미한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;">그 뒤 9문자는 <span style="background-color: #333333; color: #dddddd;">소유자, 그룹, 다른 사용자의 r(읽기) w(쓰기) x(실행) 권한</span>이다.</span></p>
+<pre id="code_1746851685965" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>(base) xxx@Xxx-ui-noteubug bin % ls -l h2.sh
+-rw-rw-r--@ 1 xxx  staff  109  8 10  2024 h2.sh</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">chmod +x file_name</span> 으로 해당 파일에 대한 실행 권한 추가 후 실행</span></p>
+<pre id="code_1746851832208" class="bash" data-ke-language="bash" data-ke-type="codeblock"><code>(base) xxx@xxx-ui-noteubug bin % chmod +x h2.sh
+(base) xxx@xxx-ui-noteubug bin % ./h2.sh</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Noto Sans Light'; color: #000000;">정상적으로 동작된다.</span></p>
+<p><figure class="imageblock alignCenter" width="385" height="299" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="385" height="299"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

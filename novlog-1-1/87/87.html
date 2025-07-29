@@ -1,0 +1,83 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C# 고급문법] #3 익명 메소드 (Anonymous Method) delegate</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C# 고급문법] #3 익명 메소드 (Anonymous Method) delegate</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C#</p>
+                                    <p class="date">2021-07-22 21:17:28</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="197" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="197" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"># 익명 메소드 (Anonymous Method)&nbsp;</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 기록용으로 작성한 포스팅 이기에 잘못된 내용이 있을 수 있으며, 추가하거나 수정할 내용이 있다면 지속적으로 수정해 나갈 예정입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">*delegate(대리자)에 관한 내용에 대한 지식이 부족하다면, 다음 포스팅을 참고해 주세요. <a href="https://novlog.tistory.com/47" target="_blank" rel="noopener">#2 Delegate</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"># 익명 메소드 (Anonymous Method) 란?</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이름을 갖고 있는 보통의 메소드들과 달리 익명 메소드는 이름을 갖고 있지 않습니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">익명메소드를 사용하는 절차는 다음과 같습니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">1. 대리자(delegate)를 선언한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2. 대리자의 인스턴스를 만든다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">3. 대리자의 인스턴스에 delegate 키워드와 함께 코드 블록을 작성한다. (익명 메소드 작성)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">익명 메소드 선언 방식은 아래와 같습니다.</span></p>
+<pre id="code_1626955939900" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>대리자_인스턴스 = delegate (매개변수1, 매개변수2 ...)
+{
+//..코드
+};</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, <span style="background-color: #333333; color: #ffffff;">익명 메소드를 선언할 때는 자신을 참조할 대리자의 형식과 동일한 형식으로 선언 해야만 합니다.</span></span></p>
+<pre id="code_1626955880646" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>    delegate int Plus(int x, int y); // 1,대리자(delegate) 선언
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Plus plus; // 2.대리자 인스턴스 생성
+            
+            //3.익명 메소드 (Anonymous Method) 작성
+            plus = delegate (int x, int y)
+            {
+                return x + y;
+            };
+
+            Console.WriteLine("1 + 2 = {0}", plus(1, 2));
+        }
+    }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">대리자가 참조할 메소드를 넘길 때 이 메소드를 두 번 다시 사용하지 않을 것 같다고 판단 된다면 익명 메소드를 사용</span><span style="color: #000000;">하면 됩니다. 그런데, 보통 익명 메소드 보다는 <b>람다(Lamda)식</b>을 이용해서 구현 하기는 하지만 람다를 공부하기 위해서는 익명 메소드에 관한 내용을 먼저 숙지해야 한다고 판단하여 이렇게 정리 하게 되었습니다.</span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #delegate #대리자 #익명메소드 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

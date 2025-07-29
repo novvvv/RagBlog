@@ -1,0 +1,84 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Kotlin] #1 변수와 상수 Var & Val</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Kotlin] #1 변수와 상수 Var & Val</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/...2022</p>
+                                    <p class="date">2021-08-08 21:34:47</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="2560" data-origin-height="1440" data-filename="Kotliin_main.png" width="400" height="225" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="2560" data-origin-height="1440" data-filename="Kotliin_main.png" width="400" height="225" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">[목차]</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 변수 var</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1. 변수 선언 동시에 값 초기화</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2. 초기화 하지 않고 사용</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 자료형(데이터 타입)</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 상수 val</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">* 개인적인 Kotlin 언어의 공부 내용을 정리 하고자 하는 용도로 작성된 글 이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#1 변수 var</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">변수(Variable)란</span>, <span style="background-color: #f6e199;">값을 임시로 메모리 공간에 저장하고 그 저장공간에 이름을 부여한 것</span>으로 <span style="background-color: #f6e199;">이름과 값으로 구성</span>된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">변수의 선언 방식은 <span style="background-color: #333333; color: #ffffff;">변수 선언 동시에 값을 초기화 하는 방식</span>과, <span style="background-color: #333333; color: #ffffff;">값을 초기화 하지 않고 선언만 하고 사용하는 방식</span>으로 나뉜다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">1. 변수 선언 동시에 값 초기화</span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">변수명 앞에 <span style="background-color: #333333; color: #ffffff;">var 키워드</span>를 붙여서 선언하며, <span style="background-color: #f6e199;">값이 입력되는 순간에 알아서 해당하는 값의 데이터 타입(문자, 숫자, 불린 .. )이 결정</span>된다.</span></p>
+<pre id="code_1628425098966" class="kotlin" data-ke-language="kotlin" data-ke-type="codeblock"><code>var 변수명 = 값</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 int형 타입 변수를 선언하고 싶다면 다음과 같이 작성하면 된다.</span></p>
+<pre id="code_1628425134537" class="kotlin" data-ke-language="kotlin" data-ke-type="codeblock"><code>var num = 10</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">2. 초기화 하지 않고 사용</span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">선언만 하고, 사용하는 경우에는 1번 방식과 달리 변수명 옆에 <span style="background-color: #333333; color: #ffffff;">콜론(:) 구분자</span>를 붙여서 자료형을 지정 해야만 한다.</span></p>
+<pre id="code_1628425226091" class="kotlin" data-ke-language="kotlin" data-ke-type="codeblock"><code>var 변수명: 타입
+변수명 = 값</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 int형 타입 변수를 먼저 선언한 뒤 초기화 하고 싶다면 다음과 같이 작성한다.</span></p>
+<pre id="code_1628425272535" class="kotlin" data-ke-language="kotlin" data-ke-type="codeblock"><code>var myInt: Int
+myInt = 10</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">* 자료형(데이터 타입)</span></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">코틀린이 제공하는 자료형은 <span style="background-color: #333333; color: #ffffff;">"숫자형" , "문자형" , "불린형"</span> 으로 나뉜다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">"숫자형"</span>&nbsp;은 <span style="background-color: #f6e199;">Double , Float , Long, Int , Short , Byte</span> 총 6가지 이며 구분을 위해 <span style="background-color: #f6e199;">Float 타입의 숫자 끝에 'F'</span>를 <span style="background-color: #f6e199;">Long 타입 숫자 끝에는 'L'</span>을 붙여준다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">"문자형"</span> 에는 <span style="background-color: #f6e199;">Char, String</span> 가 있으며 <span style="background-color: #f6e199;">Char은 외따옴표(' ')</span> 를 사용하고, String은 기본 타입에 포함 되지는 않지만 자주 사용되며, <span style="background-color: #f6e199;">큰따옴표(" ")</span>를 사용한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">"불린형"</span>은 <span style="background-color: #f6e199;">Boolean</span>이 있으며, <span style="background-color: #f6e199;">true / false 중 1개의 값을 저장</span>할 수 있다. 주로 조건문에서 자주 사용된다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;">#2 상수 val</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">상수</span>는 변수와 달리 <span style="background-color: #f6e199;">한 번 입력된 값은 변경할 수 없으며</span> <span style="background-color: #333333; color: #ffffff;">val 키워드</span>를 이용해 선언한다.</span></p>
+<pre id="code_1628425560475" class="kotlin" data-ke-language="kotlin" data-ke-type="codeblock"><code>val 상수명 = 값</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">상수의 값을 변경 하고자 시도하면 에러가 발생하기에, 절대로 바뀌지 않는 복잡한 값을 상수로 선언해 두곤 한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #코틀린 #코틀린문법 #코틀린변수 #코틀린자료형 #코틀린상수 #코틀린데이터타입 #varval 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

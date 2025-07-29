@@ -1,0 +1,128 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Swift] 함수 VOL2 함수 표기법 [Function notation]</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Swift] 함수 VOL2 함수 표기법 [Function notation]</h2>
+                                <div class="box-info">
+                                    <p class="category">IOS/Swift Language</p>
+                                    <p class="date">2025-02-27 20:18:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 이전 포스팅 [Swift] 함수 <span style="background-color: #333333; color: #dddddd;">VOL1 Argument Label, Wild Card Patern</span>에서 내용이 이어집니다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a style="color: #000000;" href="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" target="_blank" rel="noopener&nbsp;noreferrer">https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters</a></span></p>
+<figure id="og_1740567907036" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[Swift] 함수 VOL1 Argument Label, WildCard Patern" data-og-description="* 개인적인 공부 내용을 기록하는 용도로 작성된 글이기에 잘못된 내용을 포함하고 있을 수 있습니다. ✨수정사항✨1. 백틱 기호를 활용한 파라미터 내부에서 예약어 사용 관련 내용 추가 -2025.02" data-og-host="novlog.tistory.com" data-og-source-url="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" data-og-url="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" data-og-image="https://scrap.kakaocdn.net/dn/M7HrN/hyYmPj9udz/NDkmkLk1JCZvkS9ofBR6n1/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/cPyITu/hyYjGCkL7A/ZQvGKP8S1TclsfmvB3CuHk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/IjN0g/hyYjKY3gt7/vQNsHI0ckT31unw4mPfRtk/img.png?width=791&amp;height=235&amp;face=0_0_791_235"><a href="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" target="_blank" rel="noopener" data-source-url="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/M7HrN/hyYmPj9udz/NDkmkLk1JCZvkS9ofBR6n1/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/cPyITu/hyYjGCkL7A/ZQvGKP8S1TclsfmvB3CuHk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/IjN0g/hyYjKY3gt7/vQNsHI0ckT31unw4mPfRtk/img.png?width=791&amp;height=235&amp;face=0_0_791_235');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">[Swift] 함수 VOL1 Argument Label, WildCard Patern</p>
+<p class="og-desc" data-ke-size="size16">* 개인적인 공부 내용을 기록하는 용도로 작성된 글이기에 잘못된 내용을 포함하고 있을 수 있습니다. ✨수정사항✨1. 백틱 기호를 활용한 파라미터 내부에서 예약어 사용 관련 내용 추가 -2025.02</p>
+<p class="og-host" data-ke-size="size16">novlog.tistory.com</p>
+</div>
+</a></figure>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#Function notation&nbsp;</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Function notation [함수 표기법]</span> 이란 말 그대로 함수를 표기하는 방법론으로</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Camel Case, Snake Case 같은 하나의 <b>Naming Convention</b>이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Apple 공식 문서에서 제공하는 함수들 또한 함수 표기법을 지켜 명시되어 있으며</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">반드시 공식 문서에서 함수를 읽기 위함이 아니더라도 실제 Swift 프로그래밍에서도 다방면에서 사용되기에 반드시 정리하고 넘어가야 하는 개념이다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: center;">Function notation [함수 표기법]의 핵심은 다음과 같다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #456771;">1.&nbsp; Prameter Name은 명시하지 않으며 Argument Label만 사용한다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #456771;">2. Parameter의 개수만을 표현한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, 리턴타입 파라미터명과 같은 정보는 적지 않으며</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Argument Label, Parameter 개수</span> 두 가지 정보만을 표현한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에서 가장 기본적인 함수인 print 함수를 애플 공식 문서에서 발췌해 보았다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">print(_:separator:terminator:) 함수 표기법을 차근차근 분석해 보면</p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">print(<span style="background-color: #333333; color: #dddddd;">_:</span>separator:terminator:) - WildCard를 사용해 Argument Label이 생략된 첫 번째 파라미터</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">print(_:s<span style="background-color: #333333; color: #dddddd;">eparator:</span>terminator:) - Argument Label이 separator인 두 번째 파라미터</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">print(_:separator:<span style="background-color: #333333; color: #dddddd;">terminator:</span>) - Argument Label이 terminator인 세 번째 파라미터</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">요약하자면 print 함수는 최대 3개의 파라미터를 전달받을 수 있으며, 그중 첫 번째 파라미터는 WildCard(_)를 사용해 생략할 수 있다는 의미이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://developer.apple.com/documentation/swift/print(_:separator:terminator:)" target="_blank" rel="noopener&nbsp;noreferrer">https://developer.apple.com/documentation/swift/print(_:separator:terminator:)</a></span></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">✨유의점✨ 파라미터가 존재하지 않는 경우 Function notation은 괄호 없이 함수 이름만 명시한다.&nbsp;</span></p>
+</div>
+</div>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: center;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#Function notation 활용 예제</span></h2>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에서 함수는 <span style="background-color: #333333; color: #dddddd;">일급 객체</span>이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 Swift 내부에서 함수는 변수에 대입하거나 다른 함수의 파라미터로 대입할 수 있다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수 표기법에 실제로 어떻게 사용되는지 간단한 Swift 예제 코드를 통해 알아보자.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ver.1 hello 메서드를 오버로딩한 ver.2 hello 함수를 정의했다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">참고로 두 함수가 파라미터 이름, 파라미터 타입, 반환값이 모두 동일한데 어떻게 오버로딩이 가능한지 의문이 생길 수 있으나</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Swift에서 WildCard Pattern(_)을 사용해 파라미터를 재정의하면</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">컴파일 시점에서 서로 다른 함수로 인식하게 되기에 가능한 것이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #006dd7;"><a style="color: #006dd7;" href="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">About WildCard</span></a></span></p>
+<pre id="code_1740654123218" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>func hello(_ name: String) {
+    print("#1 hello ver.1")
+    print("Hello, \(name)!")
+}
+
+func hello(name: String) {
+    print("#2 hello ver.2")
+    print("Hello, \(name)!")
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 이름이 같은 두 함수를 어떻게 구분해서 호출해야 할까?</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단순히 hello로 호출하는 것은 당연히 불가능할 것이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">컴파일러가 ver.1 hello를 출력할지 오버로딩된 ver.2 hello를 출력할지 구분이 불가능</span>하기 때문이다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<pre id="code_1740654605780" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var helloTest = hello // error</code></pre>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이때 Foundation Notation [함수 표기법] 문법을 사용하면 된다.&nbsp;</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수표기법을 사용해 두 가지 hello 함수를 명시해 보면 다음과 같다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">hello(_:) </span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">hello(name:)</span></p>
+<pre id="code_1740654795531" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>var helloTestVer1 = hello(_:) // ver1
+var helloTestVer2 = hello(name:) //ver2
+
+helloTestVer1("nov")
+helloTestVer2("nov")</code></pre>
+<pre id="code_1740654810817" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>#1 hello ver.1
+Hello, nov!
+#2 hello ver.2
+Hello, nov!</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

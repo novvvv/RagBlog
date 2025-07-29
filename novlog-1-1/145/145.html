@@ -1,0 +1,141 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] 1158 "요세푸스 문제" 문제 풀이 & 소스 코드 With C/C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] 1158 "요세푸스 문제" 문제 풀이 & 소스 코드 With C/C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-01-06 16:59:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SIVLER5</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 유형 : <span style="background-color: #333333; color: #ffffff;">자료구조_큐(Queue)</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출처 : <a href="https://www.acmicpc.net/problem/1158">1158번: 요세푸스 문제 (acmicpc.net)</a></span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">큐(Queue)자료구조를 이용해서 문제를 풀이했다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, 입력받은 N값까지 반복문을 돌려서 큐에 Push해준다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/제목 없음.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1641455147408" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  queue&lt;int&gt; josephus;
+  for (int i = 0 ; i &lt; N ; i++) {
+    josephus.push(i + 1);
+  }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 큐의 front를 push해주고, pop해준다. 그러면 front에 있던 "1"이 가장 위로 올라가게 된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이 과정을 M-1(2)번 반복해 준다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 M번째 수는 출력해주고, 큐에서 pop 해준다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이것을 N번 반복해주면 요세푸스 순열을 구할 수 있다.</span></p>
+<pre id="code_1641455802668" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  cout &lt;&lt; "&lt;";
+  for (int i = 0 ; i &lt; N - 1 ; i++) {
+    for (int j = 0 ; j &lt; M - 1 ; j++) {
+      josephus.push(josephus.front());
+      josephus.pop();
+    }
+    cout &lt;&lt; josephus.front() &lt;&lt; ", ";
+    josephus.pop();
+  }
+  cout &lt;&lt; josephus.front() &lt;&lt; "&gt;\n";</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#CODE</span></b></h2>
+<pre id="code_1641455826666" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main(void){
+  ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
+  int N,M;
+  cin &gt;&gt; N &gt;&gt; M;
+  
+  queue&lt;int&gt; josephus;
+  for (int i = 0 ; i &lt; N ; i++) {
+    josephus.push(i + 1);
+  }
+
+  cout &lt;&lt; "&lt;";
+  for (int i = 0 ; i &lt; N - 1 ; i++) {
+    for (int j = 0 ; j &lt; M - 1 ; j++) {
+      josephus.push(josephus.front());
+      josephus.pop();
+    }
+    cout &lt;&lt; josephus.front() &lt;&lt; ", ";
+    josephus.pop();
+  }
+  cout &lt;&lt; josephus.front() &lt;&lt; "&gt;\n";
+  return 0;
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #백준 #1158 #요세푸스문제 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

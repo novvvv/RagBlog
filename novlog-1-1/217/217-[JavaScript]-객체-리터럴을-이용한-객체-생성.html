@@ -1,0 +1,124 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JavaScript] 객체 리터럴을 이용한 객체 생성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JavaScript] 객체 리터럴을 이용한 객체 생성</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-05-13 10:18:04</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/제목 없음.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#객체</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#프로퍼티 생성</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#프로퍼티 접근</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#프로퍼티 삭제</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#메서드와 this</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Reference :</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"> <a href="https://ko.javascript.info/object-methods">메서드와 this (javascript.info)</a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://ko.javascript.info/object">객체 (javascript.info)</a></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">모던 자바스크립트 Deep Dive 10장 객체 리터럴 124p~135p&nbsp;</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#객체</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자바스크립트는 <span style="color: #ffffff; background-color: #333333;">프로토타입 기반 객체지향 언어</span>로 C++, JAVA, C# 등과 같은 클래스 기반 객체지향 언어와 달리 다양한 객체 생성 방법을 지원한다. (객체 리터럴, Object 생성자, 생성자 함수, 클래스 등..) </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅에서는 객체를 생성하는 가장 기본적인 방식인 객체 리터럴에 대해 정리해 보고자 한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#프로퍼티 생성</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">객체는 <span style="background-color: #333333; color: #ffffff;">중괄호{...}</span>를 이용해 만들 수 있으며 중괄호 안에는 <span style="background-color: #333333; color: #ffffff;">키(key)와 값(value)</span>으로 구성된 <span style="background-color: #333333; color: #ffffff;">프로퍼티(property)</span>를 여러개 넣어 구성할 수 있다.</span></p>
+<pre id="code_1652401101333" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10,
+    hp: 100,
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">warrior 객체는 두개의 프로퍼티로 구성되어 있다. 프로퍼티를 나열할 때는 <span style="background-color: #333333; color: #ffffff;">쉼표(,)</span>로 구분한다. (마지막 프로퍼티 뒤에는 쉼표를 사용해도 사용하지 않아도 상관 없다.) 콜론(:)을 기준으로 좌측에는 키(key)가 오고 우측에는 값(value)이 온다. 키에는 문자열이 들어가며 값에는 JS에서 사용 가능한 모든 값을 대입할 수 있다.</span></p>
+<pre id="code_1652402872357" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10,
+    hp: 100,
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">유의 해야할 점은 객체 리터럴의 중괄호는 코드 블록을 의미하지 않는다는 것이다. 객체 리터럴은 "값"으로 평가되는 표현식 이기에 반드시 <span style="background-color: #333333; color: #ffffff;">객체 리터럴의 중괄호 뒤에는 세미콜론(;)을 붙여 주어야만 한다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#프로퍼티 접근</span></b></p>
+<pre id="code_1652401679241" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>warrior.level; // dot notation
+warrior["level"]; // bracket notation</code></pre>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">프로퍼티에 접근하는 방법은 마침표 프로퍼티 접근 연산자(.)를 사용하는 <span style="background-color: #333333; color: #ffffff;">마침표 표기법(dot notation)</span>과 대괄호 프로퍼티 접근 연산자([...])를 사용하는 <span style="background-color: #333333; color: #ffffff;">대괄호 표기법(bracket notation)</span>으로 나뉜다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';"><b>대괄호 표기법을 이용해 객체의 프로퍼티에 접근하고자 할 때는 반드시 키를 따옴표로 감싸 주어야만 한다.</b> 따옴표를 생략한 뒤 키에 접근하면 에러가 발생한다.</span></p>
+<pre id="code_1652401759448" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>warrior[level]; (x)
+// VM381:1 Uncaught ReferenceError: level is not defined at &lt;anonymous&gt;:1:9</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic';">#프로퍼티 삭제</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="background-color: #333333; color: #ffffff;">delete 연산자</span>를 이용해 <b>객체의 프로퍼티를 삭제</b>할 수 있다. 만약 존재하지 않는 프로퍼티를 삭제하고자 하면 에러를 발생시키지 않고 무시한다.</span></p>
+<pre id="code_1652401926898" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10,
+    hp: 100,
+};
+
+delete warrior.level;
+delete warrior["hp"];</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#메서드와 this</span></b></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수 또한 프로퍼티의 값으로 대입할 수 있다. <b>프로퍼티의 값이 함수일 경우</b> 일반 함수와 구분하기 위해서 <span style="background-color: #333333; color: #ffffff;">메서드(method)</span>라고 부른다.&nbsp;</span></p>
+<pre id="code_1652403657842" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10,
+    hp: 100,
+    attack: function(){
+        console.log("warrior Attack!");
+    }
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ES6부터는 function 키워드를 생략한 축약 표현을 사용할 수 있다.</span></p>
+<pre id="code_1652403721042" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10,
+    hp: 100,
+    attack(){
+        console.log("warrior Attack!");
+    }
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">보통 메서드를 정의할 때 객체 내부의 값(프로퍼티)을 활용하는 경우가 많다. 메서드 내부에서 <span style="background-color: #333333; color: #ffffff;">this키워드</span>를 이용하면 객체에 접근할 수 있다.</span></p>
+<pre id="code_1652404043755" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>var warrior = {
+    level: 10, // property
+    hp: 100, // property
+    printLevel(){ // method
+        console.log(this.level);
+    }
+};</code></pre>
+<pre id="code_1652404055482" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>warrior.printLevel(); // 10</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자바스크립트 #javascript #This #문법 #메서드 #객체생성 #객체리터럴 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[LeetCode] 70. Climbing Stairs 문제 풀이 C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[LeetCode] 70. Climbing Stairs 문제 풀이 C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-09-03 20:44:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #9feec3;">Easy</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></span></p>
+<figure id="og_1662204525658" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Climbing Stairs - LeetCode" data-og-description="Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview." data-og-host="leetcode.com" data-og-source-url="https://leetcode.com/problems/climbing-stairs/" data-og-url="https://leetcode.com/problems/climbing-stairs/" data-og-image="https://scrap.kakaocdn.net/dn/cMGy19/hyPGakeNf7/TTkjE0V5pybHpx0Zw3kE51/img.png?width=500&amp;height=260&amp;face=0_0_500_260"><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener" data-source-url="https://leetcode.com/problems/climbing-stairs/">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cMGy19/hyPGakeNf7/TTkjE0V5pybHpx0Zw3kE51/img.png?width=500&amp;height=260&amp;face=0_0_500_260');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Climbing Stairs - LeetCode</p>
+<p class="og-desc" data-ke-size="size16">Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.</p>
+<p class="og-host" data-ke-size="size16">leetcode.com</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">DP(Dynamic Programming) Algorithm</span>에 대한 선수 지식이 있다면 쉽게 풀이할 수 있는 문제입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Bottom-up</span> 방식을 사용해 문제를 풀이했습니다.</span></p>
+<p data-ke-size="size16"><a href="https://novlog.tistory.com/93?category=860654" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">&rarr; Dynamic Programming</span></a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, <b>stairs 벡터</b>를 생성해 줍니다.<b> stairs 벡터는 계단이 n칸일 때 올라갈 수 있는 경우의 수</b>를 저장합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">ex) stairs[4] = 계단이 4칸일 때 올라갈 수 있는 총 경우의 수</span></p>
+<pre id="code_1662205094172" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>vector&lt;int&gt; stairs(n + 1);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>n = 1</b></span>&nbsp; 계단이 총 한 칸인 상황을 생각해 봅시다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">경우의 수는 당연히도<b> 1가지</b> 밖에 존재하지 않습니다.</span></p>
+<pre id="code_1662205122892" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>stairs[1] = 1;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 <span style="color: #1a5490;"><b>n = 2</b></span>, 계단이 총 2칸인 경우를 생각해 봅시다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">2칸을 오르는 경우의 수는 <b>1step + 1step , 2step 총 2가지</b>입니다.</span></p>
+<pre id="code_1662205131209" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>stairs[2] = 2;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"><b>n = 3</b></span> 계단이 총 3칸입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">3칸을 오르기 위해서는 우선 <b>첫 걸음으로 무조건 1step 혹은 2step</b>을 올라가야 합니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이유는 조금만 생각해보면 당연한데 <b>문제에서 한 번에 계단을 2칸을 초과해서 올라갈 수 없다는 조건</b>을 제시했기 때문입니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 3칸을 오르는 경우의 수는 첫 걸음으로 1step을 올라간 케이스와 2step을 올라간 케이스로 나뉩니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">1) 첫 걸음으로 1step을 올라간 경우</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(1step) + 1step + 1step</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(1step) + 2step</span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">&rarr; stairs[2]</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic';">2) 첫 걸음으로 2step을 올라간 경우</span></b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">(2step) + 1step </span></p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">&rarr; stairs[1]</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">즉, 점화식으로 표현해 보면 다음과 같습니다. </span></p>
+<pre id="code_1662205292008" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>stairs[n] = stairs[n-1] + stairs[n-2];</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#CODE</span></b></h2>
+<pre id="code_1662205343428" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>class Solution {
+public:
+    int climbStairs(int n) {
+        vector&lt;int&gt; stairs(n + 1);
+        stairs[0] = 1;
+        stairs[1] = 1;
+        // bottom - up
+        for(int i = 2; i &lt;= n; ++i)
+            stairs[i] = stairs[i - 1] + stairs[i - 2];
+        return stairs[n];
+    }
+};</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #문제풀이 #dp #Leetcode 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

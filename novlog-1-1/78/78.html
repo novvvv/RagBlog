@@ -1,0 +1,121 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++] 입력 함수 정리 - cin / getline() (feat. cin.ignore())</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++] 입력 함수 정리 - cin / getline() (feat. cin.ignore())</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-07-09 17:32:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="220" data-origin-height="247" data-filename="C++.png" width="199" height="223" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="220" data-origin-height="247" data-filename="C++.png" width="199" height="223" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<h4 style="text-align: center;" data-ke-size="size20"><b><span style="font-family: 'Noto Serif KR'; color: #000000;">[C++] 입력 함수 정리 - cin / getline() (feat.cin.ignore())</span></b></h4>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#cin</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#getline()</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#istream cin.getline()</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">#string getline()</span></p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #000000;">*getline() 사용시 주의점</span></p>
+<p style="text-align: center;" data-ke-size="size18">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #ffffff; background-color: #333333;">* 개인적인 공부 기록용으로 작성한 글 이기에, 잘못된 내용이 있을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><b><span style="color: #006dd7;">#</span></b> cin</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">&lt;iostream&gt; 헤더에 정의되어 있다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">표준 입력 버퍼에서 공백 혹은 개행 문자 이전 까지의 값만을 받아들인다.</span></p>
+<pre id="code_1625803764184" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+int val;
+cin &gt;&gt; val;</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">자주 사용되지만 &gt;&gt; 연산자는 "nov blog"와 같은 <span style="background-color: #333333; color: #ffffff;">공백이 포함된 문자열</span>은 nov 까지밖에 <span style="background-color: #333333; color: #ffffff;">입력되지 않는다는 단점</span>이 존재한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">공백문자와 함께 입력받기 위해서는 getline() 함수를 이용해야 한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR'; color: #000000;"><b><span style="color: #006dd7;"># </span></b>getline()</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">getline() 함수는 istream 라이브러리에 속하는 cin.getline()과 string 라이브러리에 속하는 getline() 2가지로 나뉜다.</span></p>
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span> istream cin.getline()</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">C형식 문자열 방식인 마지막 글자에 'NULL' 문자가 포함된 문자 배열 을 받는데 사용한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">N-1개의 문자를 읽어와서 str에 저장하고, 마지막 문자는 자동으로 NULL로 바꾼다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">세 번째 인자 delim(제한자) 직전까지 읽어서 str에 저장한다. (별도로 지정하지 않으면 개행문자('\n')으로 인식한다.)</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">cin.getline(변수 주소, 최대 입력 수, 제한자);</span></p>
+<pre id="code_1625804261472" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;istream&gt;
+cin.getline(char *s, streamsize n , char dlim);</code></pre>
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR'; color: #000000;"><span style="color: #006dd7;">#</span> string getline()</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">지정한 구분자(delimiter)를 만날 때 까지 문자열을 입력받아 string에 저장한다. 구분자는 따로 지정해 주지 않아도 상관없다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #ffffff; background-color: #333333;">getline(입력 스트림, string 객체 , 구분자);</span></p>
+<pre id="code_1625804581309" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;string&gt;
+//getline(istream&amp; steam, string str, char dlim);
+string str;
+getline(cin, str);</code></pre>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18"><span style="font-family: 'Noto Serif KR'; color: #ffffff; background-color: #333333;">* string getline() 사용 시 주의점</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">string 라이브러리의 getline() 함수를 사용 시 주의해야 할 점이 하나 있다.</span></p>
+<pre id="code_1625818198075" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main()
+{
+	int val;
+	cin &gt;&gt; val;
+	string str;
+	getline(cin, str);
+	cout &lt;&lt; val &lt;&lt; str &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위의 예시코드를 실행해 보면, 예상과 달리 정수만 입력받고 프로그램이 종료되어 버린다.</span></p>
+<pre id="code_1625818400608" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과]
+1
+1</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">위와 같은 현상이 발생하는 이유는 표준 입력 버퍼에 개행문자 '\n'가 남아 있기 때문이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">getline() 코드 앞에 <span style="background-color: #333333; color: #ffffff;">cin.ignore()</span> 함수로 버퍼를 클리어 해 주면 문제가 해결된다.</span></p>
+<pre id="code_1625818608229" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main()
+{
+	int val;
+	cin &gt;&gt; val;
+	cin.ignore(); // buffer clear
+	string str;
+	getline(cin, str);
+	cout &lt;&lt; val &lt;&lt; str &lt;&lt; endl;
+}</code></pre>
+<pre id="code_1625818625219" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력결과]
+1
+hello
+1hello</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #CIN #입력함수 #getline() #cin.ignore() #cin.getline() #getline()오류 #표준입력버퍼 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Algorithm] 백트래킹 : Backtracking _ 미완성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Algorithm] 백트래킹 : Backtracking _ 미완성</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Algorithm</p>
+                                    <p class="date">2022-04-14 23:21:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #ffffff;">* 다음 포스팅의 모든 내용은&nbsp;</span><span style="background-color: #ffffff;">&nbsp;</span><span style="background-color: #dddddd;"><u><b>BaaaaaaaaarkingDog 님의&nbsp;</b></u><b><a style="color: #000000;" href="https://blog.encrypted.gg/943">[</a>실전 알고리즘] 0x0B강 - 재귀</b></span><span style="background-color: #ffffff;">&nbsp;강의를 공부한 뒤 개인적인 공부 용도로 간략하게 요약하여 정리한 글 입니다. 자세한 내용은 아래 바킹독님의 블로그에서 확인해 주세요.</span></span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://blog.encrypted.gg/945?category=773649">BaaaaaaaarkingDog | [실전 알고리즘] 0x0C강 - 백트래킹 (encrypted.gg)</a></span></p>
+<figure id="og_1649945984223" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[실전 알고리즘] 0x0C강 - 백트래킹" data-og-description="이번에는 백트래킹을 배워보도록 하겠습니다. 백트래킹도 재귀와 더불어 많은 사람들이 고통을 호소하는 알고리즘 중 하나이지만 의외로 그 재귀적인 구조에 매료되어서 참재미를 알아버리는 " data-og-host="blog.encrypted.gg" data-og-source-url="https://blog.encrypted.gg/945?category=773649" data-og-url="https://blog.encrypted.gg/945" data-og-image="https://scrap.kakaocdn.net/dn/dJaWi6/hyN2F7c76m/meNgol7SqzxptAegyFLaYk/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/g7tCN/hyN2GdYthI/QwRK7cV4LHuVBFMFsxW0D0/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/bv1oO4/hyN2BjrtrI/yDlBKjaZKTMkrRh6Ae9pC1/img.png?width=1920&amp;height=1080&amp;face=0_0_1920_1080"><a href="https://blog.encrypted.gg/945?category=773649" target="_blank" rel="noopener" data-source-url="https://blog.encrypted.gg/945?category=773649">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dJaWi6/hyN2F7c76m/meNgol7SqzxptAegyFLaYk/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/g7tCN/hyN2GdYthI/QwRK7cV4LHuVBFMFsxW0D0/img.png?width=800&amp;height=450&amp;face=0_0_800_450,https://scrap.kakaocdn.net/dn/bv1oO4/hyN2BjrtrI/yDlBKjaZKTMkrRh6Ae9pC1/img.png?width=1920&amp;height=1080&amp;face=0_0_1920_1080');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">[실전 알고리즘] 0x0C강 - 백트래킹</p>
+<p class="og-desc" data-ke-size="size16">이번에는 백트래킹을 배워보도록 하겠습니다. 백트래킹도 재귀와 더불어 많은 사람들이 고통을 호소하는 알고리즘 중 하나이지만 의외로 그 재귀적인 구조에 매료되어서 참재미를 알아버리는</p>
+<p class="og-host" data-ke-size="size16">blog.encrypted.gg</p>
+</div>
+</a></figure>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 백트래킹</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.1 BOJ15649 N과M(1)</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1.2 BOJ9663 N-Queen [미완성]</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #781b33;">#1 백트래킹</span></span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">백트래킹 알고리즘</span>이란 <span style="color: #781b33;"><b>해를 찾는 도중 해가 될 가능성이 없다면 이전 상태로 되돌아가 다시 해를 찾아가는 기법</b></span>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">깊이 우선 탐색 알고리즘인 DFS와 많이 유사한데 DFS는 유망하지 않은 경로를 사전에 차단하는 등의 행동을 수행하지 못하지만 백트래킹 알고리즘은 유망하지 않은 경로를 조기차단하여 효율성을 높일 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이처럼 <span style="color: #781b33;"><b>유망하지 않은 경로를 조기차단</b></span> 하는 것을 <span style="background-color: #333333; color: #dddddd;">"가지치기(pruning)한다"</span> 라고 표현한다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">#1.1 BOJ15649 N과 M(1)</span></b></span></h2>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">1 부터 n(4)까지 자연수 중에서 중복 없이 M(2)개를 고른 수열을 백트래킹을 이용해 구해 보도록 하겠다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">처음에는 빈 배열에서 시작한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 첫 번째 원소를 1로 설정한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">숫자 1이 사용 되었으니 중복 없이 수열을 만들기 위해서는 2번째 숫자로 2, 3, 4가 들어가야 한다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">배열의 끝에 도달하였으니 이전 상태로 역추적(Backtracking)하여 다시 탐색을 시작한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">같은 방식으로 첫 번째 원소가 1인 배열의 모든 조합을 탐색한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">첫 번째 원소가 1인 배열의 모든 조합을 탐색했다면 다시 초기 상태로 역추적한다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">나머지 케이스들도 같은 방식으로 탐색을 수행하면 된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1649945339901" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, m;
+int arr[10]; 
+bool isVisited[10]; // 숫자 i를 사용했는지 확인하는 배열
+
+void recur(int k){
+	if(k == m){
+		for(int i = 0; i &lt; m; i++)
+			cout &lt;&lt; arr[i] &lt;&lt; " ";
+		cout &lt;&lt; '\n';
+		return;
+	}
+	for(int i = 1; i &lt;= n; i++){
+		// 숫자 i를 사용하지 않았다면
+		if(!isVisited[i]){
+			arr[k] = i;	// 배열의 k번째 원소를 i로 설정한다.
+			isVisited[i] = true; // 숫자 i를 사용했다고 표시한다.
+			recur(k+1); // 배열의 k + 1 번째 원소를 탐색하러 들어간다.
+			isVisited[i] = false; // 탐색을 모두 끝마쳤다면 숫자 i 사용 여부를 해제한다.
+		}
+	}
+}
+
+int main(void) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; m;
+	recur(0);
+	return 0;
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="color: #781b33;"><b><span style="font-family: 'Nanum Gothic';">#1.2 BOJ 9663 N-Queen</span></b></span></h2>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">BOJ 9663 N-Queen 문제는 n * n 으로 이루어진 체스판에서 퀸 n개를 서로 공격할 수 없게 설정하는 무제이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">퀸의 공격방향은 다음과 같이 8방향으로 퍼져 나간다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_10.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 퀸의 공격방향에 또 다른 퀸이 존재한다면 불가능한 배치가 되고, 공격 방향을 모두 피해 남은 칸에 퀸이 존재한다면 가능한 배치가 된다.</span></p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_11.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

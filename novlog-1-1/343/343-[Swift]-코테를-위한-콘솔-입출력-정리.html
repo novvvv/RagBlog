@@ -1,0 +1,113 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Swift] 코테를 위한 콘솔 입출력 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Swift] 코테를 위한 콘솔 입출력 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">IOS/PS With Swift</p>
+                                    <p class="date">2025-02-12 15:02:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* Swift로 코딩테스트를 준비하며 필요한 입출력 관련 스킬을 정리해 보았습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 개인적인 공부 기록 용도로 작성한 글이기에 잘못된 내용을 포함하고 있을 수 있으며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">지속적으로 내용을 추가해 나갈 예정입니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">... 2025.02.12 readLine, print 문법 관련 내용 추가</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 style="text-align: left;" data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#Console Input</span></h2>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #c0d1e7;">readLine</span></h3>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">readLine</span>은 사용자로부터 문자열을 입력받는 C/C++의 scanf, cin과 같은 콘솔 입력 메서드입니다. </span></p>
+<p style="text-align: left;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단, 주의점은 입력값을 단순히 String 타입으로 받아들이는 것이 아닌, <span style="background-color: #333333; color: #dddddd;">Optional String?</span> 타입으로 받기에 입력값을 처리하기 위해서는 Optional Binding 혹은 Optional Unwrapping을 통해 옵셔널 값을 추출해서 사용해야 합니다.&nbsp;</span></p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">Optional Unwrapping을 사용하지 않고 단순 출력한 경우</span></b></p>
+<pre id="code_1739338575128" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>import Swift;
+var input = readLine();
+print(input)</code></pre>
+<pre id="code_1739338926951" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>nov
+Optional("nov")</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: left;">Optional Unwrapping을 사용해 옵셔널 값을 추출하여 출력한 경우</span></b></p>
+<pre id="code_1739338990647" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>import Swift;
+var input = readLine()!;
+print(input)</code></pre>
+<pre id="code_1739338998218" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>nov
+nov</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#Console Output</span></h2>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">print</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">print</span>는 콘솔에 값을 출력하는 기능을 수행하는 메서드로, Java의 <span style="background-color: #333333; color: #dddddd;">System.out.println()</span> 같은 메서드와 동일하게 <b>자동으로 줄 바꿈 됩니다.</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이는 print 메서드의 <span style="background-color: #333333; color: #dddddd;">terminator</span> 파라미터의 기본값이 '\n'으로 설정되어 있기에 발생하는 현상으로, 줄 바꿈을 제거하고 싶다면 terminator의 값을 ""로 바꿔 주면 됩니다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 공백을 기준으로 구분하거나 다른 문자를 추가하고 싶다면 마찬가지로 terminator 파라미터에 원하는 값을 대입하면 됩니다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 1~5 사이의 정수값을 출력하는 예제코드로, terminator 파라미터에 대입된 값에 따라 다른 결과값을 출력합니다. </span></p>
+<pre id="code_1739339706227" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>import Swift;
+
+print("#case1 terminater = '\\n' default")
+for i in 1..&lt;6 {
+    print(i)
+}
+print()
+
+print("#case2 terminater = ''")
+for i in 1..&lt;6 {
+    print(i, terminator: "")
+}
+print()
+
+print("#case3 terminater = ','")
+for i in 1..&lt;6 {
+    print(i, terminator:",")
+}
+print()</code></pre>
+<pre id="code_1739339716904" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>#case1 terminater = '\n' default
+1
+2
+3
+4
+5
+
+#case2 terminater = ''
+12345
+#case3 terminater = ','
+1,2,3,4,5,</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">String Interpolation</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">String Interpolation [문자열 보간법]</span> 이란 ""문자열 내부에 '\(value)' 기호를 넣어 변수를 삽입할 수 있도록 해주는 문법입니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">\() 안에 넣은 표현식은 값으로 평가되며 결과가 문자열 내부에 삽입됩니다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">또한 Swift는 <a href="https://novlog.tistory.com/entry/Swift-Method-Usage-Argument-Label-Variadic-Parameters" target="_blank" rel="noopener">함수형 프로그래밍 방식을 채택하는 언어</a>이기에 함수가 '일급객체'로 간주되어 변수, 상수뿐만 아니라 함수 호출 식 또한 삽입 가능합니다.</span></p>
+<pre id="code_1739340019846" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>import Swift;
+var input = readLine()!
+print("input value : \(input)")</code></pre>
+<pre id="code_1739340027967" class="swift" data-ke-language="swift" data-ke-type="codeblock"><code>10
+input value : 10</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

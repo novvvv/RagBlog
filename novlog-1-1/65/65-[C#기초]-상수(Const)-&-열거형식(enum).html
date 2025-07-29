@@ -1,0 +1,120 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C#기초] 상수(Const) & 열거형식(enum)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C#기초] 상수(Const) & 열거형식(enum)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C#</p>
+                                    <p class="date">2021-06-24 15:57:04</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="200" height="204" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="313" data-origin-height="319" data-filename="c#.png" width="200" height="204" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic';">[목차]</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic';">#1 상수(Const)</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic';">#2 열거형식(enum)</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><b><span style="font-family: 'Nanum Gothic';">* 열거형식은 변수가 아닌 새로운 형식이다.</span></b></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="background-color: #ffc1c8;"><span style=""><b>- 개인적인 공부 내용을 기록한 글 이기에, 잘못된 내용이 있을 수 있습니다.</b></span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><span style="color: #000000;">#1 상수(Const)</span></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">값을 변경 가능한 변수와 달리 <span style="background-color: #333333; color: #ffffff;">상수는 한번 정의하면, 값을 변경하는 것이 불가능합니다. </span></span><span style="font-family: 'Nanum Gothic'; color: #000000;">상수의 <span style="background-color: #333333; color: #ffffff;">선언 방식</span>은 아래와 같이 <span style="background-color: #dddddd;">const 키워드를 가장 앞에 붙이고 차례로 자료형, 상수명 그리고 값을 지정</span>합니다.&nbsp;</span></p>
+<pre id="code_1624515283543" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>const 자료형 상수명 = 값</code></pre>
+<p data-ke-size="size16"><span style="color: #ffffff; font-family: 'Nanum Gothic'; background-color: #333333;">&nbsp;상수는 선언과 동시에 값을 초기화 해 주어야 하며, 초기화 하지 않을 경우 에러가 발생합니다.</span></p>
+<p><figure class="imageblock alignLeft" data-origin-width="215" data-origin-height="36" width="185" height="31" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="215" data-origin-height="36" width="185" height="31" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Noto Serif KR';"><span style="color: #000000;">#2 열거형식(enum)</span></span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">같은 범주에 속하는 여러 개의 상수를 선언할 경우 enum 키워드를 사용</span>합니다. 열거형식도 상수이긴 하지만, 따로 const 키워드를 붙여 주지는 않습니다. <span style="background-color: #333333; color: #ffffff;">열거형의 사용법</span>은<span style="background-color: #dddddd;"> enum 키워드를 가장 앞에 붙여주고, 열거형의 이름을 정의합니다. 다음으로 상수의 자료형이 될 기반 자료형을 콜론(:)뒤에 적습니다. 여기서, 기반 자료형은 정수 계열만 사용 가능하며 따로 명시하지 않을 경우에는 자동으로 int 형으로 설정됩니다.</span></span></p>
+<pre id="code_1624516682650" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>enum 열거 형식명 : 기반 자로형 { 상수1, 상수2, 상수3 ... }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">열거 형식명.상수이름 으로 접근</span>이 가능하며, 기본 적으로 <span style="background-color: #dddddd;">첫 번째 열거 형식 요소에는 0, 다음 요소 부터는 1 씩 증가하며 컴파일러가 자동으로 초기화</span> 합니다.&nbsp;</span></p>
+<pre id="code_1624517071328" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>    class Program
+    {
+        enum MyEnum { NEW, CONTINUE, OPTION, BACK, EXIT }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("NEW : " + (int)MyEnum.NEW);
+            Console.WriteLine("CONTINUE : " + (int)MyEnum.CONTINUE);
+            Console.WriteLine("OPTION : " + (int)MyEnum.OPTION);
+            Console.WriteLine("BACK : " + (int)MyEnum.BACK);
+            Console.WriteLine("EXIT : " + (int)MyEnum.EXIT);
+        }
+    }</code></pre>
+<p><figure class="imageblock alignLeft" data-origin-width="583" data-origin-height="128" width="478" height="105" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="583" data-origin-height="128" width="478" height="105" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 프로그래머가 직접 값을 지정하는 것 또한 가능합니다.</span></p>
+<pre id="code_1624517388573" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>    class Program
+    {
+        enum MyEnum { NEW = 10, CONTINUE, OPTION, BACK, EXIT }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("NEW : " + (int)MyEnum.NEW);
+            Console.WriteLine("CONTINUE : " + (int)MyEnum.CONTINUE);
+            Console.WriteLine("OPTION : " + (int)MyEnum.OPTION);
+            Console.WriteLine("BACK : " + (int)MyEnum.BACK);
+            Console.WriteLine("EXIT : " + (int)MyEnum.EXIT);
+        }
+    }</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="862" data-origin-height="132" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="862" data-origin-height="132" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h3 data-ke-size="size23"><span style="font-family: 'Noto Serif KR'; color: #000000;">* 열거형식은 변수가 아닌 새로운 형식이다.</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">앞의 예제에서 정의한 MyEnum <span style="background-color: #333333; color: #ffffff;">열거형식은 변수가 아닌 int, float 과 같은 새로운 형식 입니다.</span> 따라서, MyEnum 형식을 이용해서 새로운 변수를 만들 수 있습니다.</span></p>
+<pre id="code_1624517298725" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>        enum MyEnum { NEW, CONTINUE, OPTION, BACK, EXIT }
+
+        static void Main(string[] args)
+        {
+            MyEnum myenum = MyEnum.NEW;
+            Console.WriteLine(myenum);
+        }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">MyEnum 형식 myenum 변수에는 MyEnum에 정의된 요소들만 담을 수 있습니다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

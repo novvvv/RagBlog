@@ -1,0 +1,111 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[알고리즘] 선택 정렬 (Selection Sort)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[알고리즘] 선택 정렬 (Selection Sort)</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/Algorithm</p>
+                                    <p class="date">2021-04-24 16:04:03</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="1278" data-origin-height="198" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1278" data-origin-height="198" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;">* 다음 포스팅은 개인적인 공부 내용을 기록한 것으로, 잘못된 내용이 있을 수 있습니다.</span></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">선택정렬[Selection Sort] 알고리즘이란?</span></b></li>
+<li data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">선택정렬 예시</span></b></li>
+<li data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#선택정렬 C언어 구현코드</span></b></li>
+</ul>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#선택 정렬[Selection Sort] 알고리즘 이란?</span></b></h2>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><u><b>선택 정렬</b></u>은 기초가 되는 정렬 알고리즘 중 하나로, <b><span style="background-color: #333333; color: #ffffff;">"가장 작은 값을 탐색하여 맨 앞의 데이터와 교환해 나가는 아이디어"를 이용한 알고리즘이다. 시간복잡도는 모든 상황에서 O(N^2)</span></b>으로 , <b><span style="background-color: #333333; color: #ffffff;">다른 정렬 알고리즘에 비해서 매우 비효율적</span></b>이다.</span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>배열에 3 5 2 8 7 이 저장되어 있다고 가정</b>하고 선택 정렬 알고리즘을 이용해 오름차순으로 정렬해 보도록 하자.</span></p>
+<p data-ke-size="size18">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#선택 정렬[Selection Sort] 예시</span></b><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></h2>
+<p><figure class="imageblock alignLeft" data-origin-width="703" data-origin-height="1096" width="505" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="703" data-origin-height="1096" width="505" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>[탐색 1] </b>첫 번째 인덱스 3과 나머지 자료(2번째 ~ 5번째)를 비교하여 가장 작은 값 (2)를 찾아 스왑한다.</span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>[탐색 2] </b>두 번째 인덱스 5와 나머지 자료(3번째 ~ 5번째)를 비교하여 가장 작은 값 (3)을 찾아 스왑한다.</span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>[탐색 3] </b>최솟값(5)이 자기 자신(5)과 일치하기에 스왑하지 않는다.</span></p>
+<p data-ke-size="size18"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>[탐색 4] </b>네 번째 인덱스 8과 나머지 자료 (5번째)를 비교하여 가장 작은 값(7)을 찾아 스왑한다.</span></p>
+<p data-ke-size="size18">&nbsp;</p>
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#선택 정렬 C언어 구현코드&nbsp;</span></b><b><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></b></h2>
+<pre id="code_1619247261934" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;stdio.h&gt;
+int arr[5] = {3, 5, 2, 8, 7};
+int index,temp;
+
+int main()
+{
+	// 정렬 전 
+	printf("BEFORE\n");
+	for (int i = 0 ; i &lt; 5 ; ++i)
+	{
+		printf("%d ", arr[i]);
+	}
+	
+	// Selection Sort
+	for (int i = 0 ; i &lt; 5 ; ++i)
+	{
+		int min = arr[i];
+		
+		for ( int j = i + 1 ; j &lt; 5 ; ++j)
+		{
+			if (min &gt; arr[j]){
+				min = arr[j];
+				index = j;
+			}
+		}
+		
+		temp = arr[i];
+		arr[i] = arr[index];
+		arr[index] = temp;
+	}
+	
+	// 정렬 후 
+	printf("\nAFTER\n");
+	for (int i = 0 ; i &lt; 5 ; ++i)
+	{
+		printf("%d ", arr[i]);
+	}
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p data-ke-size="size18">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C++ #C언어 #알고리즘 #선택정렬 #Selection Sort #구현코드 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

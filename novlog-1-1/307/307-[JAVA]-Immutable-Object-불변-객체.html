@@ -1,0 +1,174 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JAVA] Immutable Object 불변 객체</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JAVA] Immutable Object 불변 객체</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Java Fundamental</p>
+                                    <p class="date">2024-06-26 13:19:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#불변객체</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">-불변 객체를 사용하는 이유</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">-불변 객체의 값을 변경하고 싶다면?</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">-자바의 대표적인 불변 객체로는 String이 존재한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="color: #1a5490;"><b><span style="font-family: 'Nanum Gothic'; text-align: start;">* 해당 포스팅은 개인적인 공부 내용을 기록하는 용도로 작성된 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#불변객체</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">객체지향 프로그래밍 에서의 <span style="background-color: #333333; color: #dddddd;">불변 객체 [Immutable Object]</span> 란 한 번 인스턴스가 할당 되었다면 이후 객체의 상태가 변경이 불가능한 객체를 의미한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">불변객체를 만드는 방법은 간단하다. 다음 코드와 같이 모든 내부 프로퍼티의 접근 제어자를 외부에서 접근할 수 없도록 <span style="background-color: #333333; color: #dddddd;">private</span>로 선언한 뒤, 값을 변경 불가능 하도록 <span style="background-color: #333333; color: #dddddd;">final keyword</span>로 작성해 주면 된다.&nbsp;</span></p>
+<pre id="code_1719373999590" class="cs" style="background-color: #f8f8f8; color: #383a42;" data-ke-type="codeblock" data-ke-language="java"><code>public class ImmutableObject {
+    private final String value;
+
+    public ImmutableObject(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">불변 객체를 사용하는 이유</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">주소값을 저장하는 Address 객체가 존재한다고 가정해 보자. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Address 타입 참조형 변수 a를 선언한 뒤 "Seoul"이라는 주소를 할당해 주었다.&nbsp;</span></p>
+<pre id="code_1719372955038" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Address a = new Address("Seoul");</code></pre>
+<p><figure class="imageblock alignLeft" width="336" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="336"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">변수 a의 참조값을 변수 b에 복사하여 대입하였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 참조형 변수 a와 참조형 변수 b는 객체의 동일한 주소 (x001) 를 가리키게 된다.&nbsp;</span></p>
+<p><figure class="imageblock alignLeft" width="323" height="160" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="323" height="160"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<pre id="code_1719373225834" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Address b = a;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 참조형 변수 b 의 내부 주소를 변경하는 setValue setter 메서드를 사용해 객체 내부의 주소값을 "Seoul"에서 "Busan"으로 바꿔 주었다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">객체 a와 객체 b의 내부값을 출력해 보면 b의 내부 주소 필드만 busan으로 바뀌는 것이 아닌 a의 내부 주소 필드 또한 busan으로 바뀌어 버리게 된다.&nbsp;</span></p>
+<pre id="code_1719373469858" class="java" data-ke-language="java" data-ke-type="codeblock"><code>b.setValue("Busan");
+System.out.println("a = " + a);
+System.out.println("b = " + b);</code></pre>
+<pre id="code_1719373532625" class="java" data-ke-language="java" data-ke-type="codeblock"><code>[output]
+a = Address{value='Busan'}
+b = Address{value='Busan'}</code></pre>
+<p><figure class="imageblock alignLeft" width="323" height="154" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="323" height="154"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">이처럼 자바에서는 서로 다른 참조형 변수가 하나의 인스턴스를 공유할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">따라서 참조형 변수 b에 참조형 변수 a를 대입하는 순간 a의 참조값 (x001) 이 그대로 b에 복사되어 들어가게 된다. 따라서 위의 코드와 같이 의도치 않게 객체의 값이 변경될 수 있다는 문제점을 가지고 있다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">물론 단순히 객체의 참조 주소를 공유한 것이 문제는 아니다. 객체 내부의 상태를 변경을 시도 하였기에 문제가 발생한 것이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">이처럼 프로그래밍에서 <b>특정 작업을 통해 의도치 않게 다른 부분에 영향을 미치는 현상</b>을 <span style="background-color: #333333; color: #dddddd;">"사이드 이펙트"</span> 라고 한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">이런 현상을 방지하기 위해서는 객체의 상태를 변경하지 못하도록 <b>"불변 객체"</b> 로 만들어 주면 된다.</span></p>
+<pre id="code_1719374506852" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class ImmutableAddress {
+    private final String value;
+
+    public ImmutableAddress(String   value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "value='" + value + '\'' +
+                '}';
+    }
+}</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">이제 Address 객체는 생성자를 통해서만 내부 값을 설정할 수 있으며 이후에 값을 변경하는 것은 불가능하다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">불변 객체의 값을 변경하고 싶다면?</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">앞서 설명했듯이 불변 객체의 내부 필드는 private final 로 선언되어 있기에, 객체가 한 번 할당된 후에는 값을 변경하는 것이 불가능하다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">따라서 <b>"기존 값은 변경하지 않은 채로 유지" 한 뒤, "새로운 객체를 생성하여 반환"</b> 하는 방식으로 코드를 작성해야 한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; text-align: start;">불변객체 내부에서 값을 변경하는 setter를 정의하는 경우에는 set 보다는 <span style="background-color: #333333; color: #dddddd;">with 수식어</span>를 사용하는 것을 권장한다. with 수식어는 하나의 <b>naming-convention</b>으로 <span style="background-color: #f6e199;">원본 객체 상태를 유지한 뒤, 변경 사항을 새로운 복사본에 포함 시킨다는 의미</span>를 내포하고있다.</span></p>
+<pre id="code_1719374757212" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Address {
+    private final String value;
+
+    public Address(String   value) {
+        this.value = value;
+    }
+    
+    // 새로운 Address 객체를 만든 후 반환하는 메서드
+    public Address withTransferAddress(String Address) {
+        return new Address(Address);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "value='" + value + '\'' +
+                '}';
+    }
+}</code></pre>
+<pre id="code_1719374997275" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class RefMain1_1 {
+    public static void main(String[] args) {
+        Address a = new Address("Seoul");
+        Address b = a.withTransferAddress("Busan");
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
+    }
+}</code></pre>
+<pre id="code_1719375006319" class="java" data-ke-language="java" data-ke-type="codeblock"><code>a = Address{value='Seoul'}
+b = Address{value='Busan'}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">자바의 대표적인 불변 객체로는 String이 존재한다.</span></b></h4>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문자열을 선언하고 값을 할당하는 경우, 문자열 변수 내부의 상태과 변경되는 것 같이 보인다. </span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">하지만 실제로는 새로운 str 객체를 생성한 뒤 반환하는 방식으로 동작한다.</span></p>
+<pre id="code_1719372047314" class="java" data-ke-language="java" data-ke-type="codeblock"><code>        String str = "novdev";
+        System.out.println("str = " + str);
+        str = "novdev!";
+        System.out.println("str = "+ str);</code></pre>
+<pre id="code_1719372064317" class="java" data-ke-language="java" data-ke-type="codeblock"><code>[output]
+str = novdev
+str = novdev!</code></pre>
+<p><figure class="imageblock alignLeft" width="394" height="175" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="394" height="175"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇기에 Java에서 문자열을 조작하는 경우 다른 언어에 비해서 많은 메모리와 시간이 소요된다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 빈번한 문자열 연산이 발생하는 상황에서는 <span style="background-color: #333333; color: #dddddd;">StringBuilder</span> 를 사용하여 최적화를 시키는 것이 중요하다.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

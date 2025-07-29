@@ -1,0 +1,96 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[JS] 익명 함수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[JS] 익명 함수</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/WEB</p>
+                                    <p class="date">2022-03-05 14:40:39</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000; background-color: #dddddd;">* 지속적으로 내용을 추가해 나갈 예정이며 지적은 언제나 환영합니다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><a href="https://novlog.tistory.com/181?category=867814" target="_blank" rel="noopener">[JS] 함수 선언문</a> 에서 함수 선언문 (Function Statement) 방식을 이용해 함수를 선언하는 방법에 대해 정리했다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 함수 표현식 방법중 익명 함수를 이용해 함수를 선언 및 실행 하는 방법에 대해 정리 하고자 한다.</span></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="color: #1a5490;"># </span>익명 함수</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">호이스팅</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">사용이유</span></b></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">정리</span></b></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;"># 익명 함수</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript는 함수를 다른 언어와 달리 <span style="background-color: #dddddd;">"특별한 종류의 값"</span>으로 취급한다. 따라서 JS에서는 함수를 변수에 대입할 수 있다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">익명 함수</span>란, 단어 뜻 그대로 <span style="color: #1a5490;"><b>이름이 없는 함수</b></span>로 <span style="color: #1a5490;"><b>함수를 재사용할 필요가 없을 때 사용하는 함수</b></span>이다. 익명 함수는 변수에 대입하는 방식으로 사용한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">익명함수의 기본형은 다음과 같다. 이 때 익명 함수는 "값" 이기에, 함수 선언문 방식과 달리 끝에 <span style="background-color: #dddddd;">세미콜론(;)</span>을 붙여 주어야 한다.</span></p>
+<pre id="code_1646455235930" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[기본형]
+var/let/const 변수명 = function(매개변수, ..) {
+	실행문;
+    };</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음은 hello 변수에 "Hello, JS"를 출력하는 익명함수를 대입한 후, 변수명을 이용해 익명함수를 호출한 예제이다.</span></p>
+<pre id="code_1646455437969" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let hello = function() {document.write("Hello, JS")};
+hello();</code></pre>
+<pre id="code_1646455568188" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[실행결과] Hello, JS</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">익명함수는 <span style="color: #1a5490;"><b>다른 변수에 대입</b></span>하거나 <span style="color: #1a5490;"><b>또 다른 함수의 매개변수로 사용</b></span> 가능하다.</span></p>
+<pre id="code_1646455663748" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let hello = function() {document.write("Hello, JS")};
+let another = hello;
+another();</code></pre>
+<pre id="code_1646455719588" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[실행결과] Hello, JS</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h3 data-ke-size="size23"><b><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';">호이스팅</span></span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그렇다면 일반 함수(함수 선언문 방식을 이용한 함수)와 익명 함수는 어떤 차이가 있는 것일까?</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, <span style="background-color: #333333; color: #ffffff;">익명 함수</span>는 일반 함수와 달리 <span style="color: #1a5490;"><b>호이스팅이 일어나지 않는다.</b></span> <span style="background-color: #dddddd;">호이스팅</span>에 대해 간단하게 설명하자면, <span style="color: #1a5490;"><b>함수의 선언과 초기화를 분리한 후, 선언만 코드의 최상단으로 옮기는 것 처럼 해석</b></span>하는 것이다.</span></p>
+<p data-ke-size="size16"><span style="color: #000000; font-family: 'Nanum Gothic';">아래 코드를 살펴보자. hello는 함수 선언문 방식으로 선언된 일반 함수 이므로, 호이스팅이 발생한다. 따라서 JS는 hello 함수의 선언과 초기화를 분리하여 선언을 해당 블록 최상단으로 옮겨서 해석한다. 그렇기에 함수 선언 이전에 함수를 사용해도 에러 메시지가 발생하지 않는다.</span></p>
+<pre id="code_1646457148877" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>hello("Hello, JS!");
+function hello(text) { document.write(text); }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1646457309564" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function hello(); // hoisting
+hello("Hello, JS!");
+function hello(text) { document.write(text); }</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번에는 같은 코드를 익명 함수 방식으로 작성해 보았다. 익명 함수는 호이스팅이 발생하지 않기에, 함수 선언 이전에 함수를 호출하니 함수가 선언되지 않았다는 경고 메시지가 출력된다.</span></p>
+<pre id="code_1646457380304" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>hello2("Hello, JS!");
+let hello2 = function(text) { document.write(text); }</code></pre>
+<pre id="code_1646457455656" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>VM1970:1 Uncaught ReferenceError: hello2 is not defined
+    at &lt;anonymous&gt;:1:1</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">함수 호출부를 익명함수 뒤로 옮기니 정상적으로 작동한다.</span></p>
+<pre id="code_1646457506900" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>let hello2 = function(text) { document.write(text); }
+hello2("Hello, JS!");</code></pre>
+<pre id="code_1646457518621" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>[실행결과] Hello, JS!</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h3 data-ke-size="size23"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">사용이유</span></b></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">JavaScript 내에서 <span style="color: #1a5490;"><b>단 한번만 사용하는 함수는 일반 함수가 아닌 익명 함수로 사용하는 것이 좋다.</b></span> 앞에서 설명했듯이, 일반 함수는 호이스팅이 발생하기에 항상 메모리를 차지하고 있어야 한다. 하지만 한 번 사용을 위해서 메모리를 잡고 있는 것은 매우 비효율 적이다. 따라서 <span style="color: #1a5490;"><b>재사용이 필요 없는 함수의 경우 익명 함수로 구현하여 불필요하게 메모리를 낭비하지 않도록 하는 것이 좋다!</b></span></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<h3 data-ke-size="size23"><b><span style="color: #000000;"><span style="font-family: 'Nanum Gothic';">정리</span></span></b></h3>
+<p data-ke-size="size16"><span style="background-color: #dddddd;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">일반 함수는 호이스팅의 영향을 받지만, 익명 함수는 영향을 받지 않는다.</span></b></span></p>
+<p data-ke-size="size16"><span style="background-color: #dddddd;"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">단 한번만 사용하는 함수의 경우에 익명 함수로 구현하여 메모리 낭비를 최소화하자!</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #js #자바스크립트 #javascript #익명함수 #호이스팅 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

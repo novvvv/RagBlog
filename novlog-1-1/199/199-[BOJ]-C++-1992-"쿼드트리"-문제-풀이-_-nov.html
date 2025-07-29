@@ -1,0 +1,149 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[BOJ] C++ 1992 "쿼드트리" 문제 풀이 _ nov</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[BOJ] C++ 1992 "쿼드트리" 문제 풀이 _ nov</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-04-03 23:23:24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #dddddd;">SILVER1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">알고리즘 : <span style="background-color: #333333; color: #dddddd;">재귀</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">출처 :</span> <a href="https://www.acmicpc.net/problem/1992">1992번: 쿼드트리 (acmicpc.net)</a></span></p>
+<figure id="og_1648994581620" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1992번: 쿼드트리" data-og-description="첫째 줄에는 영상의 크기를 나타내는 숫자 N 이 주어진다. N 은 언제나 2의 제곱수로 주어지며, 1 &le; N &le; 64의 범위를 가진다. 두 번째 줄부터는 길이 N의 문자열이 N개 들어온다. 각 문자열은 0 또" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1992" data-og-url="https://www.acmicpc.net/problem/1992" data-og-image="https://scrap.kakaocdn.net/dn/TZQCv/hyNUsNUKrv/DGYzoZQ6k8UyBKhaUl0nSk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1992" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1992">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/TZQCv/hyNUsNUKrv/DGYzoZQ6k8UyBKhaUl0nSk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1992번: 쿼드트리</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에는 영상의 크기를 나타내는 숫자 N 이 주어진다. N 은 언제나 2의 제곱수로 주어지며, 1 &le; N &le; 64의 범위를 가진다. 두 번째 줄부터는 길이 N의 문자열이 N개 들어온다. 각 문자열은 0 또</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>recur 함수 정의</b> _ 쿼드 트리의 크기 n, 탐색을 실행할 좌표 y, x를 인자로 입력받는다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><b>base condition</b> _ n==1일때 해당 좌표의 숫자(0 혹은 1)를 출력하도록 설정한다.</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<pre id="code_1648995279577" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  //base condition
+  if(n==1){
+    cout &lt;&lt; quadTree[y][x];
+    return;
+  }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">크기 n만큼 탐색을 시작한다. 이 때 zero, one 변수를 이용해 쿼드트리가 모두 같은 수로 되어 있는지 체크한다.</span></p>
+<pre id="code_1648995520363" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  bool zero = true;
+  bool one = true;
+  for(int i = y; i &lt; y + n; i++)
+    for(int j = x; j &lt; x + n; j++)
+      if(quadTree[i][j]) 
+        zero = false;
+      else 
+        one = false;
+  if(zero) 
+    cout &lt;&lt; 0;
+  else if(one) 
+    cout &lt;&lt; 1;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 0과 1이 섞여있어 전체를 한 번에 나타내지 못하는 경우 4가지 구역으로 나누어 함수를 재귀적으로 호출한다.</span></p>
+<pre id="code_1648995654063" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>  else {
+    cout &lt;&lt; "(";
+    recur(n / 2, y, x); // 왼쪽 위
+    recur(n / 2, y, x + n / 2); // 오른쪽 위
+    recur(n / 2, y + n / 2, x); // 왼쪽 아래
+    recur(n / 2, y + n / 2, x + n / 2); // 오른쪽 아래
+    cout &lt;&lt; ")";
+  }</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#CODE</span></b></h2>
+<pre id="code_1648995757400" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int quadTree[65][65];
+int n;
+
+void recur(int n, int y, int x){
+  //base condition
+  if(n==1){
+    cout &lt;&lt; quadTree[y][x];
+    return;
+  }
+  bool zero = true;
+  bool one = true;
+  for(int i = y; i &lt; y + n; i++)
+    for(int j = x; j &lt; x + n; j++)
+      if(quadTree[i][j]) 
+        zero = false;
+      else 
+        one = false;
+  if(zero) 
+    cout &lt;&lt; 0;
+  else if(one) 
+    cout &lt;&lt; 1;
+  else {
+    cout &lt;&lt; "(";
+    recur(n / 2, y, x); // 왼쪽 위
+    recur(n / 2, y, x + n / 2); // 오른쪽 위
+    recur(n / 2, y + n / 2, x); // 왼쪽 아래
+    recur(n / 2, y + n / 2, x + n / 2); // 오른쪽 아래
+    cout &lt;&lt; ")";
+  }
+}
+int main() { 
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+  cin &gt;&gt; n;
+  for(int i = 0; i &lt; n; i++){
+    string str;
+    cin &gt;&gt; str;
+    for(int j = 0; j &lt; n; j++)
+      quadTree[i][j] = str[j] - '0'; 
+  }
+  recur(n, 0, 0);
+  return 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #1992 #C++ #알고리즘 #문제풀이 #BOJ #재귀함수 #백준 #쿼드트리 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[프로그래머스] LEVEL1 : 신고 결과 받기 C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[프로그래머스] LEVEL1 : 신고 결과 받기 C++</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/ProblemSolving</p>
+                                    <p class="date">2022-05-31 10:31:34</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#INFO</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 : 신고 결과 받기</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">난이도 : <span style="background-color: #333333; color: #dddddd;">LEVEL1</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">출처 :<span style="color: #dddddd;"> </span><span style="background-color: #333333; color: #dddddd;">2022 KAKAO BLIND RECRUITMENT</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="font-family: 'Nanum Gothic';"><span style="color: #1a5490;"><b>코드 참고</b></span> : <span style="color: #006dd7;"><a style="color: #006dd7;" href="https://yjyoon-dev.github.io/kakao/2022/01/15/kakao-2022-blind-01/" target="_blank" rel="noopener">https://yjyoon-dev.github.io/kakao/2022/01/15/kakao-2022-blind-01/</a></span></span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><a href="https://programmers.co.kr/learn/courses/30/lessons/92334">코딩테스트 연습 - 신고 결과 받기 | 프로그래머스 (programmers.co.kr)</a></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#SOLVE</span></b></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">"Tokenizng(문자열 파싱)"</span>과 <span style="background-color: #333333; color: #dddddd;">"map 자료구조"</span>에 대해 공부할 수 있는 좋은 문제였다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 조건에서 주어진 solution 함수의 각 parameter를 분석해 보자면 다음과 같다.</span></p>
+<p data-ke-size="size16"><span style="color: #006dd7;"><a style="color: #006dd7;" href="https://novlog.tistory.com/225" target="_blank" rel="noopener"><span style="font-family: 'Nanum Gothic';">_about Tokenizing</span></a></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">id_list</span> : user의 id가 담긴 문자열 벡터이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">report</span> : 각 user가 신고한 다른 user의 ID 정보가 담긴 문자열 벡터이다.<b>ex) muzi frodo _ muzi가 frodo를 신고함</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">k</span> : 정지의 기준이 되는 신고 횟수이다.</span></p>
+<pre id="code_1653960222938" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>// id_list : 사용자의 ID가 담긴 문자열 벡터
+// report : 신고한 ID와 신고당한 ID가 공백으로 구분되어 저장된 정보가 담긴 문자열 벡터
+// k : 정지 기준이 되는 신고 횟수
+vector&lt;int&gt; solution(vector&lt;string&gt; id_list, vector&lt;string&gt; report, int k){
+	vector&lt;int&gt; answer;
+	return answer;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">문제 풀이에서 사용할 자료구조는 다음과 같다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">map&lt;string, int&gt; userCnt</span> : <b>유저별로 신고당한 횟수를 저장할 map</b></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">map&lt;string, set&lt;string&gt;&gt;</span> : <b>유저별로 신고한 또 다른 유저들의 목록을 저장할 map</b></span></p>
+<pre id="code_1653960238650" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>map&lt;string, int&gt; userCnt;  // 각 유저별로 신고당한 횟수를 저장하는 자료구조
+map&lt;string, set&lt;string&gt;&gt; userLog; // 각각의 유저가 신고한 또 다른 유저의 정보를 저장하는 자료구조</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">find함수와 substr함수를 사용해 공백을 기준으로 report에 저장된 문자열들을 from, to string에 각각 Tokenizing한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">from에는 신고한 user의 정보가 저장되고, to에는 신고당한 user의 정보가 저장된다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">userLog를 탐색해 user "from"이 user "to"를 신고한 이력이 없을 경우 로그를 갱신하고, user "to"의 신고 당한 횟수를 추가한다.</span></p>
+<pre id="code_1653960292186" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>	for(string s : report){
+		// 공백 기준 문자열 파싱
+		int blank = s.find(" ");
+		string from = s.substr(0, blank);
+		string to = s.substr(blank);
+		// user "from"이 user "to"를 신고한 이력이 없는 경우 로그를 갱신한다.
+		// ** find 함수는 탐색에 실패했을 경우 마지막 이터레이터를 반환한다. **
+		if(userLog[from].find(to) == userLog[from].end()){
+			userLog[from].insert(to);
+			userCnt[to]++;
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">마지막으로 userLog를 탐색해 신고횟수가 k번을 초과할 시 mail_cnt(정지 메일 횟수)를 추가한 뒤, answer 벡터에 각 유저별로 보내야 할 총 정지 메일 횟수를 푸시해주면 된다.</span></p>
+<pre id="code_1653960370799" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>	for(string id : id_list){
+		int mail_cnt = 0;
+		for(string str : userLog[id]){
+			if(userCnt[str] &gt;= k) mail_cnt++;
+		}
+		answer.push_back(mail_cnt);
+	}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b><span style="font-family: 'Nanum Gothic';">#CODE</span></b></h2>
+<pre id="code_1653960597346" class="cpp" data-ke-language="cpp" data-ke-type="codeblock"><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;set&gt;
+using namespace std;
+
+map&lt;string, int&gt; userCnt;  // 각 유저별로 신고당한 횟수를 저장하는 자료구조
+map&lt;string, set&lt;string&gt;&gt; userLog; // 각각의 유저가 신고한 또 다른 유저의 정보를 저장하는 자료구조
+
+// id_list : 사용자의 ID가 담긴 문자열 벡터
+// report : 신고한 ID와 신고당한 ID가 공백으로 구분되어 저장된 정보가 담긴 문자열 벡터
+// k : 정지 기준이 되는 신고 횟수
+vector&lt;int&gt; solution(vector&lt;string&gt; id_list, vector&lt;string&gt; report, int k){
+	vector&lt;int&gt; answer;
+	for(string s : report){
+		// 공백 기준 문자열 파싱
+		int blank = s.find(" ");
+		string from = s.substr(0, blank);
+		string to = s.substr(blank);
+		// user "from"이 user "to"를 신고한 이력이 없는 경우 로그를 갱신한다.
+		// ** find 함수는 탐색에 실패했을 경우 마지막 이터레이터를 반환한다. **
+		if(userLog[from].find(to) == userLog[from].end()){
+			userLog[from].insert(to);
+			userCnt[to]++;
+		}
+	}
+	
+	for(string id : id_list){
+		int mail_cnt = 0;
+		for(string str : userLog[id]){
+			if(userCnt[str] &gt;= k) mail_cnt++;
+		}
+		answer.push_back(mail_cnt);
+	}
+	return answer;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #알고리즘 #소스코드 #문제풀이 #코딩테스트 #프로그래머스 #카카오코딩테스트 #신고결과받기 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

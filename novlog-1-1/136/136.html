@@ -1,0 +1,99 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.</h2>
+                                <div class="box-info">
+                                    <p class="category">? Archive/C&C++</p>
+                                    <p class="date">2021-12-25 23:43:58</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="background-color: #333333; color: #ffffff;"><b><span style="font-family: 'Nanum Gothic';">*개인적인 공부 기록용으로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.</span></b></span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<pre id="code_1640441764224" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>size_type find(const basic_string&amp; str, size_type pos = 0) const;      // (1)
+size_type find(const CharT* s, size_type pos, size_type count) const;  // (2)
+size_type find(const CharT* s, size_type pos = 0) const;               // (3)
+size_type find(CharT ch, size_type pos = 0) const;                     // (4)
+template &lt;class T&gt;
+size_type find(const T&amp; t, size_type pos = 0) const;  // (5)</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">string의 find() 멤버함수를 이용하면, <span style="background-color: #333333; color: #ffffff;">특정 문자열에서 원하는 문자열을 간편하게 찾을 수 있다.</span></span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span>find() 함수는 총 5가지 형태로 오버로딩 되어 있는데, 자주 사용되는 형태만 몇가지 예시로 알아 보도록 하자.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">우선, find()는 string 라이브러리에 속한 멤버함수 이기에,<b> string 라이브러리를 선언</b> 해 주어야 한다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음으로 <b>탐색하고자 하는 문자열을 () 괄호 안에 큰따옴표와 함께 넣어주면 된다.</b></span></p>
+<pre id="code_1640442334073" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;string&gt;
+문자열이름.find("탐색할 문자열")</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">return 값은 <span style="background-color: #333333; color: #ffffff;">문자열 탐색에 성공했을 경우</span> 찾는 문자의 <span style="background-color: #333333; color: #ffffff;">첫 번째 인덱스 주소를 반환</span>해 준다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #ffffff;">문자열 탐색에 성공하지 못했을 경우</span>에는 <span style="background-color: #333333; color: #ffffff;">string::npos를 리턴</span>해 주는데, 이는 <span style="background-color: #333333; color: #ffffff;">가비지값 (무작위 long long 값)</span> 이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드는 <b>"Hello World!" 문자열에서 "Hello" 문자열을 탐색하는 예제</b>이다. Hello 문자열의 첫 번째 인덱스는 0 이기에 index 변수에는 0값이 담기게 된다.</span></p>
+<pre id="code_1640442647015" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+  string str = "Hello World!";
+  int index = str.find("Hello");
+  cout &lt;&lt; index &lt;&lt; endl;
+  return 0;
+}</code></pre>
+<pre id="code_1640442674549" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력] 0</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">단일 문자를 탐색하고 싶다면, <span style="background-color: #333333; color: #ffffff;">str.find('문자')</span> 형태로 선언하면 된다. <b>이때 탐색하고자 하는 문자가 여러개면 가장 첫 번째 인덱스를 반환</b>한다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">예를들어 다음 코드는 <b>"Hello World" 문자열에서 문자 'o'를 탐색하는 코드</b>인데, o가 4번째 인덱스와 7번째 인덱스에 중복해서 존재하기에 앞에 있는 o의 위치인 4를 반환한다.</span></p>
+<pre id="code_1640442963879" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+  string str = "Hello World!";
+  int index = str.find('o');
+  cout &lt;&lt; index &lt;&lt; endl;
+  return 0;
+}</code></pre>
+<pre id="code_1640442978438" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력] 4</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">혹은 <span style="background-color: #333333; color: #ffffff;">find 멤버함수의 2번째 인자에 값을 대입해 원하는 위치부터 탐색하도록 지정</span>할 수 도 있다.&nbsp;</span></p>
+<pre id="code_1640443100718" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>str.find('o',5); //5번째 인덱스 부터 문자 o를 탐색한다.</code></pre>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드를 실행시켜 보면 5번째 인덱스 즉, 공백부터 탐색을 진행하기에 뒤에 존재하는 o의 인덱스값인 7이 출력된다.</span></p>
+<pre id="code_1640443112543" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+  string str = "Hello World!";
+  int index = str.find("o",5);
+  cout &lt;&lt; index &lt;&lt; endl;
+  return 0;
+}</code></pre>
+<pre id="code_1640443154541" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>[출력] 7</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #STL #Find #string #문자열검색 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

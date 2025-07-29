@@ -1,0 +1,133 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>[Java] Final & Static Final</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">[Java] Final & Static Final</h2>
+                                <div class="box-info">
+                                    <p class="category">Back-end/Java Fundamental</p>
+                                    <p class="date">2024-02-22 17:22:45</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">Java 언어에서 <span style="background-color: #333333; color: #dddddd;">Final, Static Final Keyword</span>를 사용하면<b> 상수를 선언</b>할 수 있다.</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이번 포스팅 에서는 Final Kewyord와 Static Final Keyword에 대해 알아볼 예정이다.</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Final</span></b></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Value</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Method</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Class</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final 필드의 접근 제어자 설정</span><span style="font-family: 'Nanum Gothic'; color: #000000;"></span></p>
+<p style="text-align: center;" data-ke-size="size18"><b><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Static Final</span></b></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">* 해당 포스팅은 개인적인 공부 기록 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있으며,</span></p>
+<p style="text-align: center;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #dddddd; background-color: #333333;">혹여나 틀린 정보가 있다면 언제든지 댓글로 남겨주세요!</span></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#1 Final</span></h2>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Value&nbsp;</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Final Keyword</span>가 붙은 변수는 처음 값을 할당한 후로 값을 변경할 수 없으며, <b>관례적으로 <span style="text-align: start;">변수명을 </span>대문자와 단어 사이를 언더스코어(_)로 구분하여 작성</b>한다.&nbsp;</span></p>
+<pre id="code_1708587782376" class="java" data-ke-language="java" data-ke-type="codeblock"><code>final int MAX_VALUE = 10; // 재할당 불가능</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Method</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Final Keyword</span>가 붙은 메서드는 <b>해당 메서드를 오버라이딩 할 수 없도록 설정</b>된다.&nbsp;</span></p>
+<pre id="code_1708588239368" class="java" data-ke-language="java" data-ke-type="codeblock"><code>    public fianl void FinalMethod(){
+        System.out.println("FinalMethod: 해당 메서드는 오버라이딩이 불가능합니다.");
+    }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final &amp; Class</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;"><span style="background-color: #333333; color: #dddddd;">Final Keyword</span>가 붙은 클래스는 <b>해당 클래스를 상속할 수 없도록 설정</b>된다. 주로 클래스의 불변성을 유지하기 위해 사용되곤 한다.&nbsp;</span></p>
+<pre id="code_1708588136159" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public final class FinalTest{
+    // ...
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><span style="font-family: 'Nanum Gothic'; color: #000000;">- Final 필드의 접근 제어자 설정&nbsp;</span></h3>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">보통 클래스 내부의 필드의 접근 제어자를 선언할 때 OOP의 캡슐화를 지키기 위해서 해당 <b>필드를</b> <span style="background-color: #333333; color: #dddddd;">private</span> <b>접근 제어자로 막아둔 뒤,</b> <span style="background-color: #333333; color: #dddddd;">getter &amp; setter</span> <b>메서드를 새롭게 정의하여 필드에 접근하는 방식</b>을 사용하곤 한다.&nbsp;&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">다음 코드는 <span style="background-color: #dddddd;">Slime 클래스의 level, hp 필드의 접근제어자를 private로 설정하여 외부로부터의 수정을 막아둔 뒤, level 필드에 접근할 수 있는 getLevel 메서드와 hp 필드에 접근할 수 있는 getHp 메서드를 선언한 예제</span>이다.&nbsp;</span></p>
+<pre id="code_1708588859462" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Slime{
+    private int level; // private member field
+    private int hp; // private member field
+    
+    // priavate level field에 접근하기 위한 getter
+    public int getLevel(){
+        return this.level;
+    }
+    
+    // priavate hp field에 접근하기 위한 getter
+    public int getHp(){
+        return this.hp;
+    }
+   
+    // constructor
+    public Slime(int level, int hp){
+        this.level = level;
+        this.hp = hp;
+    }
+}</code></pre>
+<pre id="code_1708588896088" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package project;
+
+public class Main {
+    public static void main(String[] args) {
+        Slime normalSlime = new Slime(10, 5);
+        int level = normalSlime.getLevel();
+        int hp = normalSlime.getHp();
+        System.out.println("Slime level : " + level);
+        System.out.println("Slime hp : " + hp);
+    }
+}</code></pre>
+<pre id="code_1708589081934" class="java" data-ke-language="java" data-ke-type="codeblock"><code>Slime level : 10
+Slime hp : 5</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 <span style="background-color: #333333; color: #dddddd;">final 필드</span>는 <b>외부로 부터의 접근을 막아 두지 않아도 괜찮다.</b> 왜냐하면 final로 선언된 변수는 <b>어차피 처음 초기값을 재설정 할 수 없을 뿐더러, 고정된 값 그 자체를 사용하는 데 의미가 있기에</b> 접근 제어자를 <span style="background-color: #333333; color: #dddddd;">public</span>으로 열어 둔다.</span></p>
+<pre id="code_1708589316159" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Slime{
+    private int level; // private member field
+    private int hp; // private member field
+    public final int FINAL_VALUE; // public final member field
+    // getter
+    // ...
+}</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><span style="font-family: 'Nanum Gothic'; color: #000000;">#2 Static Final&nbsp;</span></h2>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">그러나 Final 만으로 변수를 선언하는 것은 약간의 문제가 있다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">만약 해당 클래스의 값을 모든 객체에서 동일하게 사용하는 경우에는 <b>특정 클래스의 인스턴스를 여러개 생성 한다고 하더라도, 어차피 Final 변수의 값은 하나로 고정되기에 불필요한 메모리 참조가 생기기 때문</b>이다.</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">따라서 <span style="background-color: #333333; color: #dddddd;">Final 변수</span> 앞에 <span style="background-color: #333333; color: #dddddd;">Static 키워드</span>를 붙여 <b>참조값이 저장되는 Heap 영역이 아닌 공통 데이터를 관리하는 Method 영역에 Final 변수를 할당해 두는 것이 메모리 측면에서 효율적</b>이다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="font-family: 'Nanum Gothic';"><span style="color: #000000;">(Heap 영역과 Method 영역에 관련한 내용은 다음 포스팅에서 다룬 바가 있습니다.</span> <a href="https://novlog.tistory.com/entry/Java-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9C%ED%8B%B1-%EB%B3%80%EC%88%98-%EB%A9%94%EC%84%9C%EB%93%9C-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC" target="_blank" rel="noopener">[Java] 메모리 구조 &amp; 스태틱 변수, 메서드 완벽 정리</a> )</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">이처럼 final keyword 앞에 static keyword가 붙은 변수를 "상수" 라고 부른다.&nbsp;</span></p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><span style="font-family: 'Nanum Gothic'; color: #000000;">요약하자면 <b>final + 필드 초기화를 동시에 진행하는 경우에는 처음부터 static keyword와 함께 사용하여 메모리 누수를 막도록 하자.</b></span></p>
+<pre id="code_1708589628719" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class FinalExample{
+    public final int FINAL_VALUE; // 모든 인스턴스가 같은 값을 참조한다. -&gt; 메모리 낭비
+    public static final int STATIC_FINAL_VALUE // 인스턴스가 여러개 생성되도 하나의 값을 가리킨다. 
+    // ...
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
