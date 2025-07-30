@@ -16,7 +16,7 @@ export default async function List() {
         _id: item._id.toString()
     }))
 
-    return(
+    return (
         <div className="list-bg">
             <ListItem result={result}/>
         </div>

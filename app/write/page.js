@@ -1,4 +1,9 @@
+'use client'
+import { useState } from "react";
 export default function Write() {
+
+    let [src, setSrc] = useState('')
+
     return (
         <div className="p-20">
             <div className="write-container">
@@ -28,6 +33,40 @@ export default function Write() {
                         className="content-input"
                         rows={6}
                         required />
+                    
+                    <input type="file" accept="image/*"
+                        onChange={async (e) => {
+                            let file = e.target.files[0]
+                            let filename = encodeURIComponent(file.name)
+                            let res = await fetch('/api/post/image?file=' + filename)
+                            res = await res.json()
+                            console.log(res)
+
+
+                            // S3 Upload
+                            // 이미지 Url도 DB에 같이 저장
+                            // CreateURL JavaScript Function 사용해서 AWS S3 Storage 용량 최적화
+                            // 글을 실제로 발행하지 않으면 스토리지 공간이 낭비되기 떄문 
+                            const formData = new FormData() // 자바스크립트 가상 폼 생성 
+                            Object.entries({ ...res.fields, file }).forEach(([key, value]) => {
+                                formData.append(key, value)
+                            })
+                            let 업로드결과 = await fetch(res.url, {
+                                method: 'POST',
+                                body: formData, // form tag에 넣어서 보내는게 좋다. 왜?
+                            })
+
+                            console.log(업로드결과)
+
+                            if (업로드결과.ok) {
+                                setSrc(업로드결과.url + '/' + filename)
+                            } else {
+                                console.log('실패')
+                            }
+                        }}
+                    />
+                    <img src={src} />
+
 
                     <button type="submit">Save</button>
 
