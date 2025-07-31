@@ -17,19 +17,23 @@ export const metadata = {
 export default async function RootLayout({ children }) {
 
   let session = await getServerSession(authOptions) // 현재 로그인된 유저이름, 이메일 세션 정보
-  console.log(session)
+  
+  // useState('DarkMode')
 
   return (
     <html lang="en">
       {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
       <body>
         <header className="navbar">
+
+
           {/* 왼쪽 영역: About */}
           <div className="navbar-left">
             <Link href="/">@Do2</Link>
           </div>
 
           {/* 오른쪽 영역: Blog, Write, Login/Logout */}
+
           <div className="navbar-right">
             <Link href="/list">Blog</Link>
             <Link href="/write">write</Link>
@@ -48,6 +52,9 @@ export default async function RootLayout({ children }) {
           </div>
         </header>
         {children}
+        <footer className="footer">
+          <p>© 2025 Do2. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   );

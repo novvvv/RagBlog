@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding-left: 250px;
   padding-right: 250px;
+  background-color: #1C1C1B;
 }
 
 .list-bg {
@@ -39,7 +40,7 @@ body {
 }
 
 .navbar {
-  background: white;
+  background: #e2e2de;;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -175,4 +176,12 @@ button {
 a {
   text-decoration: none;
   color: black;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #e7e7e7;
+  margin-top: auto;
 }

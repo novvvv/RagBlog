@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import styles from '../../Home.module.css'
 
 export default function Comment(props) {
 
@@ -28,7 +29,8 @@ export default function Comment(props) {
 
     return (
         <div>
-            <div>댓글 목록 보여줄 부분</div>
+
+            <hr className={styles.newsLine} />
             {
                 data.length > 0 ?
                 data.map((a, i) => {
@@ -36,8 +38,9 @@ export default function Comment(props) {
                         <p>{a.content}</p>
                     )
                 }) :
-                '댓글없음'
+                ''
             }
+
             <input onChange={(e)=>{ setComment(e.target.value) }}/>
 
             <button onClick={()=> {

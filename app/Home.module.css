@@ -1,5 +1,5 @@
 .pageWrapper {
-  background-color: white;
+  background-color: #e2e2de;
   min-height: 100vh;
   color: black;
   display: flex;
@@ -184,4 +184,23 @@
 
 .profileTextGreeting {
   font-size: 1.8em;
+}
+
+.recentPostList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.recentPostList li {
+  margin-bottom: 10px; /* 목록 항목 간의 간격 */
+}
+
+.recentPostList a {
+  font-size: 1.2rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.recentPostList a:hover {
+  text-decoration: underline;
 }
