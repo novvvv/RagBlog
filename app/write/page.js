@@ -102,6 +102,20 @@ export default function Write() {
                         className="content-input"
                         rows={6}
                         required />
+
+                    {/* name이 content인 textArea 즉, 내용 입력 TextArea를 가져와, 
+                    사용자가 작성한 텍스트의 시작 인덱스(selectionStart), 종료 인덱스(selectionEnd) 위치를 가져와
+                    마우스 커서 기준 선택 영역 전후로 마크다운 블록을 삽인한다. */}
+                    
+                    <button type="button" onClick={() => {
+                        const textarea = document.querySelector('textarea[name="content"]'); 
+                        const start = textarea.selectionStart; 
+                        const end = textarea.selectionEnd;
+                        const text = textarea.value; 
+                        const newText = text.substring(0, start) + '\n```javascript\n// 여기에 코드를 입력하세요\n```\n' + text.substring(end);
+                        textarea.value = newText;
+                        textarea.focus();
+                    }}>코드 블록 추가</button>
                     
                     <button type="button" onClick={() => setShowPublish(true)}>Save</button>
 
