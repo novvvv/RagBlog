@@ -2,8 +2,9 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Prism.js 
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Theme 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import rehypeRaw from 'rehype-raw';
 
 const CodeContentRenderer = ({ content }) => {
 
@@ -45,7 +46,7 @@ const CodeContentRenderer = ({ content }) => {
     // prose 클래스는 tailwindcss-typography 플러그인에서 제공하는 스타일로, 
     // 마크다운 컨텐츠를 보기 좋게 만들어줍니다. 만약 tailwindcss를 사용하지 않는다면 이 클래스는 제거해도 됩니다.
     <div className="prose dark:prose-invert">
-      <ReactMarkdown components={components}>
+      <ReactMarkdown components={components} rehypePlugins={[rehypeRaw]}>
         {content}
       </ReactMarkdown>
     </div>

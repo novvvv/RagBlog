@@ -54,10 +54,7 @@ const handleSend = async () => {
 
 
         <div className={styles.profileTextContainer}>
-          {/* <img src="/profile.png" alt="Profile" className={styles.profileImage} /> */}
-          {/* <p className={styles.profileText}>[ Developer. Do2 ]</p>
-                    <p className={styles.profileText}><img src="/instagram.png" alt="Instagram" style={{width: "24px", marginRight: "8px"}} />@doil_0213</p>
-          <p className={styles.profileText}><img src="/envelope.png" alt="Email" style={{width: "24px", marginRight: "8px"}} />novslog@gmail.com</p> */}
+          <img src="/profile_.png" alt="Profile" className={styles.profileImageRect} />
         </div>
 
         <div className={styles.profileTextContainer}>

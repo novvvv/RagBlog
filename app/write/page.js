@@ -45,19 +45,50 @@ export default function Write() {
         }
     }
 
+    // applyAlignment 정렬 콜백 함수 
+    const applyAlignment = (alignment) => {
+
+        const textarea = document.querySelector('textarea[name="content"]');
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const text = textarea.value;
+
+        // 텍스트를 줄을 기준으로 나누어, 사용자가 선택한 텍스트가 몇 번째 라인부터 몇 번째 라인까지인지 계산한다. 
+        const selectionStartLine = text.substring(0, start).split('\n').length - 1;
+        const selectionEndLine = text.substring(0, end).split('\n').length - 1;
+
+        const lines = text.split('\n');
+        const alignRegex = /<div style="text-align: (left|center|right);">([\s\S]*)<\/div>/;
+
+        for (let i = selectionStartLine; i <= selectionEndLine; i++) {
+            if (lines[i].trim() === '') continue;
+
+            const match = lines[i].match(alignRegex);
+            if (match) {
+                lines[i] = `<div style="text-align: ${alignment};">${match[2]}</div>`;
+            } else {
+                lines[i] = `<div style="text-align: ${alignment};">${lines[i]}</div>`;
+            }
+        }
+
+        const newText = lines.join('\n');
+        textarea.value = newText;
+        textarea.focus();
+    };
+
     return (
         <div className="writePageWrapper p-20">
             <div className="write-container">
                 <form action="/api/post/new" method="POST">
 
-                    {/* 사진 추가 UI */}
-                    <div style={{ marginBottom: '1rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'center' }}>
+                        {/* 사진 추가 UI */}
                         <button
                             type="button"
                             onClick={() => fileInputRef.current.click()}
-                            style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: '5px', cursor: 'pointer' }}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
                         >
-                            📷 사진 추가
+                            <img src="/write/picture.png" alt="사진 추가" style={{ width: '32px', height: '32px' }} />
                         </button>
                         <input
                             type="file"
@@ -66,9 +97,52 @@ export default function Write() {
                             style={{ display: 'none' }}
                             onChange={handleImageChange}
                         />
-                        {imageName && <span style={{ marginLeft: '1rem' }}>{imageName}</span>}
+                        {imageName && <span>{imageName}</span>}
+                        
+                        {/* name이 content인 textArea 즉, 내용 입력 TextArea를 가져와, 
+                        사용자가 작성한 텍스트의 시작 인덱스(selectionStart), 종료 인덱스(selectionEnd) 위치를 가져와
+                        마우스 커서 기준 선택 영역 전후로 마크다운 블록을 삽인한다. */}
+                        
+                        <button type="button" onClick={() => {
+                            const textarea = document.querySelector('textarea[name="content"]'); 
+                            const start = textarea.selectionStart; 
+                            const end = textarea.selectionEnd;
+                            const text = textarea.value; 
+                            const newText = text.substring(0, start) + '\n```javascript\n// 여기에 코드를 입력하세요\n```\n' + text.substring(end);
+                            textarea.value = newText;
+                            textarea.focus();
+                        }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
+                        >
+                            <img src="/write/code_icon.png" alt="코드 블록 추가" style={{ width: '32px', height: '32px' }} />
+                        </button>
+
+                        <button type="button" onClick={() => {
+                            const textarea = document.querySelector('textarea[name="content"]');
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            const text = textarea.value;
+                            const selectedText = text.substring(start, end);
+                            const newText = text.substring(0, start) + '**' + selectedText + '**' + text.substring(end);
+                            textarea.value = newText;
+                            textarea.focus();
+                        }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
+                        >
+                            <img src="/write/bold_icon.png" alt="굵게" style={{ width: '32px', height: '32px' }} />
+                        </button>
+
+                        <button type="button" onClick={() => applyAlignment('left')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
+                            <img src="/write/left_align_icon.png" alt="왼쪽 정렬" style={{ width: '32px', height: '32px' }} />
+                        </button>
+                        <button type="button" onClick={() => applyAlignment('center')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
+                            <img src="/write/center_align_icon.png" alt="가운데 정렬" style={{ width: '32px', height: '32px' }} />
+                        </button>
+                        <button type="button" onClick={() => applyAlignment('right')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
+                            <img src="/write/right_align_icon.png" alt="오른쪽 정렬" style={{ width: '32px', height: '32px' }} />
+                        </button>
+
                     </div>
-                    {/* 사진 추가 UI */}
 
                     {src && (
                         <div style={{ marginBottom: '1rem' }}>
@@ -103,19 +177,6 @@ export default function Write() {
                         rows={6}
                         required />
 
-                    {/* name이 content인 textArea 즉, 내용 입력 TextArea를 가져와, 
-                    사용자가 작성한 텍스트의 시작 인덱스(selectionStart), 종료 인덱스(selectionEnd) 위치를 가져와
-                    마우스 커서 기준 선택 영역 전후로 마크다운 블록을 삽인한다. */}
-                    
-                    <button type="button" onClick={() => {
-                        const textarea = document.querySelector('textarea[name="content"]'); 
-                        const start = textarea.selectionStart; 
-                        const end = textarea.selectionEnd;
-                        const text = textarea.value; 
-                        const newText = text.substring(0, start) + '\n```javascript\n// 여기에 코드를 입력하세요\n```\n' + text.substring(end);
-                        textarea.value = newText;
-                        textarea.focus();
-                    }}>코드 블록 추가</button>
                     
                     <button type="button" onClick={() => setShowPublish(true)}>Save</button>
 
