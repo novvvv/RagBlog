@@ -9,7 +9,7 @@ export default async function Edit(props) {
     console.log(result)
 
     return (
-        <div className="p-20">
+        <div className="writePageWrapper p-20" style={{ backgroundColor: '#e2e2de', color: 'black' }}>
             <h4>수정페이지</h4>
             <div className="write-container">
                 <form action="/api/post/edit" method="POST">
@@ -31,6 +31,7 @@ export default async function Edit(props) {
                         name="title" 
                         placeholder="제목을 입력하세요" 
                         className="title-input"
+                        defaultValue={result.title}
                         required />
 
                     <textarea 
@@ -39,6 +40,7 @@ export default async function Edit(props) {
                         placeholder="내용을 입력하세요" 
                         className="content-input"
                         rows={6}
+                        defaultValue={result.content}
                         required />
 
                     <button type="submit">Save</button>

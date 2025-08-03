@@ -1,5 +1,6 @@
 import "./globals.css";
 import Link from "next/link"
+import Chat from "./Chat";
 
 // auth.js 인증 정보 
 import LoginBtn from "./login_btn.js"
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }) {
           </div>
         </header>
         {children}
+        <Chat />
         <footer className="footer">
           <p>© 2025 Do2. All rights reserved.</p>
         </footer>
