@@ -23,12 +23,12 @@ export default function Chat() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ post_id: "default", question: input }),
       });
 
       const data = await res.json();
 
-      const updatedMessages = newMessages.map((msg) =>
+      const updatedMessages = newMessages.map((msg) =>ㅇㅈㅈ
         msg.loading ? { text: data.answer, sender: 'bot' } : msg
       );
       setMessages(updatedMessages);

@@ -1,33 +1,126 @@
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-# from langchain_openai import ChatOpenAI
-from langchain_upstage import ChatUpstage 
+from pydantic import BaseModel # Pydantic 모델 정의 (데이터 유효성 검사)
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-app = FastAPI() # FastApi 앱 생성 
+from langchain_upstage import ChatUpstage
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough, RunnableParallel
+from langchain_core.output_parsers import StrOutputParser
 
-# CORS 설정 (Next.js에서 호출 허용)
-# 브라우저가 다른 출처에서 API를 호출하는 것을 허용한다. 
-# 실제 프로덕트에서는 개인 블로그 주소로 제한 
+from bs4 import BeautifulSoup
+
+# .env 파일에서 환경 변수 로드
+load_dotenv()
+
+# --- 초기 설정 ---
+app = FastAPI()
+
+# CORS 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 실제 배포 시엔 도메인 지정
+    allow_origins=["*"],  # 실제 배포 시에는 특정 도메인으로 제한하는 것이 좋습니다.
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# llm = ChatOpenAI()
+# LLM, 임베딩, 벡터 DB 초기화
 llm = ChatUpstage()
+embeddings = SentenceTransformerEmbeddings(model_name="jhgan/ko-sroberta-multitask")
+# 벡터를 저장할 디렉토리를 지정합니다. 이 디렉토리는 서버에 영구적으로 저장됩니다.
+db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
 
-# /chat 경로로 Post 요청이 들어오면 실행 
+# --- Pydantic 모델 정의 (데이터 유효성 검사) ---
+class IndexRequest(BaseModel):
+    post_id: str
+    content: str # HTML 콘텐츠
+
+"""
+    json body 형식
+    post_id: 게시글 ID
+    question: 사용자 질문
+"""
+
+class ChatRequest(BaseModel):
+    post_id: str
+    question: str
+
+# --- API 엔드포인트 ---
+
+@app.post("/index")
+def index_post(request: IndexRequest):
+    """
+    게시글 내용을 받아서 벡터로 변환하고 ChromaDB에 저장합니다.
+    """
+    # 1. HTML을 텍스트로 변환
+    soup = BeautifulSoup(request.content, 'html.parser')
+    text_content = soup.get_text()
+
+    # 2. 텍스트를 의미 있는 단위로 분할
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    docs = text_splitter.split_text(text_content)
+
+    # 3. 각 텍스트 조각에 메타데이터 추가 (어떤 게시글에서 왔는지 식별하기 위함)
+    metadatas = [{"post_id": request.post_id} for _ in docs]
+    
+    # 4. ChromaDB에 텍스트와 메타데이터 저장
+    db.add_texts(texts=docs, metadatas=metadatas)
+    
+    print(f"✅ Post {request.post_id} indexed successfully.")
+    return {"status": "success", "post_id": request.post_id}
+
+
+
 @app.post("/chat")
-async def chat(request: Request):
-    body = await request.json()
-    question = body.get("message", "")
-    if not question:
-        return { "answer": "메시지가 없습니다." }
-    response = llm.invoke(question)
-    return { "answer": response.content }
+def chat_with_rag(request: ChatRequest):
+    """
+    사용자 질문과 게시글 ID를 받아, 해당 게시글 내용을 기반으로 RAG 답변을 생성합니다.
+    """
+    print(f"💬 RAG Chat Request for post_id: {request.post_id}")
+
+    # 1. Retriever 설정: 특정 게시글의 벡터만 검색하도록 필터링
+    retriever = db.as_retriever(
+        search_type="similarity", 
+        search_kwargs={'k': 3, 'filter': {'post_id': request.post_id}}
+    )
+
+    # 2. 프롬프트 템플릿 정의
+    template = """
+    Answer the question based ONLY on the following context.
+    If you don't know the answer, just say you don't know. DO NOT make up an answer.
+
+    Context:
+    {context}
+
+    Question:
+    {question}
+    """
+    prompt = ChatPromptTemplate.from_template(template)
+
+    # 3. LangChain Expression Language (LCEL)을 사용한 RAG 체인 구성
+    rag_chain = (
+        RunnableParallel(
+            context=retriever,
+            question=RunnablePassthrough()
+        )
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    # 4. RAG 체인 실행 및 답변 반환
+    answer = rag_chain.invoke(request.question)
+    
+    print(f"🤖 Answer: {answer}")
+    return {"answer": answer}
+
+# 서버 실행 (개발용)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
