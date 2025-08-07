@@ -1,7 +1,10 @@
 fastapi
 uvicorn
 langchain
+langchain-upstage
 chromadb-client
 sentence-transformers
 pydantic
 beautifulsoup4
+chromadb==0.4.21
+numpy<2.0.0

@@ -5,11 +5,12 @@ import Comment from "./Comment"
 import Link from "next/link"
 import styles from '../../Home.module.css'
 import CodeContentRenderer from './CodeContentRenderer';
+import Chat from '../../Chat'; // 경로는 실제 구조에 맞게 조정
 
-export default async function Detail(props){
+export default async function Page({ params }) {
 
     const db = (await connectDB).db("forum")
-    const { id } = await props.params;
+    const { id } = params;
     let result = await db.collection('post').findOne({ _id: new ObjectId(id)})
 
     /**
@@ -30,7 +31,9 @@ export default async function Detail(props){
             {/* db에서 content를 불러와 Prop형태로 전달 */}
             <CodeContentRenderer content={result.content} /> 
             <Comment _id={result._id.toString()}/>
+            <Chat postId={result._id.toString()} /> {/* postId prop 전달 */}
 
         </div>
     )
+    
 }

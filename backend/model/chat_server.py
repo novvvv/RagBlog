@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 import os
 
 from langchain_upstage import ChatUpstage
-from langchain_community.vectorstores import Chroma
+import chromadb
+from langchain_chroma import Chroma
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
@@ -34,6 +35,9 @@ app.add_middleware(
 llm = ChatUpstage()
 embeddings = SentenceTransformerEmbeddings(model_name="jhgan/ko-sroberta-multitask")
 # 벡터를 저장할 디렉토리를 지정합니다. 이 디렉토리는 서버에 영구적으로 저장됩니다.
+# client = chromadb.PersistentClient(path="./chroma_db")
+# client = chromadb.PersistentClient(path="./chroma_db")
+# db = Chroma(client=client, embedding_function=embeddings)
 db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
 
 # --- Pydantic 모델 정의 (데이터 유효성 검사) ---
@@ -79,31 +83,35 @@ def index_post(request: IndexRequest):
 
 @app.post("/chat")
 def chat_with_rag(request: ChatRequest):
-    """
-    사용자 질문과 게시글 ID를 받아, 해당 게시글 내용을 기반으로 RAG 답변을 생성합니다.
-    """
-    print(f"💬 RAG Chat Request for post_id: {request.post_id}")
+    # post_id가 "default" 또는 비어있으면 일반 챗봇
+    if not request.post_id or request.post_id == "default":
+        answer = llm.invoke(request.question)
+        # answer가 dict이고 content 필드가 있으면 content만 반환
+        if isinstance(answer, dict) and "content" in answer:
+            return {"answer": answer["content"]}
+        # answer가 리스트면 각 항목의 content만 추출해서 합침
+        if isinstance(answer, list):
+            contents = [a["content"] if isinstance(a, dict) and "content" in a else str(a) for a in answer]
+            return {"answer": "\n".join(contents)}
+        # 그 외에는 문자열로 변환해서 반환
+        return {"answer": str(answer)}
 
-    # 1. Retriever 설정: 특정 게시글의 벡터만 검색하도록 필터링
+    # RAG (게시글 컨텍스트 기반)
     retriever = db.as_retriever(
         search_type="similarity", 
         search_kwargs={'k': 3, 'filter': {'post_id': request.post_id}}
     )
-
-    # 2. 프롬프트 템플릿 정의
     template = """
-    Answer the question based ONLY on the following context.
-    If you don't know the answer, just say you don't know. DO NOT make up an answer.
+    아래의 컨텍스트(자료)만 참고하여 질문에 답변하세요.
+    만약 답을 모르면 모른다고만 답하세요. 절대로 지어내지 마세요.
 
-    Context:
+    컨텍스트:
     {context}
 
-    Question:
+    질문:
     {question}
     """
     prompt = ChatPromptTemplate.from_template(template)
-
-    # 3. LangChain Expression Language (LCEL)을 사용한 RAG 체인 구성
     rag_chain = (
         RunnableParallel(
             context=retriever,
@@ -113,12 +121,16 @@ def chat_with_rag(request: ChatRequest):
         | llm
         | StrOutputParser()
     )
-
-    # 4. RAG 체인 실행 및 답변 반환
     answer = rag_chain.invoke(request.question)
-    
-    print(f"🤖 Answer: {answer}")
-    return {"answer": answer}
+    # answer가 dict이고 content 필드가 있으면 content만 반환
+    if isinstance(answer, dict) and "content" in answer:
+        return {"answer": answer["content"]}
+    # answer가 리스트면 각 항목의 content만 추출해서 합침
+    if isinstance(answer, list):
+        contents = [a["content"] if isinstance(a, dict) and "content" in a else str(a) for a in answer]
+        return {"answer": "\n".join(contents)}
+    # 그 외에는 문자열로 변환해서 반환
+    return {"answer": str(answer)}
 
 # 서버 실행 (개발용)
 if __name__ == "__main__":

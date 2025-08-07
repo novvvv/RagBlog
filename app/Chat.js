@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import styles from './Chat.module.css'
 
-export default function Chat() {
+export default function Chat({ postId }) {
   const [chatVisible, setChatVisible] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
@@ -23,12 +23,17 @@ export default function Chat() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: "default", question: input }),
+        body: JSON.stringify({
+          post_id: postId || "default",
+          question: input
+        }),
       });
 
+      // 백엔드 채팅 서버로부터 받아온 응답 데이터를 JSON 형식으로 파싱한다. 
       const data = await res.json();
 
-      const updatedMessages = newMessages.map((msg) =>ㅇㅈㅈ
+      // 반드시 data.answer만 메시지로 사용
+      const updatedMessages = newMessages.map((msg) =>
         msg.loading ? { text: data.answer, sender: 'bot' } : msg
       );
       setMessages(updatedMessages);
