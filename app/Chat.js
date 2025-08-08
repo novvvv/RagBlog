@@ -5,6 +5,7 @@ import { useState } from 'react'
 import styles from './Chat.module.css'
 
 export default function Chat({ postId }) {
+  
   const [chatVisible, setChatVisible] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')

@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding-left: 250px;
   padding-right: 250px;
-  background-color: #1C1C1B;
+  background-color: #FDFDFD;
 }
 
 .list-bg {
@@ -30,22 +30,17 @@ body {
 
 /** navBar Css*/
 .navbar {
-  background: white;
-  padding: 20px;
-}
-
-.navbar a {
-  margin-right: 10px; 
-  text-decoration: none;
-}
-
-.navbar {
-  background: #e2e2de;;
+  background: #FDFDFD;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 30px;
+}
+
+.navbar a {
+  margin-right: 10px; 
+  text-decoration: none;
 }
 
 /* 좌측 로고 영역 */
@@ -179,7 +174,7 @@ a {
 }
 
 .footer {
-  background-color: #f8f9fa;
+  background-color: #FDFDFD;
   padding: 20px;
   text-align: center;
   border-top: 1px solid #e7e7e7;

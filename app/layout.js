@@ -53,7 +53,6 @@ export default async function RootLayout({ children }) {
           </div>
         </header>
         {children}
-        <Chat />
         <footer className="footer">
           <p>© 2025 Do2. All rights reserved.</p>
         </footer>

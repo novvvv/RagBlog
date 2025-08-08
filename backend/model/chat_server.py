@@ -62,13 +62,20 @@ def index_post(request: IndexRequest):
     """
     게시글 내용을 받아서 벡터로 변환하고 ChromaDB에 저장합니다.
     """
+    print(f"Indexing request received for post_id: {request.post_id}")
+    print(f"Content length: {len(request.content)} characters")
+
     # 1. HTML을 텍스트로 변환
     soup = BeautifulSoup(request.content, 'html.parser')
     text_content = soup.get_text()
+    print(f"Extracted text content length: {len(text_content)} characters")
 
     # 2. 텍스트를 의미 있는 단위로 분할
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     docs = text_splitter.split_text(text_content)
+    print(f"Number of chunks created: {len(docs)}")
+    if docs:
+        print(f"First chunk sample: {docs[0][:200]}...") # 첫 200자만 출력
 
     # 3. 각 텍스트 조각에 메타데이터 추가 (어떤 게시글에서 왔는지 식별하기 위함)
     metadatas = [{"post_id": request.post_id} for _ in docs]
@@ -83,6 +90,9 @@ def index_post(request: IndexRequest):
 
 @app.post("/chat")
 def chat_with_rag(request: ChatRequest):
+
+    print(f"--- Incoming Chat Request ---: {request}")
+    
     # post_id가 "default" 또는 비어있으면 일반 챗봇
     if not request.post_id or request.post_id == "default":
         answer = llm.invoke(request.question)
@@ -101,6 +111,20 @@ def chat_with_rag(request: ChatRequest):
         search_type="similarity", 
         search_kwargs={'k': 3, 'filter': {'post_id': request.post_id}}
     )
+
+    # 검색 결과 확인용 디버깅 코드
+    print("\n--- Debugging Retriever Output ---")
+    try:
+        relevant_docs = retriever.get_relevant_documents(request.question)
+        print(f"Retrieved {len(relevant_docs)} documents for post_id: {request.post_id} based on question: '{request.question}'")
+        for i, doc in enumerate(relevant_docs):
+            print(f"--- Document {i+1} ---")
+            print(f"Content: {doc.page_content}")
+            print(f"Metadata: {doc.metadata}")
+    except Exception as e:
+        print(f"Error during document retrieval: {e}")
+    print("--- End of Retriever Output ---\n")
+
     template = """
     아래의 컨텍스트(자료)만 참고하여 질문에 답변하세요.
     만약 답을 모르면 모른다고만 답하세요. 절대로 지어내지 마세요.
