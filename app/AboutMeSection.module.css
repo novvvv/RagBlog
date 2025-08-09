@@ -1,0 +1,19 @@
+
+
+.profileText {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  margin-top: 0;
+}
+
+.profileTextContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 남은 공간을 모두 차지하도록 설정 */
+}
+
+.profileTextGreeting {
+  font-size: 1.8em;
+}

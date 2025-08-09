@@ -152,9 +152,13 @@ export default function Write() {
                                 required
                                 defaultValue=""
                                 >
+                                
+                                {/* value - 실제로 DB에 저장되는 값 (카테고리 종류) */}
                                 <option value="" disabled hidden>카테고리</option>
-                                <option value="programming">Programming</option>
+                                <option value="programming">Programming</option> 
                                 <option value="Japan">Japanese</option>
+                                <option value="devlog">DevLog</option>
+                                
                             </select>
 
                             <input 

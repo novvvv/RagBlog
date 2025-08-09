@@ -1,0 +1,71 @@
+
+
+
+.profileImageRect {
+  width: 100%;
+  height: auto;
+}
+
+.profileSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* 양쪽 끝으로 배치 */
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 240px; /* 카드의 너비 수정 */
+  flex-shrink: 0; /* 컨테이너 크기가 줄어들 때 카드 너비가 줄어들지 않도록 설정 */
+}
+
+.profileCardTop {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.profileCardBottom {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.categoryList {
+  list-style: none; /* 기본 리스트 스타일 제거 */
+  padding: 0;
+  margin-top: 10px;
+}
+
+.categoryList li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 5px 0;
+}
+
+.categoryList li a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+.bookmarkImageButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bookmarkImage {
+  width: 32px;
+  height: 32px;
+}

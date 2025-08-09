@@ -180,3 +180,37 @@ a {
   border-top: 1px solid #e7e7e7;
   margin-top: auto;
 }
+
+.main-content-wrapper {
+  display: flex;
+  gap: 20px; /* Adjust as needed */
+  padding: 20px; /* Adjust as needed */
+}
+
+.main-page-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.newsHeading {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 4em;
+  font-weight: 200;
+  color: #262627;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.newsLine {
+  border: none;
+  border-top: 2px dashed #ccc !important;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.solidLine {
+  border: none;
+  border-top: 2px solid #ccc !important;
+  width: 100%;
+  margin-bottom: 50px;
+}

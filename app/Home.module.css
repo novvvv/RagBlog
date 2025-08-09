@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   white-space: pre-line;
-  padding: 2rem;
   font-family: sans-serif;
   position: relative;
 }
@@ -97,6 +96,23 @@
   font-weight: bold;
 }
 
+.categoryList {
+  list-style: none; /* 기본 리스트 스타일 제거 */
+  padding: 0;
+  margin-top: 10px;
+}
+
+.categoryList li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 5px 0;
+}
+
+.categoryList li a:hover {
+  text-decoration: underline;
+}
+
 .profileText {
   font-size: 1.2em;
   line-height: 1.5;
@@ -108,6 +124,7 @@
 .profileTextContainer {
   display: flex;
   flex-direction: column;
+  flex-grow: 1; /* 남은 공간을 모두 차지하도록 설정 */
 }
 
 .profileTextGreeting {
@@ -131,4 +148,16 @@
 
 .recentPostList a:hover {
   text-decoration: underline;
+}
+
+.bookmarkImageButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bookmarkImage {
+  width: 32px;
+  height: 32px;
 }
