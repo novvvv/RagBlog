@@ -27,8 +27,7 @@ export default function CategoryPage({ params }) {
   }, [category]);
 
   return (
-    <div className="list-bg">
-      <h2>{decodeURIComponent(category)} Posts</h2>
+    <div>
       <ListItem result={posts} />
     </div>
   );
