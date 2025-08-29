@@ -8,7 +8,7 @@ import os
 from langchain_upstage import ChatUpstage
 import chromadb
 from langchain_chroma import Chroma
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
@@ -33,12 +33,11 @@ app.add_middleware(
 
 # LLM, 임베딩, 벡터 DB 초기화
 llm = ChatUpstage()
-embeddings = SentenceTransformerEmbeddings(model_name="jhgan/ko-sroberta-multitask")
+embeddings = HuggingFaceEmbeddings(model_name="jhgan/ko-sroberta-multitask")
 # 벡터를 저장할 디렉토리를 지정합니다. 이 디렉토리는 서버에 영구적으로 저장됩니다.
-# client = chromadb.PersistentClient(path="./chroma_db")
-# client = chromadb.PersistentClient(path="./chroma_db")
-# db = Chroma(client=client, embedding_function=embeddings)
-db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+# ChromaDB를 HTTP 클라이언트로 연결
+client = chromadb.HttpClient(host="localhost", port=8001)
+db = Chroma(client=client, embedding_function=embeddings)
 
 # --- Pydantic 모델 정의 (데이터 유효성 검사) ---
 class IndexRequest(BaseModel):
@@ -126,15 +125,24 @@ def chat_with_rag(request: ChatRequest):
     print("--- End of Retriever Output ---\n")
 
     template = """
-    아래의 컨텍스트(자료)만 참고하여 질문에 답변하세요.
-    만약 답을 모르면 모른다고만 답하세요. 절대로 지어내지 마세요.
+안녕하세요! 저는 기술 문서 전문가 AI 어시스턴트입니다.
 
-    컨텍스트:
-    {context}
+답변 규칙:
+1. 제공된 컨텍스트를 최대한 활용하여 정확하고 전문적인 답변을 드리겠습니다
+2. 컨텍스트에 관련 정보가 있으면 자세하고 체계적으로 설명해드리겠습니다
+3. 컨텍스트에 없는 내용이면 "이 부분은 현재 자료에 포함되어 있지 않지만, 일반적으로..."라고 시작하여 기본적인 정보를 제공해드리겠습니다
+4. 답변은 전문적이면서도 이해하기 쉽게 작성하겠습니다
+5. 필요시 구체적인 예시나 적절한 비유를 사용하여 설명해드리겠습니다
 
-    질문:
-    {question}
-    """
+컨텍스트:
+{context}
+
+질문:
+{question}
+
+답변 형식:
+[정중한 인사] + [전문적이고 정확한 답변] + [추가 설명 및 예시]
+"""
     prompt = ChatPromptTemplate.from_template(template)
     rag_chain = (
         RunnableParallel(
