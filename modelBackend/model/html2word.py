@@ -16,7 +16,7 @@ with open(input_path, "r", encoding="utf8") as f:
 
 # Word 파일로 변환 처리
 # html2docx 파일은 BytesIO 객체를 반환 
-# 따라서 파일에 저장하기 위해선 getvalue()로 바이트 데이터를 추출해야 한다?
+# 따라서 파일에 저장하기 위해선 getvalue()로 바이트 데이터를 추출
 docx_buffer = html2docx(html, title="C#고급군법 블로그")
 
 with open(output_path, "wb") as docx_file:
