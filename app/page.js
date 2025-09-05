@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <HomeClient>
       <AboutMeSection />
-      <RecentPosts />
+      {/* <RecentPosts /> */}
     </HomeClient>
   );
 }

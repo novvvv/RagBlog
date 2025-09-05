@@ -50,9 +50,7 @@ class IndexRequest(BaseModel):
     question: 사용자 질문
 """
 
-class ChatRequest(BaseModel):
-    post_id: str
-    question: str
+
 
 # --- API 엔드포인트 ---
 

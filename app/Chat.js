@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import styles from './Chat.module.css'
 
-export default function Chat({ postId }) {
+export default function Chat({ postId = "default" }) {
   
   const [chatVisible, setChatVisible] = useState(false)
   const [messages, setMessages] = useState([])
@@ -16,7 +16,7 @@ export default function Chat({ postId }) {
     const userMessage = { text: input, sender: 'me' };
     const loadingMessage = { sender: 'bot', loading: true };
 
-    const newMessages = [...messages, userMessage, loadingMessage];
+    const newMessages = [...messages, userMessage, loadingMessage];ㅌ
     setMessages(newMessages);
     setInput('');
 
@@ -25,7 +25,7 @@ export default function Chat({ postId }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          post_id: postId || "default",
+          post_id: postId,
           question: input
         }),
       });

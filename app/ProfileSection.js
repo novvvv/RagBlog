@@ -3,7 +3,7 @@ import styles from './ProfileSection.module.css'
 export default function ProfileSection() {
     return (
         <div>
-                      <div className={styles.profileSection}>
+        <div className={styles.profileSection}>
 
         {/* 오른쪽 프로필 카드 */}
         <div className={styles.profileCard}>

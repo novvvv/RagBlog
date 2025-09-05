@@ -1,6 +1,7 @@
 import "./globals.css";
 import Link from "next/link"
 import Chat from "./Chat";
+import GlobalChat from "./GlobalChat";
 
 // auth.js 인증 정보 
 import LoginBtn from "./login_btn.js"
@@ -53,20 +54,35 @@ export default async function RootLayout({ children }) {
             }
 
           </div>
+
         </header>
           {/* News Header */}
-          <h1 className="newsHeading">Do2Dev</h1>
+          {/* News Header */}
+          <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px' }}>
+            <img src="/folder2.png" alt="Folder" style={{ width: '60px', height: '60px' }} />
+            <h1 className="newsHeading" style={{ margin: 0 }}>Do2Dev</h1>
+          </div>
+      <div style={{ textAlign: 'center' }}>
+        <a href="/" style={{ margin: '0 20px' }}>Info</a>
+        <a href="/list/programming" style={{ margin: '0 20px' }}>Programming</a>
+        <a href="/list/Japan" style={{ margin: '0 20px' }}>Japanese</a>
+        <a href="/list/devlog" style={{ margin: '0 20px' }}>DevLog</a>
+      </div>
         <hr className="newsLine" />
         <div className="main-content-wrapper">
           
           <div className="main-page-content">
             {children}
           </div>
-          <ProfileSection />
+          {/* <ProfileSection /> */}
         </div>
         <footer className="footer">
           <p>© 2025 Do2. All rights reserved.</p>
         </footer>
+        
+        {/* 전역 챗봇 */}
+        <GlobalChat />
+
       </body>
     </html>
   );
