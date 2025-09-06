@@ -21,17 +21,25 @@ export default function Chat({ postId = "default" }) {
     setInput('');
 
     try {
+      const requestData = {
+        post_id: postId,
+        question: input
+      };
+      
+      console.log('🚀 RAG 요청 데이터:', requestData);
+      console.log('🌐 API URL:', process.env.NEXT_PUBLIC_CHAT_API_URL);
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          post_id: postId,
-          question: input
-        }),
+        body: JSON.stringify(requestData),
       });
 
+      console.log('📡 응답 상태:', res.status);
+      
       // 백엔드 채팅 서버로부터 받아온 응답 데이터를 JSON 형식으로 파싱한다. 
       const data = await res.json();
+      console.log('📦 응답 데이터:', data);
 
       // 반드시 data.answer만 메시지로 사용
       const updatedMessages = newMessages.map((msg) =>

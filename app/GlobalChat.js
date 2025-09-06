@@ -8,7 +8,7 @@ export default function GlobalChat() {
   const [chatVisible, setChatVisible] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
-  const [activeTab, setActiveTab] = useState('chat') // 'home', 'chat', 'settings'
+  const [activeTab, setActiveTab] = useState('home') // 'home', 'chat', 'settings'
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -25,7 +25,7 @@ export default function GlobalChat() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          post_id: "default", // 전역 챗봇이므로 default로 설정
+          post_id: "global_rag", // 모든 채팅을 RAG로 동작
           question: input
         }),
       });
@@ -58,26 +58,45 @@ export default function GlobalChat() {
           width: '60px',
           height: '60px',
           borderRadius: '20px',
-          backgroundColor: '#1a1a1a',
-          border: 'none',
+          backgroundColor: '#f8f9fa',
+          border: '1px solid #e9ecef',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-          transition: 'all 0.3s ease',
-          fontSize: '24px'
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.3s ease'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.05)'
-          e.target.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.4)'
+          e.target.style.backgroundColor = '#ffffff'
+          e.target.style.borderColor = '#dee2e6'
+          e.target.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.15)'
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = 'scale(1)'
-          e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)'
+          e.target.style.backgroundColor = '#f8f9fa'
+          e.target.style.borderColor = '#e9ecef'
+          e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)'
         }}
       >
-        💬
+        <div style={{ position: 'relative' }}>
+          <img 
+            src="/chat/chat_clicked.png" 
+            alt="채팅" 
+            style={{ width: '28px', height: '28px' }}
+          />
+          <div style={{
+            position: 'absolute',
+            top: '-2px',
+            right: '-2px',
+            width: '12px',
+            height: '12px',
+            backgroundColor: '#ff4444',
+            borderRadius: '50%',
+            border: '2px solid #ffffff'
+          }}></div>
+        </div>
       </button>
 
       {chatVisible && (
@@ -287,7 +306,11 @@ export default function GlobalChat() {
               onMouseEnter={(e) => e.target.style.backgroundColor = '#e9ecef'}
               onMouseLeave={(e) => e.target.style.backgroundColor = activeTab === 'home' ? '#e3f2fd' : 'transparent'}
             >
-              <span style={{ fontSize: '20px', marginBottom: '2px' }}>🏠</span>
+              <img 
+                src={activeTab === 'home' ? '/chat/home_clicked.png' : '/chat/home.png'} 
+                alt="홈" 
+                style={{ width: '24px', height: '24px', marginBottom: '2px' }}
+              />
               <span style={{ fontSize: '12px', color: activeTab === 'home' ? '#1976d2' : '#666' }}>홈</span>
             </div>
             
@@ -307,7 +330,11 @@ export default function GlobalChat() {
               onMouseEnter={(e) => e.target.style.backgroundColor = '#e9ecef'}
               onMouseLeave={(e) => e.target.style.backgroundColor = activeTab === 'chat' ? '#e3f2fd' : 'transparent'}
             >
-              <span style={{ fontSize: '20px', marginBottom: '2px' }}>💬</span>
+              <img 
+                src={activeTab === 'chat' ? '/chat/chat_clicked.png' : '/chat/chat.png'} 
+                alt="채팅" 
+                style={{ width: '24px', height: '24px', marginBottom: '2px' }}
+              />
               <span style={{ fontSize: '12px', color: activeTab === 'chat' ? '#1976d2' : '#666' }}>채팅</span>
               <div style={{
                 position: 'absolute',
@@ -335,7 +362,11 @@ export default function GlobalChat() {
               onMouseEnter={(e) => e.target.style.backgroundColor = '#e9ecef'}
               onMouseLeave={(e) => e.target.style.backgroundColor = activeTab === 'settings' ? '#e3f2fd' : 'transparent'}
             >
-              <span style={{ fontSize: '20px', marginBottom: '2px' }}>⚙️</span>
+              <img 
+                src={activeTab === 'settings' ? '/chat/settings_clicked.png' : '/chat/settings.png'} 
+                alt="설정" 
+                style={{ width: '24px', height: '24px', marginBottom: '2px' }}
+              />
               <span style={{ fontSize: '12px', color: activeTab === 'settings' ? '#1976d2' : '#666' }}>설정</span>
             </div>
           </div>

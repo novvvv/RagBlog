@@ -2,6 +2,7 @@ import "./globals.css";
 import Link from "next/link"
 import Chat from "./Chat";
 import GlobalChat from "./GlobalChat";
+import RecordImage from "./RecordImage";
 
 // auth.js 인증 정보 
 import LoginBtn from "./login_btn.js"
@@ -12,6 +13,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"; // login 정보
 
 
 import ProfileSection from "./ProfileSection";
+import AboutMeSection from "./AboutMeSection";
 
 export const metadata = {
   title: "Create Next App",
@@ -69,12 +71,42 @@ export default async function RootLayout({ children }) {
         <a href="/list/devlog" style={{ margin: '0 20px' }}>DevLog</a>
       </div>
         <hr className="newsLine" />
+        
+        {/* 절반씩 차지하는 레이아웃 */}
+        <div style={{ 
+          display: 'flex', 
+          width: '100%', 
+          minHeight: '30vh',
+          marginTop: '0px'
+        }}>
+          {/* 왼쪽 절반: AboutMeSection */}
+          <div style={{ 
+            flex: '1', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            padding: '10px'
+          }}>
+            <AboutMeSection />
+          </div>
+          
+          {/* 오른쪽 절반: RecordImage */}
+          <div style={{ 
+            flex: '1', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            padding: '10px'
+          }}>
+            <RecordImage />
+          </div>
+        </div>
+        
         <div className="main-content-wrapper">
           
           <div className="main-page-content">
             {children}
           </div>
-          {/* <ProfileSection /> */}
         </div>
         <footer className="footer">
           <p>© 2025 Do2. All rights reserved.</p>
