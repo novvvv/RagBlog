@@ -1,0 +1,509 @@
+{
+  "evaluation_time": "2025-11-12T14:13:17",
+  "question_count": 31,
+  "answered_count": 0,
+  "average_metrics": {
+    "faithfulness": 0.0,
+    "answer_relevancy": 0.0,
+    "context_precision": 0.0,
+    "context_recall": 0.0
+  },
+  "records": [
+    {
+      "question": "C++에서 STL Vector Container 사용법은?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리\n\n\n\n\n\n\n\n\n\n\n[C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리\n\n? Archive/C&C++\n2021-04-25 19:44:45\n\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 About Vector Container\n#2 Vector 사용방법\n - 사전 작업\n - Vector 선언 및 초기화\n - Vector 값 추가 (push_back, insert)\n - Vector 값 삭제 (pop_back, erase)\n- Vector 원소 위치 변경 (iter_swap)\n#3 SIZE & CAPACITY\n- size() ",
+        "[C++] vector.insert 멤버함수를 이용해 두 벡터 연결하기\n\n\n\n\n\n\n\n\n\n\n[C++] vector.insert 멤버함수를 이용해 두 벡터 연결하기\n\n? Archive/C&C++\n2022-07-31 01:15:05\n\n\n\n\n\n\n\n\n\n\n\n\n\n[C++] insert member function\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n_content\n#1 insert member function\n#2 두 벡터 연결하기\n \n_Related posts\n[C++ STL] Vector Container 사용법\n \n_reference\nhttps://cplusplus.com/reference/vector/vector/insert/\n\n#1 insert",
+        "[C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리\n\n\n\n\n\n\n\n\n\n\n[C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리\n\n? Archive/C&C++\n2021-05-10 21:54:45\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#1 About Deque\n#2 Deque 사용방법\n-2.1 deque 선언 & 초기화\n-2.2 deque 값 삽입/삭제 - push_back() pop_back() push_front() pop_front()\n-2.3 deque 값 중간 삽입/삭제 - insert() erase()\n-2.4 첫 번째 원소 / 마지막 원소 접근 - front() back()\n#3 Deque 원소 접근\n \n* 개인적인 공부 내용 기록용으로 작성한 글이기에 잘못된"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 클래스(Class) 사용법은?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[C++] #1 클래스 (Class)\n\n\n\n\n\n\n\n\n\n\n[C++] #1 클래스 (Class)\n\n? Archive/C&C++\n2022-02-22 20:34:50\n\n\n\n\n\n\n\n클래스란 객체지향 프로그래밍(OPP)에서 객체를 생성하기 위한 멤버변수(상태)와 멤버함수(행동)을 정의하는 틀과 같은 역할을 수행한다.\n객체지향 프로그래밍은 모든 데이터를 객체로 취급하며, 이러한 객체들의 조합으로 코드를 작성하는 프로그래밍 기법이다.\n클래스는 C언어의 구조체(Struct)와 상당히 유사한데 차이점은 접근제어 지시자(access specifier)가 추가되었다는 점과, 멤버함수(행동)을 포함할 수 있다는 것이다. 이번 포스팅에서는 C++에서 새롭게 추가된 클래스라는 문법과 접근 제어 지시자에 대해 간략하게 정리해 보고자 한",
+        "[C++] fill method\n\n\n\n\n\n\n\n\n\n\n[C++] fill method\n\nProblem Solving/PS With C++\n2025-01-26 08:41:25\n\n\n\n\n\n\n\n \n*C++ STL Algorithm 헤더의 fill 메서드 사용 방법에 대해 다룬 포스팅입니다.\n*개인적인 공부 내용을 기록하기 위해 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n\n#fill \nvoid fill (ForwardIterator first, ForwoardIterator last, const T& value);\nHeader - <algorithm> \n지정 범위의 요소들을 \"타입에 맞는 값\" 으로 채워준다. \nint type 배열이라면 int 타입에 맞는 값으로 각 요소를 설정하며, 이터레이터를 지원",
+        "#사용방법 #C++ #STL #deque #Container #사용법정리 #디큐컨테이너"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 생성자(Constructor) 사용법은?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[C++] #3 생성자 (Constructor)\n\n\n\n\n\n\n\n\n\n\n[C++] #3 생성자 (Constructor)\n\n? Archive/C&C++\n2022-02-23 14:11:14\n\n\n\n\n\n\n\n#2 [C++] getter setter 함수 편에서 getter setter 함수를 이용해 private로 선언된 클래스의 멤버에 접근하는 방법에 대해서 소개했다.\n하지만 아래 코드처럼 유니폼 초기화 (Uniform Initialization) 방식을 사용하지 못하고, public 필드에 선언된 함수를 이용해 우회해서 private멤버를 초기화 해야 하기에 코드도 길어지고 불편하다.\nPlayer warrior {\"Warrior\", 10, 100, 10, 20};\n이번 포스팅 에서는 이러한 불편함을 해소할 수 있는 생",
+        "[Java] 생성자 [Constructor] 및 this() 사용방법\n\n\n\n\n\n\n\n\n\n\n[Java] 생성자 [Constructor] 및 this() 사용방법\n\nBack-end/Java Fundamental\n2024-02-10 16:27:20\n\n\n\n\n\n\n\nConstructor 생성자란, 객체를 생성과 동시에 초기화 할 수 있도록 도와주는 특별한 메서드이다. 생성자를 사용하지 않고, 생성한 객체에 직접 접근하여 값을 대입해 줄 수도 있지만 생성자를 사용하면 객체에 필요한 입력값을 “강제”할 수 있다는 장점이 있다.\n이번 포스팅 에서는 생성자의 사용 방법에 대해 정리해 보고자 한다. \n \n목차\n#1 Constructor\n#2 Constructor Overloading & this() keyword\n- this()",
+        "[JavaScript] 생성자 함수를 이용한 객체 생성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 생성자 함수를 이용한 객체 생성\n\n? Archive/WEB\n2022-05-14 23:44:20\n\n\n\n\n\n\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 생성자 함수(Constructor)\n#2 생성자 함수 동작 방식\n \nReference\n모던 자바스크립트 Deep Dive 234p~246p\nnew 연산자와 생성자 함수 (javascript.info)\n\n이전 포스팅 (객체 리터럴을 이용한 객체 생성) 에서 객체 리터럴 방식 { ... }을 이용한 객체 생성 방법에 대해 알아 보았다. 객체 리터럴 방식은 직관적으로 객체를 쉽게 생성할 수 있지"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 포인터란 무엇인가?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[C/C++] 포인터란? _ * & nullptr\n\n\n\n\n\n\n\n\n\n\n[C/C++] 포인터란? _ * & nullptr\n\n? Archive/C&C++\n2022-01-27 12:13:36\n\n\n\n\n\n\n\n* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 메모리 저장 방식\n#2 포인터(Pointer) 연산자 * &\n#3 포인터가 필요한 이유\n#4 포인터 문법\n- 포인터 변수 선언\n- 널 포인터\n\n#1 메모리 저장 방식\n포인터를 공부하기에 앞서 우선 프로그래머가 변수를 선언할 시 데이터가 메모리에 어떤 방식으로 저장되는지에 대해 알아 보도록 합시다.\nint val = 10;\n\"val 이라는 이름의 int 타입 변수를 선언하고 10을 할당했다.\" 라는 것은 컴",
+        "#4 포인터 문법\n- 포인터 변수 선언\n포인터란 메모리의 주소를 저장할 수 있는 \"자료형\" 입니다. 포인터도 int char double .. 등과 같이 하나의 타입입니다. 포인터 변수 선언시에는, 데이터 타입을 작성하고 그 뒤에 *를 붙여 주면 됩니다. \n \nint* ptr... int type 포인터 변수\nchar* ptr... char type 포인터 변수\ndouble* ptr... double type 포인터 변수\n \n여기서 *의 위치는 어디에 붙여도 상관 없습니다. int* ptr = int *ptr = int * ptr\nint val = 10;\nint *ptr = &val; // int type 포인터 변수\n \n- NULL 포인터\n포인터를 사용 시 주의해야 할 점이 있습니다. 바로 포인터에 값이 ",
+        "[C/C++] 포인터와 const (feat. const 키워드의 위치에 따른 차이점)\n\n\n\n\n\n\n\n\n\n\n[C/C++] 포인터와 const (feat. const 키워드의 위치에 따른 차이점)\n\n? Archive/C&C++\n2022-02-02 15:14:18\n\n\n\n\n\n\n\n* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n#1 상수를 가리키는 포인터 - const int *ptr\n#2 상수 포인터 - int const *ptr\n#3 상수를 가리키는 상수 포인터 - const int const *ptr"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 strcpy, strlen, strcmp 함수 사용법은?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "이상으로 C언어 문자열에 대해 알아 보았습니다. 다음 포스팅 에서는 strlen , strcpy , strcat , strcmp 함수를 직접 구현해 보도록 하겠습니다.\n이어지는 포스팅 ... [C/C++] strcpy strlen strcmp strcat _ 구현코드\n\n\n\n                            #CIN #strcat #strcmp #strlen #cin.getline #C스타일문자열 #C언어문자열 #strcmpy",
+        "[C/C++] strcpy strlen strcmp strcat _ 구현 코드\n\n\n\n\n\n\n\n\n\n\n[C/C++] strcpy strlen strcmp strcat _ 구현 코드\n\n? Archive/C&C++\n2022-01-27 10:46:59\n\n\n\n\n\n\n\n* 이번 포스팅 에서는 [C/C++] C언어 방식 문자열 포스팅에서 알아본 문자열 함수들을 직접 구현해 보도록 하겠습니다.\n* 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 strcpy\n#2 strlen\n#3 strcmp\n#4 strcat\n\n#1 strcpy\n/* \n\tstrcpy - 문자열을 복사해주는 함수\n\tdest 문자열에 src 문자열을 복사합니다.\n*/\n\nvoid strcpy(char *de",
+        "[C/C++] C언어 방식 문자열 (C-Style-Strings) _ strlen strcpy strcat strcmp\n\n\n\n\n\n\n\n\n\n\n[C/C++] C언어 방식 문자열 (C-Style-Strings) _ strlen strcpy strcat strcmp\n\n? Archive/C&C++\n2022-01-25 00:12:09\n\n\n\n\n\n\n\n* Modern C++ 에서는 C언어 방식의 \"C-Style-Strings\"와, STL 라이브러리에 정의된 \"std::string\" 두가지 형태의 문자열을 제공합니다. 이번 포스팅에서는 C언어 방식인 C-Style-Strings에 대해 공부한 내용을 정리해 보고자 합니다.\n* 개인적인 공부 내용을 기록하는 용도로 작성한 포스팅 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "프로그래머스 기능개발 문제 C++로 어떻게 풀어야 하나?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[프로그래머스 고득점 Kit] 기능개발 C++ 문제풀이 & 소스코드\n\n\n\n\n\n\n\n\n\n\n[프로그래머스 고득점 Kit] 기능개발 C++ 문제풀이 & 소스코드\n\n? Archive/ProblemSolving\n2022-10-03 17:07:39\n\n\n\n\n\n\n\n#1 INFO\n분류 : 스택/큐\n출처 : https://school.programmers.co.kr/learn/courses/30/lessons/42586\n\n \n\n프로그래머스\n코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.\nprogrammers.co.kr\n\n\n \n문제 설명\n프로그래머스 팀은 기능 개선 작업을 수행 중이며, 각 기능은 진도가 100%에 도달 시 ",
+        "#C++ #알고리즘 #소스코드 #문제풀이 #코딩테스트 #프로그래머스 #카카오코딩테스트 #신규아이디추천",
+        "[프로그래머스 고득점 Kit] 폰켓몬 C++ 문제 풀이\n\n\n\n\n\n\n\n\n\n\n[프로그래머스 고득점 Kit] 폰켓몬 C++ 문제 풀이\n\n? Archive/ProblemSolving\n2022-09-11 16:46:09\n\n\n\n\n\n\n\n#INFO\n난이도 : LEVEL1\n출처 : https://school.programmers.co.kr/learn/courses/30/lessons/1845\n\n \n\n프로그래머스\n코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.\nprogrammers.co.kr"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "프로그래머스 위장 문제 C++로 어떻게 풀어야 하나?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[프로그래머스 고득점 Kit] 위장 C++ 문제 풀이\n\n\n\n\n\n\n\n\n\n\n[프로그래머스 고득점 Kit] 위장 C++ 문제 풀이\n\n? Archive/ProblemSolving\n2022-09-23 23:30:02\n\n\n\n\n\n\n\n#INFO\n난이도 : LEVEL2\n출처 : https://school.programmers.co.kr/learn/courses/30/lessons/42578\n\n \n\n프로그래머스\n코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.\nprogrammers.co.kr",
+        "[프로그래머스] 코딩테스트 LEVEL1 모의고사 C++\n\n\n\n\n\n\n\n\n\n\n[프로그래머스] 코딩테스트 LEVEL1 모의고사 C++\n\n? Archive/ProblemSolving\n2021-07-06 17:07:08\n\n\n\n\n\n\n\n\n\n\n\n\n\n#INFO\n문제이름 : 모의고사\n난이도 : LEVEL1\n사용언어 : C++\n문제유형 : 완전탐색\n문제출처 : https://programmers.co.kr/learn/courses/30/lessons/42840\n\n \n\n코딩테스트 연습 - 모의고사\n수포자는 수학을 포기한 사람의 준말입니다. 수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다. 수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다. 1번 수포자가 찍는\nprogrammers.co.kr",
+        "[프로그래머스 고득점 Kit] 프린터 C++ 문제풀이\n\n\n\n\n\n\n\n\n\n\n[프로그래머스 고득점 Kit] 프린터 C++ 문제풀이\n\n? Archive/ProblemSolving\n2022-09-27 23:10:23\n\n\n\n\n\n\n\n#INFO\n분류 : 스택/큐\n난이도 : LEVEL2\n출처 : https://school.programmers.co.kr/learn/courses/30/lessons/42587\n\n \n\n프로그래머스\n코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.\nprogrammers.co.kr\n\n\n\n#SOLVE\nqueue 자료구조를 이용해 문제를 풀이하였습니다. \n문제에서 주어진 priorities 벡터의 "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "프로그래머스 폰켓몬 문제 C++로 어떻게 풀어야 하나?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[프로그래머스 고득점 Kit] 폰켓몬 C++ 문제 풀이\n\n\n\n\n\n\n\n\n\n\n[프로그래머스 고득점 Kit] 폰켓몬 C++ 문제 풀이\n\n? Archive/ProblemSolving\n2022-09-11 16:46:09\n\n\n\n\n\n\n\n#INFO\n난이도 : LEVEL1\n출처 : https://school.programmers.co.kr/learn/courses/30/lessons/1845\n\n \n\n프로그래머스\n코드 중심의 개발자 채용. 스택 기반의 포지션 매칭. 프로그래머스의 개발자 맞춤형 프로필을 등록하고, 나와 기술 궁합이 잘 맞는 기업들을 매칭 받으세요.\nprogrammers.co.kr",
+        "#CODE\n#include <iostream>\n#include <unordered_set>\n#include <vector>\nusing namespace std;\n\nint solution(vector<int> nums)\n{\n    int answer = 0;\n    int pocketmon_size = nums.size();\n    unordered_set<int> pocketmon;\n    for(const auto& i : nums){\n        if(pocketmon.find(i) == pocketmon.end()){\n            pocketmon.insert(i);\n        }\n    }\n\n    if(pocketmon.size() > pocketmon_size / 2) answer ",
+        "[BOJ] C++ 1620 \"나는야 포켓몬 마스터 이다솜\" 문제 풀이\n\n\n\n\n\n\n\n\n\n\n[BOJ] C++ 1620 \"나는야 포켓몬 마스터 이다솜\" 문제 풀이\n\n? Archive/ProblemSolving\n2022-09-05 21:13:36\n\n\n\n\n\n\n\n#INFO\n난이도 : SILVER4\n문제 유형 : Hash\n출처 : https://www.acmicpc.net/problem/1620\n\n \n\n1620번: 나는야 포켓몬 마스터 이다솜\n첫째 줄에는 도감에 수록되어 있는 포켓몬의 개수 N이랑 내가 맞춰야 하는 문제의 개수 M이 주어져. N과 M은 1보다 크거나 같고, 100,000보다 작거나 같은 자연수인데, 자연수가 뭔지는 알지? 모르면\nwww.acmicpc.net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#SOLVE\n문제 풀이"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "프로그래머스 신규 아이디 추천 문제 C++로 어떻게 풀어야 하나?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[프로그래머스] LEVEL1 : 신규 아이디 추천 C++\n\n\n\n\n\n\n\n\n\n\n[프로그래머스] LEVEL1 : 신규 아이디 추천 C++\n\n? Archive/ProblemSolving\n2022-06-04 17:20:16\n\n\n\n\n\n\n\n#INFO\n문제 : 신규 아이디 추천\n난이도 : LEVEL1\n출처 : 2021 KAKAO BLIND RECRUITMENT\n코딩테스트 연습 - 신규 아이디 추천 | 프로그래머스 (programmers.co.kr)",
+        "#C++ #알고리즘 #소스코드 #문제풀이 #코딩테스트 #프로그래머스 #카카오코딩테스트 #신규아이디추천",
+        "#CODE\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nstring solution(string new_id) {"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "프로그래머스 키패드 누르기 문제 C++로 어떻게 풀어야 하나?",
+      "category": "C++",
+      "answer": "",
+      "contexts": [
+        "[프로그래머스] 코딩테스트 LEVEL1 키패드 누르기 C++\n\n\n\n\n\n\n\n\n\n\n[프로그래머스] 코딩테스트 LEVEL1 키패드 누르기 C++\n\n? Archive/ProblemSolving\n2022-05-18 08:16:00\n\n\n\n\n\n\n\n\n\n\n\n\n\n#INFO\n문제이름 : 키패드 누르기\n난이도 : LEVEL1\n문제 출처 : 2020 카카오 인턴십\n코딩테스트 연습 - 키패드 누르기 | 프로그래머스 (programmers.co.kr)\n\n \n\n코딩테스트 연습 - 키패드 누르기\n[1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5] \"right\" \"LRLLLRLLRRL\" [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2] \"left\" \"LRLLRRLLLRR\" [1, 2, 3, 4, 5, 6, 7, 8, 9",
+        "#C++ #알고리즘 #소스코드 #문제풀이 #프로그래머스 #키패드누르기 #카카오인턴십",
+        "[BOJ] 20436 ZOAC 3 C++ nov\n\n\n\n\n\n\n\n\n\n\n[BOJ] 20436 ZOAC 3 C++ nov\n\nProblem Solving/BOJ\n2024-11-23 22:59:09\n\n\n\n\n\n\n\n#INFO\n알고리즘 유형 : 시뮬레이션 & 구현\n난이도 : SILVER4\n\n\n\n\n\n\n\n\n\n\n\n \n#SOLVE\n문제에서 주어진 조건대로 차근차근 구현하면 되는 비교적 간단한 구현 문제이다. \n우선 키보드 자판을 저장할 2차원 배열을 선언한 뒤, 정보를 저장한다. \n\n\n\n\n\n\n/* value */\nvector<vector<char> > board(3);\nconst vector<char> line1 = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'};\nconst vector"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "JavaScript에서 생성자 함수 사용법은?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[JavaScript] 생성자 함수를 이용한 객체 생성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 생성자 함수를 이용한 객체 생성\n\n? Archive/WEB\n2022-05-14 23:44:20\n\n\n\n\n\n\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 생성자 함수(Constructor)\n#2 생성자 함수 동작 방식\n \nReference\n모던 자바스크립트 Deep Dive 234p~246p\nnew 연산자와 생성자 함수 (javascript.info)\n\n이전 포스팅 (객체 리터럴을 이용한 객체 생성) 에서 객체 리터럴 방식 { ... }을 이용한 객체 생성 방법에 대해 알아 보았다. 객체 리터럴 방식은 직관적으로 객체를 쉽게 생성할 수 있지",
+        "[Java] 생성자 [Constructor] 및 this() 사용방법\n\n\n\n\n\n\n\n\n\n\n[Java] 생성자 [Constructor] 및 this() 사용방법\n\nBack-end/Java Fundamental\n2024-02-10 16:27:20\n\n\n\n\n\n\n\nConstructor 생성자란, 객체를 생성과 동시에 초기화 할 수 있도록 도와주는 특별한 메서드이다. 생성자를 사용하지 않고, 생성한 객체에 직접 접근하여 값을 대입해 줄 수도 있지만 생성자를 사용하면 객체에 필요한 입력값을 “강제”할 수 있다는 장점이 있다.\n이번 포스팅 에서는 생성자의 사용 방법에 대해 정리해 보고자 한다. \n \n목차\n#1 Constructor\n#2 Constructor Overloading & this() keyword\n- this()",
+        "[C++] #3 생성자 (Constructor)\n\n\n\n\n\n\n\n\n\n\n[C++] #3 생성자 (Constructor)\n\n? Archive/C&C++\n2022-02-23 14:11:14\n\n\n\n\n\n\n\n#2 [C++] getter setter 함수 편에서 getter setter 함수를 이용해 private로 선언된 클래스의 멤버에 접근하는 방법에 대해서 소개했다.\n하지만 아래 코드처럼 유니폼 초기화 (Uniform Initialization) 방식을 사용하지 못하고, public 필드에 선언된 함수를 이용해 우회해서 private멤버를 초기화 해야 하기에 코드도 길어지고 불편하다.\nPlayer warrior {\"Warrior\", 10, 100, 10, 20};\n이번 포스팅 에서는 이러한 불편함을 해소할 수 있는 생"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "JavaScript에서 화살표 함수(arrow function) 사용법은?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[JavaScript] 화살표 함수(arrow function) 기본편\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 화살표 함수(arrow function) 기본편\n\n? Archive/WEB\n2022-03-15 10:50:18\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n*지속적으로 내용을 추가 및 수정할 예정이며, 잘못된 내용에 대한 지적은 언제나 환영합니다!\n\n#관련 포스팅\n_함수 선언문\n_익명함수\n_콜백함수\n\n#화살표 함수",
+        "ask(\n  \"동의하십니까?\",\n  function() { alert(\"YES!\"); },\n  function() { alert(\"NO,,\"); }\n);\n \n화살표 함수를 사용하면 콜백함수 부분을 아래처럼 간결하게 바꿔 줄 수 있다.\nfunction ask(question, yes, no) {\n  if (confirm(question)) yes()\n  else no();\n}\n\nask(\n  \"동의하십니까?\",\n  () => { alert(\"YES!\"); },\n  () => { alert(\"NO,,\"); }\n);\n\n이상으로 화살표 함수의 사용법에 대해 간략하게 공부했다. 사실 화살표 함수는 단순히 코드를 간결하게 작성하기 위해서만 사용되지는 않는다. 화살표 함수의 심화적인 내용에 대해선 추후에 따로 정리할 예정",
+        "say 메서드 템플릿 리터럴 내부의 this는 say 메서드를 호출한 객체인 info를 가리키게 됩니다.\n따라서 info 객체의 name 프로퍼티를 출력합니다.\nHello! I'm nov\n \n4. 화살표 함수 내부에서 호출되는 this\n화살표 함수 내부에서 this keyword를 사용하는 경우 화살표 함수 내부가 아닌 상위 스코프에서 가리킬 대상을 찾습니다.\nconst arrowFunction = () => {\n  console.log(this);\n};\narrowFunction();\n \narrowFunction 내부의 this는 상위 스코프 (global scope) 인 window object를 출력하게 됩니다. \nwindow\n \n \n이번에는 객체 내부의 메서드를 화살표 함수로 정의한 뒤 this를 호출"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "JavaScript에서 객체 리터럴 사용법은?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[JavaScript] 객체 리터럴을 이용한 객체 생성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 객체 리터럴을 이용한 객체 생성\n\n? Archive/WEB\n2022-05-13 10:18:04\n\n\n\n\n\n\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#객체\n#프로퍼티 생성\n#프로퍼티 접근\n#프로퍼티 삭제\n#메서드와 this\n \nReference :\n 메서드와 this (javascript.info)\n객체 (javascript.info)\n모던 자바스크립트 Deep Dive 10장 객체 리터럴 124p~135p",
+        "#객체\n자바스크립트는 프로토타입 기반 객체지향 언어로 C++, JAVA, C# 등과 같은 클래스 기반 객체지향 언어와 달리 다양한 객체 생성 방법을 지원한다. (객체 리터럴, Object 생성자, 생성자 함수, 클래스 등..) \n이번 포스팅에서는 객체를 생성하는 가장 기본적인 방식인 객체 리터럴에 대해 정리해 보고자 한다.\n \n#프로퍼티 생성\n객체는 중괄호{...}를 이용해 만들 수 있으며 중괄호 안에는 키(key)와 값(value)으로 구성된 프로퍼티(property)를 여러개 넣어 구성할 수 있다.\nvar warrior = {\n    level: 10,\n    hp: 100,\n};\n \nwarrior 객체는 두개의 프로퍼티로 구성되어 있다. 프로퍼티를 나열할 때는 쉼표(,)로 구분한다. (마지막 프로퍼티 ",
+        "[JavaScript] 템플릿 리터럴 : 백틱(``) 달러(${}) 문법 사용법\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 템플릿 리터럴 : 백틱(``) 달러(${}) 문법 사용법\n\n? Archive/WEB\n2022-06-21 13:36:20\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n*지속적으로 내용을 수정해 나갈 예정입니다. 혹여나 잘못된 내용이 있다면 언제든지 지적해 주시기 바랍니다!\n \n_contents\n#1 템플릿 리터럴(Template Literal)\n#1.1 템플릿 리터럴 기능1 _ 개행\n#1.2 템플릿 리터럴 기능2 _ 표현식\n\n#1 템플릿 리터럴(Template Literal)\nES6 부터 새롭게 표기된 문자열 표기법으로 큰"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "JavaScript에서 콜백 함수란 무엇인가?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[JavaScript] 콜백 함수 _ 미완성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 콜백 함수 _ 미완성\n\n? Archive/WEB\n2022-03-14 23:15:00\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n*지속적으로 내용을 추가 및 수정할 예정이며, 잘못된 내용에 대한 지적은 언제나 환영합니다!\n_미완성된 글 입니다.\n\n# 콜백함수\n콜백함수란 함수 안에 파라미터 형태로 들어가는 함수를 의미한다. 콜백함수를 이용하면 함수의 매개변수로 함수를 전달해 코드를 순차적으로 실행할 수 있도록 작성할 수 있다.\n \n다음 코드의 동작 과정을 살펴보자. ask 함수 파라미터의 기능은 다음과 같다.\nquestion : 문자열을 입력받아 confri",
+        "[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n\n\n\n\n\n\n\n\n\n[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n? Archive/C#\n2021-06-09 18:35:28\n\n\n\n\n\n\n\n\n\n\n\n\n\n[목차]\n#1. 콜백이란?#2.1 델리게이트(Delegate) 선언\n#2.2 .Invoke()\n#2.3 델리게이트 체인(Delegate Chain)\n \n* 개인적인 공부 기록용으로 작성한 포스팅 이기에 잘못된 내용이 있을 수 있으며, 추가하거나 잘못된 내용이 있다면 지속적으로 수정해 나갈 예정입니다.\n\n#1 콜백이란?\n프로그래머는 함수를 호출할 때 콜(Call)을 하여 호출합니다. 예를 들어, Run() 이라는 함수를 사용하기 위해 콜(Call)",
+        "# 이벤트 헨들러 & 이벤트 리스너\nJS의 이벤트 헨들러와 이벤트 리스너가 대표적인 콜백함수의 예시이다.\naddEventListener의 첫번째 인자에는 발생 이벤트(클릭)를 두 번째 인자에는 첫 번째 인자로 설정한 이벤트가 발생했을 시 실행할 함수를 넣어 준다. 여기서 두 번째 인자에 넣은 함수가 바로 콜백함수이다.\n<html lang=\"ko\">\n\t<head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<title>test</title>\n\t</head>\n\t<body>\n\t\t<button id=\"click\">Click!</button>\t\t\t\n\t</body>\n \t<script>\n\t\tlet a = document.getElementById(\"click\");\n\t\ta.onclick = prt; //event h"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "JavaScript에서 Logical Operator && || 사용법은?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[JavaScript] Logical Operator && || 의 또 다른 기능 Short Circuiting\n\n\n\n\n\n\n\n\n\n\n[JavaScript] Logical Operator && || 의 또 다른 기능 Short Circuiting\n\n? Archive/WEB\n2022-12-13 22:25:37\n\n\n\n\n\n\n\nJavaScript 에서 Logical Operator [논리 연산자] 라고 불리우는 || && 연산자는 다른 언어와 달리 논리적 기능 이외에도 Short Circuiting 이라는 특이한 성질을 가지고 있다.\n다른 언어에서 논리 연산자를 접하고 JavaScript로 넘어온 경우 short circuiting 이라는 개념이 생소할 수 있기에 이번 포스팅 에서 정리해 보고자 한다.  \n\n?List",
+        "2. AND Operator Short circuiting\nAND(&&) Operator의 Short circuiting은 OR Operator와 정확하게 반대되는 동작을 실행한다. 마찬가지로 좌측부터 계산을 시작하며 좌측을 기준으로 가장 처음으로 등장하는 falsy value를 return한다. \nconsole.log(0 && \"nov\"); // return 0\nconsole.log(10 && \"nov\"); // return \"nov\"\nconsole.log(\"nov\" && 10 && \"\"); // return \"\"\n2.1 if statement vs short circuiting\nLogical Operator의 short circuiting 성질을 이용하면, if statement 구문과 비슷한 동작을 수",
+        "#2 encodeURIComponet & decodeURIComponent\nJavaScript는 인코딩 디코딩을 수행하기 위한 함수를 제공한다.\nencodeURIComponet & decodeURIComponent 함수에 인코딩 혹은 디코딩을 수행할 문자열을 보내면 인코딩 , 디코딩 된 문자열을 반환해 준다.\n다음은 job=프로그래머&블로거 문자열을 encodeURIComponet 함수를 이용해 인코딩한 예제이다.\nconst uri = 'http://xxx.xxx.com?name=nov&';\nconst str = 'job=프로그래머&블로거';\nconsole.log('Before : ', uri + str);\nconst encodeStr = encodeURIComponent(str);\nconsole.log('"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Vue.js에서 Composition API v-for 사용법은?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "[Vue.js] Composition API v-for\n\n\n\n\n\n\n\n\n\n\n[Vue.js] Composition API v-for\n\nFront-end/Vue.js\n2025-06-01 15:11:30\n\n\n\n\n\n\n\nvue.js 공식문서, GPT를 통해 학습한 내용을 정리합니다. \n잘못된 내용을 포함하고 있을 수 있습니다. \n \n#v-for\nv-for 문법을 사용하면 반복되는 HTML 컴포넌트를 마치 일반 프로그래밍 언어의 For문을 사용하듯 반복할 수 있다. \n예시로 아래와 같이 동일한 div 태그 컴포넌트가 3개 반복되는 구조가 있다고 가정해 보자.\n            <div>\n                <a>ID</a>\n                <a>PW</a>\n                <a>Ab",
+        "이를 vue.js의 v-for 문법을 사용하면 아래와 같이 한 개의 div Tag로 축약이 가능하다. \n(출력 결과는 동일하다.) \n            <!-- v-for=\"변수명 in 반복횟수\" :key=\"변수명\" -->\n            <div v-for=\"ID in 3\" :key=\"ID\">\n                <a>ID</a> \n                <a>PW</a>\n                <a>ABOUT</a>\n            </div>\n \nv-for 문법의 사용형식은 다음과 같다. \nv-for=\"변수명 in 반복횟수\" :key=\"변수명\"\n \n#객체순회\n단순히 태그를 반복하는 것뿐만 아니라 반복 횟수 부분에 반복 가능한 변수 (Array, Object) 자료형을 넣",
+        "객체 내부의 데이터를 출력할 때 v-for 문법 형식은 아래와 같다. \nv-for \"변수명 in 객체,배열 이름\" :key=\"변수명\"\n \n#:key\n\"객체, 배열 내부에 중복되는 변수가 없다면\" :key 뒤에 변수명과 순회할 변수명은 통일시켜 주는 것을 권장한다. \n굳이 왜 :key를 적어 주어야 하는지 의문이 생길 수 있는데 \nvue.js는 DOM을 렌더링시 가상 DOM (Virtual DOM) 방식을 사용한다. \n만약 :key가 없으면 항목의 순서만 보고 비교를 시도한다. \n그렇기에 :key를 별도로 명시해 주지 않으면 예상치 못한 렌더링 결과가 생길 수 있기에 적어주도록 하자"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Vue.js3 완벽가이드는 어떤 내용인가?",
+      "category": "JavaScript",
+      "answer": "",
+      "contexts": [
+        "그럼에도 불구하고 vue3.js 를 선택한 이유는\n애당초 프론트앤드 직군 취업을 목표로 공부를 시작한게 아니었으며, 무엇보다 vue3.js는 쉽다!\n백엔드 공부도 버거운 상황에 React 까지 파고들어 공부할 여력이 없었다.\nvue는 약간의 Html, Css, Js 지식이 있다면 큰 러닝커브 없이 익힐 수 있다.\n(물론 단순 찍먹 수준에서)\n \n# 강의 장점 \n- 정말 vue3.js 라이브러리에 대한 지식이 전무하더라도 초심자의 눈높이에서 알기쉽게 설명해주신다.\n- 강의당 시간이 10분 내외로 측정되어 있어 부담없이 강의를 시청할 수 있다.\n- 별도의 Html, css 양식을 제공해주어 vue3.js 기능을 익히는데 온전히 집중할 수 있다. \n \n# 강의 단점\n장점이자 단점이 될 수 있다고 생각하는데 너무 ",
+        "코딩애플 인스타그램을 만들며 배워는 Vue.js3 완벽가이드 후기\n\n\n\n\n\n\n\n\n\n\n코딩애플 인스타그램을 만들며 배워는 Vue.js3 완벽가이드 후기\n\n? Archive/Daily\n2025-01-06 14:49:38\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n \n수강기간 2024.12.31 ~ 2025.01.04\n백엔드 직군 프로그래머를 준비하고 있지만\n프론트 진영의 프레임워크 하나 정도는 찍먹정도는 해보는게 좋지 않을까 싶은 생각에\n방학기간을 활용해 코딩애플 강사님의 Vue3.js 강의를 듣게 되었다.\n문제풀이 시간까지 합쳐서 하루에 대략 4~5시간 정도 공부했다.\n \n보통 나는 Notion에 강의 내용을 필기하면서 공부하는 편",
+        "[Vue.js] Composition API v-for\n\n\n\n\n\n\n\n\n\n\n[Vue.js] Composition API v-for\n\nFront-end/Vue.js\n2025-06-01 15:11:30\n\n\n\n\n\n\n\nvue.js 공식문서, GPT를 통해 학습한 내용을 정리합니다. \n잘못된 내용을 포함하고 있을 수 있습니다. \n \n#v-for\nv-for 문법을 사용하면 반복되는 HTML 컴포넌트를 마치 일반 프로그래밍 언어의 For문을 사용하듯 반복할 수 있다. \n예시로 아래와 같이 동일한 div 태그 컴포넌트가 3개 반복되는 구조가 있다고 가정해 보자.\n            <div>\n                <a>ID</a>\n                <a>PW</a>\n                <a>Ab"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 솔루션과 프로젝트 구성 방법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "[C# 기초] 프로그램의 구성 - 솔루션/ 프로젝트/ 소스 코드 (feat. Hello World!)\n\n\n\n\n\n\n\n\n\n\n[C# 기초] 프로그램의 구성 - 솔루션/ 프로젝트/ 소스 코드 (feat. Hello World!)\n\n? Archive/C#\n2021-06-16 09:55:35\n\n\n\n\n\n\n\n\n\n\n\n\n\n#0 프로젝트 생성\n#1 솔루션/ 프로젝트/ 소스코드\n#2 명령 프롬프트에서 exe파일 실행하기\n*개인적인 공부 기록용으로 작성한 글이기에, 잘못된 내용이 있을 수 있습니다.\n\n#0 프로젝트 생성\nVisualStudio를 실행 > 새 프로젝트 만들기(N)\n\n\n\n\n\n\n콘솔 애플리케이션 > 다음(N)\n\n\n\n\n\n\n프로젝트 이름(J) 입력 후 다음(N)\n\n\n\n\n\n\n대상 프레임워크 설정 후 만들기(C)\n\n\n\n\n\n\n\n",
+        "다음으로 Visual Studio Solution 유형의 .sln 확장자 파일이 보일텐데, 이것을 솔루션(Solution) 이라고 합니다. 솔루션은 프로젝트들을 묶는 역할을 수행합니다.\n\n\n\n\n\n\n즉, cs(소스파일)이 모여서 project(프로젝트) 파일이 되고, 다시 프로젝트 파일이 모여서 sln(솔루션)파일이 됩니다.\n\n#2 명령 프롬프트에서 exe파일 실행하기\n#0에서 콘솔 애플리케이션을 선택 했던 것을 기억할 것 입니다. 콘솔 애플리케이션은 명령 프롬프트(cmd)에서 실행이 가능합니다. cmd에서 실행을 하기 위해서는 우선 exe 파일이 존재하는 경로가 필요합니다. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbin > Debug > net5.0 폴더로 이동한 뒤, 경로를 복사해 줍니다.\n다음 윈도우 +",
+        "#3 동적 계획법 구현 방법\n동적 계획법을 구현하는 방법은 큰 문제에서 작은 문제로 내려가는 재귀를 이용한 Top - down 방식과 작은 문제로 부터 큰 문제로 올라가는 반복문을 이용한 Bottom - up 방식으로 나뉜다.\n*3.1 Top - down : 재귀\nTop - down 방식의 핵심은 1. 문제를 작은 문제로 나누고 2. 작은 문제를 풀고 3. 풀이한 작은 문제를 바탕으로 큰 문제를 푸는 사고 이다. 아래는 Top - down 방식을 이용해 피보나치를 구현한 코드이다. \nint memo[1001];\nint fibonacci (int n) {\n\tif (n <= 1){\n\t\treturn n;\n\t}\n\telse{\n\t\t// 큰 문제를 작은 문제로 나누고 메모한다.\n        memo[n] = fibon"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 클래스(class) 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "[C++] #1 클래스 (Class)\n\n\n\n\n\n\n\n\n\n\n[C++] #1 클래스 (Class)\n\n? Archive/C&C++\n2022-02-22 20:34:50\n\n\n\n\n\n\n\n클래스란 객체지향 프로그래밍(OPP)에서 객체를 생성하기 위한 멤버변수(상태)와 멤버함수(행동)을 정의하는 틀과 같은 역할을 수행한다.\n객체지향 프로그래밍은 모든 데이터를 객체로 취급하며, 이러한 객체들의 조합으로 코드를 작성하는 프로그래밍 기법이다.\n클래스는 C언어의 구조체(Struct)와 상당히 유사한데 차이점은 접근제어 지시자(access specifier)가 추가되었다는 점과, 멤버함수(행동)을 포함할 수 있다는 것이다. 이번 포스팅에서는 C++에서 새롭게 추가된 클래스라는 문법과 접근 제어 지시자에 대해 간략하게 정리해 보고자 한",
+        "[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]\n\n\n\n\n\n\n\n\n\n\n[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]\n\n? Archive/C#\n2021-05-30 18:18:57\n\n\n\n\n\n\n\n\n\n\n\n\n\n#1 객체지향의 시작 클래스(class)\n \n[학습 목표]\n\n객체 지향 프로그래밍에 대한 이해.\n클래스(class) 문법을 이용한 \"객체의 틀\"을 제작하는 방법에 대한 숙지\nnew 연산자를 이용해 객체를 생성하는 방법에 대한 숙지\n인스턴스화, 인스턴스의 용어의 의미에 대한 이해\n\n[목차]\n\n객체 지향 프로그래밍(OOP)\n클래스(Class)\nnew 연산자\n인스턴스화 & 인스턴스\n\n* 개인적인 공부 기록용으로 작성한 글이기에, 잘못 된 내",
+        "public static void main(String[] args) {\n        Outer outer = new Outer();\n        outer.process();\n    }\n}\nhello nov!\n\n#4 결론\n내부 클래스를 특별한 클래스 라고 생각할 수 있지만, 단순히 클래스 내부에 선언되는 클래스라는 점을 제외하면 일반적인 클래스와 사용 방법이 크게 다르지 않다. \nfor문이 중첩 되었다고 해서 문법이 달라지지 않는 것 처럼 말이다. \n \n이처럼 내부클래스는 두 클래스 간 밀접한 관계를 가지고 있는 경우에 사용하면 좋다. 여기서 밀접한 관계가 의미하는 바는 대표적으로 내부 클래스의 자원들이 외부 클래스 안에서만 사용되는 상황이 있다. \n \n내부 클래스를 사용하는 이유\n1. 강력한 캡슐화 "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 new 연산자 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "#3 new 연산자\nnew 연산자는 프로그래머가 직접 제작한 객체의 틀을 이용해서 객체를 찍어내는 역할을 하는 연산자입니다.\n사용 방식은 다음과 같습니다.\n클래스이름 객체이름 = new 클래스이름();\n앞서 예시로 든 Player 객체 틀을 이용해 player 객체를 생성한다고 하면 다음과 같이 선언하면 됩니다.\nPlayer player = new Player();\n이제 객체를 생성했으니, 객체를 사용해 보도록 합시다. 객체의 속성과 기능들은 (.)을 통해서 접근이 가능합니다.\nplayer.hp = 100;\nplayer.atk = 10;\n\nplayer.Move();\nplayer.attack();\n이렇게, 객체의 속성들을 (.)을 이용해서 값을 넣어줄 수도 있고, 기능들을 (.)을 이용해서 사용할 수도 있습니",
+        "[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]\n\n\n\n\n\n\n\n\n\n\n[C#] 1. 객체지향의 시작 클래스(class) [OOP, new 연산자, 인스턴스]\n\n? Archive/C#\n2021-05-30 18:18:57\n\n\n\n\n\n\n\n\n\n\n\n\n\n#1 객체지향의 시작 클래스(class)\n \n[학습 목표]\n\n객체 지향 프로그래밍에 대한 이해.\n클래스(class) 문법을 이용한 \"객체의 틀\"을 제작하는 방법에 대한 숙지\nnew 연산자를 이용해 객체를 생성하는 방법에 대한 숙지\n인스턴스화, 인스턴스의 용어의 의미에 대한 이해\n\n[목차]\n\n객체 지향 프로그래밍(OOP)\n클래스(Class)\nnew 연산자\n인스턴스화 & 인스턴스\n\n* 개인적인 공부 기록용으로 작성한 글이기에, 잘못 된 내",
+        "[JavaScript] 생성자 함수를 이용한 객체 생성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 생성자 함수를 이용한 객체 생성\n\n? Archive/WEB\n2022-05-14 23:44:20\n\n\n\n\n\n\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n \n#1 생성자 함수(Constructor)\n#2 생성자 함수 동작 방식\n \nReference\n모던 자바스크립트 Deep Dive 234p~246p\nnew 연산자와 생성자 함수 (javascript.info)\n\n이전 포스팅 (객체 리터럴을 이용한 객체 생성) 에서 객체 리터럴 방식 { ... }을 이용한 객체 생성 방법에 대해 알아 보았다. 객체 리터럴 방식은 직관적으로 객체를 쉽게 생성할 수 있지"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 프로퍼티(Property) 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "이 처럼 프로퍼티(Property) 문법을 이용하면, 굳이 Get / Set 함수를 따로 정의해 줄 필요도 없고, 코드의 길이도 줄어들어 가독성도 좋아집니다.\n\n#3 자동 구현 프로퍼티\n프로퍼티(Property)를 더욱 간략화 하기 위해서 C# 7.0 버전 이상부터 자동 구현 프로퍼티 라는 문법을 제공합니다.\n자동 구현 프로퍼티를 이용하면, 아래 처럼 소스코드를 한 줄로 줄이는 것 도 가능합니다.\n[사용 방법] public int Hp { get; set; }\n        class Knight\n        {\n            protected int hp;\n            public int Hp { get; set; }\n        }\n        \n        static void ",
+        "// Set Function\n            public void SetHp(int hp)\n            {\n                this.hp = hp;\n            }\n        }\n        \n        static void Main(string[] args)\n        {\n            Knight knight = new Knight();\n            knight.SetHp(100);\n            knight.GetHp();\n        }\n위와 같이 public 으로 정의한 Get , Set 함수 ( Getter , Setter 함수 라고도 부릅니다. ) 를 이용해 클래스 내부의 protected / private 속성들에 접근을",
+        "[C# 고급문법] #1 프로퍼티(Property) & get/set  함수\n\n\n\n\n\n\n\n\n\n\n[C# 고급문법] #1 프로퍼티(Property) & get/set  함수\n\n? Archive/C#\n2021-06-02 20:36:33\n\n\n\n\n\n\n\n\n\n\n\n\n\n[목차]\n\nget/set 함수\n프로퍼티(Property)\n자동구현 프로퍼티\n\n* 개인적인 공부 기록용으로 작성한 포스팅 이기에, 잘못 된 내용이 있을 수 있습니다.\n\n#1 get / set 함수\n프로그래머는 정보 은닉을 위해서, 클래스 내부의 속성들을 private 혹은 protected 로 선언 합니다.예를 들어 knight 클래스의 protected로 선언된 hp 변수가 있다고 가정해 봅시다.\n        class knight\n        {\n    "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 get/set 함수 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "// Set Function\n            public void SetHp(int hp)\n            {\n                this.hp = hp;\n            }\n        }\n        \n        static void Main(string[] args)\n        {\n            Knight knight = new Knight();\n            knight.SetHp(100);\n            knight.GetHp();\n        }\n위와 같이 public 으로 정의한 Get , Set 함수 ( Getter , Setter 함수 라고도 부릅니다. ) 를 이용해 클래스 내부의 protected / private 속성들에 접근을",
+        "[C# 고급문법] #1 프로퍼티(Property) & get/set  함수\n\n\n\n\n\n\n\n\n\n\n[C# 고급문법] #1 프로퍼티(Property) & get/set  함수\n\n? Archive/C#\n2021-06-02 20:36:33\n\n\n\n\n\n\n\n\n\n\n\n\n\n[목차]\n\nget/set 함수\n프로퍼티(Property)\n자동구현 프로퍼티\n\n* 개인적인 공부 기록용으로 작성한 포스팅 이기에, 잘못 된 내용이 있을 수 있습니다.\n\n#1 get / set 함수\n프로그래머는 정보 은닉을 위해서, 클래스 내부의 속성들을 private 혹은 protected 로 선언 합니다.예를 들어 knight 클래스의 protected로 선언된 hp 변수가 있다고 가정해 봅시다.\n        class knight\n        {\n    ",
+        "이 처럼 프로퍼티(Property) 문법을 이용하면, 굳이 Get / Set 함수를 따로 정의해 줄 필요도 없고, 코드의 길이도 줄어들어 가독성도 좋아집니다.\n\n#3 자동 구현 프로퍼티\n프로퍼티(Property)를 더욱 간략화 하기 위해서 C# 7.0 버전 이상부터 자동 구현 프로퍼티 라는 문법을 제공합니다.\n자동 구현 프로퍼티를 이용하면, 아래 처럼 소스코드를 한 줄로 줄이는 것 도 가능합니다.\n[사용 방법] public int Hp { get; set; }\n        class Knight\n        {\n            protected int hp;\n            public int Hp { get; set; }\n        }\n        \n        static void "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 생성자와 this 키워드 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "[C#] 3. 생성자와 this / this() 키워드\n\n\n\n\n\n\n\n\n\n\n[C#] 3. 생성자와 this / this() 키워드\n\n? Archive/C#\n2021-05-30 19:50:43\n\n\n\n\n\n\n\n\n\n\n\n\n\n#3 생성자와 this / this() 키워드\n \n[학습목표]\n\n생성자의 개념과 사용방법에 대한 이해\nthis 키워드 사용방법 숙지\nthis() 키워드 사용방법 숙지\n\n[목차]\n\n1.1 생성자가 필요한 이유\n1.2 생성자\n2.1 this 키워드\n2.2 this() 키워드\n\n* 개인적인 공부 기록용으로 작성한 글이기에, 잘못된 내용이 있을 수 있습니다.\n\n#1.1 생성자가 필요한 이유\n생성자 문법에 대해 알아보기 전에, 우선 생성자가 왜 필요한지에 대해서 알아 보도록 하겠습니다. 아래 코드를 봐주세요",
+        "[Java] 생성자 [Constructor] 및 this() 사용방법\n\n\n\n\n\n\n\n\n\n\n[Java] 생성자 [Constructor] 및 this() 사용방법\n\nBack-end/Java Fundamental\n2024-02-10 16:27:20\n\n\n\n\n\n\n\nConstructor 생성자란, 객체를 생성과 동시에 초기화 할 수 있도록 도와주는 특별한 메서드이다. 생성자를 사용하지 않고, 생성한 객체에 직접 접근하여 값을 대입해 줄 수도 있지만 생성자를 사용하면 객체에 필요한 입력값을 “강제”할 수 있다는 장점이 있다.\n이번 포스팅 에서는 생성자의 사용 방법에 대해 정리해 보고자 한다. \n \n목차\n#1 Constructor\n#2 Constructor Overloading & this() keyword\n- this()",
+        "say 메서드 템플릿 리터럴 내부의 this는 say 메서드를 호출한 객체인 info를 가리키게 됩니다.\n따라서 info 객체의 name 프로퍼티를 출력합니다.\nHello! I'm nov\n \n4. 화살표 함수 내부에서 호출되는 this\n화살표 함수 내부에서 this keyword를 사용하는 경우 화살표 함수 내부가 아닌 상위 스코프에서 가리킬 대상을 찾습니다.\nconst arrowFunction = () => {\n  console.log(this);\n};\narrowFunction();\n \narrowFunction 내부의 this는 상위 스코프 (global scope) 인 window object를 출력하게 됩니다. \nwindow\n \n \n이번에는 객체 내부의 메서드를 화살표 함수로 정의한 뒤 this를 호출"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 델리게이트(Delegate) 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "#2.1 델리게이트(Delegate) 선언\n이제 본격적으로 Delegate (대리자) 의 사용방법에 대해 설명 하도록 하겠습니다. Delegate를 이용하면, 함수를 다른 함수로 전달 할 수 있습니다. 델리게이트의 기본적인 사용 방법은 다음과 같습니다.\n[기본형] delegate 반환형 이름 (파라미터)\n메서드의 정의와 비슷하게 생기지 않았나요? 이렇게 delegate를 함수와 비슷하게 선언하도록 한 것은, 본연의 의미 (메서드를 전달하는 것)을 직관적으로 표현하기 위함 이라고 할 수 있습니다.\nDelegate의 기본형에서 중요한 것은 , 반환형과 파라미터(입력) 입니다. 반환형과 파라미터가 임의의 메서드와 일치한다면, 그 메서드는 해당하는 델리게이트에서 사용이 가능합니다. 아래는 Delegate를 사용한 ",
+        "[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n\n\n\n\n\n\n\n\n\n[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n? Archive/C#\n2021-06-09 18:35:28\n\n\n\n\n\n\n\n\n\n\n\n\n\n[목차]\n#1. 콜백이란?#2.1 델리게이트(Delegate) 선언\n#2.2 .Invoke()\n#2.3 델리게이트 체인(Delegate Chain)\n \n* 개인적인 공부 기록용으로 작성한 포스팅 이기에 잘못된 내용이 있을 수 있으며, 추가하거나 잘못된 내용이 있다면 지속적으로 수정해 나갈 예정입니다.\n\n#1 콜백이란?\n프로그래머는 함수를 호출할 때 콜(Call)을 하여 호출합니다. 예를 들어, Run() 이라는 함수를 사용하기 위해 콜(Call)",
+        "static void Main(string[] args)\n        {\n            MyDelegate d = (MyDelegate)Delegate.Combine(new MyDelegate(plus), new MyDelegate(minus), new MyDelegate(divide));\n            d(10, 2);\n        }\n    }\n}\n[출력결과]\n10 + 2 = 12\n10 - 2 = 8\n10 / 2 = 5\n\n\n\n                            #delegate #c# #객체지향 #델리게이트 #Invoke() #C#문법 #델리게이트체인 #델리게이트사용이유"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C#에서 콜백함수(CallBack) 사용법은?",
+      "category": "C#",
+      "answer": "",
+      "contexts": [
+        "[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n\n\n\n\n\n\n\n\n\n[C# 고급문법] #2 Delegate(델리게이트) & 콜백함수(CallBack)\n\n? Archive/C#\n2021-06-09 18:35:28\n\n\n\n\n\n\n\n\n\n\n\n\n\n[목차]\n#1. 콜백이란?#2.1 델리게이트(Delegate) 선언\n#2.2 .Invoke()\n#2.3 델리게이트 체인(Delegate Chain)\n \n* 개인적인 공부 기록용으로 작성한 포스팅 이기에 잘못된 내용이 있을 수 있으며, 추가하거나 잘못된 내용이 있다면 지속적으로 수정해 나갈 예정입니다.\n\n#1 콜백이란?\n프로그래머는 함수를 호출할 때 콜(Call)을 하여 호출합니다. 예를 들어, Run() 이라는 함수를 사용하기 위해 콜(Call)",
+        "[JavaScript] 콜백 함수 _ 미완성\n\n\n\n\n\n\n\n\n\n\n[JavaScript] 콜백 함수 _ 미완성\n\n? Archive/WEB\n2022-03-14 23:15:00\n\n\n\n\n\n\n\n*개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다.\n*지속적으로 내용을 추가 및 수정할 예정이며, 잘못된 내용에 대한 지적은 언제나 환영합니다!\n_미완성된 글 입니다.\n\n# 콜백함수\n콜백함수란 함수 안에 파라미터 형태로 들어가는 함수를 의미한다. 콜백함수를 이용하면 함수의 매개변수로 함수를 전달해 코드를 순차적으로 실행할 수 있도록 작성할 수 있다.\n \n다음 코드의 동작 과정을 살펴보자. ask 함수 파라미터의 기능은 다음과 같다.\nquestion : 문자열을 입력받아 confri",
+        "void hello()\n{\n\tcout << \"Hello, World!\" << endl;\n}\n\nint main(){\n\t/* 함수의 주소 출력 */\n\tcout << \"-----print address-----\" << endl;\n\tprintf(\"%p\\n\\n\", hello);\n\treturn 0;\n}\n함수도 주소를 가지고 있기에, 포인터를 사용할 수 있습니다. 즉, 함수의 주소를 포인터에 저장할 수 있게 되는 것입니다. \n함수 포인터 문법을 이용하면 함수의 파라미터로 함수를 보내거나 구조체 안에 함수를 선언하는 등 보다 다채로운 프로그램을 작성할 수 있습니다. \n하지만 무엇보다 함수 포인터가 가장 유용하게 쓰이는 상황은 \"콜백함수\" CallBack Function 의 구현입니다.\n콜백함수란 간단하게 요약하면 함수의 "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Flutter에서 runApp과 main.dart 사용법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "#2 runApp & main.dart\nmain.dart 파일은 다른 프로그래밍 언어와 마찬가지로 Entry Point 즉, 앱의 시작점이다. 기본적으로 어플리케이션을 구동하면 main.dart 파일이 먼저 호출된다. \n우선, flutter framework를 사용하기 위해선 material library를 import 해야만 한다. \nmain 함수에서 runApp이라는 함수가 호출되는데, runApp은 binding.dart 에 정의되어 있으며 앱의 첫 화면을 송출하는 역할을 한다. runApp 함수 안에는 첫 화면을 송출한 Widget을 넣어 준다. \n또한 runApp은 프로젝트 실행 시 단 한 번만 호출된다.\nimport 'package:flutter/material.dart';\nvoid main() ",
+        "Flutter 기본 구조 파악하기 runApp main.dart\n\n\n\n\n\n\n\n\n\n\nFlutter 기본 구조 파악하기 runApp main.dart\n\n? Archive/Flutter\n2023-03-05 13:01:54\n\n\n\n\n\n\n\nFlutter Project를 처음 생성하면 기본적으로 android, ios, lib, test, web 폴더와 yaml 파일이 생성된다.\n또한 lib 폴더 내부에는 main.dart 파일이 생성된다. 이번 포스팅에서는 각 파일의 역할에 대해 정리해 보고자 한다.\n \n? Index\n#1 프로젝트 구조\n#2 runApp & main.dart\n\n#1 프로젝트 구조\n앞에서 얘기했듯이 Flutter Project를 생성하면 다양한 폴더와 yaml 파일이 기본적으로 생성되며, 각각의 기능은",
+        "void main() async{\n  runApp(\n    MaterialApp(\n      home: Calendar(),\n    ),\n  );\n}\n \n- main 함수를 async로 변경한 뒤 관련 함수 실행\nWidgetsFlutterBinding.ensureInitialized()\nFlutter FrameWork가 실행되기 전에 필요한 패키지가 모두 준비 되었는 지 확인해 주는 메서드 이다.\n보통은 runApp method가 실행되면 자동으로 실행되는 메서드 이지만, runApp을 실행하기 전에 실행 해야 하는 코드가 따로 있다면, 메서드를 실행하기 이전에 외부에서 따로 명시해 주어야 한다. \n \ninitializeDateFormatting()\nintl 패키지와 함께 사용되는 메서드로, 각 지역의 언어"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Flutter에서 copyWith Method 사용법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "Flutter copyWith Method\n\n\n\n\n\n\n\n\n\n\nFlutter copyWith Method\n\n? Archive/Flutter\n2025-01-30 18:11:49\n\n\n\n\n\n\n\n\n* 개인적인 공부 내용을 기록하기 위해 작성한 포스팅이기에 잘못된 내용을 포함하고 있을 수 있습니다. \n* Flutter FrameWork의 copyWith 메서드와 사용법에 대한 내용에 대해 정리한 글입니다.\n\nWhat is copyWith?\ncopyWith method는 주로 immutable object(불변객체)에서 사용되는 메서드로, 변경하고자 하는 객체를 복사해 특정 필드만 변경할 수 있도록 도와주는 메서드이다. \n플러터는 상태를 관리할 때 기존 객체를 직접 수정하는 방식이 아닌 새로운 객체를 생성한 뒤 객체의 ",
+        "void main() async{\n  runApp(\n    MaterialApp(\n      home: Calendar(),\n    ),\n  );\n}\n \n- main 함수를 async로 변경한 뒤 관련 함수 실행\nWidgetsFlutterBinding.ensureInitialized()\nFlutter FrameWork가 실행되기 전에 필요한 패키지가 모두 준비 되었는 지 확인해 주는 메서드 이다.\n보통은 runApp method가 실행되면 자동으로 실행되는 메서드 이지만, runApp을 실행하기 전에 실행 해야 하는 코드가 따로 있다면, 메서드를 실행하기 이전에 외부에서 따로 명시해 주어야 한다. \n \ninitializeDateFormatting()\nintl 패키지와 함께 사용되는 메서드로, 각 지역의 언어",
+        "Column Widget 을 사용해 자식 위젯의 위치를 명시해 주니 자식 위젯의 크기가\b 제대로 표시된다.\nFlutter Row & Column 위젯 총정리\nimport 'package:bloggingtest/firstPage.dart';\nimport 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(\n    MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: Container(\n            width: 100.0,\n            height: 100.0,\n            color: Colors.greenAccent,\n            child: C"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Flutter에서 Intl 다국어화 패키지 사용법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "Flutter Intl 다국어화 패키지 캘린더 언어 설정\n\n\n\n\n\n\n\n\n\n\nFlutter Intl 다국어화 패키지 캘린더 언어 설정\n\n? Archive/Flutter\n2023-09-03 17:02:49\n\n\n\n\n\n\n\n* 다음 포스팅은 intl 패키지를 이용해 table_calendar 패키지의 언어를 한국어로 설정하는 방법에 대해서 다룹니다. \ntable_calendar 패키지의 사용방법에 대한 내용은 포함하고 있지 않으니 다음 포스팅을 참고해 주세요. \nrelated : Table_Calendar 패키지 사용법 정리\nIntl Package\n쉽게 다른 패키지의 언어를 다른 언어로 업데이트 하도록 해주는 편리한 패키지이다. \n앞서 정리한 table_calendar 패키지는 기본적으로 언어가 영어로 설정되어 있기",
+        "- pubspec.yaml 의존성 추가\ndependencies:\n  flutter:\n    sdk: flutter\n  # The following adds the Cupertino Icons font to your application.\n  # Use with the CupertinoIcons class for iOS style icons.\n  cupertino_icons: ^1.0.2\n  # calendar [달력] 패키지\n  table_calendar: ^3.0.9\n  # intl [다국어화] 패키지\n  intl: ^0.18.1\n \n- main 함수에 라이브러리 import\nimport 'package:flutter/material.dart';\nimport 'package:intl/date_symbol_",
+        "Flutter Table_Calendar Package 사용법 정리\n\n\n\n\n\n\n\n\n\n\nFlutter Table_Calendar Package 사용법 정리\n\n? Archive/Flutter\n2023-09-03 16:12:56\n\n\n\n\n\n\n\nList\n#0 사전작업\n#1 기본 사용법\n    #1.1 필수 파라미터\n    #1.2 스타일 관련 파라미터\n        #1.2.1 Header Style Parameter\n        #1.2.2 Calendar Style Parameter\n#2 이벤트 헨들링\n    #2.1 캘린더 날짜 클릭 인식\n \n개인적인 공부 기록 용도로 Flutter Table_Calendar Package 사용법에 관련한 내용에 대해 정리한 글 입니다.\n_related : intl 패키지로 "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Flutter에서 캘린더 언어 설정 방법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "Flutter Intl 다국어화 패키지 캘린더 언어 설정\n\n\n\n\n\n\n\n\n\n\nFlutter Intl 다국어화 패키지 캘린더 언어 설정\n\n? Archive/Flutter\n2023-09-03 17:02:49\n\n\n\n\n\n\n\n* 다음 포스팅은 intl 패키지를 이용해 table_calendar 패키지의 언어를 한국어로 설정하는 방법에 대해서 다룹니다. \ntable_calendar 패키지의 사용방법에 대한 내용은 포함하고 있지 않으니 다음 포스팅을 참고해 주세요. \nrelated : Table_Calendar 패키지 사용법 정리\nIntl Package\n쉽게 다른 패키지의 언어를 다른 언어로 업데이트 하도록 해주는 편리한 패키지이다. \n앞서 정리한 table_calendar 패키지는 기본적으로 언어가 영어로 설정되어 있기",
+        "Flutter Table_Calendar Package 사용법 정리\n\n\n\n\n\n\n\n\n\n\nFlutter Table_Calendar Package 사용법 정리\n\n? Archive/Flutter\n2023-09-03 16:12:56\n\n\n\n\n\n\n\nList\n#0 사전작업\n#1 기본 사용법\n    #1.1 필수 파라미터\n    #1.2 스타일 관련 파라미터\n        #1.2.1 Header Style Parameter\n        #1.2.2 Calendar Style Parameter\n#2 이벤트 헨들링\n    #2.1 캘린더 날짜 클릭 인식\n \n개인적인 공부 기록 용도로 Flutter Table_Calendar Package 사용법에 관련한 내용에 대해 정리한 글 입니다.\n_related : intl 패키지로 ",
+        "void main() async{\n  runApp(\n    MaterialApp(\n      home: Calendar(),\n    ),\n  );\n}\n \n- main 함수를 async로 변경한 뒤 관련 함수 실행\nWidgetsFlutterBinding.ensureInitialized()\nFlutter FrameWork가 실행되기 전에 필요한 패키지가 모두 준비 되었는 지 확인해 주는 메서드 이다.\n보통은 runApp method가 실행되면 자동으로 실행되는 메서드 이지만, runApp을 실행하기 전에 실행 해야 하는 코드가 따로 있다면, 메서드를 실행하기 이전에 외부에서 따로 명시해 주어야 한다. \n \ninitializeDateFormatting()\nintl 패키지와 함께 사용되는 메서드로, 각 지역의 언어"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "Dart & Flutter 웹 온라인 IDE 사용법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "Dart & Flutter 웹 온라인 IDE 추천 및 사용법 DartPad & FlutLab\n\n\n\n\n\n\n\n\n\n\nDart & Flutter 웹 온라인 IDE 추천 및 사용법 DartPad & FlutLab\n\n? Archive/Flutter\n2023-03-04 17:28:20\n\n\n\n\n\n\n\n웹 상에서 프로그래밍을 도와주는 온라인 IDE는 다양하게 존재한다. Visual Studio, Android Studio, Eclipse 등과 같이 확실한 로컬 환경 기반 IDE를 사용하지 않고 굳이 왜 온라인 IDE를 사용하는 이유는 군대와 같이 로컬 IDE를 사용하지 못하는 환경이거나, 복잡한 설치 없이 가볍게 소스코드를 돌려보고 싶다는 등 다양한 사정이 있을 것이다. \n \n한국에서 개발한 대표적인 온라인 IDE로 구름ID",
+        "#DartPad\nDartPad는 온라인 상에서 간단한 Dart 코드를 실행해 볼 수 있는 IDE이다. https://dartpad.dev 로 접속하면 바로 사용 가능하다.\n\n\n\n\n\n\nDartPad를 실행시키면 for문을 이용해 1~5 사이의 숫자를 출력하는 간단한 코드와 함께 깔끔한 UI로 구성된 IDE가 보인다.\n구성은 3단 구조로 이루어져 있다. \n좌측은 코드를 작성하는 부분이며, Run 버튼을 누르면 우측 Console 영역에 실행한 코드가 출력된다.\n\n\n\n\n\n\n또한 print 함수를 클릭해 보면 우측 하단 Documentation 영역에 print 함수에 대한 설명이 출력된다.\n이처럼 Documentation 영역에서 메서드에 관한 다양한 레퍼런스를 얻을 수 있다. \n\n\n\n\n\n\n \n상단의 메뉴를 살펴",
+        "#FlutLab\nFlutLab은 Flutter 개발을 위한 온라인 IDE로 DartPad와 달리 코드를 여러개의 파일로 분리하여 작성할 수 있으며 자동완성과 같은 사용자 편의 기능이 다수 존재하기에 Flutter 어플리케이션 개발에 아주 적합하다.\nhttps://flutlab.io \n\n \n\nFlutLab.io - Flutter IDE online\nIdeal tool for mobile development Modern developers will find their favorite coding toys here! Autocompletion, quick Flutter docs, GitHub, hot preview just to start counting...\nflutlab.io\n\n\n\n\n\n\n\n\n \n단, 계정은 "
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "DartPad와 FlutLab 사용법은?",
+      "category": "Flutter",
+      "answer": "",
+      "contexts": [
+        "#FlutLab\nFlutLab은 Flutter 개발을 위한 온라인 IDE로 DartPad와 달리 코드를 여러개의 파일로 분리하여 작성할 수 있으며 자동완성과 같은 사용자 편의 기능이 다수 존재하기에 Flutter 어플리케이션 개발에 아주 적합하다.\nhttps://flutlab.io \n\n \n\nFlutLab.io - Flutter IDE online\nIdeal tool for mobile development Modern developers will find their favorite coding toys here! Autocompletion, quick Flutter docs, GitHub, hot preview just to start counting...\nflutlab.io\n\n\n\n\n\n\n\n\n \n단, 계정은 ",
+        "#DartPad\nDartPad는 온라인 상에서 간단한 Dart 코드를 실행해 볼 수 있는 IDE이다. https://dartpad.dev 로 접속하면 바로 사용 가능하다.\n\n\n\n\n\n\nDartPad를 실행시키면 for문을 이용해 1~5 사이의 숫자를 출력하는 간단한 코드와 함께 깔끔한 UI로 구성된 IDE가 보인다.\n구성은 3단 구조로 이루어져 있다. \n좌측은 코드를 작성하는 부분이며, Run 버튼을 누르면 우측 Console 영역에 실행한 코드가 출력된다.\n\n\n\n\n\n\n또한 print 함수를 클릭해 보면 우측 하단 Documentation 영역에 print 함수에 대한 설명이 출력된다.\n이처럼 Documentation 영역에서 메서드에 관한 다양한 레퍼런스를 얻을 수 있다. \n\n\n\n\n\n\n \n상단의 메뉴를 살펴",
+        "Dart & Flutter 웹 온라인 IDE 추천 및 사용법 DartPad & FlutLab\n\n\n\n\n\n\n\n\n\n\nDart & Flutter 웹 온라인 IDE 추천 및 사용법 DartPad & FlutLab\n\n? Archive/Flutter\n2023-03-04 17:28:20\n\n\n\n\n\n\n\n웹 상에서 프로그래밍을 도와주는 온라인 IDE는 다양하게 존재한다. Visual Studio, Android Studio, Eclipse 등과 같이 확실한 로컬 환경 기반 IDE를 사용하지 않고 굳이 왜 온라인 IDE를 사용하는 이유는 군대와 같이 로컬 IDE를 사용하지 못하는 환경이거나, 복잡한 설치 없이 가볍게 소스코드를 돌려보고 싶다는 등 다양한 사정이 있을 것이다. \n \n한국에서 개발한 대표적인 온라인 IDE로 구름ID"
+      ],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    }
+  ]
+}
