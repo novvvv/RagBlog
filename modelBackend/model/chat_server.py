@@ -65,9 +65,11 @@ llm = pipeline(
     num_return_sequences=1,
     return_full_text=False,
 )
-print("Qwen1.5-0.5B-Chat 모델 로딩 완료!")
-print("Qwen1.5-1.8B-Chat 모델 로딩 완료!")
-embeddings = HuggingFaceEmbeddings(model_name="jhgan/ko-sroberta-multitask")
+print("HuggingFaceEmbeddings Meodel - BAAI/bge-m3")
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-m3",
+    encode_kwargs={"normalize_embeddings": True},
+)
 # 벡터를 저장할 디렉토리를 지정합니다. 이 디렉토리는 서버에 영구적으로 저장됩니다.
 # ChromaDB를 HTTP 클라이언트로 연결
 client = chromadb.HttpClient(host="localhost", port=8001)
@@ -153,6 +155,7 @@ def chat_with_rag(request: ChatRequest):
 
     # 검색 결과 확인용 디버깅 코드
     print("\n--- Debugging Retriever Output ---")
+    relevant_docs = []
     try:
         relevant_docs = retriever.get_relevant_documents(request.question)
         print(f"Retrieved {len(relevant_docs)} documents for post_id: {request.post_id} based on question: '{request.question}'")
@@ -163,6 +166,9 @@ def chat_with_rag(request: ChatRequest):
     except Exception as e:
         print(f"Error during document retrieval: {e}")
     print("--- End of Retriever Output ---\n")
+
+    if not relevant_docs:
+        return {"answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요."}
 
     context_texts = []
     total_length = 0
