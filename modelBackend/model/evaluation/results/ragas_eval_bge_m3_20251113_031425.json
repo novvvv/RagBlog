@@ -1,0 +1,157 @@
+{
+  "evaluation_time": "2025-11-13T03:14:25",
+  "question_count": 12,
+  "answered_count": 12,
+  "average_metrics": {
+    "faithfulness": 0.0,
+    "answer_relevancy": 0.6067530661821365,
+    "context_precision": 0.0,
+    "context_recall": 0.0
+  },
+  "records": [
+    {
+      "question": "C++에서 STL Vector Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5860583186149597,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 Class를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.7021937370300293,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 pointer란 무엇인가요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5847808122634888,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 strcpy, strlen, strcmp 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6289278268814087,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL List Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5943598747253418,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL Map Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5915893912315369,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL Deque Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5782232284545898,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL Set Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6018341779708862,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL find() 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6050924062728882,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL sort() 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5839861631393433,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL pair를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6236316561698914,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "C++에서 STL algorithm을 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요.",
+      "contexts": [],
+      "metrics": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6003592014312744,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      }
+    }
+  ]
+}

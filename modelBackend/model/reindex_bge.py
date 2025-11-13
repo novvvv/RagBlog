@@ -1,11 +1,11 @@
 """
 재임베딩 스크립트
 ------------------
-Chroma 컬렉션을 비운 뒤, `public/novlog` 안의 HTML 파일을 모두 읽어
-FastAPI `/index` 엔드포인트로 전송하여 `BAAI/bge-m3` 임베딩으로 다시 색인합니다.
+`public/novlog` 안의 HTML 파일을 모두 읽어 FastAPI `/index` 엔드포인트로 전송하여
+서버가 사용하는 임베딩 모델(mixedbread-ai/mxbai-embed-large-v1)로 다시 색인합니다.
 
 사전 준비:
-- `chroma run --path ... --port 8001`으로 서버 실행
+- `chroma run --path ... --port 8001`으로 ChromaDB 서버 실행
 - `python modelBackend/model/chat_server.py`로 FastAPI 서버 실행
 """
 
@@ -66,7 +66,7 @@ def main() -> None:
         }
 
         try:
-            response = requests.post(INDEX_ENDPOINT, json=payload, timeout=30)
+            response = requests.post(INDEX_ENDPOINT, json=payload, timeout=120)  # 타임아웃 30초 -> 120초로 증가
             response.raise_for_status()
         except requests.RequestException as exc:
             failure += 1
