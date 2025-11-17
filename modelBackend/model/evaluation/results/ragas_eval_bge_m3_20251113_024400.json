@@ -1,0 +1,216 @@
+{
+  "evaluation_time": "2025-11-13T02:44:00",
+  "question_count": 12,
+  "answered_count": 12,
+  "average_metrics": {
+    "faithfulness": 0.7405735651652018,
+    "answer_relevancy": 0.7439393599828085,
+    "context_precision": 1.0,
+    "context_recall": 0.6877233535051346
+  },
+  "records": [
+    {
+      "question": "C++에서 STL Vector Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1] C++ STL Vector Container 사용 방법 & 관련 예제 총 정리에 따르면, Vector 컨테이너는 동적 배열 기반으로 다양한 연산이 지원됩니다. [컨텍스트 1]  \n[컨텍스트 4] C++ STL Pair Container 사용법 정리(With Vector, Typedef, Sort)에서도 벡터와 함께 쌍형식 데이터 구조를 활용할 때 벡터를 기본 단위로 사용한다고 언급되어 있습니다. [컨텍스트 4]",
+      "contexts": [
+        "[요약] [C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리\n[위치] [C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리\n[C++ STL] Vector Container 사용 방법 & 관련 예제 총 정리",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm",
+        "[요약] [C++ STL] Queue Container 사용법 정리\n[위치] [C++ STL] Queue Container 사용법 정리\n[C++ STL] Queue Container 사용법 정리",
+        "[요약] [C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)\n[위치] [C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)\n[C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)"
+      ],
+      "metrics": {
+        "faithfulness": 0.7944951057434082,
+        "answer_relevancy": 0.7518281936645508,
+        "context_precision": 1.0,
+        "context_recall": 0.6856239438056946
+      }
+    },
+    {
+      "question": "C++에서 Class를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 4] Class란 객체지향 프로그래밍(OPP)에서 객체를 생성하기 위한 멤버변수(상태)와 멤버함수(행동)을 정의하는 틀과 같은 역할을 수행한다고 설명되어 있습니다. 따라서 C++에서 Class는 객체의 상태와 행동을 캡슐화하는 데 사용됩니다. [컨텍스트 4]",
+      "contexts": [
+        "[요약] [C++] #1 클래스 (Class)\n[위치] [C++] #1 클래스 (Class)\n[C++] #1 클래스 (Class)",
+        "[요약] [C++] fill method\n[위치] [C++] fill method\n[C++] fill method",
+        "[요약] [C++] tuple 사용법 & 예제\n[위치] [C++] tuple 사용법 & 예제\n[C++] tuple 사용법 & 예제",
+        "[요약] ?\n? Archive/C&C++ 2022-02-22 20:34:50 클래스란 객체지향 프로그래밍(OPP)에서 객체를 생성하기 위한 멤버변수(상태)와 멤버함수(행동)을 정의하는 틀과 같은 역할을 수행한다. 객체지향 프로그래밍은 모든 데이터를 객체로 취급하며, 이러한 객체들의 조합으로 코드를 작성하는 프로그래밍 기법이다. 클래스는 C언어의 구조체(Struct)와 상당히 유사한데 차이점은 가 추가되었다는 점과, 는 것이다. 이번 포스팅에서는 C++에서 새롭게 추가된 클래스라는 문법과 접근 제어 지시자에 대해 간략하게 정리해 보고자 한다."
+      ],
+      "metrics": {
+        "faithfulness": 0.770301103591919,
+        "answer_relevancy": 0.7417867183685303,
+        "context_precision": 1.0,
+        "context_recall": 0.6170860528945923
+      }
+    },
+    {
+      "question": "C++에서 pointer란 무엇인가요?",
+      "category": "C++",
+      "answer": "C/C++에서 pointer는 변수나 함수 등의 값을 저장하기 위한 주소 지정자입니다. [컨텍스트 2]에 따르면 포인터는 개인적인 공부 내용 기록용 글일 수 있으나, 포인터의 기본 개념과 관련된 설명이 포함되어 있습니다. [컨텍스트 3]에서는 포인터 문법을 통해 변수 주소 저장 방법을 언급했으며, 이는 포인터의 핵심 기능을 보여줍니다.",
+      "contexts": [
+        "[요약] [C/C++] VOL1 함수 포인터 (Function Pointer) 개요\n[위치] [C/C++] VOL1 함수 포인터 (Function Pointer) 개요\n[C/C++] VOL1 함수 포인터 (Function Pointer) 개요",
+        "[요약] ?\n? Archive/C&C++ 2022-01-27 12:13:36 * 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. #1 메모리 저장 방식 #2 포인터(Pointer) 연산자 * & #3 포인터가 필요한 이유 #4 포인터 문법 - 포인터 변수 선언 - 널 포인터 #1 메모리 저장 방식 포인터를 공부하기에 앞서 우선 프로그래머가 변수를 선언할 시 데이터가 메모리에 어떤 방식으로 저장되는지에 대해 알아 보도록 합시다. 라는 것은 컴퓨터가 어딘가의 메모리 공간에 4byte 를 할당하고 그",
+        "[요약] ?\n? Archive/C&C++ 2022-02-10 14:28:17 * 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. * 다음 포스팅은 총 3편으로 나누어 정리할 예정입니다. VOL1 함수 포인터 (Function Pointer) 개요 #1 함수 포인터란? #2 함수 포인터 사용법 #1 함수 포인터란? 포인터 문법을 이용하면 변수의 주소를 저장할 수 있습니다. 예를들어 아래와 같이 코드를 작성하면 int형 변수 val의 주소가 ptr에 저장됩니다. 그런데 변수 뿐만 아니라 함수도",
+        "[요약] 새로운 커밋이 생성되었다.\n새로운 커밋이 생성되었다. 버전2를 삭제하는 대신 버전2에서 변경한 이력을 취소한 새로운 버전을 생성한 것이다. #깃 #깃허브사용법 #커밋되돌리기 #깃사용법 #스테이징취소 #커밋취소"
+      ],
+      "metrics": {
+        "faithfulness": 0.708000898361206,
+        "answer_relevancy": 0.7497050762176514,
+        "context_precision": 1.0,
+        "context_recall": 0.615253746509552
+      }
+    },
+    {
+      "question": "C++에서 strcpy, strlen, strcmp 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 2]에서 strcmp 함수는 다음과 같이 사용됩니다: \"두 문자열을 비교하여 더 작은 값을 반환합니다.\"  \n[컨텍스트 2]에서 strlen 함수는 문자열 길이 계산 시 마지막 null 문자를 제외한 개수를 반환합니다.  \n[컨텍스트 1] 및 [컨텍스트 3] 모두 strcpy 함수는 버퍼 오버플로우 가능성을 고려해야 함을 강조합니다.",
+      "contexts": [
+        "[요약] 에서는 strlen , strcpy , strcat , strcmp 함수를 직접 구현해 보도록 하겠습니다.\n에서는 strlen , strcpy , strcat , strcmp 함수를 직접 구현해 보도록 하겠습니다. 이어지는 포스팅 ... [C/C++] strcpy strlen strcmp strcat _ 구현코드 #CIN #strcat #strcmp #strlen #cin.getline #C스타일문자열 #C언어문자열 #strcmpy",
+        "[요약] 해 주어야 합니다.\n해 주어야 합니다. <cstring> 헤더파일을 선언 1. strlen() strlen 함수는 문자열의 길이를 출력해 줍니다. 이 때 문자열의 길이는 마지막의 null 문자가 제외된 길이입니다. 2. strcpy() strcpy 함수는 문자열을 다른 문자열 배열로 복사해 줍니다. 을 을 넣어 줍니다. 첫 번째 인자에는 저장할 문자열 두 번째 인자에는 복사할 문자열 그러나 strcpy 함수는 오버플로우(OverFlow)발생 위험이 있습니다. 따라서, 해 크기를 지정해 주는 것이 좋습니다. strcpy_s 함수를 사용 3.",
+        "[요약] [C/C++] strcpy strlen strcmp strcat _ 구현 코드\n[위치] [C/C++] strcpy strlen strcmp strcat _ 구현 코드\n[C/C++] strcpy strlen strcmp strcat _ 구현 코드"
+      ],
+      "metrics": {
+        "faithfulness": 0.660271167755127,
+        "answer_relevancy": 0.7327409982681274,
+        "context_precision": 1.0,
+        "context_recall": 0.72138911485672
+      }
+    },
+    {
+      "question": "C++에서 STL List Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1] C++ STL List Container 사용 방법 정리에 따르면, STL List 컨테이너는 연결 리스트(Linked List) 구조체를 통해 데이터 저장 및 관리에 활용됩니다. [컨텍스트 1]  \n\n[컨텍스트 2] 관련 주제로 \"데이터구조기반\" 섹션에서 STL List 컨테이너의 기본 개념과 함께 구체적인 사용 예시가 언급되었으나, 본문 내 상세 방법론은 생략되어 있습니다. [컨텍스트 2]",
+      "contexts": [
+        "[요약] [C++] STL List Container 사용 방법 정리\n[위치] [C++] STL List Container 사용 방법 정리\n[C++] STL List Container 사용 방법 정리",
+        "[요약] ?\n? Archive/C&C++ 2022-08-15 14:56:11 * 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. * 다음 포스팅은 에 대한 내용에 대해 기술하고 있으며, Linked List (연결 리스트) 의 개념 혹은 구현 방법에 대한 내용을 원하시는 분은 다음 포스팅을 참고해 주시기 바랍니다. C++ STL List Container의 사용 방법 _ Related → [DataStructure] 연결 리스트 : Linked List 개념 정리 → Linked List 구현",
+        "[요약] [C++ STL] Queue Container 사용법 정리\n[위치] [C++ STL] Queue Container 사용법 정리\n[C++ STL] Queue Container 사용법 정리",
+        "[요약] ?\n? Archive/C&C++ 2022-08-18 20:42:22 * 다음 포스팅은 에 대해 다룹니다. STL List Container의 erase 멤버 함수를 사용 시 발생할 수 있는 오류 * 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. Related → STL List Container 사용 방법 정리 Content #1 Vector erase member function #2 List erase member function #1 Vector erase member"
+      ],
+      "metrics": {
+        "faithfulness": 0.7651076316833496,
+        "answer_relevancy": 0.7940007448196411,
+        "context_precision": 1.0,
+        "context_recall": 0.7270109057426453
+      }
+    },
+    {
+      "question": "C++에서 STL Map Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1]에 따르면 C++ STL map Container 사용 방법 정리(feat. map & hash_map & multi_map)에 대한 정보가 제공되었습니다. [컨텍스트 1] 요약에서도 개인적인 공부 내용으로서 map 컨테이너 사용법을 언급했으나 구체적인 동작 방식에 대한 상세 설명은 absence합니다.  \n\n[컨텍스트 2]에서는 향후 포스팅에서 map 및 multimap 차이에 대한 추가 안내가 있음을 알려주며 현재 제공된 자료 내에는 해당 기능에 대한 실행 예시나 단계별 지침이 명시되지 않았다고 판단됩니다.",
+      "contexts": [
+        "[요약] [C++] STL map Container 사용 방법 정리 (feat.\n[위치] [C++] STL map Container 사용 방법 정리 (feat. map & [hash_map]unordered_map & multi_map)\n[C++] STL map Container 사용 방법 정리 (feat. map & [hash_map]unordered_map & multi_map)",
+        "[요약] ?\n? Archive/C&C++ 2022-09-18 18:33:24 * 다음 포스팅은 STL map 컨테이너와 multimap 컨테이너의 차이점에 대해 다루고 있습니다. map 혹은 multimap 컨테이너의 사용법에 대한 정보를 원하시는 분들은 다음 포스팅을 참고해 주세요. → [C++] STL map Container 사용 방법 정리 * 개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있으며, 지속적으로 수정해 나갈 예정입니다. _Contents #1 Key값의 중복 #2 [] 연산자 #3",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm",
+        "[요약] [C++ STL] Queue Container 사용법 정리\n[위치] [C++ STL] Queue Container 사용법 정리\n[C++ STL] Queue Container 사용법 정리"
+      ],
+      "metrics": {
+        "faithfulness": 0.6840316653251648,
+        "answer_relevancy": 0.7446575164794922,
+        "context_precision": 1.0,
+        "context_recall": 0.7284622192382812
+      }
+    },
+    {
+      "question": "C++에서 STL Deque Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 3] [C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리에 따르면, C++ STL Deque Container를 사용하기 위해서는 기본 기능인 push_front(), pop_back() 등의 연산을 활용해야 합니다. 특히 시퀀스 컨테이너 특성상 양쪽 끝에서 삽입/삭제가 용이하며, 메모리 효율성 측면에서 Vector와 유사하지만 분할 저장 방식을 가집니다.",
+      "contexts": [
+        "[요약] [C++ STL] Queue Container 사용법 정리\n[위치] [C++ STL] Queue Container 사용법 정리\n[C++ STL] Queue Container 사용법 정리",
+        "[요약] back() #3 Deque 원소 접근 * 개인적인 공부 내용 기록용으로 작성한 글이기에 잘못된 내용이 있을 수 있으며, 지속적으로 수정해 나갈 예정입니다.\nback() #3 Deque 원소 접근 * 개인적인 공부 내용 기록용으로 작성한 글이기에 잘못된 내용이 있을 수 있으며, 지속적으로 수정해 나갈 예정입니다. #1 About Deque 는 입니다. 그래서 Vector 컨테이너와 특징이 매우 유사합니다. Deque 컨테이너 시퀀스 컨테이너이자, 배열 기반 컨테이너 하나의 메모리 블록에 저장되는 Vector와 달리 Deque는 여러개의 메모리 블록에 나뉘어 저장된다는 특징을 갖고 있습니다. 벡터의 메모리 구조는 포스팅을 참고해 주세요. [C++ STL] Vector Container",
+        "[요약] [C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리\n[위치] [C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리\n[C++ STL] Deque Container 사용 방법 & 관련 예제 총 정리",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm"
+      ],
+      "metrics": {
+        "faithfulness": 0.7596826553344727,
+        "answer_relevancy": 0.7848414182662964,
+        "context_precision": 1.0,
+        "context_recall": 0.69183349609375
+      }
+    },
+    {
+      "question": "C++에서 STL Set Container를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1] 문제 해결에서 사용되는 STL Set 컨테이너 사용법에 대한 설명을 간략히 정리했습니다. Set은 중복을 허용하지 않는 자료구조로 집합 연산(교집합, 합집합 등)이 가능합니다. [컨텍스트 1]  \n[컨텍스트 2] C++ STL Set 컨테이너 사용법에 관한 요약 포스팅이 제공되었습니다.",
+      "contexts": [
+        "[요약] Problem Solving/PS With C++ 2024-09-17 17:12:41 * PS 알고리즘 풀이에서 사용되는 STL Set Container 사용법에 관하여 간략하게 정리해 둔 포스팅 입니다.\n[위치] [C++] About STL Set Container in PS Algorithm\nProblem Solving/PS With C++ 2024-09-17 17:12:41 * PS 알고리즘 풀이에서 사용되는 STL Set Container 사용법에 관하여 간략하게 정리해 둔 포스팅 입니다. *잘못된 내용을 포함하고 있을 수 있으며, 수정할 내용이 있다면 댓글로 남겨주세요 #1 About STL Set - Set은 수학의 집합 개념을 본따서 설계된 자료구조 이기에 중복을 허용하지 않으며, 다양한 집합 관련 연산 (교집합 _ set_intersection , 합집합 set_union , 차집합",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm",
+        "[요약] [C++ STL] Queue Container 사용법 정리\n[위치] [C++ STL] Queue Container 사용법 정리\n[C++ STL] Queue Container 사용법 정리",
+        "[요약] [C++] STL List Container 사용 방법 정리\n[위치] [C++] STL List Container 사용 방법 정리\n[C++] STL List Container 사용 방법 정리"
+      ],
+      "metrics": {
+        "faithfulness": 0.7122818827629089,
+        "answer_relevancy": 0.7542599439620972,
+        "context_precision": 1.0,
+        "context_recall": 0.7092153429985046
+      }
+    },
+    {
+      "question": "C++에서 STL find() 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1] [C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.  \n[컨텍스트 2] [C++ STL] find() - 범위(Vector, Array..) 내에서 값을 탐색하는 함수  \n[컨텍스트 3] [알고리즘] find() 함수는 일련의 자료구조(Array, Vector, Deque..)내에서 원하는 값을 탐색 범위 안의 원소들 중에서 찾아주는 역할을 한다.",
+      "contexts": [
+        "[요약] [C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.\n[위치] [C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.\n[C++ STL] string.find() - 문자열에서 원하는 문자열을 탐색한다.",
+        "[요약] [C++ STL] find() - 범위(Vector, Array..) 내에서 값을 탐색하는 함수\n[위치] [C++ STL] find() - 범위(Vector, Array..) 내에서 값을 탐색하는 함수\n[C++ STL] find() - 범위(Vector, Array..) 내에서 값을 탐색하는 함수",
+        "[요약] ?\n? Archive/C&C++ 2022-05-19 19:11:17 C++ STL find Function *개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. _reference https://www.cplusplus.com/reference/algorithm/find/ #find 에 정의되어 있다. <algorithm> find() 함수는 하는 함수이다. 일련의 자료구조(Array, Vector, Deque..)내에서 원하는 값을 탐색 범위(first부터 last전)안의 원소들 중에서",
+        "[요약] [C++] STL List Container 사용 방법 정리\n[위치] [C++] STL List Container 사용 방법 정리\n[C++] STL List Container 사용 방법 정리"
+      ],
+      "metrics": {
+        "faithfulness": 0.921492874622345,
+        "answer_relevancy": 0.715927004814148,
+        "context_precision": 1.0,
+        "context_recall": 0.7423257827758789
+      }
+    },
+    {
+      "question": "C++에서 STL sort() 함수를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "C++ STL sort 함수 사용 방법은 다음과 같습니다. [컨텍스트 1]과 [컨텍스트 2]에 따라 간단히 구현 가능하며, 오름차순 및 내림차순 모두 적용할 수 있습니다. [컨텍스트 2]에서 언급된 대로 헤더에 정의된 방식으로 활용하면 됩니다. [컨택스트 1]에서 설명한 바와 같이 quick sort 기반으로 O(n log n) 시간 복잡도를 가집니다.",
+      "contexts": [
+        "[요약] 시간이 걸리게된다.\n시간이 걸리게된다. 해결방법은 간단하다. 헤더에 정의된 를 사용하면 된다. C++ STL <algorithm> sort 정렬함수 sort 함수는 quick sort 기반 알고리즘으로 제작된 intro sort 알고리즘을 사용하는데, 한다. 항상 O(nlogn)의 시간복잡도를 보장 _ About sort #C++ #알고리즘 #STL #sort #문제풀이 #좌표정렬하기 #11650",
+        "[요약] [C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)\n[위치] [C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)\n[C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)",
+        "[요약] [C++] STL List Container 사용 방법 정리\n[위치] [C++] STL List Container 사용 방법 정리\n[C++] STL List Container 사용 방법 정리",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm"
+      ],
+      "metrics": {
+        "faithfulness": 0.6228973269462585,
+        "answer_relevancy": 0.7577676773071289,
+        "context_precision": 1.0,
+        "context_recall": 0.6829279065132141
+      }
+    },
+    {
+      "question": "C++에서 STL pair를 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "C++ STL에서 pair 컨테이너는 벡터와 함께 사용될 때 변수 이름 형태(Typedef)로 선언됩니다. [컨텍스트 1]과 [컨텍스트 2]에 따르면 pair는 첫 번째 요소로 key를, 두 번째 요소로 value를 저장합니다. [컨텍스트 1]에서는 이 구조를 map에 활용하기 위해 insert member function으로 원소를 추가한다고 설명했습니다. [컨텍스트 3]에서는 std::map::operator[]를 통해 key-value 쌍을 삽입하거나 접근할 수 있다고 언급했으며, 키가 없을 경우 size를 증가시킨 후 새 원소를 추가합니다.",
+      "contexts": [
+        "[요약] 자료를 합니다.\n자료를 합니다. pair로 저장 STL pair에 대한 내용은 다음 포스팅에 정리되어 있습니다. → Pair Container 사용법 정리 With Vector, Typedef, sort map<key, value> 변수이름 형태로 선언하며 입니다. first에 저장되는 값이 key second에 저장되는 값이 value 2. Insert : 원소 삽입 2.1 Insert member function map에 자료를 추가하는 연산은 을 사용합니다. insert member function 앞서 pair를 사용해 map을",
+        "[요약] [C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)\n[위치] [C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)\n[C++ STL] Pair Container 사용법 정리 (With Vector, Typedef, Sort)",
+        "[요약] map에 자료를 추가하는 연산은 을 사용합니다.\nmap에 자료를 추가하는 연산은 을 사용합니다. insert member function 앞서 pair를 사용해 map을 선언했으니, 삽입 연산 또한 pair를 이용합니다. 2.2 std::map::operator[] 를 이용해 map에 key-value 쌍을 추가할 수 있습니다. Access element operaor [] opeartor[]는 키에 접근할 때도 사용되며, 합니다. map container에 키값이 존재하지 않는 경우 size를 1 증가시키고 새로운 key-value 원소를 추가 example code1)",
+        "[요약] Binary Search in C++ STL\n[위치] Binary Search in C++ STL\nBinary Search in C++ STL"
+      ],
+      "metrics": {
+        "faithfulness": 0.7373350858688354,
+        "answer_relevancy": 0.7022383213043213,
+        "context_precision": 1.0,
+        "context_recall": 0.6402680277824402
+      }
+    },
+    {
+      "question": "C++에서 STL algorithm을 어떻게 사용하나요?",
+      "category": "C++",
+      "answer": "[컨텍스트 1] C++ STL Algorithm 헤더의 fill 메서드 사용 방법에 대해 다룬 포스팅입니다. fill 메서드는 `<algorithm>` 지정 범위의 요소들을 \"<algorithm>으로 채워줍니다\". 예를 들어, `int type[] = {1, 2, 3};`과 같은 배열에서 `std::fill(type.begin(), type.end(), 4);`와 같이 사용 가능합니다. [컨텍스트 1]  \n\n[컨텍스트 3] C++ STL find 함수에 대한 설명으로, `_reference https://www.cplusplus.com/reference/algorithm/find/`를 참조하며, find() 함수는 자료구조 내 원하는 값을 탐색 범위 내에서 검색합니다. [컨텍스트 3]",
+      "contexts": [
+        "[요약] Problem Solving/PS With C++ 2025-01-26 08:41:25 *C++ STL Algorithm 헤더의 fill 메서드 사용 방법에 대해 다룬 포스팅입니다.\n[위치] [C++] fill method\nProblem Solving/PS With C++ 2025-01-26 08:41:25 *C++ STL Algorithm 헤더의 fill 메서드 사용 방법에 대해 다룬 포스팅입니다. *개인적인 공부 내용을 기록하기 위해 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. #fill Header - <algorithm> 지정 범위의 요소들을 으로 채워준다. \"타입에 맞는 값\" int type 배열이라면 int 타입에 맞는 값으로 각 요소를 설정하며, 이터레이터를 지원하기에 vector, array와 같은 다른 STL",
+        "[요약] [C++] About STL Set Container in PS Algorithm\n[위치] [C++] About STL Set Container in PS Algorithm\n[C++] About STL Set Container in PS Algorithm",
+        "[요약] ?\n? Archive/C&C++ 2022-05-19 19:11:17 C++ STL find Function *개인적인 공부 내용을 기록하는 용도로 작성한 글 이기에 잘못된 내용을 포함하고 있을 수 있습니다. _reference https://www.cplusplus.com/reference/algorithm/find/ #find 에 정의되어 있다. <algorithm> find() 함수는 하는 함수이다. 일련의 자료구조(Array, Vector, Deque..)내에서 원하는 값을 탐색 범위(first부터 last전)안의 원소들 중에서",
+        "[요약] [C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)\n[위치] [C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)\n[C++ STL] sort 정렬 함수 사용 방법 정리 (오름차순 & 내림차순)"
+      ],
+      "metrics": {
+        "faithfulness": 0.7509853839874268,
+        "answer_relevancy": 0.6975187063217163,
+        "context_precision": 1.0,
+        "context_recall": 0.6912837028503418
+      }
+    }
+  ]
+}
