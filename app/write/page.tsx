@@ -92,24 +92,24 @@ export default function WritePage() {
 
   if (!authenticated) {
     return (
-      <main className="min-h-screen flex items-center justify-center px-6">
+      <main className="min-h-screen flex items-center justify-center px-6 bg-[#F7F7F4] dark:bg-[#26251E]">
         <div className="max-w-md w-full">
           <form onSubmit={handleLogin} className="space-y-4">
-            <h1 className="text-2xl font-bold text-[#26251E] mb-6">글쓰기</h1>
+            <h1 className="text-2xl font-bold text-[#26251E] dark:text-[#F7F7F4] mb-6">글쓰기</h1>
 
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="비밀번호"
-              className="w-full px-4 py-3 border border-[#26251E]/20 bg-[#F7F7F4] text-[#26251E] focus:outline-none focus:border-[#26251E]/40"
+              className="w-full px-4 py-3 border border-[#26251E]/20 dark:border-[#F7F7F4]/20 bg-[#F7F7F4] dark:bg-[#26251E] text-[#26251E] dark:text-[#F7F7F4] focus:outline-none focus:border-[#26251E]/40 dark:focus:border-[#F7F7F4]/40"
               required
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-3 bg-[#26251E] text-[#F7F7F4] hover:opacity-80 transition-opacity disabled:opacity-50"
+              className="w-full px-4 py-3 bg-[#26251E] dark:bg-[#F7F7F4] text-[#F7F7F4] dark:text-[#26251E] hover:opacity-80 transition-opacity disabled:opacity-50"
             >
               {loading ? '확인 중...' : '확인'}
             </button>
@@ -121,9 +121,9 @@ export default function WritePage() {
   }
 
   return (
-    <main className="min-h-screen px-6 py-12">
+    <main className="min-h-screen px-6 py-12 bg-[#F7F7F4] dark:bg-[#26251E]">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold text-[#26251E] mb-8">글쓰기</h1>
+        <h1 className="text-2xl font-bold text-[#26251E] dark:text-[#F7F7F4] mb-8">글쓰기</h1>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -132,7 +132,7 @@ export default function WritePage() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="제목"
-              className="w-full px-4 py-3 border border-[#26251E]/20 bg-[#F7F7F4] text-[#26251E] focus:outline-none focus:border-[#26251E]/40 text-xl"
+              className="w-full px-4 py-3 border border-[#26251E]/20 dark:border-[#F7F7F4]/20 bg-[#F7F7F4] dark:bg-[#26251E] text-[#26251E] dark:text-[#F7F7F4] focus:outline-none focus:border-[#26251E]/40 dark:focus:border-[#F7F7F4]/40 text-xl"
               required
             />
           </div>
@@ -143,7 +143,7 @@ export default function WritePage() {
               onChange={(e) => setContent(e.target.value)}
               placeholder="내용"
               rows={20}
-              className="w-full px-4 py-3 border border-[#26251E]/20 bg-[#F7F7F4] text-[#26251E] focus:outline-none focus:border-[#26251E]/40 resize-none"
+              className="w-full px-4 py-3 border border-[#26251E]/20 dark:border-[#F7F7F4]/20 bg-[#F7F7F4] dark:bg-[#26251E] text-[#26251E] dark:text-[#F7F7F4] focus:outline-none focus:border-[#26251E]/40 dark:focus:border-[#F7F7F4]/40 resize-none"
               required
             />
           </div>
@@ -152,14 +152,14 @@ export default function WritePage() {
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-3 bg-[#26251E] text-[#F7F7F4] hover:opacity-80 transition-opacity disabled:opacity-50"
+              className="px-6 py-3 bg-[#26251E] dark:bg-[#F7F7F4] text-[#F7F7F4] dark:text-[#26251E] hover:opacity-80 transition-opacity disabled:opacity-50"
             >
               {submitting ? '작성 중...' : '작성하기'}
             </button>
             <button
               type="button"
               onClick={() => router.push('/posts')}
-              className="px-6 py-3 border border-[#26251E]/20 text-[#26251E] hover:bg-[#26251E]/5 transition-colors"
+              className="px-6 py-3 border border-[#26251E]/20 dark:border-[#F7F7F4]/20 text-[#26251E] dark:text-[#F7F7F4] hover:bg-[#26251E]/5 dark:hover:bg-[#F7F7F4]/5 transition-colors"
             >
               취소
             </button>

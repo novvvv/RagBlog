@@ -25,6 +25,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark body {
+  color: #F7F7F4;
+  background: #26251E;
+}
+
 :root {
   --foreground-rgb: 38, 37, 30;
 }
