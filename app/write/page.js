@@ -82,6 +82,7 @@ export default function Write() {
                         <CodeContentRenderer content={content} />
                     ) : (
                         <>
+<<<<<<< HEAD
                             <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'center' }}>
                                 <button
                                     type="button"
@@ -114,6 +115,22 @@ export default function Write() {
                                 </button>
 
                                 <button type="button" onClick={() => {
+=======
+                            <div className="toolbar">
+                                <button type="button" className="toolbar-btn" onClick={() => fileInputRef.current.click()}>사진</button>
+                                <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
+                                {imageName && <span style={{ fontSize: '13px', color: '#888' }}>{imageName}</span>}
+                                <button type="button" className="toolbar-btn" onClick={() => {
+                                    const textarea = document.querySelector('textarea[name="content"]');
+                                    const start = textarea.selectionStart;
+                                    const end = textarea.selectionEnd;
+                                    const text = textarea.value;
+                                    const newText = text.substring(0, start) + '\n```javascript\n// 여기에 코드를 입력하세요\n```\n' + text.substring(end);
+                                    setContent(newText);
+                                    textarea.focus();
+                                }}>코드</button>
+                                <button type="button" className="toolbar-btn" onClick={() => {
+>>>>>>> ace024c (fix: 블로그 구조 변경)
                                     const textarea = document.querySelector('textarea[name="content"]');
                                     const start = textarea.selectionStart;
                                     const end = textarea.selectionEnd;
@@ -122,6 +139,7 @@ export default function Write() {
                                     const newText = text.substring(0, start) + '**' + selectedText + '**' + text.substring(end);
                                     setContent(newText);
                                     textarea.focus();
+<<<<<<< HEAD
                                 }}
                                 style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
                                 >
@@ -137,6 +155,13 @@ export default function Write() {
                                 <button type="button" onClick={() => applyAlignment('right')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
                                     <img src="/write/right_align_icon.png" alt="오른쪽 정렬" style={{ width: '32px', height: '32px' }} />
                                 </button>
+=======
+                                }}><b>B</b></button>
+                                <span className="toolbar-divider"></span>
+                                <button type="button" className="toolbar-btn" onClick={() => applyAlignment('left')}>좌</button>
+                                <button type="button" className="toolbar-btn" onClick={() => applyAlignment('center')}>중</button>
+                                <button type="button" className="toolbar-btn" onClick={() => applyAlignment('right')}>우</button>
+>>>>>>> ace024c (fix: 블로그 구조 변경)
                             </div>
 
                             {src && (

@@ -1,10 +1,117 @@
 body {
   margin: 0;
+<<<<<<< HEAD
   padding-left: 250px;
   padding-right: 250px;
   background-color: #FDFDFD;
 }
 
+=======
+  padding: 0 clamp(40px, 16vw, 420px);
+  background-color: #FDFDFD;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #222;
+}
+
+/* ── Navbar ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.navbar a:hover { color: #000; }
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.navbar-left a { font-weight: 700; font-size: 15px; }
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ── Hero heading ── */
+.heroSection {
+  text-align: center;
+  padding: 56px 0 12px;
+}
+.newsHeading {
+  font-size: 3.2em;
+  font-weight: 200;
+  color: #262627;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+/* ── Sub-nav (Info / Programming / ...) ── */
+.subNav {
+  text-align: center;
+  padding: 12px 0 0;
+}
+.subNav a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 18px;
+  transition: color 0.15s;
+}
+.subNav a:hover { color: #111; }
+
+/* ── Divider ── */
+.newsLine {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+  margin: 16px 0 0;
+}
+.solidLine {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* ── About + Record row ── */
+.heroRow {
+  display: flex;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 0 8px;
+  gap: 28px;
+  align-items: center;
+}
+.heroRow > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Main content ── */
+.main-content-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 0 24px;
+}
+.main-page-content {
+  width: 100%;
+  text-align: center;
+}
+
+/* ── List items ── */
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .list-bg {
   background: rgb(249, 250, 255);
   padding: 10px;
@@ -13,10 +120,20 @@ body {
   background: white;
   border-radius: 10px;
   padding: 20px;
+<<<<<<< HEAD
   margin-bottom: 5px;
   box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
   opacity: 1;
   transition: all 1s;
+=======
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.list-item:hover {
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 }
 .list-item h4 {
   font-size: 20px;
@@ -25,6 +142,7 @@ body {
 }
 .list-item p {
   color: grey;
+<<<<<<< HEAD
   margin : 5px 0px;
 } 
 
@@ -77,11 +195,18 @@ body {
   cursor: pointer;
 }
 
+=======
+  margin: 5px 0;
+}
+
+/* ── Buttons ── */
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .login-button {
   background-color: transparent;
   color: black;
   border: none;
   padding: 0;
+<<<<<<< HEAD
   border-radius: 0;
   font-size: 14px;
   cursor: default;
@@ -96,12 +221,32 @@ body {
 .p-20 {
   padding: 20px;
 }
+=======
+  font-size: 14px;
+  cursor: pointer;
+}
+.login-button:hover { color: #555; }
+
+button {
+  padding: 10px 15px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+button:hover { background: #e4e4e4; }
+
+/* ── Inputs ── */
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 input {
   box-sizing: border-box;
   padding: 10px;
   display: block;
   margin-bottom: 10px;
 }
+<<<<<<< HEAD
 button {
   padding: 10px 15px;
   background: lightgray;
@@ -130,6 +275,16 @@ button {
   margin: 0 auto;
 }
 
+=======
+
+/* ── Write page ── */
+.p-20 { padding: 20px; }
+.write-container {
+  padding: 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .select-category {
   width: 200px;
   padding: 10px;
@@ -139,7 +294,10 @@ button {
   border-radius: 4px;
   color: #444;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .title-input {
   font-size: 24px;
   border: none;
@@ -150,7 +308,10 @@ button {
   outline: none;
   color: #444;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .content-input {
   font-size: 16px;
   border: none;
@@ -160,13 +321,29 @@ button {
   outline: none;
   color: #444;
 }
+<<<<<<< HEAD
 
+=======
+.content-textarea {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  padding: 10px 0;
+  outline: none;
+  color: #444;
+  resize: vertical;
+  line-height: 1.5;
+  font-family: inherit;
+}
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 .title-input::placeholder,
 .content-input::placeholder,
 .select-category::placeholder {
   color: #bbb;
 }
 
+<<<<<<< HEAD
 /* a tag css */
 a {
   text-decoration: none;
@@ -214,3 +391,20 @@ a {
   width: 100%;
   margin-bottom: 50px;
 }
+=======
+/* ── Links ── */
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 28px 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+  color: #aaa;
+  font-size: 13px;
+}
+>>>>>>> ace024c (fix: 블로그 구조 변경)

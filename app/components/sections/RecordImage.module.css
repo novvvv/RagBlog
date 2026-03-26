@@ -1,0 +1,234 @@
+.playerWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 220px;
+}
+
+.hiddenPlayer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0.01;
+  pointer-events: none;
+}
+
+/* ── Record Disc ── */
+.record {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #555 16%, #1a1a1a 17%, #1a1a1a 26%, #333 27%, #222 100%);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s;
+}
+.record:hover { transform: scale(1.03); }
+.spinning { animation: spin 4s linear infinite; }
+.spinning:hover { transform: none; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.grooves {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 0 0 8px rgba(255,255,255,0.02),
+    inset 0 0 0 20px rgba(255,255,255,0.015),
+    inset 0 0 0 32px rgba(255,255,255,0.01);
+  pointer-events: none;
+}
+
+.recordCenter {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #666;
+  border: 2px solid #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.playIcon {
+  font-size: 10px;
+  color: #ccc;
+  line-height: 1;
+}
+
+/* ── Now Playing Bar ── */
+.nowBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 0 4px;
+}
+
+.nowInfo {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.nowIndex {
+  font-size: 10px;
+  color: #bbb;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.nowTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowControls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.nowControls button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.12s;
+  line-height: 1;
+}
+.nowControls button:hover { background: #f0f0f0; }
+.nowControls button:disabled { color: #ddd; cursor: default; }
+.nowControls button:disabled:hover { background: none; }
+
+.playBtn {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px;
+}
+
+/* ── Sub Row (volume + options) ── */
+.subRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+
+.volWrap {
+  flex: 1;
+}
+.volWrap input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: #ddd;
+  border-radius: 1px;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.volWrap input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #444;
+  cursor: pointer;
+}
+
+.opts {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.opts button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #ccc;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.12s;
+}
+.opts button:hover { color: #666; }
+.on { color: #111 !important; }
+
+/* ── Track List (collapsible) ── */
+.trackList {
+  width: 100%;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeDown 0.15s ease;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trackList button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 6px;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.12s, background 0.12s;
+  text-align: left;
+}
+.trackList button:hover { color: #333; background: #f7f7f7; }
+.trackList button:disabled { cursor: default; }
+
+.tNum {
+  font-size: 10px;
+  color: #ccc;
+  font-variant-numeric: tabular-nums;
+  min-width: 14px;
+}
+
+.activeTrack {
+  color: #111 !important;
+  font-weight: 600;
+}
+.activeTrack .tNum { color: #111 !important; }

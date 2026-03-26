@@ -3,9 +3,15 @@ import { ObjectId } from "mongodb"
 import './button.css'
 import Comment from "./Comment"
 import Link from "next/link"
+<<<<<<< HEAD
 import styles from '../../Home.module.css'
 import CodeContentRenderer from './CodeContentRenderer';
 import Chat from '../../Chat'; // 경로는 실제 구조에 맞게 조정
+=======
+import styles from '../../components/home/Home.module.css'
+import CodeContentRenderer from './CodeContentRenderer';
+import Chat from '../../components/chat/Chat';
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 
 export default async function Page({ params }) {
 

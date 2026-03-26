@@ -1,7 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import styles from '../../Home.module.css'
+=======
+import styles from '../../components/home/Home.module.css'
+>>>>>>> ace024c (fix: 블로그 구조 변경)
 
 export default function Comment(props) {
 
