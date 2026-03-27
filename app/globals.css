@@ -1,12 +1,5 @@
 body {
   margin: 0;
-<<<<<<< HEAD
-  padding-left: 250px;
-  padding-right: 250px;
-  background-color: #FDFDFD;
-}
-
-=======
   padding: 0 clamp(40px, 16vw, 420px);
   background-color: #FDFDFD;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -54,7 +47,7 @@ body {
   letter-spacing: -1px;
 }
 
-/* ── Sub-nav (Info / Programming / ...) ── */
+/* ── Sub-nav ── */
 .subNav {
   text-align: center;
   padding: 12px 0 0;
@@ -111,7 +104,6 @@ body {
 }
 
 /* ── List items ── */
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .list-bg {
   background: rgb(249, 250, 255);
   padding: 10px;
@@ -120,12 +112,6 @@ body {
   background: white;
   border-radius: 10px;
   padding: 20px;
-<<<<<<< HEAD
-  margin-bottom: 5px;
-  box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
-  opacity: 1;
-  transition: all 1s;
-=======
   margin-bottom: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   transition: box-shadow 0.2s, transform 0.2s;
@@ -133,7 +119,6 @@ body {
 .list-item:hover {
   box-shadow: 0 3px 12px rgba(0,0,0,0.08);
   transform: translateY(-1px);
->>>>>>> ace024c (fix: 블로그 구조 변경)
 }
 .list-item h4 {
   font-size: 20px;
@@ -142,86 +127,15 @@ body {
 }
 .list-item p {
   color: grey;
-<<<<<<< HEAD
-  margin : 5px 0px;
-} 
-
-/** navBar Css*/
-.navbar {
-  background: #FDFDFD;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-}
-
-.navbar a {
-  margin-right: 10px; 
-  text-decoration: none;
-}
-
-/* 좌측 로고 영역 */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 40px;
-  display: block;
-}
-
-
-
-/* 좌측 메뉴 영역 */
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* 우측 아이콘/버튼 */
-.navbar-right {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.icon-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-=======
   margin: 5px 0;
 }
 
 /* ── Buttons ── */
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .login-button {
   background-color: transparent;
   color: black;
   border: none;
   padding: 0;
-<<<<<<< HEAD
-  border-radius: 0;
-  font-size: 14px;
-  cursor: default;
-}
-
-.login-button:hover {
-  background-color: transparent;
-  color: black;
-}
-
-/* write page input tag css */
-.p-20 {
-  padding: 20px;
-}
-=======
   font-size: 14px;
   cursor: pointer;
 }
@@ -239,43 +153,12 @@ button {
 button:hover { background: #e4e4e4; }
 
 /* ── Inputs ── */
->>>>>>> ace024c (fix: 블로그 구조 변경)
 input {
   box-sizing: border-box;
   padding: 10px;
   display: block;
   margin-bottom: 10px;
 }
-<<<<<<< HEAD
-button {
-  padding: 10px 15px;
-  background: lightgray;
-  border: none;
-  border-radius: 5px;
-} 
-
-/* write page css */
-
-.content-textarea {
-  font-size: 16px;
-  border: none;
-  border-bottom: 1px solid #eee;
-  width: 100%;
-  padding: 10px 0;
-  outline: none;
-  color: #444;
-  resize: vertical; /* 사용자가 줄 수 조절 가능 */
-  line-height: 1.5;
-  font-family: inherit;
-}
-
-.write-container {
-  padding: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-=======
 
 /* ── Write page ── */
 .p-20 { padding: 20px; }
@@ -284,7 +167,6 @@ button {
   max-width: 860px;
   margin: 0 auto;
 }
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .select-category {
   width: 200px;
   padding: 10px;
@@ -294,10 +176,6 @@ button {
   border-radius: 4px;
   color: #444;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .title-input {
   font-size: 24px;
   border: none;
@@ -308,10 +186,6 @@ button {
   outline: none;
   color: #444;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .content-input {
   font-size: 16px;
   border: none;
@@ -321,9 +195,6 @@ button {
   outline: none;
   color: #444;
 }
-<<<<<<< HEAD
-
-=======
 .content-textarea {
   font-size: 16px;
   border: none;
@@ -336,62 +207,12 @@ button {
   line-height: 1.5;
   font-family: inherit;
 }
->>>>>>> ace024c (fix: 블로그 구조 변경)
 .title-input::placeholder,
 .content-input::placeholder,
 .select-category::placeholder {
   color: #bbb;
 }
 
-<<<<<<< HEAD
-/* a tag css */
-a {
-  text-decoration: none;
-  color: black;
-}
-
-.footer {
-  background-color: #FDFDFD;
-  padding: 20px;
-  text-align: center;
-  border-top: 1px solid #e7e7e7;
-  margin-top: auto;
-}
-
-.main-content-wrapper {
-  display: flex;
-  gap: 20px; /* Adjust as needed */
-  padding: 20px; /* Adjust as needed */
-}
-
-.main-page-content {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.newsHeading {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 4em;
-  font-weight: 200;
-  color: #262627;
-  margin-top: 50px;
-  margin-bottom: 10px;
-}
-
-.newsLine {
-  border: none;
-  border-top: 2px dashed #ccc !important;
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-.solidLine {
-  border: none;
-  border-top: 2px solid #ccc !important;
-  width: 100%;
-  margin-bottom: 50px;
-}
-=======
 /* ── Links ── */
 a {
   text-decoration: none;
@@ -407,4 +228,3 @@ a {
   color: #aaa;
   font-size: 13px;
 }
->>>>>>> ace024c (fix: 블로그 구조 변경)

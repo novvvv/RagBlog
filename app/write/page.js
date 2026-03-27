@@ -82,40 +82,6 @@ export default function Write() {
                         <CodeContentRenderer content={content} />
                     ) : (
                         <>
-<<<<<<< HEAD
-                            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'center' }}>
-                                <button
-                                    type="button"
-                                    onClick={() => fileInputRef.current.click()}
-                                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
-                                >
-                                    <img src="/write/picture.png" alt="사진 추가" style={{ width: '32px', height: '32px' }} />
-                                </button>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    ref={fileInputRef}
-                                    style={{ display: 'none' }}
-                                    onChange={handleImageChange}
-                                />
-                                {imageName && <span>{imageName}</span>}
-                                
-                                <button type="button" onClick={() => {
-                                    const textarea = document.querySelector('textarea[name="content"]'); 
-                                    const start = textarea.selectionStart; 
-                                    const end = textarea.selectionEnd;
-                                    const text = textarea.value; 
-                                    const newText = text.substring(0, start) + '\n```javascript\n// 여기에 코드를 입력하세요\n```\n' + text.substring(end);
-                                    setContent(newText);
-                                    textarea.focus();
-                                }}
-                                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
-                                >
-                                    <img src="/write/code_icon.png" alt="코드 블록 추가" style={{ width: '32px', height: '32px' }} />
-                                </button>
-
-                                <button type="button" onClick={() => {
-=======
                             <div className="toolbar">
                                 <button type="button" className="toolbar-btn" onClick={() => fileInputRef.current.click()}>사진</button>
                                 <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
@@ -130,7 +96,6 @@ export default function Write() {
                                     textarea.focus();
                                 }}>코드</button>
                                 <button type="button" className="toolbar-btn" onClick={() => {
->>>>>>> ace024c (fix: 블로그 구조 변경)
                                     const textarea = document.querySelector('textarea[name="content"]');
                                     const start = textarea.selectionStart;
                                     const end = textarea.selectionEnd;
@@ -139,29 +104,11 @@ export default function Write() {
                                     const newText = text.substring(0, start) + '**' + selectedText + '**' + text.substring(end);
                                     setContent(newText);
                                     textarea.focus();
-<<<<<<< HEAD
-                                }}
-                                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
-                                >
-                                    <img src="/write/bold_icon.png" alt="굵게" style={{ width: '32px', height: '32px' }} />
-                                </button>
-
-                                <button type="button" onClick={() => applyAlignment('left')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
-                                    <img src="/write/left_align_icon.png" alt="왼쪽 정렬" style={{ width: '32px', height: '32px' }} />
-                                </button>
-                                <button type="button" onClick={() => applyAlignment('center')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
-                                    <img src="/write/center_align_icon.png" alt="가운데 정렬" style={{ width: '32px', height: '32px' }} />
-                                </button>
-                                <button type="button" onClick={() => applyAlignment('right')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}>
-                                    <img src="/write/right_align_icon.png" alt="오른쪽 정렬" style={{ width: '32px', height: '32px' }} />
-                                </button>
-=======
                                 }}><b>B</b></button>
                                 <span className="toolbar-divider"></span>
                                 <button type="button" className="toolbar-btn" onClick={() => applyAlignment('left')}>좌</button>
                                 <button type="button" className="toolbar-btn" onClick={() => applyAlignment('center')}>중</button>
                                 <button type="button" className="toolbar-btn" onClick={() => applyAlignment('right')}>우</button>
->>>>>>> ace024c (fix: 블로그 구조 변경)
                             </div>
 
                             {src && (
