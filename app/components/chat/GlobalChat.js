@@ -59,7 +59,9 @@ function ChatAppIcon() {
 export default function GlobalChat() {
   const [phoneVisible, setPhoneVisible] = useState(false)
   const [screen, setScreen] = useState('home')
-  const [messages, setMessages] = useState([])
+
+  const [messages, setMessages] = useState([]) // 현재까지 채팅창에 찍힌 대화 기록 
+
   const [input, setInput] = useState('')
   const messagesEndRef = useRef(null)
   const time = useCurrentTime()
@@ -77,13 +79,26 @@ export default function GlobalChat() {
     }
   }
 
+  // handleSend 
+  // -> Exercise : 전송 버튼을 누르거나 Enter로 보낼 떄 실행 
+  
+  // userMessage : 사용자가 작성한 문자열 (text : 글 내용, sender : 보낸 사람)
+  // loadingMessage : 봇이 답장할동안 표시할 메시지? 
+  // ... msg.loading이면 타이핑 점 {...} UI 출력 끝나면 { text: data.answer, sender: 'bot' } 형태로 변환 << 이게 뭔데 
+  
+  // newMessages : [...messages, userMessage, loadingMessage] 
+  // ... 기존 messages 배열 복사 후 새로운 객체 {userMessage, loadingMessage}
+
   const handleSend = async () => {
-    if (!input.trim()) return
-    const userMessage = { text: input, sender: 'me' }
+
+    if (!input.trim()) return // Exception. 공백 문자열 처리 
+    const userMessage = { text: input, sender: 'me' } 
     const loadingMessage = { sender: 'bot', loading: true }
     const newMessages = [...messages, userMessage, loadingMessage]
-    setMessages(newMessages)
-    setInput('')
+
+    setMessages(newMessages) // 채팅 목록을 갱신해서 말풍선이 바로 출력되도록 설정 
+    setInput('') // 입력창 비우기 
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
         method: 'POST',
@@ -92,7 +107,9 @@ export default function GlobalChat() {
       })
       const data = await res.json()
       setMessages(newMessages.map(m => m.loading ? { text: data.answer, sender: 'bot' } : m))
-    } catch {
+    } 
+    
+    catch {
       setMessages(newMessages.map(m => m.loading ? { text: '응답 중 오류가 발생했습니다.', sender: 'bot' } : m))
     }
   }
@@ -171,7 +188,7 @@ export default function GlobalChat() {
                 <div className={styles.chatInputArea}>
                   <textarea
                     className={styles.textarea}
-                    value={input}
+                    value={input} // 타이핑하는 동안 글자는 전부 input state에 쌓인다. 
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="메시지 입력..."

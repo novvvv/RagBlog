@@ -5,6 +5,7 @@ import { authOptions } from "../auth/[...nextauth]"
 export default async function handler(request, response) {
 
     let session = await getServerSession(request, response, authOptions)
+    
     // session이 존재하는 경우에만 작성 요청 처리 
     // 요청 바디에 유저 이메일 정보 (글쓴이) 추가
     if (session) {

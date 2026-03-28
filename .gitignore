@@ -30,7 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# Environment variables (.env, .env.local, .env.* 등 — 커밋하지 않음)
 .env*
 
 # vercel
@@ -43,8 +43,8 @@ next-env.d.ts
 # security 
 /util/
 /public/
-/backend/model/.env
+/modelBackend/model/.env
 /pages/api/auth
 
 # lecture
-/backend/model/html/lecture
+/modelBackend/model/html/lecture
