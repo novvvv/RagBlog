@@ -1,14 +1,14 @@
 import "./globals.css";
 import Link from "next/link"
 import GlobalChat from "./components/chat/GlobalChat";
-import RecordImage from "./components/sections/RecordImage";
+// import RecordImage from "./components/sections/RecordImage";
 
 import LoginBtn from "./components/auth/login_btn.js"
 import LogoutBtn from "./components/auth/logout_btn.js"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-import AboutMeSection from "./components/sections/AboutMeSection";
+// import AboutMeSection from "./components/sections/AboutMeSection";
 
 export const metadata = {
   title: "Do2Dev",
@@ -51,10 +51,13 @@ export default async function RootLayout({ children }) {
         </nav>
         <hr className="newsLine" />
 
+        {/*
+        메인 랜딩은 app/page.js 의 RagLanding 으로 대체. 기존 소개·이미지 행은 비활성화.
         <div className="heroRow">
           <div><AboutMeSection /></div>
           <div><RecordImage /></div>
         </div>
+        */}
 
         <div className="main-content-wrapper">
           <div className="main-page-content">

@@ -1,12 +1,24 @@
 .pageWrapper {
-  background-color: #FDFDFD;
+  background-color: #fdfdfd;
   min-height: 100vh;
-  color: black;
+  color: #111;
   display: flex;
   flex-direction: column;
-  white-space: pre-line;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   position: relative;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* layout의 .main-page-content(text-align:center)와 구버전 pre-line 영향 제거 — 랜딩만 감쌈 */
+.homeShell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  text-align: left;
+  white-space: normal;
+  box-sizing: border-box;
 }
 
 .introText {

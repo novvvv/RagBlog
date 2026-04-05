@@ -94,13 +94,18 @@ body {
 
 /* ── Main content ── */
 .main-content-wrapper {
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 8px 0 24px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 .main-page-content {
   width: 100%;
+  min-width: 0;
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* ── List items ── */

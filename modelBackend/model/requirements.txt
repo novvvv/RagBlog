@@ -14,3 +14,6 @@ transformers>=4.54.0
 torch>=2.6.0
 torchvision>=0.21.0
 einops
+python-dotenv
+ragas
+langchain-openai

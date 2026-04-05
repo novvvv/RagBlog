@@ -63,6 +63,7 @@ export default function GlobalChat() {
   const [messages, setMessages] = useState([]) // 현재까지 채팅창에 찍힌 대화 기록 
 
   const [input, setInput] = useState('')
+  const sendingRef = useRef(false)
   const messagesEndRef = useRef(null)
   const time = useCurrentTime()
 
@@ -90,20 +91,22 @@ export default function GlobalChat() {
   // ... 기존 messages 배열 복사 후 새로운 객체 {userMessage, loadingMessage}
 
   const handleSend = async () => {
+    const text = input.trim()
+    if (!text || sendingRef.current) return
 
-    if (!input.trim()) return // Exception. 공백 문자열 처리 
-    const userMessage = { text: input, sender: 'me' } 
+    sendingRef.current = true
+    const userMessage = { text, sender: 'me' }
     const loadingMessage = { sender: 'bot', loading: true }
     const newMessages = [...messages, userMessage, loadingMessage]
 
-    setMessages(newMessages) // 채팅 목록을 갱신해서 말풍선이 바로 출력되도록 설정 
-    setInput('') // 입력창 비우기 
+    setMessages(newMessages)
+    setInput('')
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: 'global_rag', question: input }),
+        body: JSON.stringify({ post_id: 'global_rag', question: text }),
       })
       const data = await res.json()
       setMessages(newMessages.map(m => m.loading ? { text: data.answer, sender: 'bot' } : m))
@@ -111,11 +114,17 @@ export default function GlobalChat() {
     
     catch {
       setMessages(newMessages.map(m => m.loading ? { text: '응답 중 오류가 발생했습니다.', sender: 'bot' } : m))
+    } finally {
+      sendingRef.current = false
     }
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() }
+    if (e.key !== 'Enter' || e.shiftKey) return
+    // 한글 IME 조합 중 Enter는 조합 확정용 — 전송으로 처리하면 '안녕' + '녕' 이중 요청 등이 난다
+    if (e.nativeEvent.isComposing || e.keyCode === 229) return
+    e.preventDefault()
+    handleSend()
   }
 
   return (

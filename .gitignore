@@ -48,3 +48,9 @@ next-env.d.ts
 
 # lecture
 /modelBackend/model/html/lecture
+
+# novlog posts (generated/content assets)
+/public/novlog/
+
+# evaluation outputs
+/modelBackend/model/evaluation/results/

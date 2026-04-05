@@ -92,6 +92,7 @@ def _extract_special_blocks(
     documents: List[Document] = []
     counter = chunk_id_start
 
+    # pre 기준 코드 파싱 
     for pre in soup.find_all("pre"):
         code_text = pre.get_text("\n", strip=True)
         pre.decompose()
@@ -129,7 +130,15 @@ def _extract_special_blocks(
     return documents, counter
 
 
+# 블로그 기반
+# script/style 제거 -> RAG 표준 
+# header/footer/nav 제거 -> 사이트 공통 영역 (검색/재랭킹 노이즈 제거)
+# - 글 핵심이 <body> 안에, h1~h4와 본문 문단, 코드, 표로 잘 들어가 있고 
+# 사이트 공통 영역이 header/footer.nav에만 있고, 해당 태그 내부에 중요한 정보가 없다는 가정 
+
 def _extract_text_chunks(post_id: str, html_content: str) -> List[Document]:
+
+    # Note1. BeautifulSoup HTML Parsing 
     soup = BeautifulSoup(html_content, "html.parser")
     for meta in soup(["script", "style", "header", "footer", "nav"]):
         meta.decompose()
@@ -412,7 +421,24 @@ def chat_with_rag(request: ChatRequest):
     print("--- End of Retriever Output ---\n")
 
     if not relevant_docs:
-        return {"answer": "컨텍스트 검색에 실패했습니다. 인덱스를 재생성한 뒤 다시 시도해 주세요."}
+        print(
+            "  ⚠️ 검색된 문서 없음(인덱스 비어 있거나 매칭 없음) — 일반 대화 모드로 응답합니다."
+        )
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "당신은 친절하고 정중한 한국어 어시스턴트입니다. "
+                    "사용자 질문에 정확하고 간결하게 답변하세요. "
+                    "블로그 검색 결과가 없으므로, 일반적인 지식으로 도울 수 있는 범위에서 답하세요."
+                ),
+            },
+            {"role": "user", "content": request.question},
+        ]
+        answer_text = generate_answer(messages)
+        if not answer_text:
+            return {"answer": "죄송합니다. 지금은 답변을 생성하지 못했습니다."}
+        return {"answer": answer_text}
 
     context_texts = []
     total_length = 0

@@ -1,0 +1,52 @@
+[
+  {
+    "question": "RAGAS로 RAG 파이프라인을 평가할 때 필요한 데이터셋 구성요소와 Ground Truth의 역할은 무엇인가요?",
+    "category": "RAG",
+    "reference": "RAGAS를 활용한 평가에는 질문(question), 답변(answer), 컨텍스트(context), 그리고 정답지(ground truth)로 구성된 데이터셋이 필요합니다[cite: 1]. 여기서 Ground Truth(GT)는 시스템의 출력값을 비교 평가하기 위해 사람이 직접 작성한 '정답지' 역할을 합니다[cite: 1]. 구체적으로는 사용자의 예상 질문과 그에 대한 완벽하고 정확한 모범 답안을 포함하며, 시스템이 생성한 답변의 정확성을 측정하는 핵심 기준이 됩니다[cite: 1]."
+  },
+  {
+    "question": "BOJ 1431처럼 C++에서 sort 비교 함수로 문자열 길이·자릿수 합·사전순 조건을 어떻게 정의하나요?",
+    "category": "Algorithm",
+    "reference": "C++의 `sort` 함수에 사용할 커스텀 비교 함수(`comp`) 내부에 세 가지 조건을 순차적으로 정의합니다[cite: 2]. 첫째, 두 문자열의 길이를 비교하여 짧은 것이 앞으로 오게 합니다[cite: 2]. 둘째, 길이가 같다면 각 문자열의 숫자 자릿수 합을 구해 작은 쪽이 먼저 오도록 설정합니다[cite: 2]. 셋째, 합까지 같다면 사전순(표준 비교 연산)으로 정렬되도록 반환값을 설정하면 됩니다[cite: 2]."
+  },
+  {
+    "question": "React에서 state와 일반 변수의 차이는 무엇이며, useState와 useEffect는 각각 어떤 역할인가요?",
+    "category": "React",
+    "reference": "가장 큰 차이는 '렌더링 트리거' 여부입니다. 상태(state)는 리액트가 감시하는 데이터로 값이 변하면 UI를 다시 렌더링하지만, 일반 변수는 값이 변해도 UI가 업데이트되지 않으며 렌더링 시마다 초기화됩니다[cite: 3]. `useState`는 컴포넌트 내부에서 이러한 동적 데이터를 관리하는 저장소 역할을 하며, `useEffect`는 컴포넌트의 렌더링과 별개로 API 호출이나 데이터 구독 같은 사이드 이펙트(Side Effect)를 특정 시점(마운트, 업데이트, 언마운트)에 실행하는 역할을 합니다[cite: 3]."
+  },
+  {
+    "question": "docker exec과 docker run의 차이는 무엇이고, 실행 중인 컨테이너에 명령을 넣을 때 왜 docker exec를 쓰나요?",
+    "category": "Docker",
+    "reference": "`docker run`은 새로운 컨테이너를 생성하여 실행하는 명령인 반면, `docker exec`은 이미 실행 중인 컨테이너 내부에서 특정 명령을 실행하는 명령입니다[cite: 4]. 실행 중인 컨테이너에 명령을 넣을 때 `docker exec`을 사용하는 이유는 새로운 인스턴스를 추가로 만들지 않고 기존 컨테이너의 환경(예: 실행 중인 MySQL 데이터베이스 접근 등) 그대로 작업을 수행할 수 있기 때문입니다[cite: 4]."
+  },
+  {
+    "question": "JPA Auditing에서 @EnableJpaAuditing과 @EntityListeners(AuditingEntityListener)는 무엇을 하나요?",
+    "category": "JPA",
+    "reference": "`@EnableJpaAuditing`은 애플리케이션 전역에서 JPA Auditing 기능을 활성화하여 관련 빈을 자동으로 등록해 줍니다[cite: 5]. 반면 `@EntityListeners(AuditingEntityListener.class)`는 특정 엔터티 클래스에 리스너를 등록하여, 해당 엔터티가 생성되거나 수정되는 시점을 감시하게 합니다[cite: 5]. 이 두 설정을 통해 `@CreatedDate`나 `@LastModifiedDate`가 붙은 필드에 시간을 자동으로 기록할 수 있습니다[cite: 5]."
+  },
+  {
+    "question": "JPA에서 BaseTimeEntity로 created_at·updated_at을 한곳에서 관리하는 이유와 리팩터링 포인트는 무엇인가요?",
+    "category": "JPA",
+    "reference": "여러 엔터티에 흩어진 생성/수정 시간 관리 로직을 한곳에서 일괄 관리함으로써 코드의 일관성을 높이고 유지보수를 용이하게 하기 위해서입니다[cite: 6]. 리팩터링 포인트는 `@MappedSuperclass`를 사용한 추상 클래스인 `BaseTimeEntity`를 생성하고, 여기에 JPA Auditing 설정을 모아두는 것입니다[cite: 6]. 이후 시간 추적이 필요한 엔터티들이 이 클래스를 상속받게 함으로써 중복 코드를 제거하고 필드를 자동 관리하게 할 수 있습니다[cite: 6]."
+  },
+  {
+    "question": "Spring에서 ResponseEntity란 무엘이며 HttpMessageConverter·상태 코드와 어떻게 연결되나요?",
+    "category": "Spring",
+    "reference": "`ResponseEntity`는 HTTP 응답의 바디, 헤더, 상태 코드를 세밀하게 제어할 수 있도록 돕는 클래스입니다[cite: 7]. 스프링 MVC는 `ResponseEntity`가 반환되면 뷰 리졸버 탐색을 생략하고 `HttpMessageConverter`를 호출하여 내부 객체를 JSON이나 XML 포맷으로 변환합니다[cite: 7]. 또한 `.status()` 메서드를 통해 `HttpStatus.OK(200)`, `UNAUTHORIZED(401)` 등 표준 HTTP 상태 코드를 직관적으로 설정하여 클라이언트에 전달할 수 있습니다[cite: 7]."
+  },
+  {
+    "question": "Spring Security의 UserDetails 인터페이스와 Domain Entity 대신 CustomUserDetails를 쓰는 이유는 무엇인가요?",
+    "category": "SpringSecurity",
+    "reference": "`UserDetails`는 스프링 시큐리티가 사용자의 인증 정보를 담기 위해 사용하는 표준 인터페이스입니다[cite: 8]. 도메인 엔터티에 직접 구현하지 않고 별도의 `CustomUserDetails` 래퍼 클래스를 사용하는 이유는 엔터티가 스프링 시큐리티라는 특정 프레임워크에 직접 의존하는 것을 방지하기 위함입니다[cite: 8]. 이를 통해 도메인 계층의 순수성을 유지하면서 시큐리티에 필요한 정보만 효과적으로 제공할 수 있습니다[cite: 8]."
+  },
+  {
+    "question": "Spring에서 @Configuration이 빈 정의에 주는 역할과 @Value로 외부 설정을 주입하는 방식을 설명해 주세요.",
+    "category": "Spring",
+    "reference": "`@Configuration`은 해당 클래스가 스프링의 설정 정보를 담고 있음을 명시하며, 내부적으로 CGLIB 프록시를 생성해 `@Bean` 메서드가 여러 번 호출되어도 항상 동일한 싱글톤 객체를 반환하도록 보장합니다[cite: 9]. `@Value`는 `${property.name}` 형식을 사용하여 `application.yml`이나 시스템 환경 변수에 정의된 값을 필드에 직접 주입합니다[cite: 9]. 이는 애플리케이션 실행 시 `PropertySourceLoader`가 설정 파일을 읽어 환경값으로 관리하기 때문에 가능합니다[cite: 9]."
+  },
+  {
+    "question": "Jackson의 @JsonProperty는 JSON 직렬화에서 어떤 문제를 해결하고 필드명 매핑에 어떻게 쓰이나요?",
+    "category": "Spring",
+    "reference": "`@JsonProperty`는 백엔드의 엔터티 필드명과 프론트엔드에서 기대하는 속성명이 일치하지 않을 때 발생하는 문제를 해결합니다[cite: 10]. 예를 들어 백엔드의 `postView` 필드를 직렬화할 때 `@JsonProperty(\"views\")`를 붙여주면, 실제 전송되는 JSON 결과에서는 `\"views\"`라는 이름으로 매핑됩니다[cite: 10]. 이를 통해 기존 비즈니스 로직이나 DB 컬럼명을 수정하지 않고도 API 스펙을 유연하게 맞출 수 있습니다[cite: 10]."
+  }
+]

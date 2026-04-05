@@ -6,10 +6,7 @@ export default function HomeClient({ children }) {
 
   return (
     <div className={styles.pageWrapper}>
-
-      {children}
-
-
+      <div className={styles.homeShell}>{children}</div>
     </div>
   )
 }

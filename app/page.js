@@ -1,10 +1,14 @@
 import HomeClient from './components/home/HomeClient';
-import RecentPosts from './components/home/RecentPosts';
+import RagLanding from './components/home/RagLanding';
 
 export default function Home() {
   return (
     <HomeClient>
-      {/* <RecentPosts /> */}
+      <RagLanding />
+      {/*
+      import RecentPosts from './components/home/RecentPosts';
+      <RecentPosts />
+      */}
     </HomeClient>
   );
 }
