@@ -54,3 +54,5 @@ next-env.d.ts
 
 # evaluation outputs
 /modelBackend/model/evaluation/results/
+# local scratch
+/_to_delete/
